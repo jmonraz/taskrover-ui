@@ -116,3 +116,26 @@
     background-color: #de482d;
     color: #fff;
 }
+
+.green-button {
+    border: none;
+    border-radius: 5px;
+    padding: 10px 15px;
+    width: 100%;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    background-color: #4CAF50;
+    color: #fff;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.4);
+    font-family: 'Roboto', sans-serif;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.green-button:hover {
+    background-color: #3b863e;
+}
+
+.green-button:active {
+    background-color: #2e6f2a;
+}

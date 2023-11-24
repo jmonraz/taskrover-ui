@@ -1,0 +1,31 @@
+.main-text {
+    color: #fff;
+    font-size: 26px;
+    font-weight: bold;
+}
+
+.small-text {
+    color: #fff;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.text-link {
+    color: #fff;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.3s ease-in-out;
+}
+
+.text-link:hover {
+    color: #c0c0c0;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.text-link:active {
+    color: #fff;
+    font-size: 14px;
+    font-weight: bold;
+}
