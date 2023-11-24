@@ -1,0 +1,118 @@
+.default-button {
+    border: none;
+    border-radius: 5px;
+    padding: 10px 15px;
+    width: 100%;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    background-color: #00796B;
+    color: #fff;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.4);
+    font-family: 'Roboto', sans-serif;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.default-button:hover {
+    background-color: #00695C;
+}
+
+.default-button:active {
+    background-color: #004D40;
+}
+
+.alt-button {
+    border: none;
+    border-radius: 5px;
+    padding: 10px 15px;
+    width: 100%;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    background-color: #FF6F61;
+    color: #fff;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.4);
+    font-family: 'Roboto', sans-serif;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.alt-button:hover {
+    background-color: #E85A4F;
+}
+
+.alt-button:active {
+    background-color: #C34A40;
+}
+
+.cancel-button {
+    border: none;
+    border-radius: 5px;
+    padding: 10px 15px;
+    width: 100%;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    background-color: #FF5733;
+    color: #fff;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.4);
+    font-family: 'Roboto', sans-serif;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.cancel-button:hover {
+    background-color: #E64D2F;
+}
+
+.cancel-button:active {
+    background-color: #C44126;
+}
+
+.confirm-button {
+    border: 1px solid #4CAF50;
+    border-radius: 5px;
+    padding: 10px 15px;
+    width: 100%;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    background-color: transparent;
+    color: #4CAF50;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.4);
+    font-family: 'Roboto', sans-serif;
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+.confirm-button:hover {
+    background-color: #4CAF50;
+    color: #fff;
+}
+
+.confirm-button:active {
+    background-color: #3b863e;
+    color: #fff;
+}
+
+.close-button {
+    border: 1px solid #FF5733;
+    border-radius: 5px;
+    padding: 10px 15px;
+    width: 100%;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    background-color: transparent;
+    color: #FF5733;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.4);
+    font-family: 'Roboto', sans-serif;
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+.close-button:hover {
+    background-color: #FF5733;
+    color: #fff;
+}
+
+.close-button:active {
+    background-color: #de482d;
+    color: #fff;
+}

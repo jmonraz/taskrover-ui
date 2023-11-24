@@ -1,5 +1,6 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import Input from "./components/Input";
+import Button from "./components/Button";
 import React from "react";
 
 test('renders input element', () => {
@@ -31,3 +32,5 @@ test('handleChange updates input value correctly', () => {
     // verify that handleChange was called and input value is updated
     expect(inputElement.value).toBe('test');
 })
+
+// test that that button onClick is called
