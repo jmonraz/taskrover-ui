@@ -1,0 +1,32 @@
+p {
+    margin: 0;
+    padding: 0;
+}
+
+.ticket-block {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 5px;
+    background-color: #fff;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.4);
+    padding: 20px 75px 20px 20px;
+}
+
+.ticket-row {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.ticket-col {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.ticket-row:nth-child(1) {
+    .ticket-col {
+        padding-left: 25px;
+    }
+}
