@@ -1,6 +1,7 @@
 import {useState} from 'react';
 
 import {BrowserRouter as Router, Routes, Route, Navigate} from "react-router-dom";
+import {UserProvider} from "./context/UserContext"; // importing UserProvider
 import './App.css';
 
 // screens
@@ -26,7 +27,7 @@ const App = () => {
 
   return (
       <>
-          <div className="app-container">
+          <UserProvider> {/* Wrap the entire app in the provider component */}
               <Router>
                   <Routes>
                       <Route
@@ -34,7 +35,7 @@ const App = () => {
                           element={<LoginPage handleLogin={handleLogin} loginError={loginError} />} />
                   </Routes>
               </Router>
-          </div>
+          </UserProvider>
       </>
   )
 };
