@@ -1,0 +1,46 @@
+.button-container {
+    display: flex;
+    align-items: center;
+    max-width: fit-content;
+    height: 35px;
+    background-color: #FF5733;
+    border-radius: 5px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    padding: 0 2px;
+}
+
+.btn-box:first-child {
+    display: flex;
+    padding: 5px 8px;
+    border-radius: 5px;
+}
+
+.vertical-line {
+    border-left: 1px solid #fff;
+    height: 100%;
+}
+
+.btn-box:nth-child(3) {
+    display: flex;
+    padding: 10px 4px;
+    border-radius: 5px;
+}
+
+.button-container > .btn-box:first-child > img {
+    width: 20px;
+    height: 20px;
+    margin: 0;
+    padding: 0;
+}
+.button-container > :nth-child(3) > img {
+    width: 20px;
+    height: 10px;
+    margin: 0;
+    padding: 0;
+}
+
+.btn-box:hover {
+    cursor: pointer;
+    background-color: #FF6F61;
+}
+
