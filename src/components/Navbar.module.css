@@ -54,5 +54,15 @@
     color: #FF6F61;
 }
 
+.icon {
+    width: 20px;
+    height: 20px;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar > :nth-child(2) {
+    gap: 25px;
+}
 
 

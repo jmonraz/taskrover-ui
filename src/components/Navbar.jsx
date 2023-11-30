@@ -1,9 +1,15 @@
+// components
+import SearchBar from "./SearchBar";
+import AddDropdownButton from "./AddDropdownButton";
 
 // styles
 import styles from "./Navbar.module.css";
 
 // assets
 import logo from "../assets/logo/taskrover-logo-small.png";
+import boxNotificationIcon from "../assets/icons/box_notification.svg";
+import gearIcon from "../assets/icons/gear_icon.svg";
+import userIcon from "../assets/icons/user_icon.svg";
 
 const Navbar = () => {
     return (
@@ -24,11 +30,11 @@ const Navbar = () => {
                     </div>
                 </div>
                 <div className={styles['navbar-row']}>
-                    <p>SearchBar</p>
-                    <p>Add button</p>
-                    <p>Notification Box</p>
-                    <p>Gear Icon</p>
-                    <p>User Icon</p>
+                    <SearchBar />
+                    <AddDropdownButton />
+                    <img src={boxNotificationIcon} alt="notifications" className={styles['icon']}/>
+                    <img src={gearIcon} alt="settings" className={styles['icon']} />
+                    <img src={userIcon} alt="users" className={styles['icon']} />
                 </div>
             </div>
         </>
