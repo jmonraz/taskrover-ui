@@ -12,7 +12,7 @@ const App = () => {
     const [loginError, setLoginError] = useState(false);
 
     const handleLogin = (username, password) => {
-        if (username === 'admin' && password === 'admin') {
+        if (username === 'admin@gmail.com' && password === 'admin') {
             setUserLogged(true);
             setLoginError(false);
         } else {
