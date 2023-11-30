@@ -1,6 +1,13 @@
 // hooks
 import {useFormInput} from "../../hooks/useFormInput";
 
+// context
+import {UserContext} from "../../context/UserContext";
+import {useContext, useState} from "react";
+
+// react-router
+import {useNavigate} from "react-router-dom";
+
 // components
 import Input from "../../components/Input";
 import Button from "../../components/Button";
@@ -10,9 +17,12 @@ import logo from "../../assets/logo/taskrover-logo-small.png"
 
 // styles
 import styles from "./LoginPage.module.css";
-import {useState} from "react";
 
 const LoginPage = () => {
+
+    const navigate = useNavigate();
+
+    const {setToken, setUserType, setUserState} = useContext(UserContext);
 
     const [isLoading, setIsLoading] = useState(false);
 
@@ -28,11 +38,14 @@ const LoginPage = () => {
             setIsLoading(false);
             // handle login
             // navigate to dashboard
+            if(username.value === 'admin@gmail.com' && password.value === 'admin') {
+                setToken('dummy-token');
+                setUserType('agent');
+                setUserState(true);
+                navigate('/home');
+            }
         }, 2500);
 
-        console.log('submitting');
-        console.log('password: ', password.value);
-        console.log('username: ', username.value);
     };
 
     return (
