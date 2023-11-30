@@ -54,15 +54,28 @@
     color: #FF6F61;
 }
 
+.navbar > :nth-child(2) {
+    gap: 5px;
+}
+
+.box {
+    padding-left: 30px;
+    padding-right: 10px;
+}
+
 .icon {
     width: 20px;
     height: 20px;
-    margin: 0;
-    padding: 0;
+    border: 2px solid transparent;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: border 0.3s ease-out;
 }
 
-.navbar > :nth-child(2) {
-    gap: 25px;
+.icon:hover {
+    border: 2px solid #FF6F61;
 }
+
 
 
