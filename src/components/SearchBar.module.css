@@ -1,0 +1,22 @@
+.search-bar {
+    position: relative;
+    width: 200px;
+}
+
+.search-bar input {
+    width: 80%;
+    padding: 10px 40px 10px 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2)
+}
+
+.search-bar img {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
