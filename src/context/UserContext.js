@@ -8,6 +8,7 @@ export const UserProvider = ({children}) => {
     const [authState, setAuthState] = useState({
         token: null,
         userType: null,
+        userState: false
     });
 
     // Function to update the user state
@@ -25,9 +26,14 @@ export const UserProvider = ({children}) => {
         setAuthState(prevState => ({...prevState, userType}));
     }
 
+    // Function to update just the user state
+    const setUserState = (userState) => {
+        setAuthState(prevState => ({...prevState, userState}));
+    }
+
     // Return a provider component with the user state and function to update it
     return (
-        <UserContext.Provider value={{authState, updateAuthState, setToken, setUserType}}>
+        <UserContext.Provider value={{authState, updateAuthState, setToken, setUserType, setUserState}}>
             {children}
         </UserContext.Provider>
     );

@@ -1,38 +1,32 @@
 import {useState} from 'react';
 
 import {BrowserRouter as Router, Routes, Route, Navigate} from "react-router-dom";
-import {UserProvider} from "./context/UserContext"; // importing UserProvider
+import {UserContext, UserProvider} from "./context/UserContext"; // importing UserProvider
 import './App.css';
 
 // screens
 import LoginPage from './pages/loginpage/LoginPage';
+import HomePage from "./pages/homepage/HomePage";
+
+const ProtectedRoute = () => {
+    const {authState} = useState(UserContext);
+    const {userType, userState} = authState;
+
+    if (!userState) {
+        return <Navigate to="/" />;
+    }
+
+    return <Route path="*" element={<HomePage userType={userType} />} />;
+}
 
 const App = () => {
-
-    const [userLogged, setUserLogged] = useState(false);
-    const [loginError, setLoginError] = useState(false);
-
-    const handleLogin = (username, password) => {
-        if (username === 'admin@gmail.com' && password === 'admin') {
-            setUserLogged(true);
-            setLoginError(false);
-        } else {
-            setLoginError(true);
-        }
-    };
-
-    const handleLogout = () => {
-        setUserLogged(false);
-    };
-
   return (
       <>
           <UserProvider> {/* Wrap the entire app in the provider component */}
               <Router>
                   <Routes>
-                      <Route
-                          path="/"
-                          element={<LoginPage handleLogin={handleLogin} loginError={loginError} />} />
+                      <Route path="/" element={<LoginPage />} />
+                        <Route path="/home/*" element={<ProtectedRoute />} />
                   </Routes>
               </Router>
           </UserProvider>
