@@ -1,6 +1,8 @@
 p {
     margin: 0;
     padding: 0;
+    font-family: 'Open Sans', sans-serif;
+    color: #333;
 }
 
 .ticket-block {
@@ -17,6 +19,8 @@ p {
     display: flex;
     align-items: center;
     justify-content: flex-start;
+    padding: 2px 0;
+    gap: 10px;
 }
 
 .ticket-col {
@@ -29,4 +33,54 @@ p {
     .ticket-col {
         padding-left: 25px;
     }
+}
+.ticket-row:nth-child(2) {
+    .ticket-col {
+        font-size: 14px;
+        gap: 5px;
+    }
+}
+.respond-wrapper {
+    background-color: #4CAF50;
+    color: #fafafa;
+    border-radius: 10px;
+    padding: 4px 8px;
+    font-size: 12px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
+}
+
+.circular-image {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+.ticket-title {
+    color: #333333;
+    font-weight: bold;
+}
+
+.ticket-number {
+    color: #757575;
+    font-weight: bold;
+}
+
+.ticket-date {
+    color: #333;
+    font-size: 12px;
+}
+
+.ticket-menu {
+    font-weight: bold;
+}
+
+.icon {
+    width: 12px;
+    height: 12px;
+    fill: #757575;
+    cursor: pointer;
+}
+
+.custom-checkbox {
+    cursor: pointer;
 }
