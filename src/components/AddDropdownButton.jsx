@@ -10,7 +10,6 @@ const AppDropdownButton = ({onClick}) => {
                     <img src={addIcon} alt="add" />
                 </div>
                 <div className={styles['vertical-line']}>
-
                 </div>
                 <div className={styles['btn-box']} onClick={onClick}>
                     <img src={dropdownArrow} alt="dropdown"  />

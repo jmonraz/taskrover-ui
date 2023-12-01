@@ -12,14 +12,27 @@ import gearIcon from "../assets/icons/gear_icon.svg";
 import userIcon from "../assets/icons/user_icon.svg";
 
 // react
-import { useState, useContext} from "react";
+import { useState, useContext, useRef, useEffect} from "react";
 import { UserContext } from "../context/UserContext";
 
 const Navbar = () => {
 
     const [showAddOptions, setShowAddOptions] = useState(false);
     const {setUserState} = useContext(UserContext);
+    const addDropdownRef = useRef(null);
 
+    const handleClickOutside = (event) => {
+        if (addDropdownRef.current && !addDropdownRef.current.contains(event.target)) {
+            setShowAddOptions(false);
+        }
+    }
+
+    useEffect(() => {
+        document.addEventListener("mousedown", handleClickOutside);
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+        };
+    }, []);
 
     const handleSignOut = () => {
         setUserState(false);
@@ -50,7 +63,8 @@ const Navbar = () => {
                     <div className={styles['add-dropdown-container']}>
                         <AddDropdownButton onClick={handleAddDropdownButtonClicked} />
                         {showAddOptions && (
-                            <div className={styles['add-dropdown']}>
+                            <div className={styles['add-dropdown-submenu']} ref={addDropdownRef}>
+                                <p className={styles['status-label']}><span>ADD</span> NEW</p>
                                 <ul>
                                     <li>Task</li>
                                     <li>Project</li>
@@ -63,7 +77,7 @@ const Navbar = () => {
                     </div>
                     <img src={boxNotificationIcon} alt="notifications" className={styles['icon']}/>
                     <img src={gearIcon} alt="settings" className={styles['icon']} />
-                    <div className={styles['user-icon-container']}>
+                    <div className={styles['submenu-container']}>
                         <img src={userIcon} alt="users" className={styles['icon']}/>
                         <div className={styles['submenu']}>
                             <ul>
@@ -74,15 +88,6 @@ const Navbar = () => {
                         </div>
                     </div>
 
-                    {/*{showSubmenu && (*/}
-                    {/*    <div className={styles['submenu']}>*/}
-                    {/*        <ul>*/}
-                    {/*            <li>Profile</li>*/}
-                    {/*            <li>Settings</li>*/}
-                    {/*            <li onClick={handleSignOut}>Sign Out</li>*/}
-                    {/*        </ul>*/}
-                    {/*    </div>*/}
-                    {/*)}*/}
                 </div>
             </div>
         </>

@@ -96,7 +96,7 @@
     transition: opacity 0.3s ease-out, visibility 0.3s ease-out, transform 0.3s ease-out;
 }
 
-.user-icon-container:hover .submenu {
+.submenu-container:hover .submenu {
     opacity: 1;
     visibility: visible;
     transform: translateY(0);
@@ -127,11 +127,54 @@
     color: #FF6F61;
 }
 
-.add-dropdown {
+.add-dropdown-container {
     position: relative;
 }
 
-.add-dropdown {
+.add-dropdown-submenu {
+    display: flex;
+    flex-direction: column;
     position: absolute;
+    top: 30px;
+    right: 0;
+    background-color: #fafafa;
+    border-radius: 5px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.4);
+    padding: 10px 70px 10px 20px;
+}
 
+.add-dropdown-submenu ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.add-dropdown-submenu ul li {
+    font-family: 'Lato', sans-serif;
+    font-size: 14px;
+    color: #00796B;
+    cursor: pointer;
+    padding: 5px 0;
+    border-bottom: 1px solid transparent;
+    transition: border-bottom 0.3s ease-out, color 0.3s ease-out;
+    white-space: nowrap;
+}
+
+.add-dropdown-submenu ul li:hover {
+    border-bottom: 1px solid #FF6F61;
+    color: #FF6F61;
+}
+
+.status-label {
+    color: #757575;
+    font-size: 12px;
+    padding: 10px 0;
+    white-space: nowrap;
+}
+
+.status-label span {
+    border-bottom: 2px solid #757575;
 }
