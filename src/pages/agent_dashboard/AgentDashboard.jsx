@@ -20,7 +20,6 @@ const AgentDashboard = () => {
                 <TicketBlock />
                 <TicketBlock />
                 <TicketBlock />
-
             </div>
         </>
     );

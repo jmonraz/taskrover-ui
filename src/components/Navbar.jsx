@@ -16,10 +16,17 @@ import { useState, useContext } from "react";
 import { UserContext } from "../context/UserContext";
 
 const Navbar = () => {
+
+    const [showAddOptions, setShowAddOptions] = useState(false);
+
     const {setUserState} = useContext(UserContext);
 
     const handleSignOut = () => {
         setUserState(false);
+    }
+
+    const handleAddDropdownButtonClicked = () => {
+        setShowAddOptions(!showAddOptions);
     }
     return (
         <>
@@ -40,7 +47,20 @@ const Navbar = () => {
                 </div>
                 <div className={styles['navbar-row']}>
                     <SearchBar />
-                    <AddDropdownButton />
+                    <div className={styles['add-dropdown-container']}>
+                        <AddDropdownButton onClick={handleAddDropdownButtonClicked} />
+                        {showAddOptions && (
+                            <div className={styles['add-dropdown']}>
+                                <ul>
+                                    <li>Task</li>
+                                    <li>Project</li>
+                                    <li>Customer</li>
+                                    <li>Invoice</li>
+                                    <li>Expense</li>
+                                </ul>
+                            </div>
+                        )}
+                    </div>
                     <img src={boxNotificationIcon} alt="notifications" className={styles['icon']}/>
                     <img src={gearIcon} alt="settings" className={styles['icon']} />
                     <div className={styles['user-icon-container']}>

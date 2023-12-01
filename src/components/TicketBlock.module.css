@@ -11,22 +11,21 @@ p {
     justify-content: space-between;
     border-radius: 5px;
     background-color: #fff;
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.4);
-    padding: 20px 75px 20px 20px;
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
+    padding: 15px 75px 15px 20px;
 }
 
 .ticket-row {
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    padding: 2px 0;
+    padding: 0px 0;
     gap: 10px;
 }
 
 .ticket-col {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
 }
 
 .ticket-row:nth-child(1) {
@@ -36,15 +35,14 @@ p {
 }
 .ticket-row:nth-child(2) {
     .ticket-col {
-        font-size: 14px;
-        gap: 5px;
+        font-size: 12px;
     }
 }
 .respond-wrapper {
     background-color: #4CAF50;
     color: #fafafa;
     border-radius: 10px;
-    padding: 4px 8px;
+    padding: 0 8px;
     font-size: 12px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
 }
@@ -75,8 +73,8 @@ p {
 }
 
 .icon {
-    width: 12px;
-    height: 12px;
+    width: 8px;
+    height: 8px;
     fill: #757575;
     cursor: pointer;
 }
