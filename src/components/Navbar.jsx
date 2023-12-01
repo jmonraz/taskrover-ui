@@ -31,9 +31,7 @@ const Navbar = () => {
                 </div>
                 <div className={styles['navbar-row']}>
                     <SearchBar />
-                    <div className={styles['box']}>
-                        <AddDropdownButton />
-                    </div>
+                    <AddDropdownButton />
                     <img src={boxNotificationIcon} alt="notifications" className={styles['icon']}/>
                     <img src={gearIcon} alt="settings" className={styles['icon']} />
                     <img src={userIcon} alt="users" className={styles['icon']} />

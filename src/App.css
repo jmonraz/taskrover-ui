@@ -29,3 +29,8 @@
     font-size: 14px;
     font-weight: bold;
 }
+
+.main-layout {
+    background-color: #fafafa;
+    min-height: 100vh;
+}

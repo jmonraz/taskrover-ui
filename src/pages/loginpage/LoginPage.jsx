@@ -22,7 +22,7 @@ const LoginPage = () => {
 
     const navigate = useNavigate();
 
-    const {setToken, setUserType, setUserState} = useContext(UserContext);
+    const {setToken, setUserType, setUserState, authState} = useContext(UserContext);
 
     const [isLoading, setIsLoading] = useState(false);
 
