@@ -30,7 +30,9 @@
     font-weight: bold;
 }
 
-.main-layout {
-    background-color: #fafafa;
+
+.main-layout-container {
     min-height: 100vh;
+    background-color: #fafafa;
+    padding: 70px;
 }
