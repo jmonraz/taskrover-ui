@@ -4,6 +4,9 @@ import personImage from '../assets/img/person1.webp';
 import downArrowIcon from '../assets/icons/dropdown_arrow.svg';
 
 const TicketBlock = () => {
+    const [isTicketStatus, setIsTicketStatus] = useState(false);
+    const [isDeparment, setIsDeparment] = useState(false);
+    const [isPriority, setIsPriority] = useState(false);
     const [isChecked, setIsChecked] = useState(false);
 
     const handleCheckboxChange = () =>
@@ -29,15 +32,29 @@ const TicketBlock = () => {
                     <div className={`${styles['ticket-col']} ${styles['ticket-menu']}`}>
                         <div className={styles['ticket-row']}>
                             <p>Low</p>
-                            <img src={downArrowIcon} alt='drop-arrow' className={styles['icon']} />
+                            <img src={downArrowIcon} alt='drop-arrow' className={styles['icon']} onClick={() => setIsTicketStatus(!isPriority)}/>
                         </div>
                         <div className={styles['ticket-row']}>
                             <p>Orders</p>
-                            <img src={downArrowIcon} alt='drop-arrow' className={styles['icon']} />
+                            <img src={downArrowIcon} alt='drop-arrow' className={styles['icon']} onClick={() => setIsDeparment(!isDeparment)}/>
                         </div>
                         <div className={styles['ticket-row']}>
                             <p>Open</p>
-                            <img src={downArrowIcon} alt='drop-arrow' className={styles['icon']} />
+                            <div className={styles['dropdown-container']}>
+                                <img src={downArrowIcon} alt='drop-arrow' className={styles['icon']} onClick={() => setIsTicketStatus(!isTicketStatus)} />
+                                {isTicketStatus && (
+                                    <div className={styles['dropdown-menu']}>
+                                        <p className={styles['status-label']}><span>STA</span>TUS</p>
+                                        <ul>
+                                            <li>Open</li>
+                                            <li>On Hold</li>
+                                            <li>Escalated</li>
+                                            <li>Close</li>
+                                            <li>In Progress</li>
+                                        </ul>
+                                    </div>
+                                )}
+                            </div>
                         </div>
 
                     </div>

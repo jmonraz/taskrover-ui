@@ -13,6 +13,13 @@ p {
     background-color: #fff;
     box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
     padding: 15px 75px 15px 20px;
+    cursor: pointer;
+    transition: box-shadow 0.3s ease-in-out, background-color 0.3s ease-in-out;
+}
+
+.ticket-block:hover {
+    background-color: #ececec;
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.4);
 }
 
 .ticket-row {
@@ -73,12 +80,58 @@ p {
 }
 
 .icon {
-    width: 8px;
-    height: 8px;
+    width: 10px;
+    height: 10px;
     fill: #757575;
     cursor: pointer;
 }
 
 .custom-checkbox {
     cursor: pointer;
+}
+
+.dropdown-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 15px;
+    right: 0;
+    background-color: #fafafa;
+    color: #fafafa;
+    border-radius: 5px;
+    padding: 5px 0;
+    font-size: 14px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
+    z-index: 999;
+}
+
+.dropdown-menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    color: #333;
+}
+
+.dropdown-menu ul li {
+    padding: 5px 60px 5px 15px;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.dropdown-menu ul li:hover {
+    background-color: rgba(255, 87, 51, 0.4);
+}
+
+.status-label {
+    color: #757575;
+    font-size: 12px;
+    padding: 10px 15px;
+}
+
+.status-label span {
+    border-bottom: 2px solid #757575;
 }
