@@ -12,14 +12,14 @@ import gearIcon from "../assets/icons/gear_icon.svg";
 import userIcon from "../assets/icons/user_icon.svg";
 
 // react
-import { useState, useContext } from "react";
+import { useState, useContext} from "react";
 import { UserContext } from "../context/UserContext";
 
 const Navbar = () => {
 
     const [showAddOptions, setShowAddOptions] = useState(false);
-
     const {setUserState} = useContext(UserContext);
+
 
     const handleSignOut = () => {
         setUserState(false);
