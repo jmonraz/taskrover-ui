@@ -7,8 +7,9 @@ const MainLayout = () => {
         <>
                 <Navbar />
                 <div className="main-layout-container">
-                        <Outlet />
+                    <Outlet />
                 </div>
+            {/*footer*/}
         </>
     );
 };
