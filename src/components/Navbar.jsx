@@ -11,7 +11,17 @@ import boxNotificationIcon from "../assets/icons/box_notification.svg";
 import gearIcon from "../assets/icons/gear_icon.svg";
 import userIcon from "../assets/icons/user_icon.svg";
 
+// react
+import { useState, useContext } from "react";
+import { UserContext } from "../context/UserContext";
+
 const Navbar = () => {
+    const [showSubmenu, setShowSubmenu] = useState(false);
+    const {setUserState} = useContext(UserContext);
+
+    const handleSignOut = () => {
+        setUserState(false);
+    }
     return (
         <>
             <div className={styles['navbar']}>
@@ -34,7 +44,16 @@ const Navbar = () => {
                     <AddDropdownButton />
                     <img src={boxNotificationIcon} alt="notifications" className={styles['icon']}/>
                     <img src={gearIcon} alt="settings" className={styles['icon']} />
-                    <img src={userIcon} alt="users" className={styles['icon']} />
+                    <img src={userIcon} alt="users" className={styles['icon']} onClick={() => setShowSubmenu(!showSubmenu)} />
+                    {showSubmenu && (
+                        <div className={styles['submenu']}>
+                            <ul>
+                                <li>Profile</li>
+                                <li>Settings</li>
+                                <li onClick={handleSignOut}>Sign Out</li>
+                            </ul>
+                        </div>
+                    )}
                 </div>
             </div>
         </>
