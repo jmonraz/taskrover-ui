@@ -76,16 +76,30 @@
     border: 2px solid #FF6F61;
 }
 
+.user-icon-container {
+    position: relative;
+}
+
 .submenu {
     display: flex;
     flex-direction: column;
     position: absolute;
-    top: 60px;
-    right: 0px;
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.4);
-    padding: 10px 20px;
-    border-top: 2px solid #FF5733;
+    top: 40px;
+    right: 0;
     background-color: #fafafa;
+    border-top: 2px solid #FF5733;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.4);
+    padding: 10px 40px 10px 20px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: opacity 0.3s ease-out, visibility 0.3s ease-out, transform 0.3s ease-out;
+}
+
+.user-icon-container:hover .submenu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
 }
 
 .submenu ul {
@@ -105,6 +119,7 @@
     padding: 5px 0;
     border-bottom: 1px solid transparent;
     transition: border-bottom 0.3s ease-out, color 0.3s ease-out;
+    white-space: nowrap;
 }
 
 .submenu ul li:hover {
