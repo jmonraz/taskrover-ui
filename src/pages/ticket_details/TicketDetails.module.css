@@ -1,15 +1,45 @@
+.main-container-row {
+    display: flex;
+    height: 100%;
+    width: 100%;
+    border: 1px solid black;
+    border-radius: 5px;
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.3);
+    background-color: #fafafa;
+}
+
 .left-container {
     display: flex;
     flex-direction: column;
-    height: 100%;
-    background-color: green;
+    padding: 15px 25px;
+    height: calc(100vh - 120px);
     width: 300px;
+    overflow-y: auto;
 }
 
 .right-container {
     display: flex;
     flex-direction: column;
+    border-left: 1px solid black;
     height: 100%;
-    background-color: red;
     width: 100%;
+}
+.ticket-conversation-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: calc(100vh - 200px);
+    overflow-y: auto;
+}
+
+.ticket-conversation-col {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 10px;
+    height: 100%;
+}
+
+.ticket-header {
+    padding: 10px 50px;
 }
