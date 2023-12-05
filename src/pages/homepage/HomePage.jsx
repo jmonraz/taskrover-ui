@@ -1,7 +1,7 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 // components
 import MainLayout from "../../components/MainLayout";
@@ -12,11 +12,15 @@ import TicketDetails from "../ticket_details/TicketDetails";
 
 const HomeScreen = ({userType}) => {
     const navigate = useNavigate();
-
+    const [initialLoad, setInitialLoad] = useState(false);
     useEffect(() => {
-        const dashboardPath = userType === 'agent' ? '/home/agent/dashboard' : '/home/user/dashboard';
-        navigate(dashboardPath);
-    }, [userType, navigate]);
+        if (!initialLoad) {
+            const dashboardPath = userType === 'agent' ? '/home/agent/dashboard' : '/home/user/dashboard';
+            setInitialLoad(true);
+            navigate(dashboardPath);
+        }
+
+    }, [userType, navigate, initialLoad]);
     return(
         <>
                 <Routes>

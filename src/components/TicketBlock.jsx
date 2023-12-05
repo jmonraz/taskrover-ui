@@ -3,7 +3,7 @@ import {useState, useRef, useEffect} from "react";
 import personImage from '../assets/img/person1.webp';
 import downArrowIcon from '../assets/icons/dropdown_arrow.svg';
 
-const TicketBlock = ({onClick, ticketDetails, key}) => {
+const TicketBlock = ({onClick, ticketDetails }) => {
     const [isTicketStatus, setIsTicketStatus] = useState(false);
     const [isDeparment, setIsDeparment] = useState(false);
     const [isPriority, setIsPriority] = useState(false);
@@ -36,7 +36,7 @@ const TicketBlock = ({onClick, ticketDetails, key}) => {
         setIsChecked(!isChecked);
     return (
         <>
-            <div className={styles['ticket-block']} onClick={onClick} key={key}>
+            <div className={styles['ticket-block']} onClick={() => onClick(ticketDetails)} >
                 <div className={styles['ticket-row']}>
                     <input type="checkbox" checked={isChecked} onChange={handleCheckboxChange} className={styles['custom-checkbox']} />
                     <img src={personImage} alt='person' className={styles['circular-image']} />

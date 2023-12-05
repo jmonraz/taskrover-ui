@@ -1,11 +1,12 @@
 import styles from "./AgentDashboard.module.css";
 import downArrowIcon from "../../assets/icons/dropdown_arrow.svg";
 import {useState, useRef, useEffect} from "react";
+import {useNavigate} from "react-router-dom";
 
 // components
 import TicketBlock from "../../components/TicketBlock";
 const AgentDashboard = () => {
-
+    const navigate = useNavigate();
     const tickets = [
         {
             title: 'Orders have not been picked up by Fedex',
@@ -98,8 +99,9 @@ const AgentDashboard = () => {
         setIsTicketFilterSubmenu(!isTicketFilterSubmenu);
     }
 
-    const onHandleTicketBlockClick = () => {
-        console.log('ticket block clicked');
+    const onHandleTicketBlockClick = (ticketDetails) => {
+        console.log('ticket', ticketDetails);
+        navigate(`/home/agent/dashboard/${ticketDetails.number.slice(1)}/ticket-details`);
     }
 
     return (
@@ -112,7 +114,7 @@ const AgentDashboard = () => {
                         <div className={styles['dropdown-menu']} ref={ticketFilterRef}>
                             <ul>
                                 {ticketFilter.map((ticketFilter, index) => (
-                                    <li key={index} onClick={() => handleTicketFilterChange(ticketFilter)}>{ticketFilter.title} ({ticketFilter.number})</li>
+                                    <li onClick={() => handleTicketFilterChange(ticketFilter)}>{ticketFilter.title} ({ticketFilter.number})</li>
                                 ))}
                             </ul>
                         </div>
