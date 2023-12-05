@@ -40,6 +40,12 @@
     height: 100%;
 }
 
+.ticket-conversation-col > div:first-child {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
 .ticket-header {
     padding: 10px 50px;
 }

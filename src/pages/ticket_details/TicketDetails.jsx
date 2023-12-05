@@ -3,7 +3,23 @@ import styles from "./TicketDetails.module.css";
 
 import {useEffect} from "react";
 
+// components
+import TicketConversationBlock from "../../components/TicketConversationBlock";
+
 const TicketDetails = () => {
+
+    const conversations = [
+        {
+            message: "Hi, I have a question about my order.",
+            date: "08 Nov 02:56 pm",
+            name: "John Smith"
+        },
+        {
+            message: "Hello thank you for reaching out",
+            date: "08 Nov 02:56 pm",
+            name: "John Smith"
+        }
+    ];
 
     useEffect(() => {
         console.log('ticket details');
@@ -51,17 +67,17 @@ const TicketDetails = () => {
                     <hr />
                     <div className={styles['ticket-conversation-container']}>
                         <div className={styles['ticket-conversation-col']}>
-                            {/*{conversation block}*/}
                             <div>
-                                <p>ok</p>
+                                {conversations.map((conversation, index) => (
+                                    <TicketConversationBlock conversation={conversation} />
+                                )
+                                )}
                             </div>
                             <div>
                                 <hr />
                                 <p>Close Ticket</p>
                             </div>
-
                         </div>
-
                     </div>
                 </div>
             </div>

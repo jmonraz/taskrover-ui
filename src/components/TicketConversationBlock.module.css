@@ -1,0 +1,9 @@
+.conversation-block {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    height: 100%;
+    border: 1px solid grey;
+    border-radius: 5px;
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.3);
+}
