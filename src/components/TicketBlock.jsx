@@ -3,7 +3,7 @@ import {useState, useRef, useEffect} from "react";
 import personImage from '../assets/img/person1.webp';
 import downArrowIcon from '../assets/icons/dropdown_arrow.svg';
 
-const TicketBlock = () => {
+const TicketBlock = ({onClick, ticketDetails, key}) => {
     const [isTicketStatus, setIsTicketStatus] = useState(false);
     const [isDeparment, setIsDeparment] = useState(false);
     const [isPriority, setIsPriority] = useState(false);
@@ -36,18 +36,18 @@ const TicketBlock = () => {
         setIsChecked(!isChecked);
     return (
         <>
-            <div className={styles['ticket-block']}>
+            <div className={styles['ticket-block']} onClick={onClick} key={key}>
                 <div className={styles['ticket-row']}>
                     <input type="checkbox" checked={isChecked} onChange={handleCheckboxChange} className={styles['custom-checkbox']} />
                     <img src={personImage} alt='person' className={styles['circular-image']} />
                     <div className={styles['ticket-col']}>
                         <div className={styles['ticket-row']}>
-                            <p className={styles['ticket-title']}>Orders have not been picked up by Fedex</p>
-                            <p className={styles['ticket-number']}>#123345</p>
+                            <p className={styles['ticket-title']}>{ticketDetails.title}</p>
+                            <p className={styles['ticket-number']}>{ticketDetails.number}</p>
                         </div>
                         <div className={styles['ticket-row']}>
-                            <p className={styles['ticket-date']}>1/10/2023</p>
-                            <p className={styles['respond-wrapper']}>Agent responded to ticket 18hrs ago</p>
+                            <p className={styles['ticket-date']}>{ticketDetails.date}</p>
+                            <p className={styles['respond-wrapper']}>{ticketDetails.respond}</p>
                         </div>
                     </div>
                 </div>

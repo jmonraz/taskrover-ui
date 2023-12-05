@@ -1,0 +1,15 @@
+.left-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background-color: green;
+    width: 300px;
+}
+
+.right-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background-color: red;
+    width: 100%;
+}

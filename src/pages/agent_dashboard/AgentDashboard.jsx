@@ -6,6 +6,45 @@ import {useState, useRef, useEffect} from "react";
 import TicketBlock from "../../components/TicketBlock";
 const AgentDashboard = () => {
 
+    const tickets = [
+        {
+            title: 'Orders have not been picked up by Fedex',
+            number: '#123345',
+            date: '1/10/2023',
+            respond: 'Agent responded to ticket 18hrs ago',
+            priority: 'Low',
+            department: 'Sales',
+            status: 'Open'
+        },
+        {
+            title: 'Not able to sign in',
+            number: '#123346',
+            date: '1/10/2023',
+            respond: 'Agent responded to ticket 12hrs ago',
+            priority: 'High',
+            department: 'IT',
+            status: 'Open'
+        },
+        {
+            title: 'Cannot place order in system',
+            number: '#123347',
+            date: '1/10/2023',
+            respond: 'Agent responded to ticket 1hr ago',
+            priority: 'Medium',
+            department: 'IT',
+            status: 'Open'
+        },
+        {
+            title: 'Why I am being charged twice?',
+            number: '#123348',
+            date: '1/10/2023',
+            respond: 'Agent responded to ticket 18hrs ago',
+            priority: 'Low',
+            department: 'Accounting',
+            status: 'Open'
+        }
+    ];
+
     const ticketFilter = [
         {
             title: "All Tickets",
@@ -59,6 +98,10 @@ const AgentDashboard = () => {
         setIsTicketFilterSubmenu(!isTicketFilterSubmenu);
     }
 
+    const onHandleTicketBlockClick = () => {
+        console.log('ticket block clicked');
+    }
+
     return (
         <>
             <div className={styles['header-row']}>
@@ -88,12 +131,10 @@ const AgentDashboard = () => {
             </div>
             <hr />
             <div className={styles['ticket-blocks-col']}>
-                <TicketBlock />
-                <TicketBlock />
-                <TicketBlock />
-                <TicketBlock />
-                <TicketBlock />
-                <TicketBlock />
+                {tickets.map((ticket, index) => (
+                    <TicketBlock key={index} ticketDetails={ticket} onClick={onHandleTicketBlockClick} />
+                )
+                )}
             </div>
         </>
     );

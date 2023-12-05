@@ -66,11 +66,10 @@ const Navbar = () => {
                             <div className={styles['add-dropdown-submenu']} ref={addDropdownRef}>
                                 <p className={styles['status-label']}><span>ADD</span> NEW</p>
                                 <ul>
-                                    <li>Task</li>
-                                    <li>Project</li>
+                                    <li>Ticket</li>
+                                    <li>Account</li>
                                     <li>Customer</li>
-                                    <li>Invoice</li>
-                                    <li>Expense</li>
+                                    <li>Article</li>
                                 </ul>
                             </div>
                         )}
