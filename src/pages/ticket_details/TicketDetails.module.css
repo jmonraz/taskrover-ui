@@ -46,6 +46,40 @@
     gap: 5px;
 }
 
-.ticket-header {
+.ticket-title {
     padding: 10px 50px;
+}
+
+.ticket-header {
+    font-weight: 600;
+    font-size: 1rem;
+    padding-bottom: 1rem;
+}
+
+.ticket-header-underline {
+    border-bottom: 1px solid black;
+}
+
+.ticket-header-content {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    font-size: 15px;
+    padding-bottom: 5px;
+}
+
+.ticket-header-break-line {
+    border-top: 1px solid black;
+    padding-bottom: 15px;
+}
+
+.ticket-subheader {
+    font-weight: 500;
+    font-size: 1rem;
+    padding-bottom: 1px;
+}
+
+.ticket-subheader + p{
+    padding-bottom: 15px;
+    color: #5d5d5d;
 }
