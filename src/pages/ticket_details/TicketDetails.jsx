@@ -75,8 +75,7 @@ const TicketDetails = () => {
                                 <p className={styles['ticket-title-text']}>Orders have not been picked up by Fedex</p>
                             </div>
                             <div>
-                                <p>[send]</p>
-                                <p>[comment]</p>
+                                <Button>Comment</Button>
                             </div>
                         </div>
                         <div className={styles['ticket-details-row']}>
