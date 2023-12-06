@@ -4,6 +4,7 @@ import styles from "./TicketDetails.module.css";
 import {useEffect} from "react";
 // components
 import TicketConversationBlock from "../../components/TicketConversationBlock";
+import Button from "../../components/Button";
 
 const TicketDetails = () => {
 
@@ -69,9 +70,19 @@ const TicketDetails = () => {
                 </div>
                 <div className={styles['right-container']}>
                     <div className={styles['ticket-title']}>
-                        <p>Orders have not been picked up by Fedex [send] [comment]</p>
-                        <p>[#123345] Orders</p>
-                        <p>2 conversations attachment history </p>
+                        <div className={styles['ticket-details-row']}>
+                            <div>
+                                <p className={styles['ticket-title-text']}>Orders have not been picked up by Fedex</p>
+                            </div>
+                            <div>
+                                <p>[send]</p>
+                                <p>[comment]</p>
+                            </div>
+                        </div>
+                        <div className={styles['ticket-details-row']}>
+                            <p className={styles['ticket-number-bubble']}>#123345</p>
+                            <p>Orders</p>
+                        </div>
                     </div>
                     <hr />
                     <div className={styles['ticket-conversation-container']}>
@@ -82,9 +93,15 @@ const TicketDetails = () => {
                                 )
                                 )}
                             </div>
-                            <div>
-                                <hr />
-                                <p>Close Ticket</p>
+
+
+                        </div>
+                        <div>
+                            <hr />
+                            <div className={styles['ticket-container-footer']}>
+                                <div>
+                                    <Button styleName='close-button' >Close Ticket</Button>
+                                </div>
                             </div>
                         </div>
                     </div>

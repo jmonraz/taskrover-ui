@@ -83,3 +83,39 @@
     padding-bottom: 15px;
     color: #5d5d5d;
 }
+
+.ticket-title-text {
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.ticket-details-row {
+    display: flex;
+    justify-content: space-between;
+}
+
+.ticket-details-row > div:nth-child(2) {
+    display: flex;
+    gap: 10px;
+}
+
+.ticket-title > .ticket-details-row:nth-child(2) {
+    justify-content: flex-start;
+    align-items: center;
+    gap: 10px;
+    padding-top: 5px;
+}
+
+.ticket-number-bubble {
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 2px 5px;
+}
+
+.ticket-container-footer {
+    display: flex;
+    width: 100%;
+    justify-content: flex-end;
+    padding: 10px;
+}
+

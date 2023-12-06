@@ -139,3 +139,7 @@
 .green-button:active {
     background-color: #2e6f2a;
 }
+
+.small-button {
+    width: 100px;
+}
