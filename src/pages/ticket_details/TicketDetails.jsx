@@ -88,13 +88,11 @@ const TicketDetails = () => {
                     <div className={styles['ticket-conversation-container']}>
                         <div className={styles['ticket-conversation-col']}>
                             <div>
-                                {conversations.map((conversation, index) => (
+                                {conversations.slice().reverse().map((conversation, index) => (
                                     <TicketConversationBlock conversation={conversation} />
                                 )
                                 )}
                             </div>
-
-
                         </div>
                         <div>
                             <hr />
