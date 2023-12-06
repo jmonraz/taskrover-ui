@@ -15,7 +15,22 @@ const TicketDetails = () => {
             name: "John Smith"
         },
         {
-            message: "Hello thank you for reaching out",
+            message: "Hello thank you for reaching out\n I will be happy to help you with your order.\n Can you please provide me with your order number?Hello thank you for reaching out\n I will be happy to help you with your order.\n Can you please provide me with your order number?",
+            date: "08 Nov 02:56 pm",
+            name: "John Smith"
+        },
+        {
+            message: "Hello thank you for reaching out\n I will be happy to help you with your order.\n Can you please provide me with your order number?Hello thank you for reaching out\n I will be happy to help you with your order.\n Can you please provide me with your order number?",
+            date: "08 Nov 02:56 pm",
+            name: "John Smith"
+        },
+        {
+            message: "Hello thank you for reaching out\n I will be happy to help you with your order.\n Can you please provide me with your order number?Hello thank you for reaching out\n I will be happy to help you with your order.\n Can you please provide me with your order number?",
+            date: "08 Nov 02:56 pm",
+            name: "John Smith"
+        },
+        {
+            message: "Hello thank you for reaching out\n I will be happy to help you with your order.\n Can you please provide me with your order number?Hello thank you for reaching out\n I will be happy to help you with your order.\n Can you please provide me with your order number?",
             date: "08 Nov 02:56 pm",
             name: "John Smith"
         }
@@ -38,7 +53,7 @@ const TicketDetails = () => {
                     <p className={styles['ticket-header']}><span className={styles['ticket-header-underline']}>TIC</span>KET PROPERTIES</p>
                     <div className={styles['ticket-header-content']}>
                         <p className={styles['ticket-subheader']}>Ticket Owner</p>
-                        <p>[PIC] John Smith</p>
+                        <p>John Smith</p>
                         <p className={styles['ticket-subheader']}>Status</p>
                         <p>Open V</p>
                         <p className={styles['ticket-subheader']}>Created Date</p>
@@ -93,15 +108,13 @@ const TicketDetails = () => {
                                 )}
                             </div>
                         </div>
-                        <div>
-                            <hr />
-                            <div className={styles['ticket-container-footer']}>
-                                <div>
-                                    <Button styleName='close-button' >Close Ticket</Button>
-                                </div>
+                    </div>
+
+                        <div className={styles['ticket-container-footer']}>
+                            <div>
+                                <Button styleName='close-button' >Close Ticket</Button>
                             </div>
                         </div>
-                    </div>
                 </div>
             </div>
 

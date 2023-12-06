@@ -5,10 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="62cdf86b-727f-4695-ba35-d68d0158ea98" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/TicketConversationBlock.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/TicketConversationBlock.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/TicketConversationBlock.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/TicketConversationBlock.module.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/ticket_details/TicketDetails.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/ticket_details/TicketDetails.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/ticket_details/TicketDetails.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/ticket_details/TicketDetails.module.css" afterDir="false" />
     </list>
@@ -55,7 +54,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1701881045920</updated>
-      <workItem from="1701881048955" duration="770000" />
+      <workItem from="1701881048955" duration="2619000" />
     </task>
     <servers />
   </component>

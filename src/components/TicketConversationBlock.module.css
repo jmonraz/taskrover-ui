@@ -1,9 +1,37 @@
 .conversation-block {
     display: flex;
     flex-direction: column;
-    padding: 10px;
+    padding: 20px 50px;
     height: 100%;
     border: 1px solid grey;
     border-radius: 5px;
-    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.1);
+}
+
+.conversation-block-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 10px;
+}
+
+.conversation-block-row > div:first-child {
+    display: flex;
+    gap: 1rem;
+}
+
+.conversation-name {
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+.conversation-date {
+    font-size: 0.9rem;
+    color: grey;
+}
+
+.conversation-text {
+    font-size: 1rem;
+    line-height: 1.4rem;
 }
