@@ -14,12 +14,14 @@ import userIcon from "../assets/icons/user_icon.svg";
 // react
 import { useState, useContext, useRef, useEffect} from "react";
 import { UserContext } from "../context/UserContext";
+import {useNavigate} from "react-router-dom";
 
 const Navbar = () => {
 
     const [showAddOptions, setShowAddOptions] = useState(false);
     const {setUserState} = useContext(UserContext);
     const addDropdownRef = useRef(null);
+    const navigate = useNavigate();
 
     const handleClickOutside = (event) => {
         if (addDropdownRef.current && !addDropdownRef.current.contains(event.target)) {
@@ -40,6 +42,10 @@ const Navbar = () => {
 
     const handleAddDropdownButtonClicked = () => {
         setShowAddOptions(!showAddOptions);
+    }
+    const handleNewTicketClicked = () =>{
+        navigate("agent/dashboard/create-a-ticket");
+        handleAddDropdownButtonClicked();
     }
     return (
         <>
@@ -66,7 +72,7 @@ const Navbar = () => {
                             <div className={styles['add-dropdown-submenu']} ref={addDropdownRef}>
                                 <p className={styles['status-label']}><span>ADD</span> NEW</p>
                                 <ul>
-                                    <li>Ticket</li>
+                                    <li onClick={handleNewTicketClicked}>Ticket</li>
                                     <li>Account</li>
                                     <li>Customer</li>
                                     <li>Article</li>

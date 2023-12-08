@@ -9,6 +9,7 @@ import MainLayout from "../../components/MainLayout";
 // screens
 import AgentDashboard from "../agent_dashboard/AgentDashboard";
 import TicketDetails from "../ticket_details/TicketDetails";
+import CreateTicket from "../create_ticket/CreateTicket"
 
 const HomeScreen = ({userType}) => {
     const navigate = useNavigate();
@@ -27,6 +28,7 @@ const HomeScreen = ({userType}) => {
                     <Route path="/" element={<MainLayout />} >
                         <Route path="agent/dashboard" element={<AgentDashboard />} />
                         <Route path="agent/dashboard/:ticketId/ticket-details" element={<TicketDetails />} />
+                        <Route path="agent/dashboard/create-a-ticket" element={<CreateTicket />}/>
                     </Route>
                 </Routes>
         </>
