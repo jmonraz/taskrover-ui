@@ -2,11 +2,11 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 55vh;
+    height: 100vh;
 }
 
 .ticket-form {
-    width: 85%;
+    width: 55%;
     padding: 25px;
     border-radius: 5px;
     background-color: #ffffff;
