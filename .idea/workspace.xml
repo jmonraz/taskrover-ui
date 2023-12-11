@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="62cdf86b-727f-4695-ba35-d68d0158ea98" name="Changes" comment="Added Firbase database into the project">
-      <change beforePath="$PROJECT_DIR$/src/pages/loginpage/LoginPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/loginpage/LoginPage.jsx" afterDir="false" />
-    </list>
+    <list default="true" id="62cdf86b-727f-4695-ba35-d68d0158ea98" name="Changes" comment="project needed a change with firebase that I didn't see before the past commit" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -60,7 +58,23 @@
       <option name="project" value="LOCAL" />
       <updated>1702330742296</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="project needed a change with firebase that I didn't see before the past commit">
+      <option name="closed" value="true" />
+      <created>1702330845379</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1702330845379</updated>
+    </task>
+    <task id="LOCAL-00003" summary="project needed a change with firebase that I didn't see before the past commit">
+      <option name="closed" value="true" />
+      <created>1702330868873</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1702330868873</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -68,6 +82,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Added Firbase database into the project" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added Firbase database into the project" />
+    <MESSAGE value="project needed a change with firebase that I didn't see before the past commit" />
+    <option name="LAST_COMMIT_MESSAGE" value="project needed a change with firebase that I didn't see before the past commit" />
   </component>
 </project>
