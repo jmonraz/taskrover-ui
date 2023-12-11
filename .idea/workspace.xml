@@ -4,12 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="62cdf86b-727f-4695-ba35-d68d0158ea98" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/TicketConversationBlock.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/TicketConversationBlock.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/TicketConversationBlock.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/TicketConversationBlock.module.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/ticket_details/TicketDetails.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/ticket_details/TicketDetails.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/ticket_details/TicketDetails.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/ticket_details/TicketDetails.module.css" afterDir="false" />
+    <list default="true" id="62cdf86b-727f-4695-ba35-d68d0158ea98" name="Changes" comment="Added Firbase database into the project">
+      <change beforePath="$PROJECT_DIR$/src/pages/loginpage/LoginPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/loginpage/LoginPage.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,10 +18,10 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "customColor": "",
-  "associatedIndex": 0
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 0
+}</component>
   <component name="ProjectId" id="2ZB2F2fnTGYYdxUeeTPIsF7vqKY" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -36,7 +32,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "ticket-details",
+    "git-widget-placeholder": "firebase",
     "last_opened_file_path": "C:/Users/jmonr/Desktop/flutter_projects/3plwinner/mobile_app_3plwinner",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -56,9 +52,22 @@
       <updated>1701881045920</updated>
       <workItem from="1701881048955" duration="2619000" />
     </task>
+    <task id="LOCAL-00001" summary="Added Firbase database into the project">
+      <option name="closed" value="true" />
+      <created>1702330742296</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1702330742296</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Added Firbase database into the project" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added Firbase database into the project" />
   </component>
 </project>
