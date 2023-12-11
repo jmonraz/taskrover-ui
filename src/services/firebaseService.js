@@ -6,8 +6,10 @@ import firebaseConfig from '../config/firebaseConfig';
 // initialize firebase if it hasn't been initialized already
 let app;
 if(!getApps().length) {
+    console.log('initializing firebase');
     app = initializeApp(firebaseConfig);
 } else {
+    console.log('firebase already initialized');
     app = getApps()[0];
 }
 

@@ -1,24 +1,24 @@
 import {auth} from './firebaseService';
+import {signInWithEmailAndPassword} from 'firebase/auth';
 class AuthService {
+    // constructor
     constructor() {
-        // initialize the firebase auth instance
+        // initialize firebase auth
         this.auth = auth;
     }
-
     // sign in with email and password
-    async signInWithEmailAndPassword(email, password) {
-        try {
-            const userCredential = await this.auth.createUserWithEmailAndPassword(email, password);
+    signInWithEmailAndPassword(email, password) {
+        console.log(email, password);
+        return signInWithEmailAndPassword(auth,email, password).then((userCredential) => {
             return userCredential.user;
-        } catch (error) {
-            // handle sign-in errors
+        }).catch((error) => {
             throw error;
-        }
+        });
     }
 
     async signOut() {
         try {
-            await this.auth.signOut();
+            await auth.signOut();
         } catch (error) {
             // handle sign-out errors
             throw error;
@@ -28,7 +28,7 @@ class AuthService {
     // other auth methods
     // signUpWithEmailAndPassword(email, password)
     signUpWithEmailAndPassword(email, password) {
-            return this.auth.createUserWithEmailAndPassword(email, password).then((userCredential) => {
+            return auth.createUserWithEmailAndPassword(email, password).then((userCredential) => {
                 const user = userCredential.user;
                 console.log(user);
                 return user;

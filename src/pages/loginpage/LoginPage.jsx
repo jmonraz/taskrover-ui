@@ -1,6 +1,9 @@
 // hooks
 import {useFormInput} from "../../hooks/useFormInput";
 
+// firebase calls
+import {signIn} from "../../utils/firebaseUtils"
+
 // context
 import {UserContext} from "../../context/UserContext";
 import {useContext, useState} from "react";
@@ -22,7 +25,7 @@ const LoginPage = () => {
 
     const navigate = useNavigate();
 
-    const {setToken, setUserType, setUserState, authState} = useContext(UserContext);
+    const {setToken, setUserType, setUserState} = useContext(UserContext);
 
     const [isLoading, setIsLoading] = useState(false);
     const [showForgotPassword, setShowForgotPassword] = useState(false);
@@ -31,22 +34,33 @@ const LoginPage = () => {
     const password = useFormInput('');
     const forgotPasswordEmail = useFormInput('');
 
-    const onHandleSubmit = e => {
+    const onHandleSubmit = async e => {
         e.preventDefault();
         setIsLoading(true);
-
-        // simulate asynchronous action (e.g., API call) for 4 seconds
-        setTimeout(() => {
+        try {
+            const response = await signIn(username.value, password.value);
+            const token = await response.getIdToken();
+            setToken(token);
+            setUserType('agent');
+            setUserState(true);
+            navigate('/home');
             setIsLoading(false);
-            // handle login
-            // navigate to dashboard
-            if(username.value === 'admin@gmail.com' && password.value === 'admin') {
-                setToken('dummy-token');
-                setUserType('agent');
-                setUserState(true);
-                navigate('/home');
-            }
-        }, 2500);
+        } catch (error) {
+            setIsLoading(false);
+            console.log(error);
+        }
+        // simulate asynchronous action (e.g., API call) for 4 seconds
+        // setTimeout(() => {
+        //     setIsLoading(false);
+        //     // handle login
+        //     // navigate to dashboard
+        //     if(username.value === 'admin@gmail.com' && password.value === 'admin') {
+        //         setToken('dummy-token');
+        //         setUserType('agent');
+        //         setUserState(true);
+        //         navigate('/home');
+        //     }
+        // }, 2500);
 
     };
     const onForgotPasswordClick = () => {
