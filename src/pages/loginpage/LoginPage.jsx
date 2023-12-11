@@ -11,6 +11,7 @@ import {useNavigate} from "react-router-dom";
 // components
 import Input from "../../components/Input";
 import Button from "../../components/Button";
+import Firebase from "../../components/firebase"
 
 // assets
 import logo from "../../assets/logo/taskrover-logo-small.png"
@@ -31,22 +32,28 @@ const LoginPage = () => {
     const password = useFormInput('');
     const forgotPasswordEmail = useFormInput('');
 
-    const onHandleSubmit = e => {
+    const onHandleSubmit = async (e) => {
         e.preventDefault();
         setIsLoading(true);
-
+        try {
+            // Create user in Firebase Authentication
+            await Firebase.createUserWithEmailAndPassword(username.value, password.value);
         // simulate asynchronous action (e.g., API call) for 4 seconds
         setTimeout(() => {
             setIsLoading(false);
-            // handle login
             // navigate to dashboard
-            if(username.value === 'admin@gmail.com' && password.value === 'admin') {
+            //if(username.value === 'admin@gmail.com' && password.value === 'admin') {
                 setToken('dummy-token');
                 setUserType('agent');
                 setUserState(true);
                 navigate('/home');
-            }
+            //}
         }, 2500);
+        } catch (error) {
+            setIsLoading(false);
+            console.error("Error during signup:", error.message);
+            // Handle error, e.g., display an error message to the user
+        }
 
     };
     const onForgotPasswordClick = () => {
