@@ -11,7 +11,7 @@ import {useNavigate} from "react-router-dom";
 // components
 import Input from "../../components/Input";
 import Button from "../../components/Button";
-import Firebase from "../../components/firebase"
+import {auth} from "../../components/firebase"
 
 // assets
 import logo from "../../assets/logo/taskrover-logo-small.png"
@@ -37,7 +37,7 @@ const LoginPage = () => {
         setIsLoading(true);
         try {
             // Create user in Firebase Authentication
-            await Firebase.createUserWithEmailAndPassword(username.value, password.value);
+            await auth.createUserWithEmailAndPassword(username.value, password.value);
         // simulate asynchronous action (e.g., API call) for 4 seconds
         setTimeout(() => {
             setIsLoading(false);
