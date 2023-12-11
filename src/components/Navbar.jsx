@@ -47,6 +47,10 @@ const Navbar = () => {
         navigate("agent/dashboard/create-a-ticket");
         handleAddDropdownButtonClicked();
     }
+    const handleOnClickTickets = () => {
+        navigate("agent/dashboard");
+    }
+
     return (
         <>
             <div className={styles['navbar']}>
@@ -56,7 +60,7 @@ const Navbar = () => {
                     </div>
                     <div className={styles['navbar-items']}>
                         <ul>
-                            <li>TICKETS</li>
+                            <li onClick={handleOnClickTickets}>TICKETS</li>
                             <li>KNOWLEDGE BASE</li>
                             <li>CUSTOMERS</li>
                             <li>ANALYTICS</li>
