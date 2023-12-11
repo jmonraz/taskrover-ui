@@ -2,6 +2,9 @@
 import SearchBar from "./SearchBar";
 import AddDropdownButton from "./AddDropdownButton";
 
+// firebase utils
+import {signOut} from "../utils/firebaseUtils";
+
 // styles
 import styles from "./Navbar.module.css";
 
@@ -37,7 +40,13 @@ const Navbar = () => {
     }, []);
 
     const handleSignOut = () => {
-        setUserState(false);
+        try {
+            const response = signOut();
+            console.log(response);
+            setUserState(false);
+        } catch (error) {
+            console.log(error);
+        }
     }
 
     const handleAddDropdownButtonClicked = () => {

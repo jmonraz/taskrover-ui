@@ -29,6 +29,7 @@ const LoginPage = () => {
 
     const [isLoading, setIsLoading] = useState(false);
     const [showForgotPassword, setShowForgotPassword] = useState(false);
+    const [errorMessage, setErrorMessage] = useState('');
 
     const username = useFormInput('');
     const password = useFormInput('');
@@ -36,6 +37,7 @@ const LoginPage = () => {
 
     const onHandleSubmit = async e => {
         e.preventDefault();
+        setErrorMessage('');
         setIsLoading(true);
         try {
             const response = await signIn(username.value, password.value);
@@ -45,22 +47,11 @@ const LoginPage = () => {
             setUserState(true);
             navigate('/home');
             setIsLoading(false);
+
         } catch (error) {
             setIsLoading(false);
-            console.log(error);
+            setErrorMessage('Invalid credentials. Please try again.');
         }
-        // simulate asynchronous action (e.g., API call) for 4 seconds
-        // setTimeout(() => {
-        //     setIsLoading(false);
-        //     // handle login
-        //     // navigate to dashboard
-        //     if(username.value === 'admin@gmail.com' && password.value === 'admin') {
-        //         setToken('dummy-token');
-        //         setUserType('agent');
-        //         setUserState(true);
-        //         navigate('/home');
-        //     }
-        // }, 2500);
 
     };
     const onForgotPasswordClick = () => {
@@ -110,6 +101,7 @@ const LoginPage = () => {
                             </div>
                             <div className={styles['button-row']}>
                                 <Button styleName='green-button' type="submit">Sign In</Button>
+                                {errorMessage && <p className={styles['error-message']}>{errorMessage}</p>}
                                 <p className='text-link' onClick={onForgotPasswordClick}>Forgot Password?</p>
                             </div>
                         </form>

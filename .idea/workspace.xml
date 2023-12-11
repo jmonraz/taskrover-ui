@@ -36,7 +36,8 @@
     "dart.analysis.tool.window.visible": "false",
     "last_opened_file_path": "C:/Users/jmonr/Desktop/flutter_projects/3plwinner/mobile_app_3plwinner",
     "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.tslint": "(autodetect)"
+    "node.js.selected.package.tslint": "(autodetect)",
+    "ts.external.directory.path": "C:\\Program Files\\JetBrains\\IntelliJ IDEA 2022.3\\plugins\\javascript-impl\\jsLanguageServicesImpl\\external"
   }
 }]]></component>
   <component name="SharedIndexes">
@@ -54,7 +55,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1702319665111</updated>
-      <workItem from="1702319668318" duration="11284000" />
+      <workItem from="1702319668318" duration="12335000" />
     </task>
     <servers />
   </component>

@@ -1,5 +1,5 @@
 import {auth} from './firebaseService';
-import {signInWithEmailAndPassword} from 'firebase/auth';
+import {signInWithEmailAndPassword, signOut} from 'firebase/auth';
 class AuthService {
     // constructor
     constructor() {
@@ -16,13 +16,12 @@ class AuthService {
         });
     }
 
-    async signOut() {
-        try {
-            await auth.signOut();
-        } catch (error) {
-            // handle sign-out errors
+    signOut() {
+        return signOut(auth).then(() => {
+
+        }).catch((error) => {
             throw error;
-        }
+        });
     }
 
     // other auth methods
