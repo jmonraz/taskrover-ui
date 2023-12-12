@@ -11,9 +11,19 @@ class FirebaseDBService {
         async getAllTickets() {
             const tickets = [];
             const querySnapshot = await getDocs(collection(this.db, "tickets"));
-            querySnapshot.forEach((doc) => {
-                tickets.push(doc.data());
-            });
+            for (const doc of querySnapshot.docs) {
+                const ticketData = doc.data();
+                ticketData.id = doc.id;
+
+                const conversations = [];
+                const conversationsSnapshot = await getDocs(collection(doc.ref, "conversations"));
+                conversationsSnapshot.forEach(convDoc => {
+                    conversations.push(convDoc.data());
+                });
+
+                ticketData.conversations = conversations;
+                tickets.push(ticketData);
+            }
             return tickets;
         }
 }
