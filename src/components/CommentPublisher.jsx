@@ -3,18 +3,25 @@ import ReactQuill from "react-quill";
 import 'react-quill/dist/quill.snow.css';
 import styles from "./CommentPublisher.module.css";
 import Button from "./Button";
+import {addCommentToTicket} from "../utils/firebaseUtils";
 
-const CommentPublisher = () => {
+const CommentPublisher = ({ticketId, handleReload}) => {
     const [comment, setComment] = useState('');
 
     const handleCommentChange = (content) => {
         setComment(content);
     };
 
-    const submitComment = () => {
+    const submitComment = async () => {
         if(comment !== '') {
             // publish comment
+            await addCommentToTicket(ticketId, {
+                comment: comment,
+                comment_date: new Date(),
+                comment_owner: 'test user'
+            });
             console.log(comment);
+            handleReload();
         }
         setComment('');
     }

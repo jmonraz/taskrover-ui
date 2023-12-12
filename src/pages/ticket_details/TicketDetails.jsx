@@ -14,6 +14,7 @@ const TicketDetails = () => {
     const {ticketId} = useParams();
     const [ticket, setTicket] = useState(null);
     const [commentClicked, setCommentClicked] = useState(false);
+    const [reload, setReload] = useState(false);
 
     useEffect(() => {
         const fetchTicket = async () => {
@@ -26,7 +27,11 @@ const TicketDetails = () => {
             }
         }
         fetchTicket().then(r => console.log("Ticket fetched"));
-    }, []);
+    }, [reload, ticketId]);
+
+    const handleReload = () => {
+        setReload(!reload);
+    }
 
     return (
         <>
@@ -99,7 +104,7 @@ const TicketDetails = () => {
                         <div className={styles['ticket-conversation-container']}>
                             {commentClicked &&
                                 <div>
-                                    <CommentPublisher />
+                                    <CommentPublisher ticketId={ticket.id} handleReload={handleReload} />
                                 </div>
 
                             }

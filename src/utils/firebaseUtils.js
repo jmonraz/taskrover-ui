@@ -25,3 +25,8 @@ export const getTicketById = async (id) => {
     const firebaseDBService = new FirebaseDBService();
     return await firebaseDBService.getTicketById(id);
 }
+
+export const addCommentToTicket = async (ticketId, newCommentData) => {
+    const firebaseDBService = new FirebaseDBService();
+    return await firebaseDBService.addCommentToTicket(ticketId, newCommentData);
+}
