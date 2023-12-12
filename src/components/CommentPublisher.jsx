@@ -12,7 +12,11 @@ const CommentPublisher = () => {
     };
 
     const submitComment = () => {
-        console.log(comment);
+        if(comment !== '') {
+            // publish comment
+            console.log(comment);
+        }
+        setComment('');
     }
 
     return (
@@ -24,7 +28,7 @@ const CommentPublisher = () => {
                                     className={styles['comment-editor']}/>
                     </div>
                     <div className={styles['button-container']}>
-                        <Button>Publish</Button>
+                        <Button onClick={submitComment}>Publish</Button>
                     </div>
                 </div>
             </div>
