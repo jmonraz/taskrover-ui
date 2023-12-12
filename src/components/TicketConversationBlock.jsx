@@ -13,7 +13,7 @@ const TicketConversationBlock = ({conversation}) => {
                         <p className={styles['conversation-date']}>{}</p>
                     </div>
                     <div>
-                        <Button styleName='confirm-button'>Options</Button>
+                        <Button styleName='confirm-button'>...</Button>
                     </div>
                 </div>
                 <p className={styles['conversation-text']} dangerouslySetInnerHTML={{ __html: conversation.comment}} ></p>

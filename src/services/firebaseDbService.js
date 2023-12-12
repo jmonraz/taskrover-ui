@@ -65,6 +65,18 @@ class FirebaseDBService {
 
             return newCommentRef;
         }
+
+        //  write method to add a new ticket to the database
+
+        // write method to update a ticket in the database
+
+        // write method to delete a ticket in the database
+
+        // write method to edit a comment in the database
+
+        // write method to delete a comment in the database
+
+
 }
 
 export default FirebaseDBService;
