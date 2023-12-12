@@ -4,9 +4,9 @@ import personImage from '../assets/img/person1.webp';
 import downArrowIcon from '../assets/icons/dropdown_arrow.svg';
 
 const TicketBlock = ({onClick, ticketDetails }) => {
-    const [isTicketStatus, setIsTicketStatus] = useState(ticketDetails.ticketStatus);
-    const [isDeparment, setIsDeparment] = useState(ticketDetails.ticketDepartment);
-    const [isPriority, setIsPriority] = useState(ticketDetails.priority);
+    const [isTicketStatus, setIsTicketStatus] = useState(false);
+    const [isDeparment, setIsDeparment] = useState(false);
+    const [isPriority, setIsPriority] = useState(false);
     const [isChecked, setIsChecked] = useState(false);
 
     // refs for each dropdown
@@ -34,6 +34,11 @@ const TicketBlock = ({onClick, ticketDetails }) => {
 
     const handleCheckboxChange = () =>
         setIsChecked(!isChecked);
+
+    const handleDropdownClick = (e, toggleDropdown) => {
+        e.stopPropagation();
+        toggleDropdown(prevState => !prevState);
+    }
     return (
         <>
             <div className={styles['ticket-block']} onClick={() => onClick(ticketDetails)} >
@@ -56,7 +61,7 @@ const TicketBlock = ({onClick, ticketDetails }) => {
                         <div className={styles['ticket-row']}>
                             <p>Low</p>
                             <div className={styles['dropdown-container']} ref={priorityRef}>
-                                <img src={downArrowIcon} alt='drop-arrow' className={styles['icon']} onClick={() => setIsPriority(!isPriority)}/>
+                                <img src={downArrowIcon} alt='drop-arrow' className={styles['icon']} onClick={(e) => handleDropdownClick(e, setIsPriority)}/>
                                 {isPriority && (
                                     <div className={styles['dropdown-menu']}>
                                         <p className={styles['status-label']}><span>PRI</span>ORITY</p>
@@ -73,7 +78,7 @@ const TicketBlock = ({onClick, ticketDetails }) => {
                         <div className={styles['ticket-row']}>
                             <p>Orders</p>
                             <div className={styles['dropdown-container']} ref={departmentRef}>
-                                <img src={downArrowIcon} alt='drop-arrow' className={styles['icon']} onClick={() => setIsDeparment(!isDeparment)}/>
+                                <img src={downArrowIcon} alt='drop-arrow' className={styles['icon']} onClick={(e) => handleDropdownClick(e, setIsDeparment)}/>
                                 {isDeparment && (
                                     <div className={styles['dropdown-menu']}>
                                         <p className={styles['status-label']}><span>DEP</span>ARTMENT</p>
@@ -92,7 +97,7 @@ const TicketBlock = ({onClick, ticketDetails }) => {
                         <div className={styles['ticket-row']}>
                             <p>Open</p>
                             <div className={styles['dropdown-container']} ref={ticketStatusRef}>
-                                <img src={downArrowIcon} alt='drop-arrow' className={styles['icon']} onClick={() => setIsTicketStatus(!isTicketStatus)} />
+                                <img src={downArrowIcon} alt='drop-arrow' className={styles['icon']} onClick={(e) => handleDropdownClick(e, setIsTicketStatus)} />
                                 {isTicketStatus && (
                                     <div className={styles['dropdown-menu']}>
                                         <p className={styles['status-label']}><span>STA</span>TUS</p>
