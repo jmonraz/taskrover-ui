@@ -3,6 +3,7 @@ import styles from './TicketConversationBlock.module.css';
 import Button from "./Button";
 
 const TicketConversationBlock = ({conversation}) => {
+    const commentWithBreaks = conversation.comment.replace(/\\n/g, "<br />");
     return (
         <>
             <div className={styles['conversation-block']}>
@@ -15,7 +16,7 @@ const TicketConversationBlock = ({conversation}) => {
                         <Button styleName='confirm-button'>Options</Button>
                     </div>
                 </div>
-                <p className={styles['conversation-text']}>{conversation.comment}</p>
+                <p className={styles['conversation-text']} dangerouslySetInnerHTML={{ __html: commentWithBreaks}} ></p>
             </div>
         </>
     );
