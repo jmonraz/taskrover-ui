@@ -110,9 +110,9 @@ const TicketDetails = () => {
                             }
                             <div className={styles['ticket-conversation-col']}>
                                 <div>
-                                    {ticket && ticket.conversations && ticket.conversations.slice().reverse().map((conversation, index) => (
-                                            <TicketConversationBlock conversation={conversation}/>
-                                        )
+                                    {ticket && ticket.conversations && ticket.conversations.sort((a, b) => b.id - a.id)
+                                        .map((conversation, _) =>
+                                            <TicketConversationBlock key={conversation.id} conversation={conversation} />
                                     )}
                                 </div>
                             </div>

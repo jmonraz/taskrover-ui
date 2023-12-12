@@ -17,8 +17,8 @@ const CommentPublisher = ({ticketId, handleReload}) => {
             // publish comment
             await addCommentToTicket(ticketId, {
                 comment: comment,
-                comment_date: new Date(),
-                comment_owner: 'test user'
+                commentDate: new Date(),
+                commentOwner: 'test user'
             });
             console.log(comment);
             handleReload();

@@ -59,7 +59,7 @@ class FirebaseDBService {
                 const newCommentRef = doc(conversationsRef, newCommentId);
                 await setDoc(newCommentRef, {
                     ...newCommentData,
-                    id: newCommentId,
+                    id: snapshot.size + 1,
                 });
             }
 
