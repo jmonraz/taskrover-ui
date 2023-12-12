@@ -6,6 +6,7 @@ import {useParams} from "react-router-dom";
 // components
 import TicketConversationBlock from "../../components/TicketConversationBlock";
 import Button from "../../components/Button";
+import CommentPublisher from "../../components/CommentPublisher";
 // utils
 import {getTicketById} from "../../utils/firebaseUtils";
 
@@ -91,9 +92,7 @@ const TicketDetails = () => {
                                 <p>{ticket.ticketDepartment}</p>
                             </div>
                             {commentClicked &&
-                                <div className={styles['ticket-comment-container']}>
-                                    <p>Comment Clicked</p>
-                                </div>
+                                <CommentPublisher />
                             }
                         </div>
 
