@@ -20,3 +20,8 @@ export const getTickets = async () => {
     const firebaseDBService = new FirebaseDBService();
     return await firebaseDBService.getAllTickets();
 }
+
+export const getTicketById = async (id) => {
+    const firebaseDBService = new FirebaseDBService();
+    return await firebaseDBService.getTicketById(id);
+}

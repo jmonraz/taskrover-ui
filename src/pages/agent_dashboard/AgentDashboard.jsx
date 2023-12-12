@@ -78,7 +78,7 @@ const AgentDashboard = () => {
 
     const onHandleTicketBlockClick = (ticketDetails) => {
         console.log('ticket', ticketDetails);
-        navigate(`/home/agent/dashboard/${ticketDetails.number.slice(1)}/ticket-details`);
+        navigate(`/home/agent/dashboard/${ticketDetails.ticketNumber.slice(1)}/ticket-details`);
     }
 
     return (
@@ -110,8 +110,8 @@ const AgentDashboard = () => {
             </div>
             <hr />
             <div className={styles['ticket-blocks-col']}>
-                {tickets.map((ticket, index) => (
-                    <TicketBlock key={index} ticketDetails={ticket} onClick={onHandleTicketBlockClick} />
+                {tickets.map((ticket, _) => (
+                    <TicketBlock key={ticket.id} ticketDetails={ticket} onClick={onHandleTicketBlockClick} />
                 )
                 )}
             </div>

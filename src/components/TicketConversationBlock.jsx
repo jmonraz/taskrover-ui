@@ -8,14 +8,14 @@ const TicketConversationBlock = ({conversation}) => {
             <div className={styles['conversation-block']}>
                 <div className={styles['conversation-block-row']}>
                     <div>
-                        <p className={styles['conversation-name']}>{conversation.name}</p>
-                        <p className={styles['conversation-date']}>{conversation.date}</p>
+                        <p className={styles['conversation-name']}>{conversation.comment_owner}</p>
+                        <p className={styles['conversation-date']}>{}</p>
                     </div>
                     <div>
                         <Button styleName='confirm-button'>Options</Button>
                     </div>
                 </div>
-                <p className={styles['conversation-text']}>{conversation.message}</p>
+                <p className={styles['conversation-text']}>{conversation.comment}</p>
             </div>
         </>
     );

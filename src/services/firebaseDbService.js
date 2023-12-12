@@ -1,5 +1,5 @@
 import {firestore} from './firebaseService';
-import {collection, getDocs} from 'firebase/firestore';
+import {collection, getDocs, doc, getDoc} from 'firebase/firestore';
 class FirebaseDBService {
     constructor() {
         // initialize the firebase firestore instance
@@ -25,6 +25,26 @@ class FirebaseDBService {
                 tickets.push(ticketData);
             }
             return tickets;
+        }
+
+        async getTicketById(id) {
+            const ticketRef = doc(this.db, "tickets", id);
+            const ticketSnapshot = await getDoc(ticketRef);
+
+            if(ticketSnapshot.exists()) {
+                const ticketData = ticketSnapshot.data();
+                ticketData.id = ticketSnapshot.id;
+                const conversations = [];
+                const conversationsSnapshot = await getDocs(collection(ticketRef, "conversations"));
+                conversationsSnapshot.forEach(convDoc => {
+                    conversations.push(convDoc.data());
+                });
+                ticketData.conversations = conversations;
+                return ticketData;
+            } else {
+                console.log("No such document!");
+                return null;
+            }
         }
 }
 
