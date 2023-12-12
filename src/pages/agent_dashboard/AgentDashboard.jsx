@@ -2,50 +2,11 @@ import styles from "./AgentDashboard.module.css";
 import downArrowIcon from "../../assets/icons/dropdown_arrow.svg";
 import {useState, useRef, useEffect} from "react";
 import {useNavigate} from "react-router-dom";
+import {getTickets} from "../../utils/firebaseUtils";
 
 // components
 import TicketBlock from "../../components/TicketBlock";
 const AgentDashboard = () => {
-    const navigate = useNavigate();
-    const tickets = [
-        {
-            title: 'Orders have not been picked up by Fedex',
-            number: '#123345',
-            date: '1/10/2023',
-            respond: 'Agent responded to ticket 18hrs ago',
-            priority: 'Low',
-            department: 'Sales',
-            status: 'Open'
-        },
-        {
-            title: 'Not able to sign in',
-            number: '#123346',
-            date: '1/10/2023',
-            respond: 'Agent responded to ticket 12hrs ago',
-            priority: 'High',
-            department: 'IT',
-            status: 'Open'
-        },
-        {
-            title: 'Cannot place order in system',
-            number: '#123347',
-            date: '1/10/2023',
-            respond: 'Agent responded to ticket 1hr ago',
-            priority: 'Medium',
-            department: 'IT',
-            status: 'Open'
-        },
-        {
-            title: 'Why I am being charged twice?',
-            number: '#123348',
-            date: '1/10/2023',
-            respond: 'Agent responded to ticket 18hrs ago',
-            priority: 'Low',
-            department: 'Accounting',
-            status: 'Open'
-        }
-    ];
-
     const ticketFilter = [
         {
             title: "All Tickets",
@@ -72,6 +33,22 @@ const AgentDashboard = () => {
             number: 0
         },
     ];
+    const navigate = useNavigate();
+    const [tickets, setTickets] = useState([]);
+
+    useEffect(() => {
+        const fetchTickets = async () => {
+            try {
+                const fetchedTickets = await getTickets();
+                setTickets(fetchedTickets);
+                console.log("Fetched tickets: ", fetchedTickets);
+            } catch (error) {
+                console.log("Error fetching tickets: ", error);
+            }
+        }
+        fetchTickets().then(r => console.log("Tickets fetched"));
+    }, []);
+
 
     const [ticketFilterState, setTicketFilterState] = useState(ticketFilter[0]);
     const [isTicketFilterSubmenu, setIsTicketFilterSubmenu] = useState(false);

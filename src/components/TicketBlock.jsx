@@ -4,9 +4,9 @@ import personImage from '../assets/img/person1.webp';
 import downArrowIcon from '../assets/icons/dropdown_arrow.svg';
 
 const TicketBlock = ({onClick, ticketDetails }) => {
-    const [isTicketStatus, setIsTicketStatus] = useState(false);
-    const [isDeparment, setIsDeparment] = useState(false);
-    const [isPriority, setIsPriority] = useState(false);
+    const [isTicketStatus, setIsTicketStatus] = useState(ticketDetails.ticketStatus);
+    const [isDeparment, setIsDeparment] = useState(ticketDetails.ticketDepartment);
+    const [isPriority, setIsPriority] = useState(ticketDetails.priority);
     const [isChecked, setIsChecked] = useState(false);
 
     // refs for each dropdown
@@ -42,11 +42,11 @@ const TicketBlock = ({onClick, ticketDetails }) => {
                     <img src={personImage} alt='person' className={styles['circular-image']} />
                     <div className={styles['ticket-col']}>
                         <div className={styles['ticket-row']}>
-                            <p className={styles['ticket-title']}>{ticketDetails.title}</p>
-                            <p className={styles['ticket-number']}>{ticketDetails.number}</p>
+                            <p className={styles['ticket-title']}>{ticketDetails.ticketTitle}</p>
+                            <p className={styles['ticket-number']}>{ticketDetails.ticketNumber}</p>
                         </div>
                         <div className={styles['ticket-row']}>
-                            <p className={styles['ticket-date']}>{ticketDetails.date}</p>
+                            <p className={styles['ticket-date']}>{ticketDetails.createdDate.toDate().toString()}</p>
                             <p className={styles['respond-wrapper']}>{ticketDetails.respond}</p>
                         </div>
                     </div>
