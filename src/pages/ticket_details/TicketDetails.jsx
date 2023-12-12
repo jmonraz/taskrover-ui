@@ -12,6 +12,7 @@ import {getTicketById} from "../../utils/firebaseUtils";
 const TicketDetails = () => {
     const {ticketId} = useParams();
     const [ticket, setTicket] = useState(null);
+    const [commentClicked, setCommentClicked] = useState(false);
 
     useEffect(() => {
         const fetchTicket = async () => {
@@ -82,14 +83,20 @@ const TicketDetails = () => {
                                     <p className={styles['ticket-title-text']}>{ticket.ticketTitle}</p>
                                 </div>
                                 <div>
-                                    <Button>Comment</Button>
+                                    <Button onClick={() => {setCommentClicked(!commentClicked)}}>Comment</Button>
                                 </div>
                             </div>
                             <div className={styles['ticket-details-row']}>
                                 <p className={styles['ticket-number-bubble']}>{ticket.ticketNumber}</p>
                                 <p>{ticket.ticketDepartment}</p>
                             </div>
+                            {commentClicked &&
+                                <div className={styles['ticket-comment-container']}>
+                                    <p>Comment Clicked</p>
+                                </div>
+                            }
                         </div>
+
                         <hr/>
                         <div className={styles['ticket-conversation-container']}>
                             <div className={styles['ticket-conversation-col']}>
