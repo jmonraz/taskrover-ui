@@ -29,7 +29,6 @@
     flex-direction: column;
     width: 100%;
     height: calc(100vh - 280px);
-    min-height: 400px;
     overflow-y: auto;
 }
 

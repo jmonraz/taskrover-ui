@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import ReactQuill from "react-quill";
 import 'react-quill/dist/quill.snow.css';
+import styles from "./CommentPublisher.module.css";
 import Button from "./Button";
 
 const CommentPublisher = () => {
@@ -16,10 +17,18 @@ const CommentPublisher = () => {
 
     return (
         <>
-            <div>
-                <ReactQuill value={comment} onChange={handleCommentChange} />
-                <Button styleName='confirm-button' onClick={submitComment}>Submit</Button>
+            <div className={styles['main-container']}>
+                <div className={styles['react-quill-editor']}>
+                    <div>
+                        <ReactQuill value={comment} onChange={handleCommentChange}
+                                    className={styles['comment-editor']}/>
+                    </div>
+                    <div className={styles['button-container']}>
+                        <Button>Publish</Button>
+                    </div>
+                </div>
             </div>
+
         </>
     );
 };

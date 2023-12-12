@@ -91,13 +91,18 @@ const TicketDetails = () => {
                                 <p className={styles['ticket-number-bubble']}>{ticket.ticketNumber}</p>
                                 <p>{ticket.ticketDepartment}</p>
                             </div>
-                            {commentClicked &&
-                                <CommentPublisher />
-                            }
+
                         </div>
 
                         <hr/>
+
                         <div className={styles['ticket-conversation-container']}>
+                            {commentClicked &&
+                                <div>
+                                    <CommentPublisher />
+                                </div>
+
+                            }
                             <div className={styles['ticket-conversation-col']}>
                                 <div>
                                     {ticket && ticket.conversations && ticket.conversations.slice().reverse().map((conversation, index) => (
