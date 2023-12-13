@@ -2,7 +2,7 @@ import styles from "./AgentDashboard.module.css";
 import downArrowIcon from "../../assets/icons/dropdown_arrow.svg";
 import {useState, useRef, useEffect} from "react";
 import {useNavigate} from "react-router-dom";
-import {getTickets} from "../../utils/firebaseUtils";
+import {getTickets, getUserInformation} from "../../utils/firebaseUtils";
 
 // components
 import TicketBlock from "../../components/TicketBlock";
@@ -35,6 +35,7 @@ const AgentDashboard = () => {
     ];
     const navigate = useNavigate();
     const [tickets, setTickets] = useState([]);
+    const [user, setUser] = useState({});
 
     useEffect(() => {
         const fetchTickets = async () => {
@@ -46,7 +47,22 @@ const AgentDashboard = () => {
                 console.log("Error fetching tickets: ", error);
             }
         }
+
         fetchTickets().then(r => console.log("Tickets fetched"));
+    }, []);
+
+    useEffect(() => {
+        const fetchUserInformation = async () => {
+            try {
+                const fetchedUser = await getUserInformation();
+                setUser(fetchedUser);
+                console.log("Fetched user: ", fetchedUser);
+            } catch (error) {
+                console.log("Error fetching user: ", error);
+            }
+        }
+
+        fetchUserInformation().then(r => console.log("User fetched"));
     }, []);
 
 

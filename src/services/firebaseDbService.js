@@ -76,7 +76,21 @@ class FirebaseDBService {
 
         // write method to delete a comment in the database
 
+        // write a method to retrieve the user information from the database by document ID
+        // the document ID is the same as the user ID for the authentication service
+        async getUserInformation(userId) {
+            const userRef = doc(this.db, "users", userId);
+            const userSnapshot = await getDoc(userRef);
 
+            if (userSnapshot.exists()) {
+                const userData = userSnapshot.data();
+                userData.id = userSnapshot.id;
+                return userData;
+            } else {
+                console.log("No such document!");
+                return null;
+            }
+        }
 }
 
 export default FirebaseDBService;

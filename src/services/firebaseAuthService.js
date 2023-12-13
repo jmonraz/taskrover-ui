@@ -1,5 +1,6 @@
 import {auth} from './firebaseService';
-import {signInWithEmailAndPassword, signOut} from 'firebase/auth';
+import { signInWithEmailAndPassword, signOut} from 'firebase/auth';
+
 class AuthService {
     // constructor
     constructor() {
@@ -46,7 +47,14 @@ class AuthService {
     // updateEmail(email)
 
     // current user
-
+    async getCurrentUser() {
+       const user = auth.currentUser;
+       if(user) {
+           return user;
+       } else {
+              return null;
+       }
+    }
 }
 
 export default AuthService;

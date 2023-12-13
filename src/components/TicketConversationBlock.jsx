@@ -10,7 +10,7 @@ const TicketConversationBlock = ({conversation}) => {
                 <div className={styles['conversation-block-row']}>
                     <div>
                         <p className={styles['conversation-name']}>{conversation.commentOwner}</p>
-                        <p className={styles['conversation-date']}>{}</p>
+                        <p className={styles['conversation-date']}>{conversation.commentDate.toDate().toString()}</p>
                     </div>
                     <div>
                         <Button styleName='confirm-button'>...</Button>
