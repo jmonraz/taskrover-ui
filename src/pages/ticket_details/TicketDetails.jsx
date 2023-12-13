@@ -51,7 +51,7 @@ const TicketDetails = () => {
                         <p className={styles['ticket-header']}><span
                             className={styles['ticket-header-underline']}>CON</span>TACT INFO</p>
                         <div className={styles['ticket-header-content']}>
-                            <p>{ticket.contactUser}</p>
+                            <p className={styles['ticket-contact-user']}>{ticket.contactUser}</p>
                             <p>{ticket.contactAccoundId}</p>
                             <p>{ticket.contactEmail}</p>
                         </div>
@@ -108,8 +108,6 @@ const TicketDetails = () => {
                             </div>
 
                         </div>
-
-                        <hr/>
 
                         <div className={styles['ticket-conversation-container']}>
                             {commentClicked &&
