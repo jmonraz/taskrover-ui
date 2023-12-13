@@ -13,6 +13,7 @@
     padding: 15px 25px;
     height: calc(100vh - 120px);
     width: 300px;
+    word-break: break-word;
     overflow-y: auto;
     background-color: #fff;
 }
@@ -129,7 +130,8 @@
 .ticket-container-footer button {
     padding: 5px 10px;
     box-shadow: 0 0 0 0;
-    font-weight: 500;
+    font-weight: 400;
+    font-size: 0.9rem;
 }
 
 .ticket-contact-user {
@@ -140,5 +142,6 @@
 .ticket-title .ticket-details-row button {
     padding: 5px 10px;
     box-shadow: 0 0 0 0;
-    font-weight: 500;
+    font-weight: 400;
+    font-size: 0.9rem;
 }
