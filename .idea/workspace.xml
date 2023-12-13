@@ -6,7 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="383ee6d5-3f49-481f-a603-c06bbe5cd15f" name="Changes" comment="'merging problems'">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/ticket_details/TicketDetails.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/ticket_details/TicketDetails.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/CommentPublisher.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/CommentPublisher.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/CommentPublisher.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/CommentPublisher.module.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -75,7 +76,7 @@
       <updated>1702319665111</updated>
       <workItem from="1702319668318" duration="22455000" />
       <workItem from="1702407751951" duration="4372000" />
-      <workItem from="1702491606841" duration="2960000" />
+      <workItem from="1702491606841" duration="3413000" />
     </task>
     <servers />
   </component>

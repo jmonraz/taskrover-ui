@@ -36,8 +36,8 @@ const CommentPublisher = ({ticketId, handleReload, user, onClose}) => {
                                     className={styles['comment-editor']}/>
                     </div>
                     <div className={styles['button-container']}>
-                        <Button styleName='cancel-button' onClick={onClose}>Cancel</Button>
                         <Button onClick={submitComment}>Publish</Button>
+                        <Button styleName='cancel-button' onClick={onClose}>Cancel</Button>
                     </div>
                 </div>
             </div>
