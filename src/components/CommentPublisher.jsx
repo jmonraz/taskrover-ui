@@ -5,7 +5,7 @@ import styles from "./CommentPublisher.module.css";
 import Button from "./Button";
 import {addCommentToTicket} from "../utils/firebaseUtils";
 
-const CommentPublisher = ({ticketId, handleReload}) => {
+const CommentPublisher = ({ticketId, handleReload, user}) => {
     const [comment, setComment] = useState('');
 
     const handleCommentChange = (content) => {
@@ -18,7 +18,7 @@ const CommentPublisher = ({ticketId, handleReload}) => {
             await addCommentToTicket(ticketId, {
                 comment: comment,
                 commentDate: new Date(),
-                commentOwner: 'test user'
+                commentOwner: user.firstName + ' ' + user.lastName,
             });
             console.log(comment);
             handleReload();

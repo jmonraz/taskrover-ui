@@ -8,13 +8,14 @@ import TicketConversationBlock from "../../components/TicketConversationBlock";
 import Button from "../../components/Button";
 import CommentPublisher from "../../components/CommentPublisher";
 // utils
-import {getTicketById} from "../../utils/firebaseUtils";
+import {getTicketById, getUserInformation} from "../../utils/firebaseUtils";
 
 const TicketDetails = () => {
     const {ticketId} = useParams();
     const [ticket, setTicket] = useState(null);
     const [commentClicked, setCommentClicked] = useState(false);
     const [reload, setReload] = useState(false);
+    const [user, setUser] = useState({});
 
     useEffect(() => {
         const fetchTicket = async () => {
@@ -26,7 +27,16 @@ const TicketDetails = () => {
                 console.log("Error fetching ticket: ", error);
             }
         }
+        const fetchUserInformation = async () => {
+            try {
+                const fetchedUser = await getUserInformation();
+                setUser(fetchedUser);
+            } catch (error) {
+                console.log("Error fetching user: ", error);
+            }
+        }
         fetchTicket().then(r => console.log("Ticket fetched"));
+        fetchUserInformation().then(r => console.log("User fetched"));
     }, [reload, ticketId]);
 
     const handleReload = () => {
@@ -104,9 +114,8 @@ const TicketDetails = () => {
                         <div className={styles['ticket-conversation-container']}>
                             {commentClicked &&
                                 <div>
-                                    <CommentPublisher ticketId={ticket.id} handleReload={handleReload} />
+                                    <CommentPublisher ticketId={ticket.id} handleReload={handleReload} user={user} />
                                 </div>
-
                             }
                             <div className={styles['ticket-conversation-col']}>
                                 <div>
