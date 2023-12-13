@@ -4,6 +4,10 @@ import Button from "./Button";
 
 const TicketConversationBlock = ({conversation}) => {
     // const commentWithBreaks = conversation.comment.replace(/\\n/g, "<br />");
+    Date.prototype.toString = function () {
+        const options = {year: 'numeric', month: 'short', day: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric'};
+        return this.toLocaleDateString('en-US', options);
+    }
     return (
         <>
             <div className={styles['conversation-block']}>
