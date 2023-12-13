@@ -114,7 +114,7 @@ const TicketDetails = () => {
                         <div className={styles['ticket-conversation-container']}>
                             {commentClicked &&
                                 <div>
-                                    <CommentPublisher ticketId={ticket.id} handleReload={handleReload} user={user} />
+                                    <CommentPublisher ticketId={ticket.id} handleReload={handleReload} user={user} onClose={() => setCommentClicked(false)} />
                                 </div>
                             }
                             <div className={styles['ticket-conversation-col']}>

@@ -5,7 +5,7 @@ import styles from "./CommentPublisher.module.css";
 import Button from "./Button";
 import {addCommentToTicket} from "../utils/firebaseUtils";
 
-const CommentPublisher = ({ticketId, handleReload, user}) => {
+const CommentPublisher = ({ticketId, handleReload, user, onClose}) => {
     const [comment, setComment] = useState('');
 
     const handleCommentChange = (content) => {
@@ -22,6 +22,7 @@ const CommentPublisher = ({ticketId, handleReload, user}) => {
             });
             console.log(comment);
             handleReload();
+            onClose();
         }
         setComment('');
     }
@@ -35,6 +36,7 @@ const CommentPublisher = ({ticketId, handleReload, user}) => {
                                     className={styles['comment-editor']}/>
                     </div>
                     <div className={styles['button-container']}>
+                        <Button styleName='cancel-button' onClick={onClose}>Cancel</Button>
                         <Button onClick={submitComment}>Publish</Button>
                     </div>
                 </div>
