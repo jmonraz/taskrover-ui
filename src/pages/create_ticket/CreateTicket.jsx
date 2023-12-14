@@ -1,5 +1,7 @@
 import React, {useState} from "react";
 import styles from "./CreateTicket.module.css";
+// uttils
+import {addNewTicket} from "../../utils/firebaseUtils";
 
 const Ticket = () => {
 

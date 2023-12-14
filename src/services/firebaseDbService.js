@@ -67,7 +67,23 @@ class FirebaseDBService {
         }
 
         //  write method to add a new ticket to the database
+        async addNewTicket(newTicketData) {
+            const ticketsRef = collection(this.db, 'tickets');
+            const snapshot = await getDocs(ticketsRef);
 
+            let newTicketRef = null;
+            if (!snapshot.empty) {
+                // add a new ticket with the generated ID
+                const newTicketId = snapshot.size + 1;
+                const newTicketRef = doc(ticketsRef, newTicketId);
+                await setDoc(newTicketRef, {
+                    ...newTicketData,
+                    id: snapshot.size + 1,
+                });
+
+            }
+            return newTicketRef;
+        }
         // write method to update a ticket in the database
 
         // write method to delete a ticket in the database
