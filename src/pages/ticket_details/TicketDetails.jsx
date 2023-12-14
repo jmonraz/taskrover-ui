@@ -119,7 +119,7 @@ const TicketDetails = () => {
                                 <div>
                                     {ticket && ticket.conversations && ticket.conversations.sort((a, b) => b.id - a.id)
                                         .map((conversation, _) =>
-                                            <TicketConversationBlock key={conversation.id} conversation={conversation} />
+                                            <TicketConversationBlock ticketId={ticketId} key={conversation.id} conversation={conversation} />
                                     )}
                                 </div>
                             </div>

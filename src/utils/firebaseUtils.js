@@ -41,3 +41,8 @@ export const getUserInformation = async () => {
     const fetchedUser = await getCurrentUser();
     return await firebaseDBService.getUserInformation(fetchedUser.uid);
 }
+
+export const updateTicket = async (ticketId, conversationId, updatedTicketData) => {
+    const firebaseDBService = new FirebaseDBService();
+    return await firebaseDBService.updateTicket(ticketId, conversationId, updatedTicketData);
+}
