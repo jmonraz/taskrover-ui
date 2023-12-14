@@ -1,7 +1,8 @@
 import React, {useState} from "react";
 import styles from "./CreateTicket.module.css";
-// uttils
+// utils
 import {addNewTicket} from "../../utils/firebaseUtils";
+import {useNavigate} from "react-router-dom";
 
 const Ticket = () => {
 
@@ -9,45 +10,43 @@ const Ticket = () => {
     const [department, setDepartment] = useState('');
     const [status, setStatus] = useState('');
     const [ticketOwner, setTicketOwner] = useState('');
-    const [ticketList, setTicketList] = useState([]);
     const [subject,setSubject]= useState('');
     const [customField,setCustomField]= useState('');
     const [email,setEmail]= useState('');
     const [contactName,setContactName]= useState('');
     const [secondContact,setSecondContact]= useState('');
     const [account, setAccount]= useState('');
+    const navigate = useNavigate();
 
-
-
-
-    const handleCreateTicket = () => {
-        const newTicket = {
-            id: ticketList.length +1,
-            title: subject,
-            description: description,
-            department,
-            status,
-            ticketOwner,
-            customField,
-            email,
-            contactName,
-            secondContact,
-            account
-        };
-
-        // Add the new ticket to the ticketList
-        setTicketList([...ticketList, newTicket]);
-        // Clear the input fields
-        setDescription('');
-        setDepartment('');
-        setStatus('');
-        setTicketOwner('');
-        setSubject('');
-        setCustomField('');
-        setEmail('');
-        setContactName('');
-        setSecondContact('');
-        setAccount('');
+    const handleCreateTicket = async () => {
+       try {
+           await addNewTicket({
+               classifications: '',
+               contactAccountId: account,
+               contactEmail: email,
+               contactPhone: '',
+               contactUser: contactName,
+               createdDate: new Date(),
+               isLastRespondedAgent: false,
+               language: '',
+               lastTimeResponded: new Date(),
+               priority: '',
+               secondaryContacts: secondContact,
+               tags: [],
+               ticketDepartment: department,
+               ticketOwner: '',
+               ticketStatus: status,
+               ticketTitle: subject,
+           }, {
+               comment: description,
+               commentDate: new Date(),
+               commentOwner: 'John Doe',
+           })
+       } catch (e) {
+              console.log(e);
+              throw e;
+       }
+       navigate('/home/agent/dashboard');
     };
 
     const handleCancel = () => {
