@@ -1,5 +1,7 @@
 import React, {useState} from "react";
 import styles from "./CreateTicket.module.css";
+import {navigate} from "@storybook/addon-links";
+import FirebaseDBService from "../../services/firebaseDbService";
 
 const Ticket = () => {
 
@@ -18,7 +20,7 @@ const Ticket = () => {
 
 
 
-    const handleCreateTicket = () => {
+    const handleCreateTicket = async () => {
         const newTicket = {
             id: ticketList.length +1,
             title: subject,
@@ -32,20 +34,31 @@ const Ticket = () => {
             secondContact,
             account
         };
+        try {
+            // Instantiate the FirebaseDBService
+            const firebaseDBService = new FirebaseDBService();
 
-        // Add the new ticket to the ticketList
-        setTicketList([...ticketList, newTicket]);
-        // Clear the input fields
-        setDescription('');
-        setDepartment('');
-        setStatus('');
-        setTicketOwner('');
-        setSubject('');
-        setCustomField('');
-        setEmail('');
-        setContactName('');
-        setSecondContact('');
-        setAccount('');
+            // Call the method to add a new ticket to the database
+            await firebaseDBService.addNewTicket(newTicket);
+
+            // Add the new ticket to the ticketList
+            setTicketList([...ticketList, newTicket]);
+            // Clear the input fields
+            setDescription('');
+            setDepartment('');
+            setStatus('');
+            setTicketOwner('');
+            setSubject('');
+            setCustomField('');
+            setEmail('');
+            setContactName('');
+            setSecondContact('');
+            setAccount('');
+            navigate("agent/dashboard");
+        } catch (error) {
+            console.error("Error creating ticket:", error.message);
+            // Handle error, e.g., show an error message to the user
+        }
     };
 
     const handleCancel = () => {
@@ -59,6 +72,7 @@ const Ticket = () => {
         setContactName('');
         setSecondContact('');
         setAccount('');
+        navigate("agent/dashboard");
     };
 
     return (

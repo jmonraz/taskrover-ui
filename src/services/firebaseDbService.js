@@ -1,5 +1,5 @@
 import {firestore} from './firebaseService';
-import {collection, getDocs, doc, getDoc, query, orderBy, limit, setDoc} from 'firebase/firestore';
+import {collection, getDocs, doc, getDoc, addDoc, query, orderBy, limit, setDoc} from 'firebase/firestore';
 class FirebaseDBService {
     constructor() {
         // initialize the firebase firestore instance
@@ -67,7 +67,21 @@ class FirebaseDBService {
         }
 
         //  write method to add a new ticket to the database
+    async addNewTicket(newTicket) {
+        try {
+            const ticketsCollectionRef = collection(firestore, 'tickets');
 
+            // Add the new ticket to the "tickets" collection
+            const docRef = await addDoc(ticketsCollectionRef, newTicket);
+
+            console.log('Document written with ID: ', docRef.id);
+
+            return docRef.id;
+        } catch (error) {
+            console.error('Error adding document: ', error);
+            throw error;
+        }
+    }
         // write method to update a ticket in the database
 
         // write method to delete a ticket in the database
