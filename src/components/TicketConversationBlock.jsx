@@ -34,11 +34,16 @@ const TicketConversationBlock = ({conversation, ticketId}) => {
         setIsEditing(!isEditing);
         setDotMenuClicked(!dotMenuClicked);
     }
+
+    const handleEdit = (comment) => {
+        conversation.comment = comment;
+    }
+
     return (
         <>
             <div className={styles['conversation-block']}>
                     {isEditing ? (
-                        <CommentPublisher ticketId={ticketId} onClose={() => setIsEditing(!isEditing)} initialValue={conversation.comment} mode='edit' conversation={conversation}/>
+                        <CommentPublisher ticketId={ticketId} onClose={() => setIsEditing(!isEditing)} initialValue={conversation.comment} mode='edit' conversation={conversation} onEdit={handleEdit}/>
                         ) : (
                         <>
                             <div className={styles['conversation-block-row']}>

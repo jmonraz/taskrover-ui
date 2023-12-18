@@ -5,7 +5,7 @@ import styles from "./CommentPublisher.module.css";
 import Button from "./Button";
 import {addCommentToTicket, updateTicket} from "../utils/firebaseUtils";
 
-const CommentPublisher = ({ticketId, handleReload, user, onClose, initialValue = '', mode = 'comment', conversation = {}}) => {
+const CommentPublisher = ({ticketId, handleReload, user, onClose, initialValue = '', mode = 'comment', conversation, onEdit}) => {
     const [comment, setComment] = useState(initialValue);
 
     const handleCommentChange = (content) => {
@@ -32,6 +32,8 @@ const CommentPublisher = ({ticketId, handleReload, user, onClose, initialValue =
                 comment: comment,
                 editDate: new Date(),
             });
+            onEdit(comment);
+            onClose();
         }
         setComment('');
     }
