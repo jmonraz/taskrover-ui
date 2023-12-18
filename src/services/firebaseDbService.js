@@ -1,5 +1,5 @@
 import {firestore} from './firebaseService';
-import {collection, getDocs, doc, getDoc, query, orderBy, limit, setDoc} from 'firebase/firestore';
+import {collection, getDocs, doc, getDoc, setDoc, deleteDoc} from 'firebase/firestore';
 class FirebaseDBService {
     constructor() {
         // initialize the firebase firestore instance
@@ -104,10 +104,15 @@ class FirebaseDBService {
             }
             return newTicketRef;
         }
-        // write method to update a ticket in the database
 
         // write method to delete a ticket in the database
-
+        async deleteComment(ticketId, conversationId) {
+        const conversationsRef = collection(this.db, 'tickets', ticketId, 'conversations');
+        const formattedConversationId = 'comment_' + conversationId;
+        const conversationDocRef = doc(conversationsRef, formattedConversationId);
+        await deleteDoc(conversationDocRef);
+        return conversationDocRef;
+        }
         // write method to edit a comment in the database
 
         // write method to delete a comment in the database

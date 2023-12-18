@@ -6,7 +6,10 @@ import {useState, useRef, useEffect} from "react";
 //components
 import CommentPublisher from "./CommentPublisher";
 
-const TicketConversationBlock = ({conversation, ticketId}) => {
+// utils
+import {deleteComment} from "../utils/firebaseUtils";
+
+const TicketConversationBlock = ({conversation, ticketId, onDelete}) => {
     // const commentWithBreaks = conversation.comment.replace(/\\n/g, "<br />");
     const [dotMenuClicked, setDotMenuClicked] = useState(false);
     const [isEditing, setIsEditing] = useState(false);
@@ -35,6 +38,12 @@ const TicketConversationBlock = ({conversation, ticketId}) => {
         setDotMenuClicked(!dotMenuClicked);
     }
 
+    const handleDeleteClick = () => {
+        setDotMenuClicked(!dotMenuClicked)
+        deleteComment(ticketId, conversation.id).then(r => console.log(r));
+        onDelete();
+    }
+
     const handleEdit = (comment) => {
         conversation.comment = comment;
     }
@@ -58,7 +67,7 @@ const TicketConversationBlock = ({conversation, ticketId}) => {
                                         <div className={styles['dot-menu']} ref={dotMenuRef}>
                                             <ul>
                                                 <li onClick={handleEditClick}>Edit</li>
-                                                <li>Delete</li>
+                                                <li onClick={handleDeleteClick}>Delete</li>
                                             </ul>
                                         </div>}
                                 </div>
