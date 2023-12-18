@@ -7,12 +7,21 @@
     <list default="true" id="383ee6d5-3f49-481f-a603-c06bbe5cd15f" name="Changes" comment="'merging problems'">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
 <<<<<<< HEAD
+<<<<<<< HEAD
       <change beforePath="$PROJECT_DIR$/src/components/TicketConversationBlock.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/TicketConversationBlock.jsx" afterDir="false" />
 =======
       <change beforePath="$PROJECT_DIR$/src/pages/create_ticket/CreateTicket.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/create_ticket/CreateTicket.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/services/firebaseDbService.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/firebaseDbService.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/utils/firebaseUtils.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/firebaseUtils.js" afterDir="false" />
 >>>>>>> utils
+=======
+      <change beforePath="$PROJECT_DIR$/src/components/CommentPublisher.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/CommentPublisher.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/TicketConversationBlock.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/TicketConversationBlock.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/TicketConversationBlock.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/TicketConversationBlock.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/ticket_details/TicketDetails.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/ticket_details/TicketDetails.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/services/firebaseDbService.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/firebaseDbService.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/firebaseUtils.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/firebaseUtils.js" afterDir="false" />
+>>>>>>> ticket-update
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

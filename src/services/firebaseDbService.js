@@ -66,6 +66,20 @@ class FirebaseDBService {
             return newCommentRef;
         }
 
+        // write method to update a ticket
+        async updateTicket(ticketId, conversationId, updatedTicketData) {
+        console.log('ticketId', ticketId);
+        console.log('conversationId', conversationId);
+            const conversationsRef = collection(this.db, 'tickets', ticketId, 'conversations');
+            const conversationDocRef = doc(conversationsRef, conversationId);
+            const conversationDocSnapshot = await getDoc(conversationDocRef);
+            await setDoc(conversationDocRef, {
+                ...conversationDocSnapshot.data(),
+                ...updatedTicketData,
+            });
+            return conversationDocRef;
+        }
+
         //  write method to add a new ticket to the database
         async addNewTicket(newTicketData, conversation) {
             const ticketsRef = collection(this.db, 'tickets');
