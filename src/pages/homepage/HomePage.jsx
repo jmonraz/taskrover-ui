@@ -1,5 +1,5 @@
 import React from "react";
-import { Routes, Route } from "react-router-dom";
+import {Routes, Route, Navigate} from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 
@@ -10,6 +10,7 @@ import MainLayout from "../../components/MainLayout";
 import AgentDashboard from "../agent_dashboard/AgentDashboard";
 import TicketDetails from "../ticket_details/TicketDetails";
 import CreateTicket from "../create_ticket/CreateTicket"
+import UserDashboard from "../user_dashboard/UserDashboard";
 
 const HomeScreen = ({userType}) => {
     const navigate = useNavigate();
@@ -29,6 +30,10 @@ const HomeScreen = ({userType}) => {
                         <Route path="agent/dashboard" element={<AgentDashboard />} />
                         <Route path="agent/dashboard/:ticketId/ticket-details" element={<TicketDetails />} />
                         <Route path="agent/dashboard/create-a-ticket" element={<CreateTicket />}/>
+
+                        <Route path="user/dashboard" element={<UserDashboard/>} />
+                        <Route path="user/dashboard/:ticketId/ticket-details" element={<TicketDetails />} />
+                        <Route path="user/dashboard/create-a-ticket" element={<CreateTicket />}/>
                     </Route>
                 </Routes>
         </>

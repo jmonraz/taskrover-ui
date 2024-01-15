@@ -33,6 +33,7 @@ const LoginPage = () => {
 
     const username = useFormInput('');
     const password = useFormInput('');
+    const role = useFormInput('');
     const forgotPasswordEmail = useFormInput('');
 
     const onHandleSubmit = async e => {
@@ -40,12 +41,21 @@ const LoginPage = () => {
         setErrorMessage('');
         setIsLoading(true);
         try {
-            const response = await signIn(username.value, password.value);
-            const token = await response.getIdToken();
-            setToken(token);
-            setUserType('agent');
-            setUserState(true);
-            navigate('/home');
+            if (role.value === 'user'){
+                const response = await signIn(username.value, password.value);
+                const token = await response.getIdToken();
+                setToken(token);
+                setUserType('user');
+                setUserState(true);
+                navigate('/home');
+            }else if (role.value === 'agent') {
+                const response = await signIn(username.value, password.value);
+                const token = await response.getIdToken();
+                setToken(token);
+                setUserType('agent');
+                setUserState(true);
+                navigate('/home');
+            }
             setIsLoading(false);
 
         } catch (error) {
