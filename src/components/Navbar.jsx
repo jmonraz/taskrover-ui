@@ -19,8 +19,8 @@ import { useState, useContext, useRef, useEffect} from "react";
 import { UserContext } from "../context/UserContext";
 import {useNavigate} from "react-router-dom";
 
-const Navbar = () => {
-
+const Navbar = (userType) => {
+    console.log('User Role in Navbar:', userType);
     const [showAddOptions, setShowAddOptions] = useState(false);
     const {setUserState} = useContext(UserContext);
     const addDropdownRef = useRef(null);
@@ -53,11 +53,20 @@ const Navbar = () => {
         setShowAddOptions(!showAddOptions);
     }
     const handleNewTicketClicked = () =>{
-        navigate("agent/dashboard/create-a-ticket");
-        handleAddDropdownButtonClicked();
+        if (userType === 'agent') {
+            navigate("agent/dashboard/create-a-ticket");
+            handleAddDropdownButtonClicked();
+        } else if (userType === 'user'){
+            navigate("user/dashboard/create-a-ticket");
+            handleAddDropdownButtonClicked();
+        }
     }
     const handleOnClickTickets = () => {
-        navigate("agent/dashboard");
+        if (userType === 'agent') {
+            navigate("agent/dashboard");
+        }else if (userType === 'user'){
+            navigate("user/dashboard");
+        }
     }
 
     return (

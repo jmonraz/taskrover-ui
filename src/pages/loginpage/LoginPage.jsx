@@ -2,7 +2,8 @@
 import {useFormInput} from "../../hooks/useFormInput";
 
 // firebase calls
-import {signIn} from "../../utils/firebaseUtils"
+import {signIn} from "../../utils/firebaseUtils";
+import { getUserInformation } from "../../utils/firebaseUtils";
 
 // context
 import {UserContext} from "../../context/UserContext";
@@ -33,22 +34,33 @@ const LoginPage = () => {
 
     const username = useFormInput('');
     const password = useFormInput('');
-    const role = useFormInput('');
     const forgotPasswordEmail = useFormInput('');
 
     const onHandleSubmit = async e => {
         e.preventDefault();
         setErrorMessage('');
         setIsLoading(true);
+
         try {
-            if (role.value === 'user'){
+            const response = await signIn(username.value, password.value);
+            const userUID = response.uid;
+            let userRole =""
+            if (userUID === "hmU4oVnBW1baAmZx9imEGnyzCBl2"){
+                userRole = "user"
+            }
+            else{userRole = "agent"}
+            console.log('Role:', userRole);
+
+            if (userRole === 'user') {
+                console.log('User login');
                 const response = await signIn(username.value, password.value);
                 const token = await response.getIdToken();
                 setToken(token);
                 setUserType('user');
                 setUserState(true);
                 navigate('/home');
-            }else if (role.value === 'agent') {
+            } else if (userRole === 'agent') {
+                console.log('Agent login');
                 const response = await signIn(username.value, password.value);
                 const token = await response.getIdToken();
                 setToken(token);
@@ -56,11 +68,12 @@ const LoginPage = () => {
                 setUserState(true);
                 navigate('/home');
             }
-            setIsLoading(false);
 
+            setIsLoading(false);
         } catch (error) {
             setIsLoading(false);
             setErrorMessage('Invalid credentials. Please try again.');
+            console.error('Login error:', error); // Log any login errors
         }
 
     };

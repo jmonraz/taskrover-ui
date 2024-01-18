@@ -31,7 +31,7 @@ const UserDashboard = () =>{
 
     const onHandleTicketBlockClick = (ticketDetails) => {
         console.log('Ticket clicked:', ticketDetails);
-        navigate(`/home/user/dashboard/${ticketDetails.ticketNumber.slice(1)}/ticket-details}`);
+        navigate(`/home/user/dashboard/${ticketDetails.ticketNumber.slice(1)}/ticket-details`);
     };
     return (
         <>
