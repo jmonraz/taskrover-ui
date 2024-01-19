@@ -61,7 +61,6 @@ const Navbar = () => {
             handleAddDropdownButtonClicked();
         } else if (userType === 'user'){
             navigate("user/dashboard/create-a-ticket");
-            handleAddDropdownButtonClicked();
         }
     }
     const handleOnClickTickets = () => {
@@ -137,11 +136,6 @@ const Navbar = () => {
                 </div>
                 <div className={styles['add-dropdown-container']}>
                     <AddDropdownButton onClick={handleNewTicketClicked}/>
-                    {showAddOptions && (
-                        <div className={styles['add-dropdown-submenu']} ref={addDropdownRef}>
-                            <p className={styles['status-label']}><span>ADD</span> NEW</p>
-                        </div>
-                    )}
                 </div>
             </div>
             <div className={styles['navbar-row']}>
