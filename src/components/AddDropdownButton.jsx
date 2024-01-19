@@ -22,7 +22,7 @@ const AppDropdownButton = ({onClick}) => {
     );
 
     const UserButton =(
-        <div className={styles['button-container']} style={{marginLeft: '10px'}}>
+        <div className={styles['button-container']} style={{marginLeft: '10px'}} onClick={onClick}>
         <div className={styles['btn-box']}>
         <p>Create A Ticket</p>
         </div>
