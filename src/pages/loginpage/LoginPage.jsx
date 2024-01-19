@@ -2,7 +2,7 @@
 import {useFormInput} from "../../hooks/useFormInput";
 
 // firebase calls
-import {signIn} from "../../utils/firebaseUtils";
+import {signIn, getUserInformation} from "../../utils/firebaseUtils";
 
 // context
 import {UserContext} from "../../context/UserContext";
@@ -25,7 +25,7 @@ const LoginPage = () => {
 
     const navigate = useNavigate();
 
-    const {setToken, setUserType, setUserState} = useContext(UserContext);
+    const {setToken, setUserType, setUserState, authState} = useContext(UserContext);
 
     const [isLoading, setIsLoading] = useState(false);
     const [showForgotPassword, setShowForgotPassword] = useState(false);
@@ -42,29 +42,18 @@ const LoginPage = () => {
 
         try {
             const response = await signIn(username.value, password.value);
-            const userUID = response.uid;
-            let userRole =""
-            if (userUID === "hmU4oVnBW1baAmZx9imEGnyzCBl2"){
-                userRole = "user"
-            }
-            else{userRole = "agent"}
-            console.log('Role:', userRole);
-
-            if (userRole === 'user') {
+            const token = await response.getIdToken();
+            const userInfo = await getUserInformation(response.uid);
+            console.log(userInfo);
+            setToken(token);
+            setUserType(userInfo.role);
+            setUserState(true);
+            console.log(`User ${userInfo.role} login, token: ${token}, uid: ${response.uid}`);
+            if (authState.userType === 'user') {
                 console.log('User login');
-                const response = await signIn(username.value, password.value);
-                const token = await response.getIdToken();
-                setToken(token);
-                setUserType('user');
-                setUserState(true);
                 navigate('/home');
-            } else if (userRole === 'agent') {
+            } else if (authState.userType === 'agent') {
                 console.log('Agent login');
-                const response = await signIn(username.value, password.value);
-                const token = await response.getIdToken();
-                setToken(token);
-                setUserType('agent');
-                setUserState(true);
                 navigate('/home');
             }
 
