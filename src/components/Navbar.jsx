@@ -136,7 +136,7 @@ const Navbar = () => {
                     <img src={userNotificationIcon} alt="notifications" className={styles['user-icon']}/>
                 </div>
                 <div className={styles['add-dropdown-container']}>
-                    <AddDropdownButton onClick={handleAddDropdownButtonClicked}/>
+                    <AddDropdownButton onClick={handleNewTicketClicked}/>
                     {showAddOptions && (
                         <div className={styles['add-dropdown-submenu']} ref={addDropdownRef}>
                             <p className={styles['status-label']}><span>ADD</span> NEW</p>
