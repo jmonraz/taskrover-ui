@@ -3,7 +3,6 @@ import {useFormInput} from "../../hooks/useFormInput";
 
 // firebase calls
 import {signIn} from "../../utils/firebaseUtils";
-import { getUserInformation } from "../../utils/firebaseUtils";
 
 // context
 import {UserContext} from "../../context/UserContext";

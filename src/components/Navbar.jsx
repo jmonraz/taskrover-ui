@@ -11,6 +11,7 @@ import styles from "./Navbar.module.css";
 // assets
 import logo from "../assets/logo/taskrover-logo-small.png";
 import boxNotificationIcon from "../assets/icons/box_notification.svg";
+import userNotificationIcon from "../assets/icons/user_box_notification.svg";
 import gearIcon from "../assets/icons/gear_icon.svg";
 import userIcon from "../assets/icons/user_icon.svg";
 
@@ -19,7 +20,9 @@ import { useState, useContext, useRef, useEffect} from "react";
 import { UserContext } from "../context/UserContext";
 import {useNavigate} from "react-router-dom";
 
-const Navbar = (userType) => {
+const Navbar = () => {
+    const { authState } = useContext(UserContext);
+    const { userType } = authState;
     console.log('User Role in Navbar:', userType);
     const [showAddOptions, setShowAddOptions] = useState(false);
     const {setUserState} = useContext(UserContext);
@@ -68,55 +71,99 @@ const Navbar = (userType) => {
             navigate("user/dashboard");
         }
     }
-
-    return (
-        <>
-            <div className={styles['navbar']}>
-                <div className={styles['navbar-row']}>
-                    <div className={styles['navbar-logo']}>
-                        <img src={logo} alt="logo" />
-                    </div>
-                    <div className={styles['navbar-items']}>
+    const AgentNavbar = (
+        <div className={styles['navbar']}>
+            <div className={styles['navbar-row']}>
+                <div className={styles['navbar-logo']}>
+                    <img src={logo} alt="logo"/>
+                </div>
+                <div className={styles['navbar-items']}>
+                    <ul>
+                        <li onClick={handleOnClickTickets}>TICKETS</li>
+                        <li>KNOWLEDGE BASE</li>
+                        <li>CUSTOMERS</li>
+                        <li>ANALYTICS</li>
+                        <li>CHAT</li>
+                    </ul>
+                </div>
+            </div>
+            <div className={styles['navbar-row']}>
+                <SearchBar/>
+                <div className={styles['add-dropdown-container']}>
+                    <AddDropdownButton onClick={handleAddDropdownButtonClicked}/>
+                    {showAddOptions && (
+                        <div className={styles['add-dropdown-submenu']} ref={addDropdownRef}>
+                            <p className={styles['status-label']}><span>ADD</span> NEW</p>
+                            <ul>
+                                <li onClick={handleNewTicketClicked}>Ticket</li>
+                                <li>Account</li>
+                                <li>Customer</li>
+                                <li>Article</li>
+                            </ul>
+                        </div>
+                    )}
+                </div>
+                <img src={boxNotificationIcon} alt="notifications" className={styles['icon']}/>
+                <img src={gearIcon} alt="settings" className={styles['icon']}/>
+                <div className={styles['submenu-container']}>
+                    <img src={userIcon} alt="users" className={styles['icon']}/>
+                    <div className={styles['submenu']}>
                         <ul>
-                            <li onClick={handleOnClickTickets}>TICKETS</li>
-                            <li>KNOWLEDGE BASE</li>
-                            <li>CUSTOMERS</li>
-                            <li>ANALYTICS</li>
-                            <li>CHAT</li>
+                            <li>Profile</li>
+                            <li>Settings</li>
+                            <li onClick={handleSignOut}>Sign Out</li>
                         </ul>
                     </div>
                 </div>
-                <div className={styles['navbar-row']}>
-                    <SearchBar />
-                    <div className={styles['add-dropdown-container']}>
-                        <AddDropdownButton onClick={handleAddDropdownButtonClicked} />
-                        {showAddOptions && (
-                            <div className={styles['add-dropdown-submenu']} ref={addDropdownRef}>
-                                <p className={styles['status-label']}><span>ADD</span> NEW</p>
-                                <ul>
-                                    <li onClick={handleNewTicketClicked}>Ticket</li>
-                                    <li>Account</li>
-                                    <li>Customer</li>
-                                    <li>Article</li>
-                                </ul>
-                            </div>
-                        )}
-                    </div>
-                    <img src={boxNotificationIcon} alt="notifications" className={styles['icon']}/>
-                    <img src={gearIcon} alt="settings" className={styles['icon']} />
-                    <div className={styles['submenu-container']}>
-                        <img src={userIcon} alt="users" className={styles['icon']}/>
-                        <div className={styles['submenu']}>
-                            <ul>
-                                <li>Profile</li>
-                                <li>Settings</li>
-                                <li onClick={handleSignOut}>Sign Out</li>
-                            </ul>
-                        </div>
-                    </div>
+
+            </div>
+        </div>
+    );
+
+    const UserNavbar = (
+        <div className={styles['navbar']}>
+            <div className={styles['navbar-row']}>
+                <div className={styles['navbar-logo']}>
+                    <img src={logo} alt="logo"/>
+                </div>
+                <div className={styles['navbar-items']}>
+                    <ul>
+                        <li onClick={handleOnClickTickets}>TICKETS</li>
+                    </ul>
 
                 </div>
+                <div>
+                    <img src={userNotificationIcon} alt="notifications" className={styles['user-icon']}/>
+                </div>
+                <div className={styles['add-dropdown-container']}>
+                    <AddDropdownButton onClick={handleAddDropdownButtonClicked}/>
+                    {showAddOptions && (
+                        <div className={styles['add-dropdown-submenu']} ref={addDropdownRef}>
+                            <p className={styles['status-label']}><span>ADD</span> NEW</p>
+                        </div>
+                    )}
+                </div>
             </div>
+            <div className={styles['navbar-row']}>
+                <img src={gearIcon} alt="settings" className={styles['user-icon']}/>
+                <div className={styles['submenu-container']}>
+                    <img src={userIcon} alt="users" className={styles['user-icon']}/>
+                    <div className={styles['submenu']}>
+                        <ul>
+                            <li>Profile</li>
+                            <li>Settings</li>
+                            <li onClick={handleSignOut}>Sign Out</li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    );
+
+    return (
+        <>
+            {userType === 'user' ? UserNavbar : AgentNavbar}
         </>
     );
 };
