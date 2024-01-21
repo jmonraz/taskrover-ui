@@ -1,5 +1,5 @@
 import {firestore} from './firebaseService';
-import {collection, getDocs, doc, getDoc, query, orderBy, limit, setDoc} from 'firebase/firestore';
+import {collection, getDocs, doc, getDoc, query, orderBy, limit, setDoc, where} from 'firebase/firestore';
 class FirebaseDBService {
     constructor() {
         // initialize the firebase firestore instance
@@ -90,6 +90,19 @@ class FirebaseDBService {
             }
             return newTicketRef;
         }
+
+    async searchTickets(queryText) {
+        const ticketsRef = collection(this.db, 'tickets');
+        const querySnapshot = await getDocs(query(ticketsRef, where("text", ">=", queryText)));
+        const matchingTickets = [];
+
+        querySnapshot.forEach((doc) => {
+            matchingTickets.push(doc.data());
+        });
+
+        return matchingTickets;
+    }
+
         // write method to update a ticket in the database
 
         // write method to delete a ticket in the database
