@@ -24,6 +24,7 @@ const SearchBar = () => {
     const handleSearchClick = () => {
         handleSearch(searchQuery);
     };
+
     return(
         <>
             <div className={styles['search-bar']}>
