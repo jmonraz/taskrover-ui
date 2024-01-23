@@ -6,7 +6,6 @@ import {UserContext} from "../context/UserContext";
 
 const AppDropdownButton = ({onClick}) => {
     const { authState } = useContext(UserContext);
-    const { userType } = authState;
 
     const AgentButton = (
         <div className={styles['button-container']}>
@@ -30,7 +29,7 @@ const AppDropdownButton = ({onClick}) => {
     );
     return(
         <>
-            {userType === 'user' ? UserButton : AgentButton}
+            {authState.userType === 'user' ? UserButton : AgentButton}
         </>
     );
 };

@@ -68,6 +68,15 @@ const Navbar = () => {
             navigate("user/dashboard");
         }
     }
+
+    const handleOnClickHome = () => {
+        if (authState.userType === 'agent') {
+            navigate("agent/dashboard");
+        }else if (authState.userType === 'user'){
+            navigate("user/welcome");
+        }
+    }
+
     const AgentNavbar = (
         <div className={styles['navbar']}>
             <div className={styles['navbar-row']}>
@@ -125,19 +134,19 @@ const Navbar = () => {
                 </div>
                 <div className={styles['navbar-items']}>
                     <ul>
+                        <li onClick={handleOnClickHome}>HOME</li>
                         <li onClick={handleOnClickTickets}>TICKETS</li>
                     </ul>
+                </div>
 
-                </div>
-                <div>
-                    <img src={userNotificationIcon} alt="notifications" className={styles['user-icon']}/>
-                </div>
+            </div>
+            <div className={styles['navbar-row']}>
+                {/*unnecessary element*/}
+                {/*<img src={gearIcon} alt="settings" className={styles['user-icon']}/>*/}
                 <div className={styles['add-dropdown-container']}>
                     <AddDropdownButton onClick={handleNewTicketClicked}/>
                 </div>
-            </div>
-            <div className={styles['navbar-row']}>
-                <img src={gearIcon} alt="settings" className={styles['user-icon']}/>
+                <img src={userNotificationIcon} alt="notifications" className={styles['user-icon']}/>
                 <div className={styles['submenu-container']}>
                     <img src={userIcon} alt="users" className={styles['user-icon']}/>
                     <div className={styles['submenu']}>
