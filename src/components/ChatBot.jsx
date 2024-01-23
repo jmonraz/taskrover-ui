@@ -1,7 +1,21 @@
-import {useState} from "react";
+import {useState, useRef, useEffect} from "react";
 import styles from "./ChatBot.module.css";
 import chatBotIcon from "../assets/icons/chat_icon.svg";
-const ChatBot = ({messages}) => {
+const ChatBot = () => {
+
+    const [userMessage, setUserMessage] = useState([]);
+    const [userMessageInput, setUserMessageInput] = useState('');
+    const [inputDisabled, setInputDisabled] = useState(true);
+    const [finalMessage, setFinalMessage] = useState(false);
+
+    const chatBodyRef = useRef(null);
+
+    useEffect(() => {
+        if (chatBodyRef.current) {
+            chatBodyRef.current.scrollTop = chatBodyRef.current.scrollHeight;
+        }
+    }, [userMessage]);
+
     const initMessages = [
         "Hello, how can I help you today?",
         "Please select from the following options:",
@@ -10,8 +24,12 @@ const ChatBot = ({messages}) => {
 
     const ticketMessages = [
         "Great, I will gladly help you with creating a ticket!",
-        "Please describe your issue in detail:",
+        "Please describe your inquiry in detail:",
     ];
+
+    const userSelectionMessages = [
+        "Create a ticket"
+    ]
 
     const [optionSelected, setOptionSelected] = useState(false);
 
@@ -22,6 +40,24 @@ const ChatBot = ({messages}) => {
 
     const OnHandleClickOption = () => {
         setOptionSelected(true);
+        setInputDisabled(false);
+    }
+
+    const OnHandleInputChange = (e) => {
+        setUserMessageInput(e.target.value);
+    }
+
+    const OnHandleSendClick = () => {
+        setUserMessage([...userMessage, userMessageInput]);
+        setUserMessageInput('');
+        setInputDisabled(true);
+        setFinalMessage(true);
+    }
+
+    const OnHandleNewRequestClick = () => {
+        setOptionSelected(false);
+        setFinalMessage(false);
+        setUserMessage([]);
     }
 
     return (
@@ -35,7 +71,7 @@ const ChatBot = ({messages}) => {
                         <p className={styles['chat-bot-title']}>TaskRover Chat</p>
                         <p className={styles['chat-bot-close']} onClick={OnHandleClickChat}>X</p>
                     </div>
-                    <div className={styles['chat-bot-body']}>
+                    <div className={styles['chat-bot-body']} ref={chatBodyRef}>
                         {initMessages.map((message, index) => {
                             return (
                                 <div className={styles['chat-message']}>
@@ -49,6 +85,11 @@ const ChatBot = ({messages}) => {
                             </div>
                         )}
                         {optionSelected && (
+                            <div className={styles['user-message']}>
+                                <p>{userSelectionMessages[0]}</p>
+                            </div>
+                        )}
+                        {optionSelected && (
                             ticketMessages.map((message) => {
                                 return (
                                     <div className={styles['chat-message']}>
@@ -58,11 +99,42 @@ const ChatBot = ({messages}) => {
 
                             })
                         )}
+                        {userMessage.map((message) => {
+                            return (
+                                <div className={styles['user-message']}>
+                                    <p>{message}</p>
+                                </div>
+                            );
+                        })}
+                        {finalMessage && (
+                            <>
+                                <div className={styles['chat-message']}>
+                                    <p>Your ticket has been successfully created.</p>
+                                </div>
+                                <div className={styles['chat-message']}>
+                                    <p>Here is the ticket id #ticket-number</p>
+                                </div>
+                                <div className={styles['chat-message']}>
+                                    <p>Thanks for reaching out to us. An agent will respond to your ticket shortly.</p>
+                                </div>
+                                <div className={styles['chat-message']}>
+                                    <p>Good bye!</p>
+                                </div>
+                            </>
+
+
+                        )}
+                        {finalMessage && (
+                            <div className={styles['final-message']}>
+                            <p>This chat has ended.</p>
+                                <p onClick={OnHandleNewRequestClick}>New request</p>
+                            </div>
+                        )}
                     </div>
                     <hr className={styles['horizontal-line']} />
                     <div className={styles['chat-footer']}>
-                        <input placeholder="Type message..." />
-                        <button>Send</button>
+                        <input placeholder="Type message..." value={userMessageInput} onChange={OnHandleInputChange} disabled={inputDisabled} />
+                        <button onClick={OnHandleSendClick}>Send</button>
                     </div>
                 </div>
             )}

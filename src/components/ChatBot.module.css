@@ -21,8 +21,8 @@
     position: absolute;
     bottom: 80px;
     right: 90px;
-    width: 320px;
-    height: 400px;
+    width: 350px;
+    height: 460px;
     border-radius: 5px;
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.4);
     background-color: #fafafa;
@@ -48,7 +48,7 @@
     flex-grow: 1;
     display: flex;
     flex-direction: column;
-    padding: 5px 10px;
+    padding: 10px 15px;
     gap: 8px;
     overflow-y: auto;
 }
@@ -64,7 +64,7 @@
 
 .chat-footer input {
     flex-grow: 1;
-    padding: 0 10px;
+    padding: 10px;
 }
 
 .chat-footer button {
@@ -87,10 +87,18 @@
 }
 
 .chat-message {
-    padding: 5px;
+    padding: 10px;
     border-radius: 5px;
     background-color: #D0D9E3;
     color: #333;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+.user-message {
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #84c290;
+    color: #fff;
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
 }
 
@@ -111,4 +119,21 @@
 
 .chat-bot-ctr-ops button:hover {
     background-color: #005a4f;
+}
+
+.final-message p:first-child{
+    text-align: center;
+    color: #333;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+.final-message p:nth-child(2){
+    text-align: center;
+    color: blue;
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+}
+.final-message p:nth-child(2):hover{
+    text-decoration: underline;
 }
