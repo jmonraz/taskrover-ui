@@ -22,9 +22,10 @@ const ChatBot = () => {
                     <div className={styles['chat-bot-body']}>
                         <p>Chat Bot Body</p>
                     </div>
+                    <hr className={styles['horizontal-line']} />
                     <div className={styles['chat-footer']}>
-                        <p>Send Message</p>
-                        <p>Button</p>
+                        <input placeholder="Type message..." />
+                        <button>Send</button>
                     </div>
                 </div>
             )}

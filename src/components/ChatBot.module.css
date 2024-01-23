@@ -44,12 +44,37 @@
     font-size: 1rem;
 }
 
-.chat-body {
+.chat-bot-body {
     flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 5px 10px;
     overflow-y: auto;
 }
 
 .chat-footer {
     background-color: #fafafa;
     padding: 5px 10px;
+    display: flex;
+    gap: 5px;
+    justify-content: space-between;
+    border-radius: 0 0 0 5px;
+}
+
+.chat-footer input {
+    flex-grow: 1;
+    padding: 0 10px;
+}
+
+.chat-footer button {
+    border: none;
+    padding: 5px 10px;
+    background-color: #00695C;
+    color: #fff;
+    width: auto;
+    border-radius: 5px;
+}
+
+.horizontal-line {
+    color: rgba(0, 0, 0, 0.2);
 }
