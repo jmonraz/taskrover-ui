@@ -3,9 +3,16 @@ import styles from './TicketConversationBlock.module.css';
 import Button from "./Button";
 import {useState, useRef, useEffect} from "react";
 
-const TicketConversationBlock = ({conversation}) => {
+//components
+import CommentPublisher from "./CommentPublisher";
+
+// utils
+import {deleteComment} from "../utils/firebaseUtils";
+
+const TicketConversationBlock = ({conversation, ticketId, onDelete}) => {
     // const commentWithBreaks = conversation.comment.replace(/\\n/g, "<br />");
     const [dotMenuClicked, setDotMenuClicked] = useState(false);
+    const [isEditing, setIsEditing] = useState(false);
     const dotMenuRef = useRef(null);
 
     Date.prototype.toString = function () {
@@ -14,6 +21,7 @@ const TicketConversationBlock = ({conversation}) => {
     }
 
     useEffect(() => {
+        console.log(conversation);
         const handleClickOutside = (event) => {
             if (dotMenuRef.current && !dotMenuRef.current.contains(event.target)) {
                 setDotMenuClicked(false);
@@ -24,26 +32,52 @@ const TicketConversationBlock = ({conversation}) => {
             document.removeEventListener('mousedown', handleClickOutside);
         }
     }, [dotMenuRef]);
+
+    const handleEditClick = () => {
+        setIsEditing(!isEditing);
+        setDotMenuClicked(!dotMenuClicked);
+    }
+
+    const handleDeleteClick = () => {
+        setDotMenuClicked(!dotMenuClicked)
+        deleteComment(ticketId, conversation.id).then(r => console.log(r));
+        onDelete();
+    }
+
+    const handleEdit = (comment) => {
+        conversation.comment = comment;
+    }
+
     return (
         <>
             <div className={styles['conversation-block']}>
-                <div className={styles['conversation-block-row']}>
-                    <div>
-                        <p className={styles['conversation-name']}>{conversation.commentOwner}</p>
-                        <p className={styles['conversation-date']}>{conversation.commentDate.toDate().toString()}</p>
-                    </div>
-                    <div className={styles['button-container']}>
-                        <Button styleName='confirm-button' onClick={() => setDotMenuClicked(!dotMenuClicked)}>...</Button>
-                        {dotMenuClicked &&
-                        <div className={styles['dot-menu']} ref={dotMenuRef} >
-                            <ul>
-                                <li>Edit</li>
-                                <li>Delete</li>
-                            </ul>
-                        </div>}
-                    </div>
-                </div>
-                <p className={styles['conversation-text']} dangerouslySetInnerHTML={{ __html: conversation.comment}} ></p>
+                    {isEditing ? (
+                        <CommentPublisher ticketId={ticketId} onClose={() => setIsEditing(!isEditing)} initialValue={conversation.comment} mode='edit' conversation={conversation} onEdit={handleEdit}/>
+                        ) : (
+                        <>
+                            <div className={styles['conversation-block-row']}>
+                                <div >
+                                    <p className={styles['conversation-name']}>{conversation.commentOwner}</p>
+                                    <p className={styles['conversation-date']}>{conversation.commentDate.toDate().toString()}</p>
+                                </div>
+                                <div className={styles['button-container']}>
+                                    <Button styleName='confirm-button'
+                                            onClick={() => setDotMenuClicked(!dotMenuClicked)}>...</Button>
+                                    {dotMenuClicked &&
+                                        <div className={styles['dot-menu']} ref={dotMenuRef}>
+                                            <ul>
+                                                <li onClick={handleEditClick}>Edit</li>
+                                                <li onClick={handleDeleteClick}>Delete</li>
+                                            </ul>
+                                        </div>}
+                                </div>
+                            </div>
+                            <div className={styles['conversation-block-row']}>
+                                <p className={styles['conversation-text']}
+                                   dangerouslySetInnerHTML={{__html: conversation.comment}}></p>
+                            </div>
+                        </>
+                    )}
             </div>
         </>
     );

@@ -3,25 +3,36 @@ import ReactQuill from "react-quill";
 import 'react-quill/dist/quill.snow.css';
 import styles from "./CommentPublisher.module.css";
 import Button from "./Button";
-import {addCommentToTicket} from "../utils/firebaseUtils";
+import {addCommentToTicket, updateTicket} from "../utils/firebaseUtils";
 
-const CommentPublisher = ({ticketId, handleReload, user, onClose}) => {
-    const [comment, setComment] = useState('');
+const CommentPublisher = ({ticketId, handleReload, user, onClose, initialValue = '', mode = 'comment', conversation, onEdit}) => {
+    const [comment, setComment] = useState(initialValue);
 
     const handleCommentChange = (content) => {
         setComment(content);
     };
 
     const submitComment = async () => {
-        if(comment !== '') {
-            // publish comment
-            await addCommentToTicket(ticketId, {
+        if(mode === 'comment') {
+            if(comment !== '') {
+                // publish comment
+                await addCommentToTicket(ticketId, {
+                    comment: comment,
+                    commentDate: new Date(),
+                    commentOwner: user.firstName + ' ' + user.lastName,
+                });
+                console.log(comment);
+                handleReload();
+                onClose();
+            }
+        } else if (mode === 'edit') {
+            // edit comment
+            const conversationId = 'comment_' + conversation.id;
+            await updateTicket(ticketId, conversationId, {
                 comment: comment,
-                commentDate: new Date(),
-                commentOwner: user.firstName + ' ' + user.lastName,
+                editDate: new Date(),
             });
-            console.log(comment);
-            handleReload();
+            onEdit(comment);
             onClose();
         }
         setComment('');
@@ -41,7 +52,6 @@ const CommentPublisher = ({ticketId, handleReload, user, onClose}) => {
                     </div>
                 </div>
             </div>
-
         </>
     );
 };
