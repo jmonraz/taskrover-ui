@@ -1,6 +1,6 @@
 import styles from "./UserWelcomePage.module.css";
-import {useNavigate} from "react-router-dom";
 import SearchBar from "../../components/SearchBar";
+import ChatBot from "../../components/ChatBot";
 
 const UserWelcomePage = () => {
     return (
@@ -16,7 +16,9 @@ const UserWelcomePage = () => {
                 <div className={styles['row']}>
                 </div>
                 <div className={styles['row']}>
-
+                </div>
+                <div className={styles['chat']}>
+                    <ChatBot />
                 </div>
             </div>
         </>

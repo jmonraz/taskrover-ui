@@ -1,0 +1,11 @@
+.chat-bubble {
+    background-color: #00796B;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.4);
+}
