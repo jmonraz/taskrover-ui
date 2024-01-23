@@ -9,6 +9,7 @@ import LoginPage from './pages/loginpage/LoginPage';
 import HomePage from "./pages/homepage/HomePage";
 import Navbar from "./components/Navbar";
 import AddDropdownButton from "./components/AddDropdownButton";
+import TicketList from "./pages/ticket_list/TicketList";
 
 const ProtectedRoute = () => {
     const {authState} = useContext(UserContext);
@@ -36,6 +37,7 @@ const App = () => {
                   <Routes>
                       <Route path="/" element={<LoginPage />} />
                       <Route path="/home/*" element={<ProtectedRoute />} />
+                      <Route path="/search-results" element={<TicketList />} />
                   </Routes>
               </Router>
       </>
