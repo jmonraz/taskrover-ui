@@ -89,7 +89,7 @@ const Navbar = () => {
                         <li>KNOWLEDGE BASE</li>
                         <li>CUSTOMERS</li>
                         <li>ANALYTICS</li>
-                        <li>CHAT</li>
+                        {/*<li>CHAT</li>*/}
                     </ul>
                 </div>
             </div>
