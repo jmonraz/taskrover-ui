@@ -3,7 +3,7 @@
     align-items: center;
     max-width: fit-content;
     height: 35px;
-    background-color: #FF5733;
+    background-color: #4CAF50;
     border-radius: 5px;
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
     padding: 0 2px;
@@ -41,6 +41,6 @@
 
 .btn-box:hover {
     cursor: pointer;
-    background-color: #FF6F61;
+    background-color: #3b863e;
 }
 

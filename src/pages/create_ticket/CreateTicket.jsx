@@ -19,6 +19,10 @@ const Ticket = () => {
     const navigate = useNavigate();
 
     const handleCreateTicket = async () => {
+        if (!department || !contactName || !customField || !subject || !status) {
+            alert("Please fill in all the required fields marked with an asterisk (*)");
+            return;
+        }
        try {
            await addNewTicket({
                classifications: '',
@@ -118,7 +122,7 @@ const Ticket = () => {
                     <div className={styles["form-row"]}>
                         <div className={styles["form-column"]}>
                             <label htmlFor="subject" className={styles.required}>Subject</label>
-                            <input type="text" id="subject" value={subject} onChange={(e)=> setSubject(e.target.value)} style={ {width: '100%', padding: '8px', boxSizing: 'border-box'}}/>
+                            <input required type="text" id="subject" value={subject} onChange={(e)=> setSubject(e.target.value)} style={ {width: '100%', padding: '8px', boxSizing: 'border-box'}}/>
                         </div>
                         <div className={styles["form-column"]}></div>
                     </div>
