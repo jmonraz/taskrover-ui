@@ -1,10 +1,12 @@
 import {useState, useRef, useEffect} from "react";
+import {getChatBotResponse} from "../utils/apiUtils";
 import styles from "./ChatBot.module.css";
 import chatBotIcon from "../assets/icons/chat_icon.svg";
 const ChatBot = () => {
 
-    const [userMessage, setUserMessage] = useState([]);
+    const [userMessageSubject, setUserMessageSubject] = useState([]);
     const [userMessageInput, setUserMessageInput] = useState('');
+    const [userMessageDescription, setUserMessageDescription] = useState([]);
     const [inputDisabled, setInputDisabled] = useState(true);
     const [finalMessage, setFinalMessage] = useState(false);
 
@@ -14,7 +16,7 @@ const ChatBot = () => {
         if (chatBodyRef.current) {
             chatBodyRef.current.scrollTop = chatBodyRef.current.scrollHeight;
         }
-    }, [userMessage]);
+    }, [userMessageDescription, userMessageSubject]);
 
     const initMessages = [
         "Hello, how can I help you today?",
@@ -22,9 +24,13 @@ const ChatBot = () => {
 
     ];
 
-    const ticketMessages = [
+    const shortDescriptionMessage = [
         "Great, I will gladly help you with creating a ticket!",
-        "Please describe your inquiry in detail:",
+        "Please enter a short description of your issue.",
+    ];
+
+    const descriptionMessage = [
+        "Please enter a detailed description of your issue."
     ];
 
     const userSelectionMessages = [
@@ -47,17 +53,31 @@ const ChatBot = () => {
         setUserMessageInput(e.target.value);
     }
 
-    const OnHandleSendClick = () => {
-        setUserMessage([...userMessage, userMessageInput]);
-        setUserMessageInput('');
-        setInputDisabled(true);
-        setFinalMessage(true);
+    const OnHandleSendClick =  async  () => {
+        if(userMessageSubject.length === 0) {
+            setUserMessageSubject([...userMessageSubject, userMessageInput]);
+            setUserMessageInput('');
+            return;
+        }
+        if(userMessageSubject.length !== 0 && userMessageDescription.length === 0) {
+            setUserMessageDescription([...userMessageDescription, userMessageInput]);
+            setUserMessageInput('');
+            return;
+        }
+        if(userMessageSubject.length !== 0 && userMessageDescription.length === 0) {
+            setInputDisabled(true);
+            const response = await getChatBotResponse(userMessageSubject, userMessageDescription);
+            console.log(response);
+            setFinalMessage(true);
+        }
+
     }
 
     const OnHandleNewRequestClick = () => {
         setOptionSelected(false);
         setFinalMessage(false);
-        setUserMessage([]);
+        setUserMessageSubject([]);
+        setUserMessageDescription([]);
     }
 
     return (
@@ -90,7 +110,7 @@ const ChatBot = () => {
                             </div>
                         )}
                         {optionSelected && (
-                            ticketMessages.map((message) => {
+                            shortDescriptionMessage.map((message) => {
                                 return (
                                     <div className={styles['chat-message']}>
                                         <p>{message}</p>
@@ -99,13 +119,28 @@ const ChatBot = () => {
 
                             })
                         )}
-                        {userMessage.map((message) => {
+                        {userMessageSubject.map((message) => {
                             return (
                                 <div className={styles['user-message']}>
                                     <p>{message}</p>
                                 </div>
                             );
                         })}
+                        {userMessageSubject.length !== 0 && (descriptionMessage.map((message) => {
+                            return (
+                                <div className={styles['chat-message']}>
+                                    <p>{message}</p>
+                                </div>
+                            );
+                        })
+                        )}
+                        {userMessageDescription.map((message) => {
+                            return (
+                            <div className={styles['user-message']}>
+                        <p>{message}</p>
+                    </div>
+                    );
+                    })}
                         {finalMessage && (
                             <>
                                 <div className={styles['chat-message']}>
