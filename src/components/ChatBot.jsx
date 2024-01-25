@@ -16,6 +16,16 @@ const ChatBot = () => {
         if (chatBodyRef.current) {
             chatBodyRef.current.scrollTop = chatBodyRef.current.scrollHeight;
         }
+
+        const callApi = async () => {
+            if(userMessageDescription.length !== 0) {
+                const response = await getChatBotResponse(userMessageSubject, userMessageDescription);
+                console.log(response);
+                setFinalMessage(true);
+            }
+        }
+
+        callApi().then(r => console.log("not"));
     }, [userMessageDescription, userMessageSubject]);
 
     const initMessages = [
@@ -55,22 +65,18 @@ const ChatBot = () => {
 
     const OnHandleSendClick =  async  () => {
         if(userMessageSubject.length === 0) {
+            console.log(`user input: ${userMessageInput}`)
             setUserMessageSubject([...userMessageSubject, userMessageInput]);
             setUserMessageInput('');
             return;
         }
         if(userMessageSubject.length !== 0 && userMessageDescription.length === 0) {
+            console.log(`user input: ${userMessageInput}`)
             setUserMessageDescription([...userMessageDescription, userMessageInput]);
             setUserMessageInput('');
-            return;
-        }
-        if(userMessageSubject.length !== 0 && userMessageDescription.length === 0) {
             setInputDisabled(true);
-            const response = await getChatBotResponse(userMessageSubject, userMessageDescription);
-            console.log(response);
-            setFinalMessage(true);
-        }
 
+        }
     }
 
     const OnHandleNewRequestClick = () => {
