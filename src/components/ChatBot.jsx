@@ -95,7 +95,7 @@ const ChatBot = () => {
                 <div className={styles['chat-bot-ctr']}>
                     <div className={styles['chat-bot-header']}>
                         <p className={styles['chat-bot-title']}>TaskRover Chat</p>
-                        <p className={styles['chat-bot-close']} onClick={OnHandleClickChat}>X</p>
+                        <p className={`${styles['chat-bot-close']}`} style={{cursor: "pointer", fontWeight: 700}} onClick={OnHandleClickChat}>X</p>
                     </div>
                     <div className={styles['chat-bot-body']} ref={chatBodyRef}>
                         {initMessages.map((message, index) => {
