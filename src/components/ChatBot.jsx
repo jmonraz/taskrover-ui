@@ -1,7 +1,10 @@
-import {useState, useRef, useEffect} from "react";
+import {useState, useRef, useEffect, useContext} from "react";
 import {getChatBotResponse} from "../utils/apiUtils";
 import styles from "./ChatBot.module.css";
 import chatBotIcon from "../assets/icons/chat_icon.svg";
+import {addNewTicket} from "../utils/firebaseUtils";
+import {UserContext} from "../context/UserContext";
+
 const ChatBot = () => {
 
     const [userMessageSubject, setUserMessageSubject] = useState([]);
@@ -9,8 +12,16 @@ const ChatBot = () => {
     const [userMessageDescription, setUserMessageDescription] = useState([]);
     const [inputDisabled, setInputDisabled] = useState(true);
     const [finalMessage, setFinalMessage] = useState(false);
+    const [response, setResponse] = useState([{}]);
+    const authState = useContext(UserContext);
+    const [ticketId, setTicketId] = useState('');
 
     const chatBodyRef = useRef(null);
+    useEffect(() => {
+        if (chatBodyRef.current) {
+            chatBodyRef.current.scrollTop = chatBodyRef.current.scrollHeight;
+        }
+    }, [ticketId]);
 
     useEffect(() => {
         if (chatBodyRef.current) {
@@ -19,8 +30,32 @@ const ChatBot = () => {
 
         const callApi = async () => {
             if(userMessageDescription.length !== 0) {
+                console.log(userMessageSubject[0], userMessageDescription[0]);
                 const response = await getChatBotResponse(userMessageSubject, userMessageDescription);
-                console.log(response);
+                setResponse(response);
+                const ticket = await addNewTicket({
+                    classifications: '',
+                    contactAccountId: 'test',
+                    contactEmail: 'test',
+                    contactPhone: '',
+                    contactUser: 'test',
+                    createdDate: new Date(),
+                    isLastRespondedAgent: false,
+                    language: '',
+                    lastTimeResponded: new Date(),
+                    priority: '',
+                    secondaryContacts: 'test',
+                    tags: [],
+                    ticketDepartment: response['department'],
+                    ticketOwner: '',
+                    ticketStatus: 'Open',
+                    ticketTitle: userMessageSubject[0],
+                }, {
+                    comment: userMessageDescription[0],
+                    commentDate: new Date(),
+                    commentOwner: 'John Doe',
+                });
+                setTicketId(ticket);
                 setFinalMessage(true);
             }
         }
@@ -65,13 +100,11 @@ const ChatBot = () => {
 
     const OnHandleSendClick =  async  () => {
         if(userMessageSubject.length === 0) {
-            console.log(`user input: ${userMessageInput}`)
             setUserMessageSubject([...userMessageSubject, userMessageInput]);
             setUserMessageInput('');
             return;
         }
         if(userMessageSubject.length !== 0 && userMessageDescription.length === 0) {
-            console.log(`user input: ${userMessageInput}`)
             setUserMessageDescription([...userMessageDescription, userMessageInput]);
             setUserMessageInput('');
             setInputDisabled(true);
@@ -84,6 +117,7 @@ const ChatBot = () => {
         setFinalMessage(false);
         setUserMessageSubject([]);
         setUserMessageDescription([]);
+        setTicketId('');
     }
 
     return (
@@ -153,7 +187,7 @@ const ChatBot = () => {
                                     <p>Your ticket has been successfully created.</p>
                                 </div>
                                 <div className={styles['chat-message']}>
-                                    <p>Here is the ticket id #ticket-number</p>
+                                    <p>Your ticket number is #{ticketId}</p>
                                 </div>
                                 <div className={styles['chat-message']}>
                                     <p>Thanks for reaching out to us. An agent will respond to your ticket shortly.</p>

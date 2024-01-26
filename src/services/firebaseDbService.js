@@ -68,8 +68,7 @@ class FirebaseDBService {
 
         // write method to update a ticket
         async updateTicket(ticketId, conversationId, updatedTicketData) {
-        console.log('ticketId', ticketId);
-        console.log('conversationId', conversationId);
+
             const conversationsRef = collection(this.db, 'tickets', ticketId, 'conversations');
             const conversationDocRef = doc(conversationsRef, conversationId);
             const conversationDocSnapshot = await getDoc(conversationDocRef);
@@ -84,8 +83,6 @@ class FirebaseDBService {
         async addNewTicket(newTicketData, conversation) {
             const ticketsRef = collection(this.db, 'tickets');
             const snapshot = await getDocs(ticketsRef);
-
-            let newTicketRef = null;
             if (!snapshot.empty) {
                 // add a new ticket with the generated ID
                 const newTicketId = `${(snapshot.size + 1).toString()}`;
@@ -100,9 +97,8 @@ class FirebaseDBService {
                     ...conversation,
                     id: 1,
                 }, {merge: true});
-
+                return newTicketId;
             }
-            return newTicketRef;
         }
 
         // write method to delete a ticket in the database
