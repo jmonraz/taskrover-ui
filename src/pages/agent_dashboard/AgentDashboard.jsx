@@ -36,6 +36,7 @@ const AgentDashboard = () => {
     const navigate = useNavigate();
     const [tickets, setTickets] = useState([]);
     const [user, setUser] = useState({});
+    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
         const fetchTickets = async () => {
@@ -99,40 +100,48 @@ const AgentDashboard = () => {
 
     return (
         <>
-            <div className={styles['header-row']}>
-                <p className={styles['ticket-filter-label']}>{ticketFilterState.title} ({ticketFilterState.number})</p>
-                <div className={styles['icon-container']}>
-                    <img src={downArrowIcon} alt="down-arrow" className={styles['icon']} onClick={handleTicketFilterSubmenu}/>
-                    {isTicketFilterSubmenu && (
-                        <div className={styles['dropdown-menu']} ref={ticketFilterRef}>
-                            <ul>
-                                {ticketFilter.map((ticketFilter, index) => (
-                                    <li onClick={() => handleTicketFilterChange(ticketFilter)}>{ticketFilter.title} ({ticketFilter.number})</li>
-                                ))}
-                            </ul>
+        {isLoading ?
+                (<p>Loading...</p>) :
+                (
+                    <>
+                        <div className={styles['header-row']}>
+                            <p className={styles['ticket-filter-label']}>{ticketFilterState.title} ({ticketFilterState.number})</p>
+                            <div className={styles['icon-container']}>
+                                <img src={downArrowIcon} alt="down-arrow" className={styles['icon']}
+                                     onClick={handleTicketFilterSubmenu}/>
+                                {isTicketFilterSubmenu && (
+                                    <div className={styles['dropdown-menu']} ref={ticketFilterRef}>
+                                        <ul>
+                                            {ticketFilter.map((ticketFilter, index) => (
+                                                <li onClick={() => handleTicketFilterChange(ticketFilter)}>{ticketFilter.title} ({ticketFilter.number})</li>
+                                            ))}
+                                        </ul>
+                                    </div>
+                                )}
+                            </div>
                         </div>
-                    )}
-                </div>
-            </div>
-            <div className={styles['header-row']}>
-                <div>
-                    <input type="checkbox" />
-                </div>
-                <div className={styles['header-row']}>
-                    <p className={styles['ticket-count']}>1 - 30 of 110</p>
-                    <button className={styles['sml-action-btn']}>prev</button>
-                    <button className={styles['sml-action-btn']}>next</button>
-                </div>
-            </div>
-            <hr />
-            <div className={styles['ticket-blocks-col']}>
-                {tickets.map((ticket, _) => (
-                    <TicketBlock key={ticket.id} ticketDetails={ticket} onClick={onHandleTicketBlockClick} />
-                )
-                )}
-            </div>
-        </>
-    );
+                        <div className={styles['header-row']}>
+                            <div>
+                                <input type="checkbox"/>
+                            </div>
+                            <div className={styles['header-row']}>
+                                <p className={styles['ticket-count']}>1 - 30 of 110</p>
+                                <button className={styles['sml-action-btn']}>prev</button>
+                                <button className={styles['sml-action-btn']}>next</button>
+                            </div>
+                        </div>
+                        <hr/>
+                        <div className={styles['ticket-blocks-col']}>
+                            {tickets.map((ticket, _) => (
+                                    <TicketBlock key={ticket.id} ticketDetails={ticket} onClick={onHandleTicketBlockClick}/>
+                                )
+                            )}
+                        </div>)
+                    </>
+                    )
+
+                    }
+</>);
 };
 
 export default AgentDashboard;

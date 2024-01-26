@@ -13,6 +13,7 @@ const UserDashboard = () =>{
     const navigate = useNavigate();
     const [tickets, setTickets] = useState([]);
     const [user, setUser] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
         const fetchData = async () =>{
@@ -22,6 +23,7 @@ const UserDashboard = () =>{
 
                 setUser(fetchedUser);
                 setTickets(fetchedTickets);
+                setIsLoading(false);
             }catch (error){
                 console.error("Error fetching user and tickets:", error);
             }
@@ -38,14 +40,21 @@ const UserDashboard = () =>{
             <div className={styles['header-row']}>
                 <p className={styles['dashboard-title']}>User Dashboard</p>
             </div>
-            <hr />
-            <div className={styles['ticket-blocks-col']}>
-                {tickets.map((ticket) => (
-                    <TicketBlock key={ticket.id} ticketDetails={ticket} onClick={onHandleTicketBlockClick} />
-                ))}
-            </div>
+            <hr/>
+        {isLoading ? (<p>Loading...</p>) : (
+
+
+                <div className={styles['ticket-blocks-col']}>
+                    {tickets.map((ticket) => (
+                        <TicketBlock key={ticket.id} ticketDetails={ticket} onClick={onHandleTicketBlockClick}/>
+                    ))}
+                </div>
+
+        )}
+
         </>
-    );
+    )
+        ;
 };
 
 export default UserDashboard;
