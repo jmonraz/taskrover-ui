@@ -51,7 +51,9 @@ const TicketBlock = ({onClick, ticketDetails }) => {
                             <p className={styles['ticket-number']}>{ticketDetails.ticketNumber}</p>
                         </div>
                         <div className={styles['ticket-row']}>
-                            <p className={styles['ticket-date']}>{ticketDetails.createdDate.toDate().toString()}</p>
+                            <p className={styles['ticket-date']}>
+                                {ticketDetails.createdDate ? ticketDetails.createdDate.toDate().toString() : 'Date not available'}
+                            </p>
                             <p className={styles['respond-wrapper']}>{ticketDetails.respond}</p>
                         </div>
                     </div>

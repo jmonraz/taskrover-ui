@@ -5,8 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="99be0cf1-9ddd-4d5d-b135-c31f698f6da1" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/pages/create_account/CreateAccount.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/create_account/CreateAccount.module.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/context/UserContext.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/context/UserContext.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Navbar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Navbar.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/TicketBlock.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/TicketBlock.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/homepage/HomePage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/homepage/HomePage.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/loginpage/LoginPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/loginpage/LoginPage.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/user_dashboard/UserDashboard.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/user_dashboard/UserDashboard.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/services/firebaseDbService.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/firebaseDbService.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/services/firebaseService.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/firebaseService.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/firebaseUtils.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/firebaseUtils.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -16,12 +25,12 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "jmonraz"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;jmonraz&quot;
   }
-}]]></component>
+}</component>
   <component name="GithubPullRequestsUISettings">
     <option name="selectedUrlAndAccountId">
       <UrlAndAccount>
@@ -47,7 +56,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "dart.analysis.tool.window.visible": "false",
-    "git-widget-placeholder": "dev",
+    "git-widget-placeholder": "create__account",
     "kotlin-language-version-configured": "true",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -84,6 +93,7 @@
     <option name="version" value="3" />
   </component>
   <component name="VcsManagerConfiguration">
+    <MESSAGE value="added the email, first name, and last name to the user context.." />
     <option name="LAST_COMMIT_MESSAGE" value="" />
   </component>
 </project>

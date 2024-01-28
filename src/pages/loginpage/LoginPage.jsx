@@ -10,6 +10,7 @@ import {useContext, useState} from "react";
 
 // react-router
 import {useNavigate} from "react-router-dom";
+import password_Change from "../password_change/Password_Change";
 
 // components
 import Input from "../../components/Input";
@@ -20,6 +21,8 @@ import logo from "../../assets/logo/taskrover-logo-small.png"
 
 // styles
 import styles from "./LoginPage.module.css";
+import {doc, getDoc} from "firebase/firestore";
+import {db} from "../../services/firebaseService";
 
 const LoginPage = () => {
 
@@ -44,17 +47,21 @@ const LoginPage = () => {
             const response = await signIn(username.value, password.value);
             const token = await response.getIdToken();
             const userInfo = await getUserInformation(response.uid);
-            console.log(userInfo);
-            setToken(token);
-            setUserType(userInfo.role);
-            setUserState(true);
-            console.log(`User ${userInfo.role} login, token: ${token}, uid: ${response.uid}`);
-            if (authState.userType === 'user') {
-                console.log('User login');
-                navigate('/home');
-            } else if (authState.userType === 'agent') {
-                console.log('Agent login');
-                navigate('/home');
+
+            if (userInfo) {
+                setToken(token);
+                setUserType(userInfo.role);
+                setUserState(true);
+                console.log(`User ${userInfo.role} login, token: ${token}, uid: ${response.uid}`);
+                if (userInfo.firstLogin) {
+                    console.log('First login. Redirecting to password change.');
+                    navigate('/change-password');
+                }else if (authState.userType === 'user' || authState.userType === 'agent') {
+                    navigate('/home');
+                }
+            } else {
+                // Handle the case when user information is not available
+                console.error('User information not available.');
             }
 
             setIsLoading(false);
