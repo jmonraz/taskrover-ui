@@ -3,6 +3,7 @@ import { createUserWithEmailAndPassword } from 'firebase/auth';
 import {addDoc, collection, doc, setDoc} from 'firebase/firestore';
 import {auth, db} from '../../services/firebaseService';
 import styles from "./CreateAccount.module.css";
+import {useNavigate} from "react-router-dom";
 
 const CreateAccount = () =>{
     const [email, setEmail] = useState('');
@@ -10,6 +11,7 @@ const CreateAccount = () =>{
     const [selectedRole, setSelectedRole] = useState('');
     const [firstName , setFirstName] = useState('');
     const [lastName , setLastName] = useState('');
+    const navigate = useNavigate();
 
     const handleRegistration = async () => {
         if (!email || !password || !selectedRole || selectedRole === '') {
@@ -31,6 +33,7 @@ const CreateAccount = () =>{
             });
 
             console.log('User registered successfully:', user);
+            navigate('/home/agent/dashboard');
         } catch (error) {
             console.error('Registration error:', error.message);
         }

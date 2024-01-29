@@ -10,7 +10,6 @@ import {useContext, useState} from "react";
 
 // react-router
 import {useNavigate} from "react-router-dom";
-import password_Change from "../password_change/Password_Change";
 
 // components
 import Input from "../../components/Input";
@@ -21,8 +20,6 @@ import logo from "../../assets/logo/taskrover-logo-small.png"
 
 // styles
 import styles from "./LoginPage.module.css";
-import {doc, getDoc} from "firebase/firestore";
-import {db} from "../../services/firebaseService";
 
 const LoginPage = () => {
 
