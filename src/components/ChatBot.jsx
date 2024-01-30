@@ -30,22 +30,22 @@ const ChatBot = () => {
 
         const callApi = async () => {
             if(userMessageDescription.length !== 0) {
-                console.log(userMessageSubject[0], userMessageDescription[0]);
                 const response = await getChatBotResponse(userMessageSubject, userMessageDescription);
+                console.log(response);
                 setResponse(response);
                 const ticket = await addNewTicket({
                     classifications: '',
                     contactAccountId: 'test',
-                    contactEmail: 'test',
+                    contactEmail: authState.authState.userEmail,
                     contactPhone: '',
-                    contactUser: 'test',
+                    contactUser: authState.authState.userFirstName + ' ' + authState.authState.userLastName,
                     createdDate: new Date(),
                     isLastRespondedAgent: false,
-                    language: '',
+                    language: 'English',
                     lastTimeResponded: new Date(),
-                    priority: '',
-                    secondaryContacts: 'test',
-                    tags: [],
+                    priority: 'Low',
+                    secondaryContacts: '',
+                    tags: [response['category']],
                     ticketDepartment: response['department'],
                     ticketOwner: '',
                     ticketStatus: 'Open',

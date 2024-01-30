@@ -81,6 +81,7 @@ class FirebaseDBService {
 
         //  write method to add a new ticket to the database
         async addNewTicket(newTicketData, conversation) {
+        console.log('newTicketData', newTicketData);
             const ticketsRef = collection(this.db, 'tickets');
             const snapshot = await getDocs(ticketsRef);
             if (!snapshot.empty) {
