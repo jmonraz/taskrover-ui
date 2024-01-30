@@ -1,7 +1,8 @@
 // styles
 import styles from './TicketConversationBlock.module.css';
 import Button from "./Button";
-import {useState, useRef, useEffect} from "react";
+import {useState, useRef, useEffect, useContext} from "react";
+import {UserContext} from "../context/UserContext";
 
 //components
 import CommentPublisher from "./CommentPublisher";
@@ -11,6 +12,8 @@ import {deleteComment} from "../utils/firebaseUtils";
 
 const TicketConversationBlock = ({conversation, ticketId, onDelete}) => {
     // const commentWithBreaks = conversation.comment.replace(/\\n/g, "<br />");
+    const {authState} = useContext(UserContext);
+    const {userType} = authState;
     const [dotMenuClicked, setDotMenuClicked] = useState(false);
     const [isEditing, setIsEditing] = useState(false);
     const dotMenuRef = useRef(null);
@@ -60,17 +63,19 @@ const TicketConversationBlock = ({conversation, ticketId, onDelete}) => {
                                     <p className={styles['conversation-name']}>{conversation.commentOwner}</p>
                                     <p className={styles['conversation-date']}>{conversation.commentDate.toDate().toString()}</p>
                                 </div>
-                                <div className={styles['button-container']}>
-                                    <Button styleName='confirm-button'
-                                            onClick={() => setDotMenuClicked(!dotMenuClicked)}>...</Button>
-                                    {dotMenuClicked &&
-                                        <div className={styles['dot-menu']} ref={dotMenuRef}>
-                                            <ul>
-                                                <li onClick={handleEditClick}>Edit</li>
-                                                <li onClick={handleDeleteClick}>Delete</li>
-                                            </ul>
-                                        </div>}
-                                </div>
+                                {userType === 'agent' && (
+                                    <div className={styles['button-container']}>
+                                        <Button styleName='confirm-button'
+                                                onClick={() => setDotMenuClicked(!dotMenuClicked)}>...</Button>
+                                        {dotMenuClicked &&
+                                            <div className={styles['dot-menu']} ref={dotMenuRef}>
+                                                <ul>
+                                                    <li onClick={handleEditClick}>Edit</li>
+                                                    <li onClick={handleDeleteClick}>Delete</li>
+                                                </ul>
+                                            </div>}
+                                    </div>
+                                )}
                             </div>
                             <div className={styles['conversation-block-row']}>
                                 <p className={styles['conversation-text']}
