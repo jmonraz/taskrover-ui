@@ -1,7 +1,7 @@
 // styles
 import styles from "./TicketDetails.module.css";
 // hooks
-import {useEffect, useState} from "react";
+import {useEffect, useState, useContext} from "react";
 import {useParams} from "react-router-dom";
 // components
 import TicketConversationBlock from "../../components/TicketConversationBlock";
@@ -9,8 +9,11 @@ import Button from "../../components/Button";
 import CommentPublisher from "../../components/CommentPublisher";
 // utils
 import {updateTicketStatus, getTicketById, getUserInformation} from "../../utils/firebaseUtils";
+import {UserContext} from "../../context/UserContext";
 
 const TicketDetails = () => {
+    const {authState} = useContext(UserContext);
+    const {userType} = authState;
     const {ticketId} = useParams();
     const [ticket, setTicket] = useState(null);
     const [commentClicked, setCommentClicked] = useState(false);
@@ -130,10 +133,11 @@ const TicketDetails = () => {
                         </div>
 
                         <div className={styles['ticket-container-footer']}>
-                            <div>
-                                <Button styleName='close-button' onClick={onCloseTicket}>Close Ticket</Button>
+                            {userType === 'agent' &&
+                                (<div>
+                                    <Button styleName='close-button' onClick={onCloseTicket}>Close Ticket</Button>
 
-                            </div>
+                                </div>)}
                         </div>
                     </div>
                 </div>
