@@ -43,7 +43,7 @@ const AgentDashboard = () => {
             try {
                 const fetchedTickets = await getTickets();
                 setTickets(fetchedTickets);
-                console.log("Fetched tickets: ", fetchedTickets);
+                setIsLoading(false);
             } catch (error) {
                 console.log("Error fetching tickets: ", error);
             }
