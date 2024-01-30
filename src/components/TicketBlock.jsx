@@ -1,10 +1,13 @@
 import styles from './TicketBlock.module.css';
-import {useState, useRef, useEffect} from "react";
+import {useState, useRef, useEffect, useContext} from "react";
+import {UserContext, } from "../context/UserContext";
 import personImage from '../assets/img/person1.webp';
 import downArrowIcon from '../assets/icons/dropdown_arrow.svg';
 import {updateTicketStatus, updateTicketPriority, updateTicketDepartment} from "../utils/firebaseUtils";
 
 const TicketBlock = ({onClick, ticketDetails }) => {
+    const {authState} = useContext(UserContext);
+    const {userType} = authState;
     const statuses = ['Open', 'On Hold', 'Escalated', 'Close', 'In Progress'];
     const departments = ['Orders', 'Shipping', 'Delivery', 'Return', 'Refund'];
     const priorities = ['Low', 'Medium', 'High', 'Urgent'];
@@ -37,6 +40,7 @@ const TicketBlock = ({onClick, ticketDetails }) => {
     }
 
     useEffect(() => {
+        console.log(authState);
         document.addEventListener('mousedown', handleClickOutside);
         return () => document.removeEventListener('mousedown', handleClickOutside);
     }, []);
@@ -93,63 +97,73 @@ const TicketBlock = ({onClick, ticketDetails }) => {
                         </div>
                     </div>
                 </div>
-                <div className={styles['ticket-row']}>
-                    <div className={`${styles['ticket-col']} ${styles['ticket-menu']}`}>
-                        <div className={styles['ticket-row']}>
-                            <p>{ticketPriority}</p>
-                            <div className={styles['dropdown-container']} ref={priorityRef}>
-                                <img src={downArrowIcon} alt='drop-arrow' className={styles['icon']} onClick={(e) => handleDropdownClick(e, setIsPriority)}/>
-                                {isPriority && (
-                                    <div className={styles['dropdown-menu']}>
-                                        <p className={styles['status-label']}><span>PRI</span>ORITY</p>
-                                        <ul>
-                                            {priorities.map((priority, index) => (
-                                                <li key={index} onClick={(e) => handleClickPriority(e, priority)}>{priority}</li>
-                                                )
-                                            )}
-                                        </ul>
-                                    </div>
-                                )}
+                {userType === 'agent' && (
+                    <div className={styles['ticket-row']}>
+                        <div className={`${styles['ticket-col']} ${styles['ticket-menu']}`}>
+                            <div className={styles['ticket-row']}>
+                                <p>{ticketPriority}</p>
+                                <div className={styles['dropdown-container']} ref={priorityRef}>
+                                    <img src={downArrowIcon} alt='drop-arrow' className={styles['icon']}
+                                         onClick={(e) => handleDropdownClick(e, setIsPriority)}/>
+                                    {isPriority && (
+                                        <div className={styles['dropdown-menu']}>
+                                            <p className={styles['status-label']}><span>PRI</span>ORITY</p>
+                                            <ul>
+                                                {priorities.map((priority, index) => (
+                                                        <li key={index}
+                                                            onClick={(e) => handleClickPriority(e, priority)}>{priority}</li>
+                                                    )
+                                                )}
+                                            </ul>
+                                        </div>
+                                    )}
+                                </div>
                             </div>
-                        </div>
-                        <div className={styles['ticket-row']}>
-                            <p>{ticketDepartment}</p>
-                            <div className={styles['dropdown-container']} ref={departmentRef}>
-                                <img src={downArrowIcon} alt='drop-arrow' className={styles['icon']} onClick={(e) => handleDropdownClick(e, setIsDeparment)}/>
-                                {isDeparment && (
-                                    <div className={styles['dropdown-menu']}>
-                                        <p className={styles['status-label']}><span>DEP</span>ARTMENT</p>
-                                        <ul>
-                                            {departments.map((department, index) => (
-                                                <li key={index} onClick={(e) => handleClickDepartment(e, department)}>{department}</li>
-                                                )
-                                            )}
-                                        </ul>
-                                    </div>
-                                )}
+                            <div className={styles['ticket-row']}>
+                                <p>{ticketDepartment}</p>
+                                <div className={styles['dropdown-container']} ref={departmentRef}>
+                                    <img src={downArrowIcon} alt='drop-arrow' className={styles['icon']}
+                                         onClick={(e) => handleDropdownClick(e, setIsDeparment)}/>
+                                    {isDeparment && (
+                                        <div className={styles['dropdown-menu']}>
+                                            <p className={styles['status-label']}><span>DEP</span>ARTMENT</p>
+                                            <ul>
+                                                {departments.map((department, index) => (
+                                                        <li key={index}
+                                                            onClick={(e) => handleClickDepartment(e, department)}>{department}</li>
+                                                    )
+                                                )}
+                                            </ul>
+                                        </div>
+                                    )}
+                                </div>
+
+                            </div>
+                            <div className={styles['ticket-row']}>
+                                <p>{ticketStatus}</p>
+                                <div className={styles['dropdown-container']} ref={ticketStatusRef}>
+                                    <img src={downArrowIcon} alt='drop-arrow' className={styles['icon']}
+                                         onClick={(e) => handleDropdownClick(e, setIsTicketStatus)}/>
+                                    {isTicketStatus && (
+                                        <div className={styles['dropdown-menu']}>
+                                            <p className={styles['status-label']}><span>STA</span>TUS</p>
+                                            <ul>
+                                                {statuses.map((status, index) => (
+                                                        <li key={index}
+                                                            onClick={(e) => handleClickStatus(e, status)}>{status}</li>
+                                                    )
+                                                )}
+                                            </ul>
+                                        </div>
+                                    )}
+                                </div>
                             </div>
 
                         </div>
-                        <div className={styles['ticket-row']}>
-                            <p>{ticketStatus}</p>
-                            <div className={styles['dropdown-container']} ref={ticketStatusRef}>
-                                <img src={downArrowIcon} alt='drop-arrow' className={styles['icon']} onClick={(e) => handleDropdownClick(e, setIsTicketStatus)} />
-                                {isTicketStatus && (
-                                    <div className={styles['dropdown-menu']}>
-                                        <p className={styles['status-label']}><span>STA</span>TUS</p>
-                                        <ul>
-                                            {statuses.map((status, index) => (
-                                                <li key={index} onClick={(e) => handleClickStatus(e, status)}>{status}</li>
-                                                )
-                                            )}
-                                        </ul>
-                                    </div>
-                                )}
-                            </div>
-                        </div>
-
                     </div>
-                </div>
+                )}
+
+
             </div>
         </>
     );

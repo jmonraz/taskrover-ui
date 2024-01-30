@@ -12,9 +12,7 @@ import AddDropdownButton from "./components/AddDropdownButton";
 
 const ProtectedRoute = () => {
     const {authState} = useContext(UserContext);
-    console.log('authState', authState);
     const {userType, userState} = authState;
-    console.log('userType', userType);
 
     if (!userState) {
         return <Navigate to="/" />;
