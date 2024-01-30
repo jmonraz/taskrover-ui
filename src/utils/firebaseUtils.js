@@ -57,6 +57,15 @@ export const updateTicketStatus = async(ticketId, status) => {
     return await firebaseDBService.updateTicketStatus(ticketId, status);
 }
 
+export const updateTicketPriority = async(ticketId, priority) => {
+    const firebaseDBService = new FirebaseDBService();
+    return await firebaseDBService.updateTicketPriority(ticketId, priority);
+}
+
+export const updateTicketDepartment = async(ticketId, department) => {
+    const firebaseDBService = new FirebaseDBService();
+    return await firebaseDBService.updateTicketDepartment(ticketId, department);
+}
 export const deleteComment = async (ticketId, conversationId) => {
     const firebaseDBService = new FirebaseDBService();
     return await firebaseDBService.deleteComment(ticketId, conversationId);

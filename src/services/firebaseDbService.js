@@ -103,19 +103,44 @@ class FirebaseDBService {
         }
 
 
-async updateTicketStatus(ticketId, status) {
-    const ticketRef = collection(this.db, 'tickets');
-    const docRef = doc(ticketRef, ticketId);
-    try {
-        await updateDoc(docRef, {
-            ticketStatus: status
-        });
-        console.log('Document successfully updated');
-    } catch (error) {
-        console.error('Error updating document:', error);
-    }
-};
+    async updateTicketStatus(ticketId, status) {
+        const ticketRef = collection(this.db, 'tickets');
+        const docRef = doc(ticketRef, ticketId);
+        try {
+            await updateDoc(docRef, {
+                ticketStatus: status
+            });
+            console.log('Document successfully updated');
+        } catch (error) {
+            console.error('Error updating document:', error);
+        }
+    };
 
+    async updateTicketPriority(ticketId, priority) {
+        const ticketRef = collection(this.db, 'tickets');
+        const docRef = doc(ticketRef, ticketId);
+        try {
+            await updateDoc(docRef, {
+                priority: priority
+            });
+            console.log('Document successfully updated');
+        } catch (error) {
+            console.error('Error updating document:', error);
+        }
+    }
+
+    async updateTicketDepartment(ticketId, department) {
+        const ticketRef = collection(this.db, 'tickets');
+        const docRef = doc(ticketRef, ticketId);
+        try {
+            await updateDoc(docRef, {
+                ticketDepartment: department
+            });
+            console.log('Document successfully updated');
+        } catch (error) {
+            console.error('Error updating document:', error);
+        }
+    }
 
 // write method to delete a ticket in the database
         async deleteComment(ticketId, conversationId) {

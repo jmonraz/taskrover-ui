@@ -2,10 +2,12 @@ import styles from './TicketBlock.module.css';
 import {useState, useRef, useEffect} from "react";
 import personImage from '../assets/img/person1.webp';
 import downArrowIcon from '../assets/icons/dropdown_arrow.svg';
-import {updateTicketStatus} from "../utils/firebaseUtils";
+import {updateTicketStatus, updateTicketPriority, updateTicketDepartment} from "../utils/firebaseUtils";
 
 const TicketBlock = ({onClick, ticketDetails }) => {
     const statuses = ['Open', 'On Hold', 'Escalated', 'Close', 'In Progress'];
+    const departments = ['Orders', 'Shipping', 'Delivery', 'Return', 'Refund'];
+    const priorities = ['Low', 'Medium', 'High', 'Urgent'];
 
     const [isTicketStatus, setIsTicketStatus] = useState(false);
     const [isDeparment, setIsDeparment] = useState(false);
@@ -56,6 +58,23 @@ const TicketBlock = ({onClick, ticketDetails }) => {
         await updateTicketStatus(ticketDetails.id, status);
         // setIsTicketStatus(status);
     }
+    const handleClickDepartment = async (e, department) => {
+        e.stopPropagation();
+        console.log('department', department);
+        console.log('ticketDetails', ticketDetails);
+        setTicketDepartment(department);
+        setIsDeparment(false);
+        await updateTicketDepartment(ticketDetails.id, department);
+    }
+
+    const handleClickPriority = async (e, priority) => {
+        e.stopPropagation();
+        console.log('priority', priority);
+        console.log('ticketDetails', ticketDetails);
+        setTicketPriority(priority);
+        setIsPriority(false);
+        await updateTicketPriority(ticketDetails.id, priority);
+    }
 
     return (
         <>
@@ -77,35 +96,34 @@ const TicketBlock = ({onClick, ticketDetails }) => {
                 <div className={styles['ticket-row']}>
                     <div className={`${styles['ticket-col']} ${styles['ticket-menu']}`}>
                         <div className={styles['ticket-row']}>
-                            <p>{ticketDetails.priority}</p>
+                            <p>{ticketPriority}</p>
                             <div className={styles['dropdown-container']} ref={priorityRef}>
                                 <img src={downArrowIcon} alt='drop-arrow' className={styles['icon']} onClick={(e) => handleDropdownClick(e, setIsPriority)}/>
                                 {isPriority && (
                                     <div className={styles['dropdown-menu']}>
                                         <p className={styles['status-label']}><span>PRI</span>ORITY</p>
                                         <ul>
-                                            <li>Low</li>
-                                            <li>Medium</li>
-                                            <li>High</li>
-                                            <li>Urgent</li>
+                                            {priorities.map((priority, index) => (
+                                                <li key={index} onClick={(e) => handleClickPriority(e, priority)}>{priority}</li>
+                                                )
+                                            )}
                                         </ul>
                                     </div>
                                 )}
                             </div>
                         </div>
                         <div className={styles['ticket-row']}>
-                            <p>{ticketDetails.ticketDepartment}</p>
+                            <p>{ticketDepartment}</p>
                             <div className={styles['dropdown-container']} ref={departmentRef}>
                                 <img src={downArrowIcon} alt='drop-arrow' className={styles['icon']} onClick={(e) => handleDropdownClick(e, setIsDeparment)}/>
                                 {isDeparment && (
                                     <div className={styles['dropdown-menu']}>
                                         <p className={styles['status-label']}><span>DEP</span>ARTMENT</p>
                                         <ul>
-                                            <li>Orders</li>
-                                            <li>Shipping</li>
-                                            <li>Delivery</li>
-                                            <li>Return</li>
-                                            <li>Refund</li>
+                                            {departments.map((department, index) => (
+                                                <li key={index} onClick={(e) => handleClickDepartment(e, department)}>{department}</li>
+                                                )
+                                            )}
                                         </ul>
                                     </div>
                                 )}
