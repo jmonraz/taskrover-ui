@@ -2,6 +2,7 @@ import styles from './TicketBlock.module.css';
 import {useState, useRef, useEffect} from "react";
 import personImage from '../assets/img/person1.webp';
 import downArrowIcon from '../assets/icons/dropdown_arrow.svg';
+import {updateTicketStatus} from "../utils/firebaseUtils";
 
 const TicketBlock = ({onClick, ticketDetails }) => {
     const statuses = ['Open', 'On Hold', 'Escalated', 'Close', 'In Progress'];
@@ -10,6 +11,9 @@ const TicketBlock = ({onClick, ticketDetails }) => {
     const [isDeparment, setIsDeparment] = useState(false);
     const [isPriority, setIsPriority] = useState(false);
     const [isChecked, setIsChecked] = useState(false);
+    const [ticketStatus, setTicketStatus] = useState(ticketDetails.ticketStatus);
+    const [ticketDepartment, setTicketDepartment] = useState(ticketDetails.ticketDepartment);
+    const [ticketPriority, setTicketPriority] = useState(ticketDetails.priority);
 
     // refs for each dropdown
     const ticketStatusRef = useRef(null);
@@ -31,7 +35,6 @@ const TicketBlock = ({onClick, ticketDetails }) => {
     }
 
     useEffect(() => {
-        console.log('ticket', ticketDetails);
         document.addEventListener('mousedown', handleClickOutside);
         return () => document.removeEventListener('mousedown', handleClickOutside);
     }, []);
@@ -44,9 +47,15 @@ const TicketBlock = ({onClick, ticketDetails }) => {
         toggleDropdown(prevState => !prevState);
     }
 
-    // const handleClickStatus = (status) => {
-    //     setIsTicketStatus(status);
-    // }
+    const handleClickStatus = async (e, status) => {
+        e.stopPropagation();
+        console.log('status', status);
+        console.log('ticketDetails', ticketDetails);
+        setTicketStatus(status);
+        setIsTicketStatus(false);
+        await updateTicketStatus(ticketDetails.id, status);
+        // setIsTicketStatus(status);
+    }
 
     return (
         <>
@@ -104,7 +113,7 @@ const TicketBlock = ({onClick, ticketDetails }) => {
 
                         </div>
                         <div className={styles['ticket-row']}>
-                            <p>{ticketDetails.ticketStatus}</p>
+                            <p>{ticketStatus}</p>
                             <div className={styles['dropdown-container']} ref={ticketStatusRef}>
                                 <img src={downArrowIcon} alt='drop-arrow' className={styles['icon']} onClick={(e) => handleDropdownClick(e, setIsTicketStatus)} />
                                 {isTicketStatus && (
@@ -112,7 +121,7 @@ const TicketBlock = ({onClick, ticketDetails }) => {
                                         <p className={styles['status-label']}><span>STA</span>TUS</p>
                                         <ul>
                                             {statuses.map((status, index) => (
-                                                <li key={index} onClick={() => {}}>{status}</li>
+                                                <li key={index} onClick={(e) => handleClickStatus(e, status)}>{status}</li>
                                                 )
                                             )}
                                         </ul>

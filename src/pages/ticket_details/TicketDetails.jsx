@@ -8,7 +8,7 @@ import TicketConversationBlock from "../../components/TicketConversationBlock";
 import Button from "../../components/Button";
 import CommentPublisher from "../../components/CommentPublisher";
 // utils
-import {getTicketById, getUserInformation} from "../../utils/firebaseUtils";
+import {updateTicketStatus, getTicketById, getUserInformation} from "../../utils/firebaseUtils";
 
 const TicketDetails = () => {
     const {ticketId} = useParams();
@@ -41,6 +41,10 @@ const TicketDetails = () => {
 
     const handleReload = () => {
         setReload(!reload);
+    }
+
+    const onCloseTicket = async () => {
+        await updateTicketStatus(ticketId, 'Closed');
     }
 
     return (
@@ -127,7 +131,8 @@ const TicketDetails = () => {
 
                         <div className={styles['ticket-container-footer']}>
                             <div>
-                                <Button styleName='close-button'>Close Ticket</Button>
+                                <Button styleName='close-button' onClick={onCloseTicket}>Close Ticket</Button>
+
                             </div>
                         </div>
                     </div>
