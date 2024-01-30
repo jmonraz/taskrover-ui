@@ -1,7 +1,8 @@
 // Import necessary dependencies
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { getTickets, getUserInformation } from "../../utils/firebaseUtils";
+import { UserContext } from "../../context/UserContext";
 
 // Import components
 import TicketBlock from "../../components/TicketBlock";
@@ -10,18 +11,23 @@ import TicketBlock from "../../components/TicketBlock";
 import styles from "./UserDashboard.module.css";
 
 const UserDashboard = () =>{
+    const { authState } = useContext(UserContext);
+    const {userEmail, userType} = authState;
     const navigate = useNavigate();
     const [tickets, setTickets] = useState([]);
-    const [user, setUser] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
         const fetchData = async () =>{
             try {
-                const fetchedUser = await getUserInformation();
                 const fetchedTickets = await getTickets();
-                setUser(fetchedUser);
-                setTickets(fetchedTickets);
+                if(userType === 'user') {
+                    const userTickets = fetchedTickets.filter((ticket) => ticket.contactEmail === userEmail);
+                    setTickets(userTickets);
+                } else {
+                    setTickets(fetchedTickets);
+                }
+
                 setIsLoading(false);
             }catch (error){
                 console.error("Error fetching user and tickets:", error);
