@@ -20,7 +20,6 @@ const UserDashboard = () =>{
             try {
                 const fetchedUser = await getUserInformation();
                 const fetchedTickets = await getTickets();
-
                 setUser(fetchedUser);
                 setTickets(fetchedTickets);
                 setIsLoading(false);
