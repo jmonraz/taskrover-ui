@@ -66,7 +66,7 @@ const TicketDetails = () => {
                             <p className={styles['ticket-subheader']}>Created Date</p>
                             <p>{ticket.createdDate.toDate().toString()}</p>
                             <p className={styles['ticket-subheader']}>Tags</p>
-                            <p>Tag 1, Tag 2</p>
+                            {ticket.tags.map((tag, _) => <p>{tag}</p>)}
                         </div>
                         <div className={styles['ticket-header-break-line']}></div>
                         <p className={styles['ticket-header']}><span
@@ -76,8 +76,8 @@ const TicketDetails = () => {
                             <p>{ticket.secondaryContacts}</p>
                             <p className={styles['ticket-subheader']}>Phone</p>
                             <p>{ticket.contactPhone}</p>
-                            <p className={styles['ticket-subheader']}>Custom Field*</p>
-                            <p>-</p>
+                            {/*<p className={styles['ticket-subheader']}>Custom Field*</p>*/}
+                            {/*<p>-</p>*/}
                         </div>
                         <div className={styles['ticket-header-break-line']}></div>
                         <p className={styles['ticket-header']}><span
@@ -87,8 +87,8 @@ const TicketDetails = () => {
                             <p>{ticket.language}</p>
                             <p className={styles['ticket-subheader']}>Priority</p>
                             <p>{ticket.priority}</p>
-                            <p className={styles['ticket-subheader']}>Classifications</p>
-                            <p>{ticket.classifications}</p>
+                            {/*<p className={styles['ticket-subheader']}>Classifications</p>*/}
+                            {/*<p>{ticket.classifications}</p>*/}
                         </div>
 
                     </div>
