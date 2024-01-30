@@ -4,6 +4,8 @@ import personImage from '../assets/img/person1.webp';
 import downArrowIcon from '../assets/icons/dropdown_arrow.svg';
 
 const TicketBlock = ({onClick, ticketDetails }) => {
+    const statuses = ['Open', 'On Hold', 'Escalated', 'Close', 'In Progress'];
+
     const [isTicketStatus, setIsTicketStatus] = useState(false);
     const [isDeparment, setIsDeparment] = useState(false);
     const [isPriority, setIsPriority] = useState(false);
@@ -16,6 +18,7 @@ const TicketBlock = ({onClick, ticketDetails }) => {
 
     // handle click outside of dropdown
     const handleClickOutside = (e) => {
+        e.stopPropagation();
         if (ticketStatusRef.current && !ticketStatusRef.current.contains(e.target)) {
             setIsTicketStatus(false);
         }
@@ -28,6 +31,7 @@ const TicketBlock = ({onClick, ticketDetails }) => {
     }
 
     useEffect(() => {
+        console.log('ticket', ticketDetails);
         document.addEventListener('mousedown', handleClickOutside);
         return () => document.removeEventListener('mousedown', handleClickOutside);
     }, []);
@@ -39,6 +43,11 @@ const TicketBlock = ({onClick, ticketDetails }) => {
         e.stopPropagation();
         toggleDropdown(prevState => !prevState);
     }
+
+    // const handleClickStatus = (status) => {
+    //     setIsTicketStatus(status);
+    // }
+
     return (
         <>
             <div className={styles['ticket-block']} onClick={() => onClick(ticketDetails)} >
@@ -59,7 +68,7 @@ const TicketBlock = ({onClick, ticketDetails }) => {
                 <div className={styles['ticket-row']}>
                     <div className={`${styles['ticket-col']} ${styles['ticket-menu']}`}>
                         <div className={styles['ticket-row']}>
-                            <p>Low</p>
+                            <p>{ticketDetails.priority}</p>
                             <div className={styles['dropdown-container']} ref={priorityRef}>
                                 <img src={downArrowIcon} alt='drop-arrow' className={styles['icon']} onClick={(e) => handleDropdownClick(e, setIsPriority)}/>
                                 {isPriority && (
@@ -76,7 +85,7 @@ const TicketBlock = ({onClick, ticketDetails }) => {
                             </div>
                         </div>
                         <div className={styles['ticket-row']}>
-                            <p>Orders</p>
+                            <p>{ticketDetails.ticketDepartment}</p>
                             <div className={styles['dropdown-container']} ref={departmentRef}>
                                 <img src={downArrowIcon} alt='drop-arrow' className={styles['icon']} onClick={(e) => handleDropdownClick(e, setIsDeparment)}/>
                                 {isDeparment && (
@@ -95,18 +104,17 @@ const TicketBlock = ({onClick, ticketDetails }) => {
 
                         </div>
                         <div className={styles['ticket-row']}>
-                            <p>Open</p>
+                            <p>{ticketDetails.ticketStatus}</p>
                             <div className={styles['dropdown-container']} ref={ticketStatusRef}>
                                 <img src={downArrowIcon} alt='drop-arrow' className={styles['icon']} onClick={(e) => handleDropdownClick(e, setIsTicketStatus)} />
                                 {isTicketStatus && (
                                     <div className={styles['dropdown-menu']}>
                                         <p className={styles['status-label']}><span>STA</span>TUS</p>
                                         <ul>
-                                            <li>Open</li>
-                                            <li>On Hold</li>
-                                            <li>Escalated</li>
-                                            <li>Close</li>
-                                            <li>In Progress</li>
+                                            {statuses.map((status, index) => (
+                                                <li key={index} onClick={() => {}}>{status}</li>
+                                                )
+                                            )}
                                         </ul>
                                     </div>
                                 )}

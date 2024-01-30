@@ -136,9 +136,9 @@ const AgentDashboard = () => {
                                     <TicketBlock key={ticket.id} ticketDetails={ticket} onClick={onHandleTicketBlockClick}/>
                                 )
                             )}
-                        </div>)
-                    </>
-                    )
+                        </div>
+                    </>)
+
 
                     }
 </>);
