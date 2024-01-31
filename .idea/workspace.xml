@@ -5,13 +5,24 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="99be0cf1-9ddd-4d5d-b135-c31f698f6da1" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/components/DropdownInput.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/DropdownInput.module.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/user_dashboard/UserDashboard.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/user_dashboard/UserDashboard.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Navbar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Navbar.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/ticket_details/TicketDetails.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/ticket_details/TicketDetails.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JSX File" />
+        <option value="CSS File" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -49,6 +60,7 @@
     "dart.analysis.tool.window.visible": "false",
     "git-widget-placeholder": "dev",
     "kotlin-language-version-configured": "true",
+    "list.type.of.created.stylesheet": "CSS",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -65,7 +77,6 @@
     <attachedChunks>
       <set>
         <option value="jdk-1.8.0_402-corretto-1.8.0_402-f644763e9732-1a501b52" />
-        <option value="jdk-1.8.0_402-corretto-1.8.0_402-f644763e9732-af3fa2b8" />
       </set>
     </attachedChunks>
   </component>
@@ -78,6 +89,7 @@
       <option name="presentableId" value="Default" />
       <updated>1706198143221</updated>
       <workItem from="1706198145743" duration="1779000" />
+      <workItem from="1706717131939" duration="1658000" />
     </task>
     <servers />
   </component>

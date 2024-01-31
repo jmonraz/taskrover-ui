@@ -43,7 +43,6 @@ const Navbar = () => {
     const handleSignOut = () => {
         try {
             const response = signOut();
-            console.log(response);
             setUserState(false);
         } catch (error) {
             console.log(error);
@@ -110,7 +109,7 @@ const Navbar = () => {
                     )}
                 </div>
                 <img src={boxNotificationIcon} alt="notifications" className={styles['icon']}/>
-                <img src={gearIcon} alt="settings" className={styles['icon']}/>
+                {/*<img src={gearIcon} alt="settings" className={styles['icon']}/>*/}
                 <div className={styles['submenu-container']}>
                     <img src={userIcon} alt="users" className={styles['icon']}/>
                     <div className={styles['submenu']}>

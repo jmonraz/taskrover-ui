@@ -7,6 +7,7 @@ import {useParams} from "react-router-dom";
 import TicketConversationBlock from "../../components/TicketConversationBlock";
 import Button from "../../components/Button";
 import CommentPublisher from "../../components/CommentPublisher";
+import DropdownInput from "../../components/DropdownInput";
 // utils
 import {updateTicketStatus, getTicketById, getUserInformation} from "../../utils/firebaseUtils";
 import {UserContext} from "../../context/UserContext";
@@ -50,6 +51,10 @@ const TicketDetails = () => {
         await updateTicketStatus(ticketId, 'Closed');
     }
 
+    const onTicketOwnerSelect = (value) => {
+        console.log('Selected:', value);
+    }
+
     return (
         <>
             {ticket &&
@@ -67,7 +72,7 @@ const TicketDetails = () => {
                             className={styles['ticket-header-underline']}>TIC</span>KET PROPERTIES</p>
                         <div className={styles['ticket-header-content']}>
                             <p className={styles['ticket-subheader']}>Ticket Owner</p>
-                            <p>{ticket.ticketOwner}</p>
+                            <DropdownInput options={["User", "Agent"]} defaultOption={ticket.ticketOwner} onSelect={onTicketOwnerSelect}/>
                             <p className={styles['ticket-subheader']}>Status</p>
                             <p>{ticket.ticketStatus}</p>
                             <p className={styles['ticket-subheader']}>Created Date</p>
