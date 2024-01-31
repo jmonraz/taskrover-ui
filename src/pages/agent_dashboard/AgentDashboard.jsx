@@ -10,7 +10,7 @@ const AgentDashboard = () => {
     const ticketFilter = [
         {
             title: "All Tickets",
-            number: 110
+            number: 0
         },
         {
             title: "Open Tickets",
@@ -43,6 +43,7 @@ const AgentDashboard = () => {
             try {
                 const fetchedTickets = await getTickets();
                 setTickets(fetchedTickets);
+                ticketFilter[0].number = fetchedTickets.length;
                 setIsLoading(false);
             } catch (error) {
                 console.log("Error fetching tickets: ", error);
@@ -125,7 +126,7 @@ const AgentDashboard = () => {
                                 <input type="checkbox"/>
                             </div>
                             <div className={styles['header-row']}>
-                                <p className={styles['ticket-count']}>1 - 30 of 110</p>
+                                <p className={styles['ticket-count']}>1 - {tickets.length} of {tickets.length}</p>
                                 <button className={styles['sml-action-btn']}>prev</button>
                                 <button className={styles['sml-action-btn']}>next</button>
                             </div>
