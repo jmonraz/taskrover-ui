@@ -75,3 +75,8 @@ export const getUsersByRole = async (role) => {
     const firebaseDBService = new FirebaseDBService();
     return await firebaseDBService.getUsersByRole(role);
 }
+
+export const updateTicketOwner = async (ticketId, value) => {
+    const firebaseDBService = new FirebaseDBService();
+    return await firebaseDBService.updateTicketOwner(ticketId, value);
+}

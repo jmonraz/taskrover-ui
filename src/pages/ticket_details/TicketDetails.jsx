@@ -9,7 +9,7 @@ import Button from "../../components/Button";
 import CommentPublisher from "../../components/CommentPublisher";
 import DropdownInput from "../../components/DropdownInput";
 // utils
-import {updateTicketStatus, getTicketById, getUserInformation, getUsersByRole} from "../../utils/firebaseUtils";
+import {updateTicketStatus, getTicketById, getUserInformation, getUsersByRole, updateTicketOwner} from "../../utils/firebaseUtils";
 import {UserContext} from "../../context/UserContext";
 
 const TicketDetails = () => {
@@ -57,8 +57,8 @@ const TicketDetails = () => {
         await updateTicketStatus(ticketId, 'Closed');
     }
 
-    const onTicketOwnerSelect = (value) => {
-        console.log('Selected:', value);
+    const onTicketOwnerSelect = async (value) => {
+        await updateTicketOwner(ticketId, value);
     }
 
     return (
@@ -147,7 +147,6 @@ const TicketDetails = () => {
                             {userType === 'agent' &&
                                 (<div>
                                     <Button styleName='close-button' onClick={onCloseTicket}>Close Ticket</Button>
-
                                 </div>)}
                         </div>
                     </div>

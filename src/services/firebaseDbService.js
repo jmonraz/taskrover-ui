@@ -181,6 +181,16 @@ class FirebaseDBService {
         });
         return users;
     }
+
+    async updateTicketOwner(ticketId, value) {
+        const ticketRef = collection(this.db, 'tickets');
+        const docRef = doc(ticketRef, ticketId);
+
+        await updateDoc(docRef, {
+            ticketOwner: value
+        });
+        console.log('Document successfully updated');
+    }
 }
 
 export default FirebaseDBService;

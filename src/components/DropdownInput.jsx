@@ -6,6 +6,7 @@ const DropdownInput = ({ options, onSelect, defaultOption }) => {
     const handleSelectChange = (e) => {
         const selectedValue = e.target.value;
         setSelectedOption(selectedValue);
+        console.log(selectedValue)
         // Call the callback function passed from the parent component
         onSelect(selectedValue);
     };
@@ -14,11 +15,12 @@ const DropdownInput = ({ options, onSelect, defaultOption }) => {
         <>
             <select value={selectedOption} onChange={handleSelectChange}>
                 <option value={defaultOption}>{defaultOption}</option>
-                {options.map((option) => (
-                    <option key={option.id} value={option.id}>
-                        {option.firstName} {option.lastName}
-                    </option>
-                ))}
+                {options.map((option) => {
+                    if(option.fullName !== defaultOption){
+                        return <option key={option} value={option}>{option}</option>
+                    }
+                }
+                )}
             </select>
         </>
     );
