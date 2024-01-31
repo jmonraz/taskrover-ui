@@ -1,5 +1,5 @@
 import {firestore} from './firebaseService';
-import {collection, getDocs, doc, getDoc, setDoc, deleteDoc, updateDoc} from 'firebase/firestore';
+import {collection, getDocs, doc, getDoc, setDoc, deleteDoc, updateDoc, query, where} from 'firebase/firestore';
 class FirebaseDBService {
     constructor() {
         // initialize the firebase firestore instance
@@ -169,6 +169,18 @@ class FirebaseDBService {
                 return null;
             }
         }
+
+
+    async getUsersByRole(role) {
+        const usersRef = collection(this.db, 'users');
+        const q = query(usersRef, where('role', '==', role));
+        const querySnapshot = await getDocs(q);
+        const users = [];
+        querySnapshot.forEach((doc) => {
+            users.push({ id: doc.id, ...doc.data() });
+        });
+        return users;
+    }
 }
 
 export default FirebaseDBService;

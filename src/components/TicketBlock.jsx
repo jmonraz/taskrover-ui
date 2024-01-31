@@ -40,7 +40,6 @@ const TicketBlock = ({onClick, ticketDetails }) => {
     }
 
     useEffect(() => {
-        console.log(authState);
         document.addEventListener('mousedown', handleClickOutside);
         return () => document.removeEventListener('mousedown', handleClickOutside);
     }, []);
@@ -55,8 +54,6 @@ const TicketBlock = ({onClick, ticketDetails }) => {
 
     const handleClickStatus = async (e, status) => {
         e.stopPropagation();
-        console.log('status', status);
-        console.log('ticketDetails', ticketDetails);
         setTicketStatus(status);
         setIsTicketStatus(false);
         await updateTicketStatus(ticketDetails.id, status);
@@ -64,8 +61,6 @@ const TicketBlock = ({onClick, ticketDetails }) => {
     }
     const handleClickDepartment = async (e, department) => {
         e.stopPropagation();
-        console.log('department', department);
-        console.log('ticketDetails', ticketDetails);
         setTicketDepartment(department);
         setIsDeparment(false);
         await updateTicketDepartment(ticketDetails.id, department);
@@ -73,8 +68,6 @@ const TicketBlock = ({onClick, ticketDetails }) => {
 
     const handleClickPriority = async (e, priority) => {
         e.stopPropagation();
-        console.log('priority', priority);
-        console.log('ticketDetails', ticketDetails);
         setTicketPriority(priority);
         setIsPriority(false);
         await updateTicketPriority(ticketDetails.id, priority);

@@ -70,3 +70,8 @@ export const deleteComment = async (ticketId, conversationId) => {
     const firebaseDBService = new FirebaseDBService();
     return await firebaseDBService.deleteComment(ticketId, conversationId);
 }
+
+export const getUsersByRole = async (role) => {
+    const firebaseDBService = new FirebaseDBService();
+    return await firebaseDBService.getUsersByRole(role);
+}

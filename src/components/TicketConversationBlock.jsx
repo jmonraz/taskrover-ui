@@ -24,7 +24,6 @@ const TicketConversationBlock = ({conversation, ticketId, onDelete}) => {
     }
 
     useEffect(() => {
-        console.log(conversation);
         const handleClickOutside = (event) => {
             if (dotMenuRef.current && !dotMenuRef.current.contains(event.target)) {
                 setDotMenuClicked(false);
