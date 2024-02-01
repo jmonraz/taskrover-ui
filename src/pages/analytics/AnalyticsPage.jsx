@@ -10,6 +10,7 @@ const AnalyticsPage = () => {
     const [highestDepartment, setHighestDepartment] = useState("");
     const [highestDepartmentOpenTickets, setDepartmentOpenTickets] = useState(0);
     const [lowestDepartment, setLowestDepartment] = useState("");
+    const [lowestDepartmentOpenTickets, setLowestDepartmentOpenTickets] = useState(0);
 
     useEffect(() => {
         const fetchTickets = async () => {
@@ -42,6 +43,24 @@ const AnalyticsPage = () => {
             setHighestDepartment(maxDept);
             setDepartmentOpenTickets(ticketsForMaxDept.length);
         }
+
+        const calculateLowestDepartmentWithOpenTickets = () => {
+            const openTickets = tickets.filter(ticket => ticket.ticketStatus === 'Open');
+
+            const departmentCounts = openTickets.reduce((acc, ticket) => {
+                acc[ticket.ticketDepartment] = (acc[ticket.ticketDepartment] || 0) + 1;
+                return acc;
+            }, {});
+
+            const minDept = Object.keys(departmentCounts).reduce((min, dept) =>
+                departmentCounts[dept] < departmentCounts[min] ? dept : min, Object.keys(departmentCounts)[0]);
+
+            const ticketsForMinDept = openTickets.filter(ticket => ticket.ticketDepartment === minDept);
+
+            setLowestDepartment(minDept);
+            setLowestDepartmentOpenTickets(ticketsForMinDept.length);
+        }
+
         if(tickets.length === 0) {
             fetchTickets().then(r => console.log("Tickets fetched"));
         }
@@ -49,6 +68,7 @@ const AnalyticsPage = () => {
         {
             calculateOpenTickets();
             calculateHighestDepartmentWithOpenTickets();
+            calculateLowestDepartmentWithOpenTickets();
         }
 
     },[tickets]);
@@ -77,6 +97,8 @@ const AnalyticsPage = () => {
                 </div>
                 <div>
                     <p>Department with Lowest Tickets</p>
+                    <p>{lowestDepartment}</p>
+                    <p>{lowestDepartmentOpenTickets}</p>
                 </div>
             </div>
         </>
