@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 
 const DropdownInput = ({ options, onSelect, defaultOption }) => {
     const [selectedOption, setSelectedOption] = useState('');
@@ -9,13 +9,17 @@ const DropdownInput = ({ options, onSelect, defaultOption }) => {
         onSelect(selectedValue);
     };
 
+    useEffect(() => {
+        console.log("Options: ", options);
+    }, [options]);
+
     return (
         <>
             <select value={selectedOption} onChange={handleSelectChange}>
                 <option value={defaultOption}>{defaultOption}</option>
                 {options.map((option) => {
                     if(option.fullName !== defaultOption){
-                        return <option key={option} value={option}>{option}</option>
+                        return <option key={option.id} value={option.fullName}>{option.fullName}</option>
                     }
                 }
                 )}
