@@ -212,6 +212,16 @@ class FirebaseDBService {
         });
         console.log('Document successfully updated');
     }
+
+    async getDepartments() {
+        const departmentsRef = collection(this.db, 'departments');
+        const querySnapshot = await getDocs(departmentsRef);
+        const departments = [];
+        querySnapshot.forEach((doc) => {
+            departments.push({ id: doc.id, ...doc.data() });
+        });
+        return departments;
+    }
 }
 
 export default FirebaseDBService;

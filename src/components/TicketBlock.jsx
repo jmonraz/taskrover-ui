@@ -3,13 +3,13 @@ import {useState, useRef, useEffect, useContext} from "react";
 import {UserContext, } from "../context/UserContext";
 import personImage from '../assets/img/person1.webp';
 import downArrowIcon from '../assets/icons/dropdown_arrow.svg';
-import {updateTicketStatus, updateTicketPriority, updateTicketDepartment} from "../utils/firebaseUtils";
+import {updateTicketStatus, updateTicketPriority, updateTicketDepartment, getDepartments} from "../utils/firebaseUtils";
 
 const TicketBlock = ({onClick, ticketDetails }) => {
     const {authState} = useContext(UserContext);
     const {userType} = authState;
     const statuses = ['Open', 'On Hold', 'Escalated', 'Closed', 'In Progress'];
-    const departments = ['Orders', 'Shipping', 'Delivery', 'Return', 'Refund'];
+    const [departments, setDepartments] = useState([]);
     const priorities = ['Low', 'Medium', 'High', 'Urgent'];
 
     const [isTicketStatus, setIsTicketStatus] = useState(false);
@@ -42,6 +42,18 @@ const TicketBlock = ({onClick, ticketDetails }) => {
     useEffect(() => {
         document.addEventListener('mousedown', handleClickOutside);
         return () => document.removeEventListener('mousedown', handleClickOutside);
+    }, []);
+
+    useEffect(() => {
+        const fetchDepartments = async () => {
+            try {
+                const fetchedDepartments = await getDepartments();
+                setDepartments(fetchedDepartments);
+            } catch (error) {
+                console.log("Error fetching departments: ", error);
+            }
+        }
+        fetchDepartments();
     }, []);
 
     const handleCheckboxChange = () =>
@@ -125,7 +137,7 @@ const TicketBlock = ({onClick, ticketDetails }) => {
                                             <ul>
                                                 {departments.map((department, index) => (
                                                         <li key={index}
-                                                            onClick={(e) => handleClickDepartment(e, department)}>{department}</li>
+                                                            onClick={(e) => handleClickDepartment(e, department.title)}>{department.title}</li>
                                                     )
                                                 )}
                                             </ul>

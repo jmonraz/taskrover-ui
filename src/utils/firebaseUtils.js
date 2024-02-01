@@ -81,3 +81,8 @@ export const updateTicketOwner = async (ticketId, value) => {
     const firebaseDBService = new FirebaseDBService();
     return await firebaseDBService.updateTicketOwner(ticketId, value);
 }
+
+export const getDepartments = async () => {
+    const firebaseDBService = new FirebaseDBService();
+    return await firebaseDBService.getDepartments();
+}

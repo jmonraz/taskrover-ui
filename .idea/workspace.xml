@@ -6,6 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="e453f103-7006-42f5-a97d-fd450ce14e14" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/TicketBlock.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/TicketBlock.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/services/firebaseDbService.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/firebaseDbService.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/firebaseUtils.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/firebaseUtils.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,7 +48,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "dart.analysis.tool.window.visible": "false",
-    "git-widget-placeholder": "dev",
+    "git-widget-placeholder": "departments",
     "kotlin-language-version-configured": "true",
     "list.type.of.created.stylesheet": "CSS",
     "node.js.detected.package.eslint": "true",
