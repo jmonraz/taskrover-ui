@@ -13,7 +13,7 @@ import CreateTicket from "../create_ticket/CreateTicket"
 import UserDashboard from "../user_dashboard/UserDashboard";
 import UserWelcomePage from "../user_welcome_page/UserWelcomePage";
 import CreateAccount from "../create_account/CreateAccount";
-import Password_Change from "../password_change/Password_Change";
+import AnalyticsPage from "../analytics/AnalyticsPage";
 
 const HomeScreen = ({userType}) => {
     const navigate = useNavigate();
@@ -39,6 +39,7 @@ const HomeScreen = ({userType}) => {
                         <Route path="user/dashboard" element={<UserDashboard/>} />
                         <Route path="user/dashboard/:ticketId/ticket-details" element={<TicketDetails />} />
                         <Route path="user/dashboard/create-a-ticket" element={<CreateTicket />}/>
+                        <Route path="agent/dashboard/analytics" element={<AnalyticsPage />} />
                     </Route>
                 </Routes>
         </>

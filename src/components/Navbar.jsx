@@ -80,6 +80,10 @@ const Navbar = () => {
         navigate("agent/dashboard/create-account");
     }
 
+    const handleOnClickAnalytics = () => {
+        navigate("agent/dashboard/analytics");
+    }
+
     const AgentNavbar = (
         <div className={styles['navbar']}>
             <div className={styles['navbar-row']}>
@@ -91,7 +95,7 @@ const Navbar = () => {
                         <li onClick={handleOnClickTickets}>TICKETS</li>
                         <li>KNOWLEDGE BASE</li>
                         <li>CUSTOMERS</li>
-                        <li>ANALYTICS</li>
+                        <li onClick={handleOnClickAnalytics}>ANALYTICS</li>
                         {/*<li>CHAT</li>*/}
                     </ul>
                 </div>
