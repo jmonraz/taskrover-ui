@@ -5,11 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e453f103-7006-42f5-a97d-fd450ce14e14" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/pages/analytics/AnalyticsPage.module.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Navbar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Navbar.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/homepage/HomePage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/homepage/HomePage.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/DropdownInput.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/DropdownInput.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/ticket_details/TicketDetails.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/ticket_details/TicketDetails.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,6 +45,7 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "dart.analysis.tool.window.visible": "false",
     "git-widget-placeholder": "analytics__screen",
     "kotlin-language-version-configured": "true",
@@ -74,7 +73,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1706808477445</updated>
-      <workItem from="1706808478405" duration="435000" />
+      <workItem from="1706808478405" duration="1415000" />
     </task>
     <servers />
   </component>

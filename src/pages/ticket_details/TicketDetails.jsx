@@ -78,7 +78,8 @@ const TicketDetails = () => {
                             className={styles['ticket-header-underline']}>TIC</span>KET PROPERTIES</p>
                         <div className={styles['ticket-header-content']}>
                             <p className={styles['ticket-subheader']}>Ticket Owner</p>
-                            <DropdownInput options={agents} defaultOption={ticket.ticketOwner} onSelect={onTicketOwnerSelect}/>
+                            {userType === 'agent' ? (<DropdownInput options={agents} defaultOption={ticket.ticketOwner} onSelect={onTicketOwnerSelect}/>
+                                ): (<p>{ticket.ticketOwner}</p>)}
                             <p className={styles['ticket-subheader']}>Status</p>
                             <p>{ticket.ticketStatus}</p>
                             <p className={styles['ticket-subheader']}>Created Date</p>

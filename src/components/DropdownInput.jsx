@@ -1,12 +1,10 @@
-import React, {useEffect, useState} from 'react';
-import styles from './DropdownInput.module.css';
+import React, {useState} from 'react';
 
 const DropdownInput = ({ options, onSelect, defaultOption }) => {
     const [selectedOption, setSelectedOption] = useState('');
     const handleSelectChange = (e) => {
         const selectedValue = e.target.value;
         setSelectedOption(selectedValue);
-        console.log(selectedValue)
         // Call the callback function passed from the parent component
         onSelect(selectedValue);
     };
