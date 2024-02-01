@@ -75,31 +75,26 @@ const AnalyticsPage = () => {
 
     return(
         <>
-            <div>
-                <h1>Analytics Page</h1>
-                <div>
-                    <p>Open Tickets</p>
-                    <p>{openTickets.length}</p>
+            <h1 className={styles['page-title']}>Analytics</h1>
+            <div className={styles['col']}>
+                <div className={styles['row']}>
+                    <div className={styles['card']}>
+                        <p className={styles['card-header']}>Open Tickets</p>
+                        <p className={styles['card-content']}>{openTickets.length}</p>
+                    </div>
+                    <div className={styles['card']}>
+                        <p className={styles['card-header']}>Department with Highest Open Tickets</p>
+                        <p className={styles['card-content']}>{highestDepartment} <span className={styles['card-content-inline']}>({highestDepartmentOpenTickets})</span></p>
+                        {/*<p className={styles['card-content']}>{highestDepartmentOpenTickets}</p>*/}
+                    </div>
+                    <div className={styles['card']}>
+                        <p className={styles['card-header']}>Department with Lowest Open Tickets</p>
+                        <p className={styles['card-content']}>{lowestDepartment} <span className={styles['card-content-inline']}>({lowestDepartmentOpenTickets})</span></p>
+                        {/*<p className={styles['card-content']}>{lowestDepartmentOpenTickets}</p>*/}
+                    </div>
                 </div>
-                <div>
-                    <p>On Hold Tickets</p>
-                </div>
-                <div>
-                    <p>Total Users</p>
-                </div>
-                <div>
-                    <p>Active Agents</p>
-                </div>
-                <div>
-                    <p>Department with Highest Tickets</p>
-                    <p>{highestDepartment}</p>
-                    <p>{highestDepartmentOpenTickets}</p>
-                </div>
-                <div>
-                    <p>Department with Lowest Tickets</p>
-                    <p>{lowestDepartment}</p>
-                    <p>{lowestDepartmentOpenTickets}</p>
-                </div>
+
+
             </div>
         </>
     );

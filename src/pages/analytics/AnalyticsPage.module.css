@@ -1,0 +1,56 @@
+.page-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #333;
+}
+
+.card-header {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #333;
+}
+
+.col {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: stretch;
+    padding-top: 1rem;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: stretch;
+    gap: 1rem;
+}
+
+.card {
+    flex: 1;
+    border: 1px solid rgba(0, 0, 0, 0.125);
+    border-radius: 0.25rem;
+    padding: 1rem;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    /*min-width: 300px;*/
+}
+
+
+
+.card-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 1rem 0;
+    font-size: 2rem;
+    font-weight: 600;
+    color: #0d7dc4;
+    gap: 0.5rem;
+}
+
+.card-content-inline {
+    font-size: 1.2rem;
+    color: #333;
+    font-weight: 500;
+}
