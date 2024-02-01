@@ -24,13 +24,7 @@ export const signOut = async () => {
 
 export const getTickets = async (userRole, userId) => {
     const firebaseDBService = new FirebaseDBService();
-    if (userRole === 'agent') {
-        return await firebaseDBService.getAllTickets();
-    } else if (userRole === 'user') {
-        // If the user is a regular user, fetch tickets created by that user
-        return await firebaseDBService.getUserTickets(userId);
-    }
-    return [];
+    return await firebaseDBService.getAllTickets();
 }
 
 export const getTicketById = async (id) => {

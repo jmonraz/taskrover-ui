@@ -49,15 +49,15 @@ const PasswordChangeComponent = () => {
                 <img src={logo} alt="TaskRover Logo" className={styles['login-logo']}/>
                 {changeSubmitted ? (
                     <>
-                    <form className={styles['login-form']} onClick={handleDone}>
+                    <form className={styles['login-form']} >
                         <h2>Password Changed Successfully!</h2>
-                        <Button styleName='green-button' type="submit">Done</Button>
+                        <Button styleName='green-button' type="submit" onClick={handleDone}>Done</Button>
                     </form>
 
                     </>
                 ) : (
                     <>
-                    <form className={styles['login-form']} onClick={handleChangePassword}>
+                    <form className={styles['login-form']} >
                         <h2>Change Password</h2>
                         <input
                             type="password"
@@ -78,7 +78,7 @@ const PasswordChangeComponent = () => {
                             onChange={(e) => setConfirmPassword(e.target.value)}
                         />
 
-                        <Button  styleName='green-button' type="submit">Change Password</Button>
+                        <Button  styleName='green-button' type="submit" onClick={handleChangePassword}>Change Password</Button>
                         {error && <p style={{color: 'red'}}>{error}</p>}
                     </form>
 
