@@ -6,7 +6,7 @@ import {signIn, getUserInformation} from "../../utils/firebaseUtils";
 
 // context
 import {UserContext} from "../../context/UserContext";
-import {useContext, useState, useEffect} from "react";
+import {useContext, useState} from "react";
 
 // react-router
 import {useNavigate} from "react-router-dom";
@@ -25,7 +25,7 @@ const LoginPage = () => {
 
     const navigate = useNavigate();
 
-    const {setToken, setUserType, setUserState, setUserEmail, setUserFirstName, setUserLastName, authState} = useContext(UserContext);
+    const {setToken, setUserType, setUserState, authState} = useContext(UserContext);
 
     const [isLoading, setIsLoading] = useState(false);
     const [showForgotPassword, setShowForgotPassword] = useState(false);
@@ -35,15 +35,6 @@ const LoginPage = () => {
     const password = useFormInput('');
     const forgotPasswordEmail = useFormInput('');
 
-    useEffect(() => {
-        if (authState.userState) {
-            if (authState.userType === 'user') {
-                navigate('/home');
-            } else if (authState.userType === 'agent') {
-                navigate('/home');
-            }
-        }
-    }, [authState.userState, authState.userType]);
     const onHandleSubmit = async e => {
         e.preventDefault();
         setErrorMessage('');
@@ -53,18 +44,23 @@ const LoginPage = () => {
             const response = await signIn(username.value, password.value);
             const token = await response.getIdToken();
             const userInfo = await getUserInformation(response.uid);
-            console.log('User info:', userInfo);
-            setToken(token);
-            setUserType(userInfo.role);
-            setUserState(true);
-            setUserEmail(userInfo.email);
-            setUserFirstName(userInfo.firstName);
-            setUserLastName(userInfo.lastName);
-            // if (authState.userType === 'user') {
-            //     navigate('/home');
-            // } else if (authState.userType === 'agent') {
-            //     navigate('/home');
-            // }
+
+            if (userInfo) {
+                setToken(token);
+                setUserType(userInfo.role);
+                setUserState(true);
+                console.log(`User ${userInfo.role} login, token: ${token}, uid: ${response.uid}`);
+                if (userInfo.firstLogin) {
+                    console.log('First login. Redirecting to password change.');
+                    navigate('/change-password');
+                }else if (authState.userType === 'user' || authState.userType === 'agent') {
+                    navigate('/home');
+                }
+            } else {
+                // Handle the case when user information is not available
+                console.error('User information not available.');
+            }
+
             setIsLoading(false);
         } catch (error) {
             setIsLoading(false);

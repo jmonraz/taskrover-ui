@@ -1,6 +1,7 @@
 import AuthService from "../services/firebaseAuthService";
 import FirebaseDBService from "../services/firebaseDbService";
 
+
 const getCurrentUser = async () => {
     const authService = new AuthService();
     return await authService.getCurrentUser();
@@ -21,9 +22,15 @@ export const signOut = async () => {
     return await authService.signOut();
 }
 
-export const getTickets = async () => {
+export const getTickets = async (userRole, userId) => {
     const firebaseDBService = new FirebaseDBService();
-    return await firebaseDBService.getAllTickets();
+    if (userRole === 'agent') {
+        return await firebaseDBService.getAllTickets();
+    } else if (userRole === 'user') {
+        // If the user is a regular user, fetch tickets created by that user
+        return await firebaseDBService.getUserTickets(userId);
+    }
+    return [];
 }
 
 export const getTicketById = async (id) => {

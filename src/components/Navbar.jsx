@@ -76,6 +76,10 @@ const Navbar = () => {
         }
     }
 
+    const handleOnClickAccount = () => {
+        navigate("agent/dashboard/create-account");
+    }
+
     const AgentNavbar = (
         <div className={styles['navbar']}>
             <div className={styles['navbar-row']}>
@@ -101,8 +105,7 @@ const Navbar = () => {
                             <p className={styles['status-label']}><span>ADD</span> NEW</p>
                             <ul>
                                 <li onClick={handleNewTicketClicked}>Ticket</li>
-                                <li>Account</li>
-                                <li>Customer</li>
+                                <li onClick={handleOnClickAccount}> Create Account</li>
                                 <li>Article</li>
                             </ul>
                         </div>
