@@ -23,6 +23,7 @@ import {useNavigate} from "react-router-dom";
 const Navbar = () => {
     const { authState } = useContext(UserContext);
     const [showAddOptions, setShowAddOptions] = useState(false);
+    const [createDepartment, setCreateDepartment] = useState(false);
     const {setUserState} = useContext(UserContext);
     const addDropdownRef = useRef(null);
     const navigate = useNavigate();
@@ -80,6 +81,15 @@ const Navbar = () => {
         navigate("agent/dashboard/create-account");
     }
 
+    const handleOnClickDepartment = () => {
+        setShowAddOptions(!showAddOptions);
+        setCreateDepartment(!createDepartment);
+    }
+
+    const handleClickDepartmentClose = () => {
+        setCreateDepartment(false);
+    }
+
     const handleOnClickAnalytics = () => {
         navigate("agent/dashboard/analytics");
     }
@@ -96,8 +106,23 @@ const Navbar = () => {
                         <li>KNOWLEDGE BASE</li>
                         <li>CUSTOMERS</li>
                         <li onClick={handleOnClickAnalytics}>ANALYTICS</li>
-                        {/*<li>CHAT</li>*/}
                     </ul>
+                    {createDepartment && (
+                        <div className={styles['department-overflow']}>
+                            <div className={styles['department-container']}>
+                                <div className={styles['department-container-row']}>
+                                    <p>Create Department</p>
+                                    <p className={styles['close']} onClick={handleClickDepartmentClose}>X</p>
+                                </div>
+                                <div className={styles['department-container-row-group']}>
+                                    <input type="text" placeholder="Department Name"/>
+                                    <button>Create</button>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    )}
                 </div>
             </div>
             <div className={styles['navbar-row']}>
@@ -111,6 +136,7 @@ const Navbar = () => {
                                 <li onClick={handleNewTicketClicked}>Ticket</li>
                                 <li onClick={handleOnClickAccount}> Create Account</li>
                                 <li>Article</li>
+                                <li onClick={handleOnClickDepartment}>Department</li>
                             </ul>
                         </div>
                     )}
