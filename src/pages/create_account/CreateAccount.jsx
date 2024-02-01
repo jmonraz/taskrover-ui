@@ -11,10 +11,11 @@ const CreateAccount = () =>{
     const [selectedRole, setSelectedRole] = useState('');
     const [firstName , setFirstName] = useState('');
     const [lastName , setLastName] = useState('');
+    const [fullName, setFullName] = useState('');
     const navigate = useNavigate();
 
     const handleRegistration = async () => {
-        if (!email || !password || !selectedRole || selectedRole === '') {
+        if (!email || !password || !selectedRole || selectedRole === '' || !fullName) {
             alert("Please fill in all the required fields marked with an asterisk (*)");
             return;
         }
@@ -28,6 +29,7 @@ const CreateAccount = () =>{
                 email: user.email,
                 firstName: firstName,
                 lastName: lastName,
+                fullName: fullName,
                 role: selectedRole,
                 firstLogin: true,
             });
@@ -44,6 +46,7 @@ const CreateAccount = () =>{
     setSelectedRole('');
     setFirstName('');
     setLastName('');
+    setFullName('');
     };
 
     return (
@@ -80,6 +83,17 @@ const CreateAccount = () =>{
                                 <label htmlFor="lName" className={styles.required}>Last Name:</label>
                                 <input autoComplete="off" id="lName" value={lastName}
                                        onChange={(e) => setLastName(e.target.value)}
+                                       style={{width: '100%', padding: '8px', boxSizing: 'border-box'}}/>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className={styles["form-row"]}>
+                        <div className={styles["form-column"]}>
+                            <div className={styles["form-pair"]}>
+                                <label htmlFor="full" className={styles.required}>Full Name:</label>
+                                <input autoComplete="off" id="full" value={fullName}
+                                       onChange={(e) => setFullName(e.target.value)}
                                        style={{width: '100%', padding: '8px', boxSizing: 'border-box'}}/>
                             </div>
                         </div>
