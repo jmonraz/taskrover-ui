@@ -8,7 +8,7 @@ import {updateTicketStatus, updateTicketPriority, updateTicketDepartment} from "
 const TicketBlock = ({onClick, ticketDetails }) => {
     const {authState} = useContext(UserContext);
     const {userType} = authState;
-    const statuses = ['Open', 'On Hold', 'Escalated', 'Close', 'In Progress'];
+    const statuses = ['Open', 'On Hold', 'Escalated', 'Closed', 'In Progress'];
     const departments = ['Orders', 'Shipping', 'Delivery', 'Return', 'Refund'];
     const priorities = ['Low', 'Medium', 'High', 'Urgent'];
 
