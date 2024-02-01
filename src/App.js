@@ -1,4 +1,4 @@
-import {useContext} from 'react';
+import React, {useContext} from 'react';
 
 import {BrowserRouter as Router, Routes, Route, Navigate} from "react-router-dom";
 import {UserContext, } from "./context/UserContext"; // importing UserProvider
@@ -9,6 +9,7 @@ import LoginPage from './pages/loginpage/LoginPage';
 import HomePage from "./pages/homepage/HomePage";
 import Navbar from "./components/Navbar";
 import AddDropdownButton from "./components/AddDropdownButton";
+import Password_Change from "./pages/password_change/Password_Change";
 
 const ProtectedRoute = () => {
     const {authState} = useContext(UserContext);
@@ -33,6 +34,7 @@ const App = () => {
               <Router>
                   <Routes>
                       <Route path="/" element={<LoginPage />} />
+                      <Route path="/change-password" element={<Password_Change/>}/>
                       <Route path="/home/*" element={<ProtectedRoute />} />
                   </Routes>
               </Router>
