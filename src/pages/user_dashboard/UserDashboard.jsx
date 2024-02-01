@@ -21,6 +21,8 @@ const UserDashboard = () =>{
         const fetchData = async () =>{
             try {
                 const fetchedTickets = await getTickets();
+                console.log("Fetched tickets:", fetchedTickets);
+                console.log("User email:", userEmail);
                 if(userType === 'user') {
                     const userTickets = fetchedTickets.filter((ticket) => ticket.contactEmail === userEmail);
                     setTickets(userTickets);
@@ -33,7 +35,7 @@ const UserDashboard = () =>{
                 console.error("Error fetching user and tickets:", error);
             }
         };
-        fetchData();
+        fetchData().then(r => console.log("Data fetched"));
     }, []);
 
     const onHandleTicketBlockClick = (ticketDetails) => {

@@ -30,20 +30,23 @@ const LoginPage = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [showForgotPassword, setShowForgotPassword] = useState(false);
     const [errorMessage, setErrorMessage] = useState('');
+    const [userInformation, setUserInformation] = useState({});
 
     const username = useFormInput('');
     const password = useFormInput('');
     const forgotPasswordEmail = useFormInput('');
 
-    useEffect(() => {
+    useEffect( () => {
         if (authState.userState) {
-            if (authState.userType === 'user') {
-                navigate('/home');
-            } else if (authState.userType === 'agent') {
+            if (userInformation.firstLogin) {
+                console.log('First login. Redirecting to password change.');
+                navigate('/change-password');
+            }else if (authState.userType === 'user' || authState.userType === 'agent') {
                 navigate('/home');
             }
         }
     }, [authState.userState, authState.userType]);
+
     const onHandleSubmit = async e => {
         e.preventDefault();
         setErrorMessage('');
@@ -53,6 +56,7 @@ const LoginPage = () => {
             const response = await signIn(username.value, password.value);
             const token = await response.getIdToken();
             const userInfo = await getUserInformation(response.uid);
+            setUserInformation(userInfo);
             console.log('User info:', userInfo);
             setToken(token);
             setUserType(userInfo.role);

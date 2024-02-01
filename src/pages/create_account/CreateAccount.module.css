@@ -1,0 +1,99 @@
+.account-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.account-form {
+    width: 35%;
+    padding: 25px;
+    border-radius: 5px;
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.4);
+}
+
+.form-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 100px;
+}
+
+.form-pair {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.form-column {
+    flex: 1;
+}
+
+label {
+    font-weight: bold;
+}
+
+label.required::after {
+    content: '*';
+    color: #FF5733;
+    margin-left: 4px;
+
+}
+
+label.required {
+    color: #FF5733;
+}
+
+
+select {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+}
+
+input[type="file"] {
+    display: none;
+}
+
+button {
+    background-color: #00796B;
+    color: #fff;
+    cursor: pointer;
+    padding: 10px;
+    width: 120px;
+}
+
+.cancel-button {
+    background-color: #fff;
+    color: #FF5733;
+    cursor: pointer;
+    padding: 10px;
+    width: 120px;
+    box-sizing: border-box;
+    border: 1px solid #FF5733;
+    border-radius: 5px;
+}
+
+.cancel-button:hover {
+    background-color: #f8f8f8;
+}
+
+.button-container {
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 7%;
+}
+
+.cancel-button {
+    padding: 10px;
+    margin-left: 8px;
+}
+
+.horizontal-line {
+    border: 1px solid darkgrey;
+    margin: 15px 125px;
+
+}

@@ -1,6 +1,7 @@
 import AuthService from "../services/firebaseAuthService";
 import FirebaseDBService from "../services/firebaseDbService";
 
+
 const getCurrentUser = async () => {
     const authService = new AuthService();
     return await authService.getCurrentUser();
@@ -21,7 +22,7 @@ export const signOut = async () => {
     return await authService.signOut();
 }
 
-export const getTickets = async () => {
+export const getTickets = async (userRole, userId) => {
     const firebaseDBService = new FirebaseDBService();
     return await firebaseDBService.getAllTickets();
 }

@@ -5,8 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="99be0cf1-9ddd-4d5d-b135-c31f698f6da1" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/pages/create_account/CreateAccount.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/create_account/CreateAccount.module.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/password_change/Password_Change.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/password_change/Password_Change.module.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/agent_dashboard/AgentDashboard.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/agent_dashboard/AgentDashboard.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Navbar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Navbar.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/TicketBlock.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/TicketBlock.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/homepage/HomePage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/homepage/HomePage.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/loginpage/LoginPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/loginpage/LoginPage.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/user_dashboard/UserDashboard.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/user_dashboard/UserDashboard.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/services/firebaseDbService.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/firebaseDbService.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/services/firebaseService.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/firebaseService.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/firebaseUtils.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/firebaseUtils.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,6 +53,9 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
   <component name="ProjectColorInfo">{
   &quot;customColor&quot;: &quot;&quot;,
   &quot;associatedIndex&quot;: 2
@@ -55,7 +70,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "dart.analysis.tool.window.visible": "false",
-    "git-widget-placeholder": "dev",
+    "git-widget-placeholder": "Merging dev",
     "kotlin-language-version-configured": "true",
     "list.type.of.created.stylesheet": "CSS",
     "node.js.detected.package.eslint": "true",
