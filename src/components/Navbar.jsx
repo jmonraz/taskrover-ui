@@ -32,7 +32,8 @@ const Navbar = () => {
     const navigate = useNavigate();
     const department = useFormInput('');
     const [departments, setDepartments] = useState([]);
-    const [departmentExists, setDepartmentExists] = useState(false)
+    const [departmentExists, setDepartmentExists] = useState(false);
+    const [departmentEmpty, setDepartmentEmpty] = useState(false);
 
     const handleClickOutside = (event) => {
         if (addDropdownRef.current && !addDropdownRef.current.contains(event.target)) {
@@ -113,6 +114,12 @@ const Navbar = () => {
     }
 
     const handleClickCreateDepartment = async () => {
+        setDepartmentEmpty(false);
+        setDepartmentExists(false);
+        if (department.value === '') {
+            setDepartmentEmpty(true);
+            return;
+        }
         const exists = departments.some(d => d.title === department.value);
         if (exists) {
             setDepartmentExists(true);
@@ -155,6 +162,7 @@ const Navbar = () => {
                                 <div className={styles['department-container-row-group']}>
                                     <Input type="text" styleName="main-input" placeholder="Department Name" inputProps={department} required={true}/>
                                     {departmentExists && <p className={styles['error']}>Department already exists</p>}
+                                    {departmentEmpty && <p className={styles['error']}>Department name cannot be empty</p>}
                                     <Button styleName='green-button' onClick={handleClickCreateDepartment}>Create</Button>
                                 </div>
 
