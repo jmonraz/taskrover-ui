@@ -4,9 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e453f103-7006-42f5-a97d-fd450ce14e14" name="Changes" comment="added get Full Name to create account">
+    <list default="true" id="e453f103-7006-42f5-a97d-fd450ce14e14" name="Changes" comment="made sure the next and prev buttons worked on the ticket dashboard">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/agent_dashboard/AgentDashboard.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/agent_dashboard/AgentDashboard.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/user_dashboard/UserDashboard.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/user_dashboard/UserDashboard.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -77,6 +76,15 @@
       <workItem from="1706808478405" duration="6236000" />
       <workItem from="1706892247599" duration="3416000" />
     </task>
+    <task id="LOCAL-00001" summary="made sure the next and prev buttons worked on the ticket dashboard">
+      <option name="closed" value="true" />
+      <created>1706914694105</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1706914694105</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -84,6 +92,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="added get Full Name to create account" />
-    <option name="LAST_COMMIT_MESSAGE" value="added get Full Name to create account" />
+    <MESSAGE value="made sure the next and prev buttons worked on the ticket dashboard" />
+    <option name="LAST_COMMIT_MESSAGE" value="made sure the next and prev buttons worked on the ticket dashboard" />
   </component>
 </project>

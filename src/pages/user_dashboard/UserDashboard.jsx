@@ -62,7 +62,6 @@ const UserDashboard = () =>{
     const handlePrevPage = () => {
         setCurrentPage((prevPage) => Math.max(prevPage - 1, 1));
     };
-
     return (
         <>
             <div className={styles['header-row']}>
