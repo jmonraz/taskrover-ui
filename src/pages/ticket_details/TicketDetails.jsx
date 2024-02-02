@@ -56,6 +56,12 @@ const TicketDetails = () => {
 
     const onCloseTicket = async () => {
         await updateTicketStatus(ticketId, 'Closed');
+        setTicket({...ticket, ticketStatus: 'Closed'});
+    }
+
+    const onOpenTicket = async () => {
+        await updateTicketStatus(ticketId, 'Open');
+        setTicket({...ticket, ticketStatus: 'Open'});
     }
 
     const onTicketOwnerSelect = async (value) => {
@@ -146,10 +152,18 @@ const TicketDetails = () => {
                         </div>
 
                         <div className={styles['ticket-container-footer']}>
-                            {userType === 'agent' &&
-                                (<div>
+                            {userType === 'agent' && ticket.ticketStatus !== 'Closed' &&
+                                (
+                                    <div>
                                     <Button styleName='close-button' onClick={onCloseTicket}>Close Ticket</Button>
-                                </div>)}
+                                    </div>
+                                )}
+                            {userType === 'agent' && ticket.ticketStatus === 'Closed' &&  (
+                                <div className={styles['ticket-container-footer-open']}>
+                                    <p>Ticket is closed</p>
+                                    <Button onClick={onOpenTicket}>Open Ticket</Button>
+                                </div>
+                                )}
                         </div>
                     </div>
                 </div>

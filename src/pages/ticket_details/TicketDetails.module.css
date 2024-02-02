@@ -118,8 +118,6 @@
 
 .ticket-container-footer {
     display: flex;
-    width: 100%;
-    height: auto;
     justify-content: flex-end;
     align-items: center;
     padding: 8px 50px;
@@ -127,8 +125,21 @@
     border-top: 1px solid rgba(0, 0, 0, 0.1);
 }
 
+.ticket-container-footer-open {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.ticket-container-footer-open p {
+    white-space: nowrap;
+    color: #ea5133;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
 .ticket-container-footer button {
-    padding: 5px 10px;
+    padding: 10px 15px;
     box-shadow: 0 0 0 0;
     font-weight: 400;
     font-size: 0.9rem;
