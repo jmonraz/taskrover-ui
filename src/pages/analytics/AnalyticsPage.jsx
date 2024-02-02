@@ -11,8 +11,10 @@ const AnalyticsPage = () => {
     const [highestDepartmentOpenTickets, setDepartmentOpenTickets] = useState(0);
     const [lowestDepartment, setLowestDepartment] = useState("");
     const [lowestDepartmentOpenTickets, setLowestDepartmentOpenTickets] = useState(0);
+    const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
+        setIsLoading(true);
         const fetchTickets = async () => {
             try {
                 const fetchedTickets = await getTickets();
@@ -69,6 +71,7 @@ const AnalyticsPage = () => {
             calculateOpenTickets();
             calculateHighestDepartmentWithOpenTickets();
             calculateLowestDepartmentWithOpenTickets();
+            setIsLoading(false);
         }
 
     },[tickets]);
@@ -80,17 +83,26 @@ const AnalyticsPage = () => {
                 <div className={styles['row']}>
                     <div className={styles['card']}>
                         <p className={styles['card-header']}>Open Tickets</p>
-                        <p className={styles['card-content']}>{openTickets.length}</p>
+                        <div className={styles['card-content']}>
+                            {isLoading ? <div className={`${styles['loader']}`}></div> :
+                                <p>{openTickets.length}</p>}
+                        </div>
                     </div>
                     <div className={styles['card']}>
                         <p className={styles['card-header']}>Department with Highest Open Tickets</p>
-                        <p className={styles['card-content']}>{highestDepartment} <span className={styles['card-content-inline']}>({highestDepartmentOpenTickets})</span></p>
-                        {/*<p className={styles['card-content']}>{highestDepartmentOpenTickets}</p>*/}
+                        <div className={styles['card-content']}>
+                            {isLoading ? <div className={styles['loader']}></div> :
+                                <p>{highestDepartment} <span
+                                    className={styles['card-content-inline']}>({highestDepartmentOpenTickets})</span></p>
+                            }
+                        </div>
                     </div>
                     <div className={styles['card']}>
                         <p className={styles['card-header']}>Department with Lowest Open Tickets</p>
-                        <p className={styles['card-content']}>{lowestDepartment} <span className={styles['card-content-inline']}>({lowestDepartmentOpenTickets})</span></p>
-                        {/*<p className={styles['card-content']}>{lowestDepartmentOpenTickets}</p>*/}
+                        <div className={styles['card-content']}>
+                            {isLoading ? <div className={styles['loader']}></div> :
+                                <p>{lowestDepartment} <span className={styles['card-content-inline']}>({lowestDepartmentOpenTickets})</span></p>}
+                        </div>
                     </div>
                 </div>
 
