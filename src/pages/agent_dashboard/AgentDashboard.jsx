@@ -102,9 +102,11 @@ const AgentDashboard = () => {
     return (
         <>
         {isLoading ?
-                (<p>Loading...</p>) :
-                (
-                    <>
+                (<div className={styles['loader-ctr']}>
+                    <div className={styles['loader']}></div>
+                </div>) :
+            (
+                <>
                         <div className={styles['header-row']}>
                             <p className={styles['ticket-filter-label']}>{ticketFilterState.title} ({ticketFilterState.number})</p>
                             <div className={styles['icon-container']}>
