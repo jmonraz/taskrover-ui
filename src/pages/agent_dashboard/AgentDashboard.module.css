@@ -19,6 +19,11 @@
     padding: 2px 1rem;
 }
 
+.header-row-btn {
+    display: flex;
+    gap: 2px;
+}
+
 .ticket-count {
     font-size: 14px;
     font-weight: 600;
@@ -26,16 +31,18 @@
 }
 
 .sml-action-btn {
-    border: 1px solid #878787;
-    padding: 2px 5px;
+    width: auto;
+    border: none;
+    padding: 2px 15px;
     border-radius: 5px;
-    background-color: #f4f4f4;
+    background-color: #1ea7fd;
     cursor: pointer;
     transition: background-color 0.3s ease-in-out;
 }
 
 .sml-action-btn:hover {
     background-color: #ebebeb;
+    color: #333;
 }
 
 .ticket-filter-label {

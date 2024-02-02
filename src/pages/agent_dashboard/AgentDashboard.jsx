@@ -153,12 +153,15 @@ const AgentDashboard = () => {
                                 <p className={styles['ticket-count']}>
                                     {startIndex + 1} - {Math.min(endIndex, tickets.length)} of {tickets.length}
                                 </p>
-                                <button className={styles['sml-action-btn']} onClick={handlePrevPage}>
-                                    Prev
-                                </button>
-                                <button className={styles['sml-action-btn']} onClick={handleNextPage}>
-                                    Next
-                                </button>
+                                <div className={styles['header-row-btn']}>
+                                    <button className={styles['sml-action-btn']} onClick={handlePrevPage}>
+                                        Prev
+                                    </button>
+                                    <button className={styles['sml-action-btn']} onClick={handleNextPage}>
+                                        Next
+                                    </button>
+                                </div>
+
                             </div>
                         </div>
                     <hr/>
