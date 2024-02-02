@@ -1,9 +1,12 @@
 // components
 import SearchBar from "./SearchBar";
 import AddDropdownButton from "./AddDropdownButton";
+import Input from "./Input";
+import Button from "./Button";
 
 // firebase utils
-import {signOut} from "../utils/firebaseUtils";
+import {signOut, createDepartment} from "../utils/firebaseUtils";
+import {useFormInput} from "../hooks/useFormInput";
 
 // styles
 import styles from "./Navbar.module.css";
@@ -12,7 +15,6 @@ import styles from "./Navbar.module.css";
 import logo from "../assets/logo/taskrover-logo-small.png";
 import boxNotificationIcon from "../assets/icons/box_notification.svg";
 import userNotificationIcon from "../assets/icons/user_box_notification.svg";
-import gearIcon from "../assets/icons/gear_icon.svg";
 import userIcon from "../assets/icons/user_icon.svg";
 
 // react
@@ -20,13 +22,15 @@ import { useState, useContext, useRef, useEffect} from "react";
 import { UserContext } from "../context/UserContext";
 import {useNavigate} from "react-router-dom";
 
+
 const Navbar = () => {
     const { authState } = useContext(UserContext);
     const [showAddOptions, setShowAddOptions] = useState(false);
-    const [createDepartment, setCreateDepartment] = useState(false);
+    const [createDepartmentBtn, setCreateDepartmentBtn] = useState(false);
     const {setUserState} = useContext(UserContext);
     const addDropdownRef = useRef(null);
     const navigate = useNavigate();
+    const department = useFormInput('');
 
     const handleClickOutside = (event) => {
         if (addDropdownRef.current && !addDropdownRef.current.contains(event.target)) {
@@ -43,7 +47,7 @@ const Navbar = () => {
 
     const handleSignOut = () => {
         try {
-            const response = signOut();
+            signOut().then(r => {});
             setUserState(false);
         } catch (error) {
             console.log(error);
@@ -83,15 +87,28 @@ const Navbar = () => {
 
     const handleOnClickDepartment = () => {
         setShowAddOptions(!showAddOptions);
-        setCreateDepartment(!createDepartment);
+        setCreateDepartmentBtn(!createDepartmentBtn);
     }
 
     const handleClickDepartmentClose = () => {
-        setCreateDepartment(false);
+        setCreateDepartmentBtn(false);
     }
 
     const handleOnClickAnalytics = () => {
         navigate("agent/dashboard/analytics");
+    }
+
+    const handleClickCreateDepartment = async () => {
+        try {
+            const d = {
+                title: department.value
+            }
+            await createDepartment(d);
+            setCreateDepartmentBtn(false);
+            department.clearValue();
+        } catch (error) {
+            console.log(error);
+        }
     }
 
     const AgentNavbar = (
@@ -107,7 +124,7 @@ const Navbar = () => {
                         <li>CUSTOMERS</li>
                         <li onClick={handleOnClickAnalytics}>ANALYTICS</li>
                     </ul>
-                    {createDepartment && (
+                    {createDepartmentBtn && (
                         <div className={styles['department-overflow']}>
                             <div className={styles['department-container']}>
                                 <div className={styles['department-container-row']}>
@@ -115,8 +132,8 @@ const Navbar = () => {
                                     <p className={styles['close']} onClick={handleClickDepartmentClose}>X</p>
                                 </div>
                                 <div className={styles['department-container-row-group']}>
-                                    <input type="text" placeholder="Department Name"/>
-                                    <button>Create</button>
+                                    <Input type="text" styleName="main-input" placeholder="Department Name" inputProps={department} required={true}/>
+                                    <Button styleName='green-button' onClick={handleClickCreateDepartment}>Create</Button>
                                 </div>
 
                             </div>

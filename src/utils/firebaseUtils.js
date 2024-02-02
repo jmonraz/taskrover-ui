@@ -86,3 +86,8 @@ export const getDepartments = async () => {
     const firebaseDBService = new FirebaseDBService();
     return await firebaseDBService.getDepartments();
 }
+
+export const createDepartment = async (department) => {
+    const firebaseDBService = new FirebaseDBService();
+    return await firebaseDBService.createDepartment(department);
+}

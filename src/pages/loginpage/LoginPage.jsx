@@ -64,11 +64,6 @@ const LoginPage = () => {
             setUserEmail(userInfo.email);
             setUserFirstName(userInfo.firstName);
             setUserLastName(userInfo.lastName);
-            // if (authState.userType === 'user') {
-            //     navigate('/home');
-            // } else if (authState.userType === 'agent') {
-            //     navigate('/home');
-            // }
             setIsLoading(false);
         } catch (error) {
             setIsLoading(false);

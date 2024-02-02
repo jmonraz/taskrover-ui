@@ -222,6 +222,16 @@ class FirebaseDBService {
         });
         return departments;
     }
+
+    async createDepartment(department) {
+        const departmentsRef = collection(this.db, 'departments');
+        const newDepartmentRef = doc(departmentsRef);
+        await setDoc(newDepartmentRef, {
+            id: newDepartmentRef.id,
+            ...department
+        });
+        return newDepartmentRef;
+    }
 }
 
 export default FirebaseDBService;
