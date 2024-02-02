@@ -5,7 +5,7 @@ import Input from "./Input";
 import Button from "./Button";
 
 // firebase utils
-import {signOut, createDepartment} from "../utils/firebaseUtils";
+import {signOut, createDepartment, getDepartments} from "../utils/firebaseUtils";
 import {useFormInput} from "../hooks/useFormInput";
 
 // styles
@@ -31,6 +31,8 @@ const Navbar = () => {
     const addDropdownRef = useRef(null);
     const navigate = useNavigate();
     const department = useFormInput('');
+    const [departments, setDepartments] = useState([]);
+    const [departmentExists, setDepartmentExists] = useState(false)
 
     const handleClickOutside = (event) => {
         if (addDropdownRef.current && !addDropdownRef.current.contains(event.target)) {
@@ -43,6 +45,18 @@ const Navbar = () => {
         return () => {
             document.removeEventListener("mousedown", handleClickOutside);
         };
+    }, []);
+
+    useEffect(() => {
+        const fetchDepartments = async () => {
+            try {
+                const fetchedDepartments = await getDepartments();
+                setDepartments(fetchedDepartments);
+            } catch (error) {
+                console.log(error);
+            }
+        }
+        fetchDepartments();
     }, []);
 
     const handleSignOut = () => {
@@ -99,16 +113,23 @@ const Navbar = () => {
     }
 
     const handleClickCreateDepartment = async () => {
-        try {
-            const d = {
-                title: department.value
+        const exists = departments.some(d => d.title === department.value);
+        if (exists) {
+            setDepartmentExists(true);
+        } else {
+            try {
+                const d = {
+                    title: department.value
+                }
+                await createDepartment(d);
+                setCreateDepartmentBtn(false);
+                department.clearValue();
+                setDepartmentExists(false);
+            } catch (error) {
+                console.log(error);
             }
-            await createDepartment(d);
-            setCreateDepartmentBtn(false);
-            department.clearValue();
-        } catch (error) {
-            console.log(error);
         }
+
     }
 
     const AgentNavbar = (
@@ -133,6 +154,7 @@ const Navbar = () => {
                                 </div>
                                 <div className={styles['department-container-row-group']}>
                                     <Input type="text" styleName="main-input" placeholder="Department Name" inputProps={department} required={true}/>
+                                    {departmentExists && <p className={styles['error']}>Department already exists</p>}
                                     <Button styleName='green-button' onClick={handleClickCreateDepartment}>Create</Button>
                                 </div>
 
@@ -151,7 +173,7 @@ const Navbar = () => {
                             <p className={styles['status-label']}><span>ADD</span> NEW</p>
                             <ul>
                                 <li onClick={handleNewTicketClicked}>Ticket</li>
-                                <li onClick={handleOnClickAccount}> Create Account</li>
+                                <li onClick={handleOnClickAccount}>Account</li>
                                 <li>Article</li>
                                 <li onClick={handleOnClickDepartment}>Department</li>
                             </ul>
