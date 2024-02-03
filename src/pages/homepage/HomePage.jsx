@@ -14,6 +14,8 @@ import UserDashboard from "../user_dashboard/UserDashboard";
 import UserWelcomePage from "../user_welcome_page/UserWelcomePage";
 import CreateAccount from "../create_account/CreateAccount";
 import AnalyticsPage from "../analytics/AnalyticsPage";
+import ShowAccounts from "../show_accounts/ShowAcconts";
+import Settings from "../settings/Settings";
 
 const HomeScreen = ({userType}) => {
     const navigate = useNavigate();
@@ -35,10 +37,13 @@ const HomeScreen = ({userType}) => {
                         <Route path="agent/dashboard/:ticketId/ticket-details" element={<TicketDetails />} />
                         <Route path="agent/dashboard/create-a-ticket" element={<CreateTicket />}/>
                         <Route path="agent/dashboard/create-account" element={<CreateAccount />}/>
+                        <Route path="agent/dashboard/accounts" element={<ShowAccounts />}/>
+                        <Route path="agent/dashboard/settings" element={<Settings />}/>
                         <Route path="user/welcome" element={<UserWelcomePage />} />
                         <Route path="user/dashboard" element={<UserDashboard/>} />
                         <Route path="user/dashboard/:ticketId/ticket-details" element={<TicketDetails />} />
                         <Route path="user/dashboard/create-a-ticket" element={<CreateTicket />}/>
+                        <Route path="user/dashboard/settings" element={<Settings />}/>
                         <Route path="agent/dashboard/analytics" element={<AnalyticsPage />} />
                     </Route>
                 </Routes>

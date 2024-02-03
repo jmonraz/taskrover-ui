@@ -138,6 +138,16 @@ const Navbar = () => {
         }
 
     }
+    const handleOnClickUsers = () =>{
+        navigate("agent/dashboard/accounts");
+    }
+    const handleOnClickSettings =() =>{
+        if (authState.userType === 'agent') {
+            navigate("agent/dashboard/settings");
+        }else if (authState.userType === 'user'){
+            navigate("user/dashboard/settings");
+        }
+    }
 
     const AgentNavbar = (
         <div className={styles['navbar']}>
@@ -149,7 +159,7 @@ const Navbar = () => {
                     <ul>
                         <li onClick={handleOnClickTickets}>TICKETS</li>
                         <li>KNOWLEDGE BASE</li>
-                        <li>CUSTOMERS</li>
+                        <li onClick={handleOnClickUsers}>ACCOUNTS/ USERS</li>
                         <li onClick={handleOnClickAnalytics}>ANALYTICS</li>
                     </ul>
                     {createDepartmentBtn && (
@@ -195,7 +205,7 @@ const Navbar = () => {
                     <div className={styles['submenu']}>
                         <ul>
                             <li>Profile</li>
-                            <li>Settings</li>
+                            <li onClick={handleOnClickSettings}>Settings</li>
                             <li onClick={handleSignOut}>Sign Out</li>
                         </ul>
                     </div>
@@ -231,7 +241,7 @@ const Navbar = () => {
                     <div className={styles['submenu']}>
                         <ul>
                             <li>Profile</li>
-                            <li>Settings</li>
+                            <li onClick={handleOnClickSettings}>Settings</li>
                             <li onClick={handleSignOut}>Sign Out</li>
                         </ul>
                     </div>
