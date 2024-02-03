@@ -4,13 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e453f103-7006-42f5-a97d-fd450ce14e14" name="Changes" comment="made sure the next and prev buttons worked on the ticket dashboard">
+    <list default="true" id="e453f103-7006-42f5-a97d-fd450ce14e14" name="Changes" comment="added the Account list and working on the settings page">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Navbar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Navbar.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/homepage/HomePage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/homepage/HomePage.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/firebaseUtils.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/firebaseUtils.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/UserBlock.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/UserBlock.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/UserBlock.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/UserBlock.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/settings/Settings.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/settings/Settings.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/settings/Settings.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/settings/Settings.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/services/firebaseService.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/firebaseService.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -72,11 +73,24 @@
       <updated>1706808477445</updated>
       <workItem from="1706808478405" duration="6236000" />
       <workItem from="1706892247599" duration="4060000" />
-      <workItem from="1706918512651" duration="2694000" />
+      <workItem from="1706918512651" duration="8078000" />
     </task>
+    <task id="LOCAL-00001" summary="added the Account list and working on the settings page">
+      <option name="closed" value="true" />
+      <created>1706921311676</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1706921311676</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="added the Account list and working on the settings page" />
+    <option name="LAST_COMMIT_MESSAGE" value="added the Account list and working on the settings page" />
   </component>
 </project>

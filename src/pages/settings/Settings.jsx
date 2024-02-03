@@ -1,13 +1,18 @@
-/*
+
 import React, { useState, useEffect } from 'react';
+import styles from "./Settings.module.css";
 
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { useDocument } from 'react-firebase-hooks/firestore';
+import {collection, doc, getFirestore, updateDoc} from "firebase/firestore";
 import { auth, db, storage } from '../../services/firebaseService';
+import {useDocument} from "react-firebase-hooks/firestore";
+import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 
 const SettingsPage = () => {
     const [user] = useAuthState(auth);
-    const [userData, loading] = useDocument(db.collection('users').doc(user?.uid));
+    const docRef = doc(db, "collectionName", "documentId");
+    const usersCollection = collection(db, "users");
+    const [userData, loading] = useDocument(doc(db, "users", user?.uid));
     const [fullName, setFullName] = useState('');
     const [newProfilePic, setNewProfilePic] = useState(null);
 
@@ -15,8 +20,10 @@ const SettingsPage = () => {
         if (userData && userData.exists) {
             const { fullName } = userData.data();
             setFullName(fullName);
+        } else if (loading === false) { // Handle errors after loading
+            console.error('Error fetching user data:', userData.error);
         }
-    }, [userData]);
+    }, [userData, loading]);
 
     const handleFullNameChange = (e) => {
         setFullName(e.target.value);
@@ -30,22 +37,26 @@ const SettingsPage = () => {
 
     const handleSaveChanges = async () => {
         try {
+            if (!user) {
+                alert('Please sign in to update your profile.');
+                return;
+            }
+
             // Update full name
-            await db.collection('users').doc(user.uid).update({ fullName });
+            await updateDoc(doc(usersCollection, user.uid), { fullName });
 
-            // Update profile picture
             if (newProfilePic) {
-                const storageRef = storage.ref();
-                const imageRef = storageRef.child(`profile-pics/${user.uid}`);
-                await imageRef.put(newProfilePic);
-                const imageUrl = await imageRef.getDownloadURL();
+                const storageRef = ref(storage, `profile-pics/${user.uid}`);
+                await uploadBytes(storageRef, newProfilePic);
+                const imageUrl = await getDownloadURL(storageRef);
 
-                await db.collection('users').doc(user.uid).update({ profilePic: imageUrl });
+                await updateDoc(doc(collection(db, 'users'), user.uid), { profilePic: imageUrl });
             }
 
             alert('Changes saved successfully!');
         } catch (error) {
             console.error('Error saving changes:', error.message);
+            alert('Error saving changes. Please try again.');
         }
     };
 
@@ -54,25 +65,30 @@ const SettingsPage = () => {
     }
 
     return (
-        <div>
+        <div >
             <h2>Account Settings</h2>
-            <div>
-                <label htmlFor="fullName">Full Name:</label>
-                <input
-                    type="text"
-                    id="fullName"
-                    value={fullName}
-                    onChange={handleFullNameChange}
-                />
-            </div>
-            <div>
-                <label htmlFor="profilePic">Profile Picture:</label>
-                <input
-                    type="file"
-                    accept="image/*"
-                    id="profilePic"
-                    onChange={handleProfilePicChange}
-                />
+            <div className={styles["settings-container"]}>
+            <form className={styles["settings-form"]}>
+                <div>
+
+                    <label htmlFor="fullName">Full Name:</label>
+                    <input
+                        type="text"
+                        id="fullName"
+                        value={fullName}
+                        onChange={handleFullNameChange}
+                    />
+                </div>
+                <div>
+                    <label htmlFor="profilePic">Profile Picture:</label>
+                    <button type="button" onClick={() => document.getElementById('profilePic').click()}
+                            className={styles["profile-pic-button"]}>
+                        <img src={userData.data().profilePic} alt="Profile Picture"/>
+                    </button>
+                    <input type="file" accept="image/*" id="profilePic" onChange={handleProfilePicChange}
+                           style={{display: 'none'}}/>
+                </div>
+            </form>
             </div>
             <button onClick={handleSaveChanges}>Save Changes</button>
         </div>
@@ -80,4 +96,3 @@ const SettingsPage = () => {
 };
 
 export default SettingsPage;
- */
