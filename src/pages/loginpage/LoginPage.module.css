@@ -1,5 +1,5 @@
 .login-container {
-    background-color: #c0c0c0;
+    background: linear-gradient(140deg, #016B5F 0%, #0d7dc4 40% , #016B5F 100%);
     min-height: 100vh;
     display: flex;
     flex-direction: column;
@@ -27,7 +27,7 @@
     height: 100%;
     padding: 25px 100px;
     border-radius: 5px;
-    background-color: #016B5F;
+    background-color: rgba(1, 107, 95, 0.7);
     display: flex;
     flex-direction: column;
     justify-content: center;
