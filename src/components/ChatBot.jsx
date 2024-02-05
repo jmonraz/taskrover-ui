@@ -53,7 +53,7 @@ const ChatBot = () => {
                 }, {
                     comment: userMessageDescription[0],
                     commentDate: new Date(),
-                    commentOwner: 'John Doe',
+                    commentOwner: authState.authState.userFirstName + ' ' + authState.authState.userLastName,
                 });
                 setTicketId(ticket);
                 setFinalMessage(true);

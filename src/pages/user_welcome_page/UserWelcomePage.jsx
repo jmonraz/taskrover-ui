@@ -10,7 +10,7 @@ const UserWelcomePage = () => {
                     <div className={styles['banner-ctr']}>
                         <p>Welcome to Support</p>
                         <p>Search our knowledge base or submit a ticket</p>
-                        <SearchBar />
+                        {/*<SearchBar />*/}
                     </div>
                 </div>
                 <div className={styles['row']}>
