@@ -1,0 +1,32 @@
+.settings-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.settings-form {
+    width: 85%;
+    padding: 25px;
+    border-radius: 5px;
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.4);
+}
+
+.profile-pic-button {
+    border: 4px solid green;
+    padding: 0;
+    background-color: transparent;
+    cursor: pointer;
+    width: 100px;  /* Adjust as needed to fit image */
+    height: 100px; /* Adjust as needed to fit image */
+    overflow: hidden; /* Prevent image overflow */
+}
+
+.profile-pic-button img {
+    width: 100%;  /* Fill the button */
+    height: 100%; /* Maintain aspect ratio */
+}

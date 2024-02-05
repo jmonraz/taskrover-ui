@@ -1,0 +1,37 @@
+.user-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.user-block:hover {
+    background-color: #ececec;
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.4);
+}
+
+.circular-image {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+.user-info {
+    margin-left: 20px;
+}
+
+.user-info p {
+    margin: 0;
+    padding: 0;
+    font-family: 'Open Sans', sans-serif;
+    color: #333;
+}
+
+.user-info p:first-child {
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.user-info p:not(:first-child) {
+    font-size: 14px;
+    color: #757575;
+}

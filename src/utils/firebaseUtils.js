@@ -1,6 +1,6 @@
 import AuthService from "../services/firebaseAuthService";
 import FirebaseDBService from "../services/firebaseDbService";
-
+import { db } from '../services/firebaseService';
 
 const getCurrentUser = async () => {
     const authService = new AuthService();
