@@ -1,7 +1,7 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import styles from "./CreateTicket.module.css";
 // utils
-import {addNewTicket} from "../../utils/firebaseUtils";
+import {addNewTicket, getDepartments, getUsersByRole} from "../../utils/firebaseUtils";
 import {useNavigate} from "react-router-dom";
 
 const Ticket = () => {
@@ -17,6 +17,21 @@ const Ticket = () => {
     const [secondContact,setSecondContact]= useState('');
     const [account, setAccount]= useState('');
     const navigate = useNavigate();
+    const [departments, setDepartments] = useState([]);
+    const [agents, setAgents] = useState([]);
+
+    useEffect(() => {
+        const fetchDepartments = async () => {
+                const fetchedDepartments = await getDepartments();
+                setDepartments(fetchedDepartments);
+        }
+        const fetchAgents = async () => {
+            const fetchedAgents = await getUsersByRole('agent');
+            setAgents(fetchedAgents);
+        }
+        fetchDepartments().then(r => {});
+        fetchAgents().then(r => {});
+    }, []);
 
     const handleCreateTicket = async () => {
         if (!department || !contactName || !customField || !subject || !status) {
@@ -38,7 +53,7 @@ const Ticket = () => {
                secondaryContacts: secondContact,
                tags: [],
                ticketDepartment: department,
-               ticketOwner: '',
+               ticketOwner: ticketOwner,
                ticketStatus: status,
                ticketTitle: subject,
            }, {
@@ -75,9 +90,9 @@ const Ticket = () => {
                         <div className={styles["form-column"]}>
                             <label htmlFor="department">Department</label>
                             <select id="department" value={department} onChange={(e) => setDepartment(e.target.value)} style={ {width: '100%', padding: '8px', boxSizing: 'border-box'}}>
-                            <option value="" >Select a Department</option>
-                            <option value="IT">IT</option>
-                            <option value="Order">Order</option>
+                                {departments.map((department, index) => (
+                                    <option key={index} value={department.title}>{department.title}</option>
+                                ))}
                             </select>
                         </div>
                         <div className={styles["form-column"]}>
@@ -111,13 +126,13 @@ const Ticket = () => {
                         </div>
                     </div>
 
-                    <div className={styles["form-row"]}>
-                        <div className={styles["form-column"]}>
-                            <label htmlFor="customField" className={styles.required}>Custom Field</label>
-                            <input type="text" id="customField" value={customField} onChange={(e)=> setCustomField(e.target.value)} style={ {width: '100%', padding: '8px', boxSizing: 'border-box'}}/>
-                        </div>
-                        <div className={styles["form-column"]}></div>
-                    </div>
+                    {/*<div className={styles["form-row"]}>*/}
+                    {/*    <div className={styles["form-column"]}>*/}
+                    {/*        <label htmlFor="customField" className={styles.required}>Custom Field</label>*/}
+                    {/*        <input type="text" id="customField" value={customField} onChange={(e)=> setCustomField(e.target.value)} style={ {width: '100%', padding: '8px', boxSizing: 'border-box'}}/>*/}
+                    {/*    </div>*/}
+                    {/*    <div className={styles["form-column"]}></div>*/}
+                    {/*</div>*/}
 
                     <div className={styles["form-row"]}>
                         <div className={styles["form-column"]}>
@@ -148,9 +163,9 @@ const Ticket = () => {
                         <div className={styles["form-column"]}>
                             <label htmlFor="ticketOwner">Ticket Owner</label>
                             <select id="ticketOwner" value={ticketOwner} onChange={(e) => setTicketOwner(e.target.value)} style={ {width: '100%', padding: '8px', boxSizing: 'border-box'}}>
-                                <option value="" >Select Ticket Owner</option>
-                                <option value="John Doe">John Doe</option>
-                                <option value="Jane Smith">Jane Smith</option>
+                                {agents.map((agent, index) => (
+                                    <option key={index} value={agent.fullName}>{agent.fullName}</option>
+                                ))}
                             </select>
                         </div>
                     </div>

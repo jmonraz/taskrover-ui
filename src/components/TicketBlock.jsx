@@ -53,7 +53,7 @@ const TicketBlock = ({onClick, ticketDetails }) => {
                 console.log("Error fetching departments: ", error);
             }
         }
-        fetchDepartments();
+        fetchDepartments().then(r => {});
     }, []);
 
     const handleCheckboxChange = () =>
