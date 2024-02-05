@@ -3,9 +3,11 @@ import downArrowIcon from "../../assets/icons/dropdown_arrow.svg";
 import {useState, useRef, useEffect} from "react";
 import {useNavigate} from "react-router-dom";
 import {getTickets, getUserInformation} from "../../utils/firebaseUtils";
+import {useFormInput} from "../../hooks/useFormInput";
 
 // components
 import TicketBlock from "../../components/TicketBlock";
+import SearchBar from "../../components/SearchBar";
 const AgentDashboard = () => {
     const ticketFilter = [
         {
@@ -33,19 +35,38 @@ const AgentDashboard = () => {
             number: 0
         },
     ];
+
     const navigate = useNavigate();
     const [tickets, setTickets] = useState([]);
+    const [unfilteredTickets, setUnfilteredTickets] = useState([]);
     const [user, setUser] = useState({});
     const [isLoading, setIsLoading] = useState(true);
     const [currentPage, setCurrentPage] = useState(1);
     const ticketsPerPage = 10;
+    const [searcBarValue, setSearchBarValue] = useState('');
 
+    const onSearchBarChange = (e) => {
+        setSearchBarValue(e.target.value);
+        // filter tickets based on search bar value
+        const filteredTickets = tickets.filter(ticket => ticket.ticketTitle.toLowerCase().includes(e.target.value.toLowerCase()) || ticket.ticketNumber.toLowerCase().includes(e.target.value.toLowerCase()));
+        setTickets(filteredTickets);
+        if(e.target.value === '') {
+            setTickets(unfilteredTickets);
+        }
+    }
+
+
+    const searchBarProps = {
+        value: searcBarValue,
+        onChange: onSearchBarChange
+    };
 
     useEffect(() => {
         const fetchTickets = async () => {
             try {
                 const fetchedTickets = await getTickets();
                 setTickets(fetchedTickets);
+                setUnfilteredTickets(fetchedTickets);
                 ticketFilter[0].number = fetchedTickets.length;
                 setIsLoading(false);
             } catch (error) {
@@ -121,6 +142,8 @@ const AgentDashboard = () => {
         setCurrentPage((prevPage) => Math.max(prevPage - 1, 1));
     };
 
+
+
     return (
         <>
         {isLoading ?
@@ -130,35 +153,40 @@ const AgentDashboard = () => {
             (
                 <>
                         <div className={styles['header-row']}>
-                            <p className={styles['ticket-filter-label']}>{ticketFilterState.title} ({ticketFilterState.number})</p>
-                            <div className={styles['icon-container']}>
-                                <img src={downArrowIcon} alt="down-arrow" className={styles['icon']}
-                                     onClick={handleTicketFilterSubmenu}/>
-                                {isTicketFilterSubmenu && (
-                                    <div className={styles['dropdown-menu']} ref={ticketFilterRef}>
-                                        <ul>
-                                            {ticketFilter.map((ticketFilter, index) => (
-                                                <li onClick={() => handleTicketFilterChange(ticketFilter)}>{ticketFilter.title} ({ticketFilter.number})</li>
-                                            ))}
-                                        </ul>
-                                    </div>
-                                )}
+                            <div className={styles['ticket-filter-ctr']}>
+                                <p className={styles['ticket-filter-label']}>{ticketFilterState.title} ({ticketFilterState.number})</p>
+                                <div className={styles['icon-container']}>
+                                    <img src={downArrowIcon} alt="down-arrow" className={styles['icon']}
+                                         onClick={handleTicketFilterSubmenu}/>
+                                    {isTicketFilterSubmenu && (
+                                        <div className={styles['dropdown-menu']} ref={ticketFilterRef}>
+                                            <ul>
+                                                {ticketFilter.map((ticketFilter, index) => (
+                                                    <li onClick={() => handleTicketFilterChange(ticketFilter)}>{ticketFilter.title} ({ticketFilter.number})</li>
+                                                ))}
+                                            </ul>
+                                        </div>
+                                    )}
+                                </div>
+                            </div>
+                            <div>
+                                <SearchBar inputProps={searchBarProps}/>
                             </div>
                         </div>
+                    <div className={styles['header-row']}>
+                        <div>
+                            <input type="checkbox"/>
+                        </div>
                         <div className={styles['header-row']}>
-                            <div>
-                                <input type="checkbox"/>
-                            </div>
-                            <div className={styles['header-row']}>
-                                <p className={styles['ticket-count']}>
-                                    {startIndex + 1} - {Math.min(endIndex, tickets.length)} of {tickets.length}
-                                </p>
-                                <div className={styles['header-row-btn']}>
-                                    <button className={styles['sml-action-btn']} onClick={handlePrevPage}>
-                                        Prev
-                                    </button>
-                                    <button className={styles['sml-action-btn']} onClick={handleNextPage}>
-                                        Next
+                            <p className={styles['ticket-count']}>
+                                {startIndex + 1} - {Math.min(endIndex, tickets.length)} of {tickets.length}
+                            </p>
+                            <div className={styles['header-row-btn']}>
+                                <button className={styles['sml-action-btn']} onClick={handlePrevPage}>
+                                    Prev
+                                </button>
+                                <button className={styles['sml-action-btn']} onClick={handleNextPage}>
+                                Next
                                     </button>
                                 </div>
 

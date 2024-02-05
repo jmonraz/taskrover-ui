@@ -8,8 +8,8 @@
 }
 
 .header-row:nth-child(1) {
-    justify-content: flex-start;
-    padding: 0;
+    justify-content: space-between;
+    padding-bottom: 10px;
 }
 
 .header-row {
@@ -17,6 +17,12 @@
     justify-content: space-between;
     align-items: center;
     padding: 2px 1rem;
+}
+
+.ticket-filter-ctr {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .header-row-btn {

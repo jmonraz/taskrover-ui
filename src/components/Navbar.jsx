@@ -183,7 +183,7 @@ const Navbar = () => {
                 </div>
             </div>
             <div className={styles['navbar-row']}>
-                <SearchBar/>
+
                 <div className={styles['add-dropdown-container']}>
                     <AddDropdownButton onClick={handleAddDropdownButtonClicked}/>
                     {showAddOptions && (
