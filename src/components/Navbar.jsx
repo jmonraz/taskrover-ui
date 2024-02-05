@@ -158,7 +158,7 @@ const Navbar = () => {
                 <div className={styles['navbar-items']}>
                     <ul>
                         <li onClick={handleOnClickTickets}>TICKETS</li>
-                        <li>KNOWLEDGE BASE</li>
+                        {/*<li>KNOWLEDGE BASE</li>*/}
                         <li onClick={handleOnClickUsers}>ACCOUNTS/ USERS</li>
                         <li onClick={handleOnClickAnalytics}>ANALYTICS</li>
                     </ul>
@@ -192,19 +192,19 @@ const Navbar = () => {
                             <ul>
                                 <li onClick={handleNewTicketClicked}>Ticket</li>
                                 <li onClick={handleOnClickAccount}>Account</li>
-                                <li>Article</li>
+                                {/*<li>Article</li>*/}
                                 <li onClick={handleOnClickDepartment}>Department</li>
                             </ul>
                         </div>
                     )}
                 </div>
-                <img src={boxNotificationIcon} alt="notifications" className={styles['icon']}/>
+                {/*<img src={boxNotificationIcon} alt="notifications" className={styles['icon']}/>*/}
                 {/*<img src={gearIcon} alt="settings" className={styles['icon']}/>*/}
                 <div className={styles['submenu-container']}>
                     <img src={userIcon} alt="users" className={styles['icon']}/>
                     <div className={styles['submenu']}>
                         <ul>
-                            <li>Profile</li>
+                            {/*<li>Profile</li>*/}
                             <li onClick={handleOnClickSettings}>Settings</li>
                             <li onClick={handleSignOut}>Sign Out</li>
                         </ul>
@@ -235,12 +235,12 @@ const Navbar = () => {
                 <div className={styles['add-dropdown-container']}>
                     <AddDropdownButton onClick={handleNewTicketClicked}/>
                 </div>
-                <img src={userNotificationIcon} alt="notifications" className={styles['user-icon']}/>
+                {/*<img src={userNotificationIcon} alt="notifications" className={styles['user-icon']}/>*/}
                 <div className={styles['submenu-container']}>
                     <img src={userIcon} alt="users" className={styles['user-icon']}/>
                     <div className={styles['submenu']}>
                         <ul>
-                            <li>Profile</li>
+                            {/*<li>Profile</li>*/}
                             <li onClick={handleOnClickSettings}>Settings</li>
                             <li onClick={handleSignOut}>Sign Out</li>
                         </ul>
