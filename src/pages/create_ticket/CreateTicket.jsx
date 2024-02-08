@@ -34,7 +34,7 @@ const Ticket = () => {
     }, []);
 
     const handleCreateTicket = async () => {
-        if (!department || !contactName || !customField || !subject || !status) {
+        if (!department || !contactName || !subject || !status) {
             alert("Please fill in all the required fields marked with an asterisk (*)");
             return;
         }
