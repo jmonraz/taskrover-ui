@@ -9,7 +9,7 @@ const AppDropdownButton = ({onClick}) => {
 
     const AgentButton = (
         <div className={styles['button-container']}>
-        <div className={styles['btn-box']}>
+        <div className={styles['btn-box']} onClick={onClick}>
         <img src={addIcon} alt="add" />
         </div>
     <div className={styles['vertical-line']}>
