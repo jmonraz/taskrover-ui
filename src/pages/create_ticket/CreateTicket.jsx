@@ -33,6 +33,7 @@ const Ticket = () => {
         fetchAgents().then(r => {});
     }, []);
 
+
     const handleCreateTicket = async () => {
         if (!department || !contactName || !subject || !status) {
             alert("Please fill in all the required fields marked with an asterisk (*)");
@@ -79,6 +80,7 @@ const Ticket = () => {
         setContactName('');
         setSecondContact('');
         setAccount('');
+        navigate('/home/agent/dashboard');
     };
 
     return (

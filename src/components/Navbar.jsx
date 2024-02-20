@@ -153,7 +153,7 @@ const Navbar = () => {
         <div className={styles['navbar']}>
             <div className={styles['navbar-row']}>
                 <div className={styles['navbar-logo']}>
-                    <img src={logo} alt="logo"/>
+                    <img src={logo} alt="logo" onClick={handleOnClickHome}/>
                 </div>
                 <div className={styles['navbar-items']}>
                     <ul>
@@ -219,7 +219,7 @@ const Navbar = () => {
         <div className={styles['navbar']}>
             <div className={styles['navbar-row']}>
                 <div className={styles['navbar-logo']}>
-                    <img src={logo} alt="logo"/>
+                    <img src={logo} alt="logo" onClick={handleOnClickHome}/>
                 </div>
                 <div className={styles['navbar-items']}>
                     <ul>
