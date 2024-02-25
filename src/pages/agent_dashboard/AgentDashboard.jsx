@@ -12,27 +12,27 @@ const AgentDashboard = () => {
     const ticketFilter = [
         {
             title: "All Tickets",
-            number: 0
+            number: ""
         },
         {
             title: "Open Tickets",
-            number: 110
+            number: ""
         },
         {
             title: "On Hold Tickets",
-            number: 10
+            number: ""
         },
         {
             title: "In Progress Tickets",
-            number: 20
+            number: ""
         },
         {
             title: "Resolved Tickets",
-            number: 80
+            number: ""
         },
         {
             title: "Closed Tickets",
-            number: 0
+            number: ""
         },
     ];
 
@@ -44,6 +44,7 @@ const AgentDashboard = () => {
     const [currentPage, setCurrentPage] = useState(1);
     const ticketsPerPage = 10;
     const [searcBarValue, setSearchBarValue] = useState('');
+    const [selectAll, setSelectAll] = useState(false);
 
     const onSearchBarChange = (e) => {
         setSearchBarValue(e.target.value);
@@ -65,6 +66,7 @@ const AgentDashboard = () => {
         const fetchTickets = async () => {
             try {
                 const fetchedTickets = await getTickets();
+                console.log(fetchedTickets);
                 setTickets(fetchedTickets);
                 setUnfilteredTickets(fetchedTickets);
                 ticketFilter[0].number = fetchedTickets.length;
@@ -109,10 +111,22 @@ const AgentDashboard = () => {
         };
     }, []);
 
-    const handleTicketFilterChange = (ticketFilter) => {
-        setTicketFilterState(ticketFilter);
+    const handleTicketFilterChange = (selectedFilter) => {
+        setTicketFilterState(selectedFilter);
         setIsTicketFilterSubmenu(false);
-    }
+
+        // Apply filter based on the selected ticket filter
+        const filteredTickets = unfilteredTickets.filter(ticket => {
+            if (selectedFilter.title === 'All Tickets') {
+                return true; // Show all tickets
+            } else {
+                return selectedFilter.title.toLowerCase().includes(ticket.ticketStatus.toLowerCase());
+            }
+        });
+
+        setTickets(filteredTickets);
+
+    };
 
     const handleTicketFilterSubmenu = () => {
         setIsTicketFilterSubmenu(!isTicketFilterSubmenu);
@@ -123,6 +137,18 @@ const AgentDashboard = () => {
         navigate(`/home/agent/dashboard/${ticketDetails.ticketNumber.slice(1)}/ticket-details`);
     }
 
+    const handleCheckboxChange = (ticketId) => {
+        const updatedTickets = tickets.map(ticket =>
+            ticket.id === ticketId ? { ...ticket, isChecked: !ticket.isChecked } : ticket
+        );
+        setTickets(updatedTickets);
+    };
+
+    const handleSelectAll = () => {
+        setSelectAll(!selectAll);
+        const updatedTickets = tickets.map(ticket => ({ ...ticket, isChecked: !selectAll }));
+        setTickets(updatedTickets);
+    }
 
     const startIndex = (currentPage - 1) * ticketsPerPage;
     const endIndex = Math.min(startIndex + ticketsPerPage, tickets.length); // Adjusted this line
@@ -161,8 +187,10 @@ const AgentDashboard = () => {
                                     {isTicketFilterSubmenu && (
                                         <div className={styles['dropdown-menu']} ref={ticketFilterRef}>
                                             <ul>
-                                                {ticketFilter.map((ticketFilter, index) => (
-                                                    <li onClick={() => handleTicketFilterChange(ticketFilter)}>{ticketFilter.title} ({ticketFilter.number})</li>
+                                                {ticketFilter.map((filter, index) => (
+                                                    <li key={index} onClick={() => handleTicketFilterChange(filter)}>
+                                                        {filter.title}
+                                                    </li>
                                                 ))}
                                             </ul>
                                         </div>
@@ -175,7 +203,7 @@ const AgentDashboard = () => {
                         </div>
                     <div className={styles['header-row']}>
                         <div>
-                            <input type="checkbox"/>
+                            <input type="checkbox" checked={selectAll} onChange={handleSelectAll}/>
                         </div>
                         <div className={styles['header-row']}>
                             <p className={styles['ticket-count']}>
@@ -186,16 +214,22 @@ const AgentDashboard = () => {
                                     Prev
                                 </button>
                                 <button className={styles['sml-action-btn']} onClick={handleNextPage}>
-                                Next
-                                    </button>
-                                </div>
-
+                                    Next
+                                </button>
                             </div>
+
                         </div>
+                    </div>
                     <hr/>
                     <div className={styles['ticket-blocks-col']}>
                         {displayedTickets.map((ticket) => (
-                            <TicketBlock key={ticket.id} ticketDetails={ticket} onClick={onHandleTicketBlockClick}/>
+                            <TicketBlock
+                                key={ticket.id}
+                                ticketDetails={ticket}
+                                onClick={onHandleTicketBlockClick}
+                                isChecked={ticket.isChecked}
+                                onCheckboxChange={handleCheckboxChange}
+                            />
                         ))}
                     </div>
 

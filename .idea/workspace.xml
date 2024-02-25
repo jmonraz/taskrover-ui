@@ -4,9 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e453f103-7006-42f5-a97d-fd450ce14e14" name="Changes" comment="fixed an issue with the add button">
+    <list default="true" id="e453f103-7006-42f5-a97d-fd450ce14e14" name="Changes" comment="made a generic profile pic">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/create_ticket/CreateTicket.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/create_ticket/CreateTicket.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/TicketBlock.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/TicketBlock.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/UserBlock.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/UserBlock.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/agent_dashboard/AgentDashboard.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/agent_dashboard/AgentDashboard.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/settings/Settings.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/settings/Settings.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/show_accounts/ShowAcconts.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/show_accounts/ShowAcconts.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,14 +32,6 @@
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-    <option name="UPDATE_TYPE" value="REBASE" />
-  </component>
-  <component name="GithubProjectSettings">
-    <option name="branchProtectionPatterns">
-      <list>
-        <option value="main" />
-      </list>
-    </option>
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -55,7 +51,7 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;dev&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;kayleTester&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
     &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
@@ -63,16 +59,14 @@
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;/Applications/IntelliJ IDEA.app/Contents/plugins/javascript-impl/jsLanguageServicesImpl/external&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;C:\\Program Files\\JetBrains\\IntelliJ IDEA 2023.2.5\\plugins\\javascript-impl\\jsLanguageServicesImpl\\external&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
-  <component name="SharedIndexes">
-    <attachedChunks>
-      <set>
-        <option value="jdk-21.0.1-openjdk-21.0.1-4caba194b151-23eed401" />
-      </set>
-    </attachedChunks>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\drago\OneDrive\Desktop\TaskRover\src\assets\img" />
+    </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -84,36 +78,37 @@
       <updated>1706808477445</updated>
       <workItem from="1706808478405" duration="6236000" />
       <workItem from="1706892247599" duration="4060000" />
-      <workItem from="1707430085081" duration="741000" />
+      <workItem from="1706918512651" duration="9321000" />
+      <workItem from="1708198780636" duration="19998000" />
+      <workItem from="1708394541148" duration="6000" />
+      <workItem from="1708642933335" duration="855000" />
+      <workItem from="1708845176141" duration="5046000" />
     </task>
-    <task id="LOCAL-00001" summary="fixed an issue with the add button">
+    <task id="LOCAL-00001" summary="added the Account list and working on the settings page">
       <option name="closed" value="true" />
-      <created>1707414105309</created>
+      <created>1706921311676</created>
       <option name="number" value="00001" />
       <option name="presentableId" value="LOCAL-00001" />
       <option name="project" value="LOCAL" />
-      <updated>1707414105309</updated>
+      <updated>1706921311676</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="made it to where you can upload a profile pic and change your name">
+      <option name="closed" value="true" />
+      <created>1706986147746</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1706986147746</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
-  <component name="Vcs.Log.Tabs.Properties">
-    <option name="TAB_STATES">
-      <map>
-        <entry key="MAIN">
-          <value>
-            <State />
-          </value>
-        </entry>
-      </map>
-    </option>
-  </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="merged settings branch with dev" />
-    <MESSAGE value="fixed an issue with the add button" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed an issue with the add button" />
+    <MESSAGE value="added the Account list and working on the settings page" />
+    <MESSAGE value="made it to where you can upload a profile pic and change your name" />
+    <option name="LAST_COMMIT_MESSAGE" value="made it to where you can upload a profile pic and change your name" />
   </component>
 </project>

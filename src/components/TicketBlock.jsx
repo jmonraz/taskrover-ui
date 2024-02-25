@@ -5,7 +5,7 @@ import personImage from '../assets/img/person1.webp';
 import downArrowIcon from '../assets/icons/dropdown_arrow.svg';
 import {updateTicketStatus, updateTicketPriority, updateTicketDepartment, getDepartments} from "../utils/firebaseUtils";
 
-const TicketBlock = ({onClick, ticketDetails }) => {
+const TicketBlock = ({onClick, ticketDetails, isChecked, onCheckboxChange }) => {
     const {authState} = useContext(UserContext);
     const {userType} = authState;
     const statuses = ['Open', 'On Hold', 'Escalated', 'Closed', 'In Progress'];
@@ -15,7 +15,6 @@ const TicketBlock = ({onClick, ticketDetails }) => {
     const [isTicketStatus, setIsTicketStatus] = useState(false);
     const [isDeparment, setIsDeparment] = useState(false);
     const [isPriority, setIsPriority] = useState(false);
-    const [isChecked, setIsChecked] = useState(false);
     const [ticketStatus, setTicketStatus] = useState(ticketDetails.ticketStatus);
     const [ticketDepartment, setTicketDepartment] = useState(ticketDetails.ticketDepartment);
     const [ticketPriority, setTicketPriority] = useState(ticketDetails.priority);
@@ -56,8 +55,9 @@ const TicketBlock = ({onClick, ticketDetails }) => {
         fetchDepartments().then(r => {});
     }, []);
 
-    const handleCheckboxChange = () =>
-        setIsChecked(!isChecked);
+    const handleCheckboxChange = () => {
+        onCheckboxChange(ticketDetails.id);
+    };
 
     const handleDropdownClick = (e, toggleDropdown) => {
         e.stopPropagation();
@@ -89,16 +89,32 @@ const TicketBlock = ({onClick, ticketDetails }) => {
         <>
             <div className={styles['ticket-block']} onClick={() => onClick(ticketDetails)} >
                 <div className={styles['ticket-row']}>
-                    <input type="checkbox" checked={isChecked} onChange={handleCheckboxChange} className={styles['custom-checkbox']} />
-                    <img src={personImage} alt='person' className={styles['circular-image']} />
+                    <input
+                        type="checkbox"
+                        checked={isChecked}
+                        onChange={handleCheckboxChange}
+                        onClick={(e) => e.stopPropagation()}
+                        className={styles['custom-checkbox']}
+                        />
+                    <img src={personImage} alt='person' className={styles['circular-image']}/>
                     <div className={styles['ticket-col']}>
                         <div className={styles['ticket-row']}>
                             <p className={styles['ticket-title']}>{ticketDetails.ticketTitle}</p>
-                            <p className={styles['ticket-number']}>{ticketDetails.ticketNumber}</p>
                         </div>
                         <div className={styles['ticket-row']}>
                             <p className={styles['ticket-date']}>
-                                {ticketDetails.createdDate ? ticketDetails.createdDate.toDate().toString() : 'Date not available'}
+                                {ticketDetails.createdDate
+                                    ? ticketDetails.createdDate
+                                        .toDate()
+                                        .toLocaleString(undefined, {
+                                            year: 'numeric',
+                                            month: 'numeric',
+                                            day: 'numeric',
+                                            hour: 'numeric',
+                                            minute: 'numeric',
+                                            hour12: false,
+                                        })
+                                    : 'Date not available'}
                             </p>
                             <p className={styles['respond-wrapper']}>{ticketDetails.respond}</p>
                         </div>
