@@ -32,6 +32,16 @@ const SettingsPage = () => {
     const handleProfilePicChange = (e) => {
         if (e.target.files[0]) {
             setNewProfilePic(e.target.files[0]);
+
+            // Display the selected image immediately
+            const reader = new FileReader();
+            reader.onload = (event) => {
+                const imageElement = document.getElementById('profilePicPreview');
+                if (imageElement) {
+                    imageElement.src = event.target.result;
+                }
+            };
+            reader.readAsDataURL(e.target.files[0]);
         }
     };
 
@@ -68,27 +78,39 @@ const SettingsPage = () => {
         <div >
             <h2>Account Settings</h2>
             <div className={styles["settings-container"]}>
-            <form className={styles["settings-form"]}>
-                <div>
+                <form className={styles["settings-form"]}>
+                    <div>
 
-                    <label htmlFor="fullName">Full Name:</label>
-                    <input
-                        type="text"
-                        id="fullName"
-                        value={fullName}
-                        onChange={handleFullNameChange}
-                    />
-                </div>
-                <div>
-                    <label htmlFor="profilePic">Profile Picture:</label>
-                    <button type="button" onClick={() => document.getElementById('profilePic').click()}
-                            className={styles["profile-pic-button"]}>
-                        <img src={userData.data().profilePic} alt="Profile Picture"/>
-                    </button>
-                    <input type="file" accept="image/*" id="profilePic" onChange={handleProfilePicChange}
-                           style={{display: 'none'}}/>
-                </div>
-            </form>
+                        <label htmlFor="fullName">Full Name:</label>
+                        <input
+                            type="text"
+                            id="fullName"
+                            value={fullName}
+                            onChange={handleFullNameChange}
+                        />
+                    </div>
+                    <div>
+                        <label htmlFor="profilePic">Profile Picture:</label>
+                        <button
+                            type="button"
+                            onClick={() => document.getElementById('profilePic').click()}
+                            className={styles["profile-pic-button"]}
+                        >
+                            <img
+                                id="profilePicPreview"
+                                src={userData.data().profilePic}
+                                alt="Profile Picture"
+                            />
+                        </button>
+                        <input
+                            type="file"
+                            accept="image/*"
+                            id="profilePic"
+                            onChange={handleProfilePicChange}
+                            style={{display: 'none'}}
+                        />
+                    </div>
+                </form>
             </div>
             <button onClick={handleSaveChanges}>Save Changes</button>
         </div>
