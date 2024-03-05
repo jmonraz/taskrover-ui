@@ -66,6 +66,7 @@ const AgentDashboard = () => {
         const fetchTickets = async () => {
             try {
                 const fetchedTickets = await getTickets();
+                fetchedTickets.sort((a, b) => b.createdDate.toDate() - a.createdDate.toDate());
                 console.log(fetchedTickets);
                 setTickets(fetchedTickets);
                 setUnfilteredTickets(fetchedTickets);

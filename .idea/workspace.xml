@@ -5,12 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e453f103-7006-42f5-a97d-fd450ce14e14" name="Changes" comment="made a generic profile pic">
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/TicketBlock.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/TicketBlock.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/UserBlock.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/UserBlock.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/agent_dashboard/AgentDashboard.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/agent_dashboard/AgentDashboard.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/settings/Settings.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/settings/Settings.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/show_accounts/ShowAcconts.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/show_accounts/ShowAcconts.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/password_change/Password_Change.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/password_change/Password_Change.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/user_dashboard/UserDashboard.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/user_dashboard/UserDashboard.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,6 +32,18 @@
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="selectedUrlAndAccountId">
+      <UrlAndAccount>
+        <option name="accountId" value="d072ba57-0c55-449c-bbd0-d62dd9b9077d" />
+        <option name="url" value="https://github.com/jmonraz/taskrover-ui" />
+      </UrlAndAccount>
+    </option>
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -83,6 +95,7 @@
       <workItem from="1708394541148" duration="6000" />
       <workItem from="1708642933335" duration="855000" />
       <workItem from="1708845176141" duration="5046000" />
+      <workItem from="1709680719193" duration="2258000" />
     </task>
     <task id="LOCAL-00001" summary="added the Account list and working on the settings page">
       <option name="closed" value="true" />
