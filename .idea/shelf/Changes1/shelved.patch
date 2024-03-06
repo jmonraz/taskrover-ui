@@ -1,0 +1,12 @@
+Index: .idea/shelf/Uncommitted_changes_before_Update_at_2_20_24__9_59AM__Changes_.xml
+===================================================================
+diff --git a/.idea/shelf/Uncommitted_changes_before_Update_at_2_20_24__9_59AM__Changes_.xml b/.idea/shelf/Uncommitted_changes_before_Update_at_2_20_24__9_59AM__Changes_.xml
+deleted file mode 100644
+--- a/.idea/shelf/Uncommitted_changes_before_Update_at_2_20_24__9_59AM__Changes_.xml	(revision 5be7a176c7c69215a38f06db23efb6335d680ded)
++++ /dev/null	(revision 5be7a176c7c69215a38f06db23efb6335d680ded)
+@@ -1,4 +0,0 @@
+-<changelist name="Uncommitted_changes_before_Update_at_2_20_24,_9_59 AM_[Changes]" date="1708452002556" recycled="true" deleted="true">
+-  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2_20_24,_9_59 AM_[Changes]/shelved.patch" />
+-  <option name="DESCRIPTION" value="Uncommitted changes before Update at 2/20/24, 9:59 AM [Changes]" />
+-</changelist>
+\ No newline at end of file
