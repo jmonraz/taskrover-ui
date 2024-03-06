@@ -80,7 +80,6 @@ const Ticket = () => {
         setContactName('');
         setSecondContact('');
         setAccount('');
-        navigate('/home/agent/dashboard');
     };
 
     return (

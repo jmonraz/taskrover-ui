@@ -23,17 +23,21 @@ const PasswordChangeComponent = () => {
                 setError('New passwords do not match.');
                 return;
             }
+            console.log("started");
+            setChangeSubmitted(true);
 
             // Update the user's password
             await updatePassword(auth.currentUser, newPassword);
+            console.log("updated password");
+
+            setError('');
 
             // Update user document to mark firstLogin as false
             const userDocRef = doc(db, 'users', auth.currentUser.uid);
             await updateDoc(userDocRef, { firstLogin: false });
+            console.log("set to false");
 
-            // Password changed successfully
-            setError('');
-            setChangeSubmitted(true);
+
         } catch (error) {
             setError(`Password change failed: ${error.message}`);
         }

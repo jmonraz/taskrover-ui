@@ -23,6 +23,7 @@ const UserDashboard = () =>{
         const fetchData = async () =>{
             try {
                 const fetchedTickets = await getTickets();
+                fetchedTickets.sort((a, b) => b.createdDate.toDate() - a.createdDate.toDate());
                 console.log("Fetched tickets:", fetchedTickets);
                 console.log("User email:", userEmail);
                 if(userType === 'user') {
