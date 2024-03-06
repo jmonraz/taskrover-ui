@@ -9,7 +9,7 @@ import LoginPage from './pages/loginpage/LoginPage';
 import HomePage from "./pages/homepage/HomePage";
 import Navbar from "./components/Navbar";
 import AddDropdownButton from "./components/AddDropdownButton";
-import Password_Change from "./pages/password_change/Password_Change";
+import PasswordChange from "./pages/password_change/Password_Change";
 
 const ProtectedRoute = () => {
     const {authState} = useContext(UserContext);
@@ -34,7 +34,7 @@ const App = () => {
               <Router>
                   <Routes>
                       <Route path="/" element={<LoginPage />} />
-                      <Route path="/change-password" element={<Password_Change/>}/>
+                      <Route path="/change-password" element={<PasswordChange />}/>
                       <Route path="/home/*" element={<ProtectedRoute />} />
                   </Routes>
               </Router>
