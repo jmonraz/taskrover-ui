@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e453f103-7006-42f5-a97d-fd450ce14e14" name="Changes" comment="" />
+    <list default="true" id="e453f103-7006-42f5-a97d-fd450ce14e14" name="Changes" comment="fixed the git issues" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -52,7 +52,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "dart.analysis.tool.window.visible": "false",
-    "git-widget-placeholder": "kayleTester",
+    "git-widget-placeholder": "dev",
     "kotlin-language-version-configured": "true",
     "list.type.of.created.stylesheet": "CSS",
     "node.js.detected.package.eslint": "true",
@@ -91,7 +91,15 @@
       <option name="project" value="LOCAL" />
       <updated>1707414105309</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="fixed the git issues">
+      <option name="closed" value="true" />
+      <created>1709687979713</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1709687979713</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -111,6 +119,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="merged settings branch with dev" />
     <MESSAGE value="fixed an issue with the add button" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed an issue with the add button" />
+    <MESSAGE value="fixed the git issues" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed the git issues" />
   </component>
 </project>
