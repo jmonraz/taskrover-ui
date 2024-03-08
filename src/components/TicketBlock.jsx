@@ -89,13 +89,13 @@ const TicketBlock = ({onClick, ticketDetails, isChecked, onCheckboxChange }) => 
         <>
             <div className={styles['ticket-block']} onClick={() => onClick(ticketDetails)} >
                 <div className={styles['ticket-row']}>
-                    <input
-                        type="checkbox"
-                        checked={isChecked}
-                        onChange={handleCheckboxChange}
-                        onClick={(e) => e.stopPropagation()}
-                        className={styles['custom-checkbox']}
-                        />
+                    {/*<input*/}
+                    {/*    type="checkbox"*/}
+                    {/*    checked={isChecked}*/}
+                    {/*    onChange={handleCheckboxChange}*/}
+                    {/*    onClick={(e) => e.stopPropagation()}*/}
+                    {/*    className={styles['custom-checkbox']}*/}
+                    {/*    />*/}
                     <img src={personImage} alt='person' className={styles['circular-image']}/>
                     <div className={styles['ticket-col']}>
                         <div className={styles['ticket-row']}>

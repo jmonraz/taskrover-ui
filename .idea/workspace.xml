@@ -6,15 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="e453f103-7006-42f5-a97d-fd450ce14e14" name="Changes" comment="fixed the git issues">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/CommentPublisher.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/CommentPublisher.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/TicketBlock.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/TicketBlock.module.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/TicketConversationBlock.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/TicketConversationBlock.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/TicketConversationBlock.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/TicketConversationBlock.module.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/context/UserContext.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/context/UserContext.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/agent_dashboard/AgentDashboard.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/agent_dashboard/AgentDashboard.module.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/loginpage/LoginPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/loginpage/LoginPage.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/ticket_details/TicketDetails.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/ticket_details/TicketDetails.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/TicketBlock.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/TicketBlock.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/agent_dashboard/AgentDashboard.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/agent_dashboard/AgentDashboard.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -103,7 +96,7 @@
       <workItem from="1706808478405" duration="6236000" />
       <workItem from="1706892247599" duration="4060000" />
       <workItem from="1707430085081" duration="741000" />
-      <workItem from="1709920349902" duration="8547000" />
+      <workItem from="1709920349902" duration="8677000" />
     </task>
     <task id="LOCAL-00001" summary="fixed an issue with the add button">
       <option name="closed" value="true" />

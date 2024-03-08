@@ -204,7 +204,7 @@ const AgentDashboard = () => {
                         </div>
                     <div className={styles['header-row']}>
                         <div>
-                            <input type="checkbox" checked={selectAll} onChange={handleSelectAll}/>
+                            {/*<input type="checkbox" checked={selectAll} onChange={handleSelectAll}/>*/}
                         </div>
                         <div className={styles['header-row']}>
                             <p className={styles['ticket-count']}>
