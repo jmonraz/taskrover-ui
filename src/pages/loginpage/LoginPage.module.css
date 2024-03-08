@@ -1,5 +1,15 @@
+.txt-ncs {
+    color: #fff;
+}
+
+.txt-wb {
+    color: #fff;
+    font-weight: bold;
+    font-size: 1.3rem;
+}
+
 .login-container {
-    background: linear-gradient(140deg, #016B5F 0%, #0d7dc4 40% , #016B5F 100%);
+    background: #E6EAF9;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
@@ -8,8 +18,8 @@
 }
 
 .form-wrapper {
-    width: 50%;
-    max-width: 550px;
+    width: 75%;
+    max-width: 700px;
     min-width: 400px;
     display: flex;
     flex-direction: column;
@@ -18,22 +28,40 @@
     gap: 15px;;
 }
 .login-logo {
-    width: 50%;
-    box-shadow: 0 5px 10px rgba(0,0,0,0.4);
+    width: 150px;
+    /*box-shadow: 0 5px 10px rgba(0,0,0,0.2);*/
 }
 
 .login-form {
     width: 100%;
-    height: 100%;
-    padding: 25px 100px;
     border-radius: 5px;
-    background-color: rgba(1, 107, 95, 0.7);
+    background-color: #FFFFFF;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: stretch;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.4);
+}
+
+.login-form-col {
     display: flex;
     flex-direction: column;
+    width: 100%;
+    gap: 25px;
+    padding: 25px 30px;
+}
+
+.login-form-col:first-child {
+    background-color: #67a0cb;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    gap: 10px;
     justify-content: center;
     align-items: center;
-    gap: 15px;
-    box-shadow: 0 5px 10px rgba(0,0,0,0.4);
+}
+.login-form-col:first-child img {
+    width: 250px;
+    padding-top: 20px;
 }
 .input-row {
     width: 100%;
@@ -72,7 +100,7 @@
 }
 
 .loading-text {
-    color: #fff;
+    color: #ccc;
     font-size: 20px;
     font-weight: 600;
     margin-top: 10px;

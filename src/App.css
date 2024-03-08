@@ -1,17 +1,17 @@
 .main-text {
-    color: #fff;
+    color: #0d93e7;
     font-size: 26px;
     font-weight: bold;
 }
 
 .small-text {
-    color: #fff;
+    color: #0d93e7;
     font-size: 14px;
     font-weight: bold;
 }
 
 .text-link {
-    color: #fff;
+    color: #0d93e7;
     font-size: 14px;
     font-weight: bold;
     cursor: pointer;
@@ -19,13 +19,13 @@
 }
 
 .text-link:hover {
-    color: #c0c0c0;
+    color: #0d7dc4;
     font-size: 14px;
     font-weight: bold;
 }
 
 .text-link:active {
-    color: #fff;
+    color: #0d7dc4;
     font-size: 14px;
     font-weight: bold;
 }

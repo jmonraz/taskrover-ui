@@ -17,6 +17,7 @@ import Button from "../../components/Button";
 
 // assets
 import logo from "../../assets/logo/taskrover-logo-small.png"
+import galaxyImage from "../../assets/img/galaxy-image.svg";
 
 // styles
 import styles from "./LoginPage.module.css";
@@ -91,43 +92,61 @@ const LoginPage = () => {
         <>
             <div className={styles['login-container']}>
                 <div className={styles['form-wrapper']}>
-                    <img src={logo} alt="TaskRover Logo" className={styles['login-logo']} />
+                    {/*<img src={logo} alt="TaskRover Logo" className={styles['login-logo']} />*/}
                     {showForgotPassword ? (
                         // Forgot Password form
                         <form className={styles['login-form']} onSubmit={onForgotPasswordSubmit}>
-                            <div className={styles['text-row']}>
-                                <p className='main-text'>Forgot your password?</p>
-                                <p className='text-link' style={{ color: '#D8D8D8', marginTop:'3%' }} >Please enter the email you use to sign in to TaskRover</p>
+                            <div>
+
                             </div>
-                            <div className={styles['input-row']}>
-                                <Input inputProps={forgotPasswordEmail} styleName='main-input' placeholder='Email' type='email' required={true} />
-                            </div>
-                            <div className={styles['button-row']}>
-                                <Button styleName='green-button' type="submit">Send Email</Button>
-                                <p className='text-link' onClick={onCloseForgotPassword}>Back to Sign in</p>
+                            <div>
+                                <div className={styles['text-row']}>
+                                    <p className='main-text'>Forgot your password?</p>
+                                    <p className='text-link' style={{color: '#D8D8D8', marginTop: '3%'}}>Please enter
+                                        the email you use to sign in to TaskRover</p>
+                                </div>
+                                <div className={styles['input-row']}>
+                                    <Input inputProps={forgotPasswordEmail} styleName='main-input' placeholder='Email'
+                                           type='email' required={true}/>
+                                </div>
+                                <div className={styles['button-row']}>
+                                    <Button styleName='green-button' type="submit">Send Email</Button>
+                                    <p className='text-link' onClick={onCloseForgotPassword}>Back to Sign in</p>
+                                </div>
                             </div>
                         </form>
                     ) : (
                         // Login form
                         <form className={styles['login-form']} onSubmit={onHandleSubmit}>
-                            <div className={styles['text-row']}>
-                                <p className='main-text'>Welcome Back!</p>
+                            <div className={styles['login-form-col']}>
+                                <p className={styles['txt-ncs']}>Nice to see you again</p>
+                                <p className={styles['txt-wb']}>WELCOME BACK</p>
+                                <img src={galaxyImage} alt='galaxy-img' />
                             </div>
-                            <div className={styles['input-row']}>
-                                <Input inputProps={username} styleName='main-input' placeholder='Email' type='email' required={true} />
-                                <Input inputProps={password} styleName='main-input' placeholder='Password' type='password' required={true} />
+                            <div className={styles['login-form-col']}>
+                                <img src={logo} alt="TaskRover Logo" className={styles['login-logo']}/>
+                                <div className={styles['text-row']}>
+                                    <p className='main-text'>Login Account</p>
+                                </div>
+                                <div className={styles['input-row']}>
+                                    <Input inputProps={username} styleName='main-input' placeholder='Email' type='email'
+                                           required={true}/>
+                                    <Input inputProps={password} styleName='main-input' placeholder='Password'
+                                           type='password' required={true}/>
+                                </div>
+                                <div className={styles['button-row']}>
+                                    <Button styleName='blue-button' type="submit">Sign In</Button>
+                                    {errorMessage && <p className={styles['error-message']}>{errorMessage}</p>}
+                                    <p className='text-link' onClick={onForgotPasswordClick}>Forgot Password?</p>
+                                </div>
                             </div>
-                            <div className={styles['button-row']}>
-                                <Button styleName='green-button' type="submit">Sign In</Button>
-                                {errorMessage && <p className={styles['error-message']}>{errorMessage}</p>}
-                                <p className='text-link' onClick={onForgotPasswordClick}>Forgot Password?</p>
-                            </div>
+
                         </form>
                     )}
-                        {isLoading && <div className={styles['loading-overlay']}>
-                            <div className={styles['loading-circle']}></div>
-                            <p className={styles['loading-text']}>Loading...</p>
-                        </div>}
+                    {isLoading && <div className={styles['loading-overlay']}>
+                        <div className={styles['loading-circle']}></div>
+                        <p className={styles['loading-text']}>Loading...</p>
+                    </div>}
                 </div>
             </div>
         </>
