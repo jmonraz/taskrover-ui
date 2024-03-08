@@ -12,12 +12,17 @@ export const UserProvider = ({children}) => {
         userEmail: null,
         userFirstName: null,
         userLastName: null,
+        userId: null
     });
 
     // Function to update the user state
     const updateAuthState = (newAuthState) => {
         setAuthState(newAuthState);
     };
+
+    const setUserId = (userId) => {
+        setAuthState(prevState => ({...prevState, userId}));
+    }
 
     // Function to update just the token
     const setToken = (token) => {
@@ -48,7 +53,7 @@ export const UserProvider = ({children}) => {
 
     // Return a provider component with the user state and function to update it
     return (
-        <UserContext.Provider value={{authState, updateAuthState, setToken, setUserType, setUserState, setUserLastName, setUserEmail, setUserFirstName}}>
+        <UserContext.Provider value={{authState, updateAuthState, setToken, setUserType, setUserState, setUserLastName, setUserEmail, setUserFirstName, setUserId}}>
             {children}
         </UserContext.Provider>
     );

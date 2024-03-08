@@ -1,11 +1,13 @@
-import React, {useState} from "react";
+import React, {useContext, useState} from "react";
 import ReactQuill from "react-quill";
 import 'react-quill/dist/quill.snow.css';
 import styles from "./CommentPublisher.module.css";
 import Button from "./Button";
 import {addCommentToTicket, updateTicket} from "../utils/firebaseUtils";
+import {UserContext} from "../context/UserContext";
 
 const CommentPublisher = ({ticketId, handleReload, user, onClose, initialValue = '', mode = 'comment', conversation, onEdit}) => {
+    const {authState} = useContext(UserContext);
     const [comment, setComment] = useState(initialValue);
 
     const handleCommentChange = (content) => {
@@ -20,6 +22,9 @@ const CommentPublisher = ({ticketId, handleReload, user, onClose, initialValue =
                     comment: comment,
                     commentDate: new Date(),
                     commentOwner: user.firstName + ' ' + user.lastName,
+                    commentOwnerId: user.id,
+                    editDate: null,
+                    editOwner: null
                 });
                 console.log(comment);
                 handleReload();
@@ -31,6 +36,7 @@ const CommentPublisher = ({ticketId, handleReload, user, onClose, initialValue =
             await updateTicket(ticketId, conversationId, {
                 comment: comment,
                 editDate: new Date(),
+                editOwner: authState.userId
             });
             onEdit(comment);
             onClose();

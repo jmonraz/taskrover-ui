@@ -7,6 +7,14 @@
     border-radius: 5px;
 }
 
+.user-block {
+    background-color: #f3f3f3;
+}
+
+.agent-block {
+    background-color: #f1f0f0;
+}
+
 .conversation-block-row {
     display: flex;
     flex-direction: row;

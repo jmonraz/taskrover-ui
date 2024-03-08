@@ -1,7 +1,7 @@
 .ticket-blocks-col {
     display: flex;
     flex-direction: column;
-    gap: 5px;
+    /*gap: 5px;*/
     padding: 1rem;
     height: calc(100vh - 180px);
     overflow-y: auto;

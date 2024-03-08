@@ -26,7 +26,7 @@ const LoginPage = () => {
 
     const navigate = useNavigate();
 
-    const {setToken, setUserType, setUserState, setUserEmail, setUserFirstName, setUserLastName, authState} = useContext(UserContext);
+    const {setToken, setUserType, setUserState, setUserEmail, setUserFirstName, setUserLastName, setUserId, authState} = useContext(UserContext);
 
     const [isLoading, setIsLoading] = useState(false);
     const [showForgotPassword, setShowForgotPassword] = useState(false);
@@ -40,7 +40,6 @@ const LoginPage = () => {
     useEffect( () => {
         if (authState.userState) {
             if (userInformation.firstLogin) {
-                console.log('First login. Redirecting to password change.');
                 navigate('/change-password');
             }else if (authState.userType === 'user' || authState.userType === 'agent') {
                 navigate('/home');
@@ -58,11 +57,11 @@ const LoginPage = () => {
             const token = await response.getIdToken();
             const userInfo = await getUserInformation(response.uid);
             setUserInformation(userInfo);
-            console.log('User info:', userInfo);
             setToken(token);
             setUserType(userInfo.role);
             setUserState(true);
             setUserEmail(userInfo.email);
+            setUserId(userInfo.id);
             setUserFirstName(userInfo.firstName);
             setUserLastName(userInfo.lastName);
             setIsLoading(false);
@@ -84,7 +83,6 @@ const LoginPage = () => {
     const onForgotPasswordSubmit = e => {
         e.preventDefault();
         // Handle forgot password logic here
-        console.log('Forgot password submitted:', forgotPasswordEmail.value);
         onCloseForgotPassword();
     };
 

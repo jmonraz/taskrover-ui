@@ -10,7 +10,7 @@ import CommentPublisher from "./CommentPublisher";
 // utils
 import {deleteComment} from "../utils/firebaseUtils";
 
-const TicketConversationBlock = ({conversation, ticketId, onDelete}) => {
+const TicketConversationBlock = ({conversation, ticketId, onDelete, style}) => {
     // const commentWithBreaks = conversation.comment.replace(/\\n/g, "<br />");
     const {authState} = useContext(UserContext);
     const {userType} = authState;
@@ -52,7 +52,7 @@ const TicketConversationBlock = ({conversation, ticketId, onDelete}) => {
 
     return (
         <>
-            <div className={styles['conversation-block']}>
+            <div className={`${styles['conversation-block']} ${styles[style]}`}>
                     {isEditing ? (
                         <CommentPublisher ticketId={ticketId} onClose={() => setIsEditing(!isEditing)} initialValue={conversation.comment} mode='edit' conversation={conversation} onEdit={handleEdit}/>
                         ) : (

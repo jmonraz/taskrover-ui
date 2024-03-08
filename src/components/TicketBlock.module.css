@@ -8,17 +8,18 @@ p {
 .ticket-block {
     display: flex;
     align-items: center;
-    border-radius: 5px;
+    /*border-radius: 5px;*/
     background-color: #fff;
-    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
+    /*box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);*/
     padding: 15px 20px 15px 20px;
+    border: 1px solid #e0e0e0;
     cursor: pointer;
     transition: box-shadow 0.3s ease-in-out, background-color 0.3s ease-in-out;
 }
 
 .ticket-block:hover {
     background-color: #ececec;
-    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.4);
+    /*box-shadow: 0 5px 5px rgba(0, 0, 0, 0.4);*/
 }
 
 .ticket-row {

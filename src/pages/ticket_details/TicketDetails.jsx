@@ -144,9 +144,18 @@ const TicketDetails = () => {
                             <div className={styles['ticket-conversation-col']}>
                                 <div>
                                     {ticket && ticket.conversations && ticket.conversations.sort((a, b) => b.id - a.id)
-                                        .map((conversation, _) =>
-                                            <TicketConversationBlock ticketId={ticketId} key={conversation.id} conversation={conversation} onDelete={handleReload} />
-                                    )}
+                                        .map((conversation, _) => {
+                                            for (var agent in agents) {
+                                                if (conversation.commentOwnerId === agent.id) {
+                                                    const role = agent.role;
+                                                    // return TicketConversationBlock with conditions based on role
+                                                    return <TicketConversationBlock style={role === 'user' ? 'user-block' : 'agent-block'} ticketId={ticketId} key={conversation.id} conversation={conversation} onDelete={handleReload} />;
+                                                }
+                                            }
+                                            // If no matching agent is found, return default TicketConversationBlock
+                                            return <TicketConversationBlock ticketId={ticketId} key={conversation.id} conversation={conversation} onDelete={handleReload} />;
+                                        })
+                                    }
                                 </div>
                             </div>
                         </div>
