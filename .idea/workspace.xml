@@ -5,13 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e453f103-7006-42f5-a97d-fd450ce14e14" name="Changes" comment="fixed the git issues">
-      <change afterPath="$PROJECT_DIR$/src/assets/img/galaxy-image.svg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Button.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Button.module.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Input.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Input.module.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/loginpage/LoginPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/loginpage/LoginPage.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/loginpage/LoginPage.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/loginpage/LoginPage.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Navbar.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Navbar.module.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -100,7 +95,7 @@
       <workItem from="1706808478405" duration="6236000" />
       <workItem from="1706892247599" duration="4060000" />
       <workItem from="1707430085081" duration="741000" />
-      <workItem from="1709920349902" duration="3178000" />
+      <workItem from="1709920349902" duration="3873000" />
     </task>
     <task id="LOCAL-00001" summary="fixed an issue with the add button">
       <option name="closed" value="true" />
