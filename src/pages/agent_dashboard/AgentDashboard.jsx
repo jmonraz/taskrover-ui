@@ -179,49 +179,31 @@ const AgentDashboard = () => {
                 </div>) :
             (
                 <>
-                        <div className={styles['header-row']}>
-                            <div className={styles['ticket-filter-ctr']}>
-                                <p className={styles['ticket-filter-label']}>{ticketFilterState.title} ({ticketFilterState.number})</p>
-                                <div className={styles['icon-container']}>
-                                    <img src={downArrowIcon} alt="down-arrow" className={styles['icon']}
-                                         onClick={handleTicketFilterSubmenu}/>
-                                    {isTicketFilterSubmenu && (
-                                        <div className={styles['dropdown-menu']} ref={ticketFilterRef}>
-                                            <ul>
-                                                {ticketFilter.map((filter, index) => (
-                                                    <li key={index} onClick={() => handleTicketFilterChange(filter)}>
-                                                        {filter.title}
-                                                    </li>
-                                                ))}
-                                            </ul>
-                                        </div>
-                                    )}
-                                </div>
-                            </div>
-                            <div>
-                                <SearchBar inputProps={searchBarProps}/>
-                            </div>
-                        </div>
                     <div className={styles['header-row']}>
-                        <div>
-                            {/*<input type="checkbox" checked={selectAll} onChange={handleSelectAll}/>*/}
-                        </div>
-                        <div className={styles['header-row']}>
-                            <p className={styles['ticket-count']}>
-                                {startIndex + 1} - {Math.min(endIndex, tickets.length)} of {tickets.length}
-                            </p>
-                            <div className={styles['header-row-btn']}>
-                                <button className={styles['sml-action-btn']} onClick={handlePrevPage}>
-                                    Prev
-                                </button>
-                                <button className={styles['sml-action-btn']} onClick={handleNextPage}>
-                                    Next
-                                </button>
+                        <div className={styles['ticket-filter-ctr']}>
+                            <p className={styles['ticket-filter-label']}>{ticketFilterState.title} ({ticketFilterState.number})</p>
+                            <div className={styles['icon-container']}>
+                                <img src={downArrowIcon} alt="down-arrow" className={styles['icon']}
+                                     onClick={handleTicketFilterSubmenu}/>
+                                {isTicketFilterSubmenu && (
+                                    <div className={styles['dropdown-menu']} ref={ticketFilterRef}>
+                                        <ul>
+                                            {ticketFilter.map((filter, index) => (
+                                                <li key={index} onClick={() => handleTicketFilterChange(filter)}>
+                                                    {filter.title}
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    </div>
+                                )}
                             </div>
-
                         </div>
+                        <div>
+                            <SearchBar inputProps={searchBarProps}/>
+                        </div>
+
                     </div>
-                    <hr/>
+
                     <div className={styles['ticket-blocks-col']}>
                         {displayedTickets.map((ticket) => (
                             <TicketBlock
@@ -232,6 +214,20 @@ const AgentDashboard = () => {
                                 onCheckboxChange={handleCheckboxChange}
                             />
                         ))}
+                    </div>
+                    <div className={styles['btn-row']}>
+
+                        <p className={styles['ticket-count']}>
+                            {startIndex + 1} - {Math.min(endIndex, tickets.length)} of {tickets.length}
+                        </p>
+                        <div className={styles['header-row-btn']}>
+                            <button className={styles['sml-action-btn']} onClick={handlePrevPage}>
+                                Prev
+                            </button>
+                            <button className={styles['sml-action-btn']} onClick={handleNextPage}>
+                                Next
+                            </button>
+                        </div>
                     </div>
 
                 </>)

@@ -2,27 +2,27 @@
     display: flex;
     flex-direction: column;
     /*gap: 5px;*/
-    padding: 1rem;
-    height: calc(100vh - 180px);
+    padding: 0;
+    height: calc(100vh - 190px);
     overflow-y: auto;
 }
 
 .header-row:nth-child(1) {
-    justify-content: space-between;
-    padding-bottom: 10px;
+    padding-bottom: 5px;
 }
 
 .header-row {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 2px 1rem;
+    align-items: flex-end;
+    justify-content: flex-end;
 }
 
 .ticket-filter-ctr {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
+    flex: 1;
+    padding: 10px 0;
 }
 
 .header-row-btn {
@@ -30,16 +30,24 @@
     gap: 2px;
 }
 
+.btn-row {
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    gap: 10px;
+    padding-top: 5px;
+}
+
 .ticket-count {
     font-size: 14px;
     font-weight: 600;
-    padding: 0 1rem 0 0;
+    padding-left: 50px;
 }
 
 .sml-action-btn {
     width: auto;
     border: none;
-    padding: 2px 15px;
+    padding: 4px 15px;
     border-radius: 5px;
     background-color: #1ea7fd;
     cursor: pointer;
@@ -54,7 +62,7 @@
 .ticket-filter-label {
     font-size: 18px;
     font-weight: 600;
-    padding: 0 1rem;
+    padding: 0 1rem 0 0;
 }
 
 .icon {
