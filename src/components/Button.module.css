@@ -6,7 +6,7 @@
     font-size: 16px;
     font-weight: bold;
     cursor: pointer;
-    background-color: #00796B;
+    background-color: #328a1c;
     color: #fff;
     /*box-shadow: 0 5px 10px rgba(0,0,0,0.4);*/
     font-family: 'Roboto', sans-serif;
@@ -14,11 +14,11 @@
 }
 
 .default-button:hover {
-    background-color: #00695C;
+    background-color: #1f7f0d;
 }
 
 .default-button:active {
-    background-color: #004D40;
+    background-color: #1a6e0b;
 }
 
 .alt-button {
@@ -52,19 +52,19 @@
     font-size: 16px;
     font-weight: bold;
     cursor: pointer;
-    background-color: #FF5733;
+    background-color: #e12e2e;
     color: #fff;
-    box-shadow: 0 5px 10px rgba(0,0,0,0.4);
+    /*box-shadow: 0 5px 10px rgba(0,0,0,0.4);*/
     font-family: 'Roboto', sans-serif;
     transition: background-color 0.3s ease-in-out;
 }
 
 .cancel-button:hover {
-    background-color: #E64D2F;
+    background-color: #C44126;
 }
 
 .cancel-button:active {
-    background-color: #C44126;
+    background-color: #A33A1F;
 }
 
 .confirm-button {
@@ -118,15 +118,15 @@
 }
 
 .green-button {
-    border: none;
     border-radius: 5px;
     padding: 10px 15px;
     width: 100%;
     font-size: 16px;
     font-weight: bold;
     cursor: pointer;
-    background-color: #4CAF50;
-    color: #fff;
+    background-color: transparent;
+    border: 2px solid #4CAF50;
+    color: #4CAF50;
     /*box-shadow: 0 5px 10px rgba(0,0,0,0.4);*/
     font-family: 'Roboto', sans-serif;
     transition: background-color 0.3s ease-in-out;
@@ -134,10 +134,12 @@
 
 .green-button:hover {
     background-color: #3b863e;
+    color: #fff;
 }
 
 .green-button:active {
     background-color: #2e6f2a;
+    color: #fff;
 }
 
 .small-button {

@@ -124,14 +124,20 @@ const TicketDetails = () => {
                                 <div>
                                     <p className={styles['ticket-title-text']}>{ticket.ticketTitle}</p>
                                 </div>
-                                <div>
-                                    <Button onClick={() => {setCommentClicked(!commentClicked)}}>Comment</Button>
-                                </div>
+
                             </div>
                             <div className={styles['ticket-details-row']}>
-                                <p className={styles['ticket-number-bubble']}>{ticket.ticketNumber}</p>
-                                <p>{ticket.ticketDepartment}</p>
+                                <div className={styles['tkt-num-row']}>
+                                    <p className={styles['ticket-number-bubble']}>{ticket.ticketNumber}</p>
+                                    <p>{ticket.ticketDepartment}</p>
+                                </div>
+                                <div >
+                                <Button onClick={() => {
+                                        setCommentClicked(!commentClicked)
+                                    }}>Comment</Button>
+                                </div>
                             </div>
+
 
                         </div>
 
@@ -169,8 +175,8 @@ const TicketDetails = () => {
                                 )}
                             {userType === 'agent' && ticket.ticketStatus === 'Closed' &&  (
                                 <div className={styles['ticket-container-footer-open']}>
-                                    <p>Ticket is closed</p>
-                                    <Button onClick={onOpenTicket}>Open Ticket</Button>
+                                    <p className={styles['tkt-close']}>Ticket is closed</p>
+                                    <Button styleName='green-button' onClick={onOpenTicket}>Open Ticket</Button>
                                 </div>
                                 )}
                         </div>
