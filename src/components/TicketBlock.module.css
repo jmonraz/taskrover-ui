@@ -8,11 +8,10 @@ p {
 .ticket-block {
     display: flex;
     align-items: center;
-    justify-content: space-between;
     border-radius: 5px;
     background-color: #fff;
     box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
-    padding: 15px 75px 15px 20px;
+    padding: 15px 20px 15px 20px;
     cursor: pointer;
     transition: box-shadow 0.3s ease-in-out, background-color 0.3s ease-in-out;
 }
@@ -26,13 +25,22 @@ p {
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    padding: 0px 0;
     gap: 10px;
+}
+
+.ticket-row:first-child {
+    flex: 1;
+}
+
+.ticket-row:nth-child(2) {
+    width: 150px;
 }
 
 .ticket-col {
     display: flex;
     flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
 }
 
 .ticket-row:nth-child(1) {

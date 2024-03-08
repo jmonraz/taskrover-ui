@@ -9,7 +9,7 @@ const TicketBlock = ({onClick, ticketDetails, isChecked, onCheckboxChange }) => 
     const {authState} = useContext(UserContext);
     const {userType} = authState;
     const statuses = ['Open', 'On Hold', 'Escalated', 'Closed', 'In Progress'];
-    const [departments, setDepartments] = useState([]);
+        const [departments, setDepartments] = useState([]);
     const priorities = ['Low', 'Medium', 'High', 'Urgent'];
 
     const [isTicketStatus, setIsTicketStatus] = useState(false);
