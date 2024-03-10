@@ -175,6 +175,7 @@ const AgentDashboard = () => {
         <>
         {isLoading ?
                 (<div className={styles['loader-ctr']}>
+                    <div><p className={styles['loader-txt']}>Loading Tickets</p></div>
                     <div className={styles['loader']}></div>
                 </div>) :
             (

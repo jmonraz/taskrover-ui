@@ -118,6 +118,13 @@
 
 }
 
+.loader-txt {
+    font-size: 20px;
+    font-weight: 600;
+    padding: 10px 0;
+
+}
+
 .loader {
     border: 5px solid #f3f3f3; /* Light grey */
     border-top: 5px solid #3498db; /* Blue */

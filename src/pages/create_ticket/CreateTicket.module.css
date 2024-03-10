@@ -1,18 +1,16 @@
 .ticket-container {
     display: flex;
     justify-content: center;
-    align-items: center;
-    height: 100vh;
+    align-items: flex-start;
 }
 
 .ticket-form {
-    width: 85%;
-    padding: 25px;
+    padding: 25px 50px;
     border-radius: 5px;
     background-color: #ffffff;
     display: flex;
     flex-direction: column;
-    gap: 50px;
+    gap: 25px;
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.4);
 }
 
@@ -23,11 +21,16 @@
 }
 
 .form-column {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 5px;
     flex: 1;
 }
 
-label {
-    font-weight: bold;
+.form-column label {
+    font-size: 1rem;
+    font-weight: 500;
 }
 
 label.required::after {
@@ -41,13 +44,14 @@ label.required {
 }
 
 
-select {
+.form-column select {
     width: 100%;
     padding: 8px;
-    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 5px;
 }
 
-input[type="file"] {
+.form-column input[type="file"] {
     display: none;
 }
 
@@ -68,43 +72,40 @@ input[type="file"] {
     border-radius: 5px;
 }
 
-
-button {
-    background-color: #00796B;
-    color: #fff;
-    cursor: pointer;
-    padding: 10px;
-    width: 120px;
+.button-container {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+    gap: 5px;
 }
 
-.cancel-button {
-    background-color: #fff;
-    color: #FF5733;
-    cursor: pointer;
-    padding: 10px;
-    width: 120px;
-    box-sizing: border-box;
-    border: 1px solid #FF5733;
+.button-container button {
+    width: 100px;
+    padding: 10px 5px;
+    font-size: .9rem;
+    font-weight: 400;
+}
+
+.form-row input {
+    padding: 8px;
+    min-width: 250px;
+    width: 100%;
+    border: 1px solid #ccc;
     border-radius: 5px;
 }
 
-.cancel-button:hover {
-    background-color: #f8f8f8;
+.ticket-form h2 {
+    margin: 0;
+    font-size: 1.4rem;
+    font-weight: 400;
+    color: #00796B;
 }
 
-.button-container {
-    display: flex;
-    justify-content: flex-end;
-    margin-right: 7%;
-}
-
-.cancel-button {
-    padding: 10px;
-    margin-left: 8px;
-}
-
-.horizontal-line {
-    border: 1px solid darkgrey;
-    margin: 15px 125px;
-
+.form-row textarea {
+    resize: none;
+    height: 150px;
+    padding: 8px;
+    font-family: 'Roboto', sans-serif;
+    border: 1px solid #ccc;
+    border-radius: 5px;
 }
