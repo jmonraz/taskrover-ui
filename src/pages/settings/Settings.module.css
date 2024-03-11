@@ -1,18 +1,59 @@
+.settings-row {
+    display: flex;
+
+}
+
+.side-menu {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 70px 100px 0 40px;
+    background-color: #1c2f38;
+}
+
+.side-menu p {
+    color: #ffffff;
+    font-size: 1rem;
+    cursor: pointer;
+    padding-top: 1.5rem;
+    border-bottom: 1px solid transparent;
+    transition: border-bottom 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+.side-menu p:hover {
+    color: #0d93e7;
+    border-bottom: 1px solid #0d93e7;
+}
+
+.side-menu p.active {
+    color: #4CAF50;
+    border-bottom: 1px solid #4CAF50;
+}
+
+.settings-content-ctr {
+    display: flex;
+    flex-direction: column;
+    padding-left: 190px;
+    flex: 1;
+}
+
 .settings-container {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+    flex-direction: column;
+    align-items: flex-start;
+    padding-top: 1rem;
 }
 
 .settings-form {
-    width: 85%;
-    padding: 25px;
+    padding: 25px 50px;
     border-radius: 5px;
     background-color: #ffffff;
     display: flex;
     flex-direction: column;
-    gap: 50px;
+    gap: 1.5rem;
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.4);
 }
 
@@ -29,4 +70,26 @@
 .profile-pic-button img {
     width: 100%;  /* Fill the button */
     height: 100%; /* Maintain aspect ratio */
+}
+
+.page-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #333;
+}
+
+.col {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.col label {
+    font-size: 1rem;
+    font-weight: 500;
+    color: #757575;
+}
+
+.btn-row {
+    padding-top: 1rem;
 }

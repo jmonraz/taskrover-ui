@@ -31,7 +31,9 @@
 .form-column label {
     font-size: 1rem;
     font-weight: 500;
+    color: #757575;
 }
+
 
 label.required::after {
     content: '*';
@@ -58,6 +60,10 @@ label.required {
 .upload-container {
     position: relative;
     overflow: hidden;
+}
+
+.upload-container label {
+    color: #fff;
 }
 
 .upload-button {

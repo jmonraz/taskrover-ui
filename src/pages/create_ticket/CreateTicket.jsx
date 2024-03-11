@@ -1,9 +1,10 @@
-import React, {useEffect, useState} from "react";
+import React, {useContext, useEffect, useState} from "react";
 import styles from "./CreateTicket.module.css";
 // utils
 import {addNewTicket, getDepartments, getUsersByRole} from "../../utils/firebaseUtils";
 import {useNavigate} from "react-router-dom";
 import Button from "../../components/Button";
+import {UserContext} from "../../context/UserContext";
 
 const Ticket = () => {
 
@@ -20,6 +21,7 @@ const Ticket = () => {
     const navigate = useNavigate();
     const [departments, setDepartments] = useState([]);
     const [agents, setAgents] = useState([]);
+    const { authState } = useContext(UserContext);
 
     useEffect(() => {
         const fetchDepartments = async () => {
@@ -71,7 +73,11 @@ const Ticket = () => {
     };
 
     const handleCancel = () => {
-        navigate('/home/agent/dashboard');
+        if(authState.role === 'agent') {
+            navigate('/home/agent/dashboard');
+        } else {
+            navigate('/home/user/dashboard');
+        }
     };
 
     return (

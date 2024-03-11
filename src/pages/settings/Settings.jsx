@@ -7,14 +7,19 @@ import {collection, doc, getFirestore, updateDoc} from "firebase/firestore";
 import { auth, db, storage } from '../../services/firebaseService';
 import {useDocument} from "react-firebase-hooks/firestore";
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
+import Input from "../../components/Input";
+import {useFormInput} from "../../hooks/useFormInput";
+import Button from "../../components/Button";
 
 const SettingsPage = () => {
+    const editName = useFormInput('');
     const [user] = useAuthState(auth);
     const docRef = doc(db, "collectionName", "documentId");
     const usersCollection = collection(db, "users");
     const [userData, loading] = useDocument(doc(db, "users", user?.uid));
     const [fullName, setFullName] = useState('');
     const [newProfilePic, setNewProfilePic] = useState(null);
+    const [activeTab, setActiveTab] = useState('account');
 
     useEffect(() => {
         if (userData && userData.exists) {
@@ -24,10 +29,6 @@ const SettingsPage = () => {
             console.error('Error fetching user data:', userData.error);
         }
     }, [userData, loading]);
-
-    const handleFullNameChange = (e) => {
-        setFullName(e.target.value);
-    };
 
     const handleProfilePicChange = (e) => {
         if (e.target.files[0]) {
@@ -52,8 +53,9 @@ const SettingsPage = () => {
                 return;
             }
 
+            const newFullName = editName.value;
             // Update full name
-            await updateDoc(doc(usersCollection, user.uid), { fullName });
+            await updateDoc(doc(usersCollection, user.uid), { newFullName});
 
             if (newProfilePic) {
                 const storageRef = ref(storage, `profile-pics/${user.uid}`);
@@ -74,46 +76,53 @@ const SettingsPage = () => {
         return <p>Loading...</p>;
     }
 
-    return (
-        <div >
-            <h2>Account Settings</h2>
-            <div className={styles["settings-container"]}>
-                <form className={styles["settings-form"]}>
-                    <div>
+    const handleTabClick = (tab) => {
+        setActiveTab(tab);
+    };
 
-                        <label htmlFor="fullName">Full Name:</label>
-                        <input
-                            type="text"
-                            id="fullName"
-                            value={fullName}
-                            onChange={handleFullNameChange}
-                        />
-                    </div>
+    return (
+        <>
+            <div className={styles['settings-row']}>
+                <div className={styles['side-menu']}>
                     <div>
-                        <label htmlFor="profilePic">Profile Picture:</label>
-                        <button
-                            type="button"
-                            onClick={() => document.getElementById('profilePic').click()}
-                            className={styles["profile-pic-button"]}
-                        >
-                            <img
-                                id="profilePicPreview"
-                                src={userData.data().profilePic}
-                                alt="Profile Picture"
-                            />
-                        </button>
-                        <input
-                            type="file"
-                            accept="image/*"
-                            id="profilePic"
-                            onChange={handleProfilePicChange}
-                            style={{display: 'none'}}
-                        />
+                        <p onClick={() => {handleTabClick('account')}} className={activeTab === 'account' && styles['active']}>Account</p>
+                        <p onClick={() => {handleTabClick('roles')}} className={activeTab === 'roles' && styles['active']}>Roles</p>
                     </div>
-                </form>
+                </div>
+                {activeTab === 'account' && (
+                    <div className={styles['settings-content-ctr']}>
+                        <h1 className={styles['page-title']}>Account Settings</h1>
+                        <div className={styles["settings-container"]}>
+                            <form className={styles["settings-form"]}>
+                                <div className={styles['col']}>
+                                    <label htmlFor="fullName">Full Name</label>
+                                    <Input inputProps={editName} placeholder={fullName} styleName='main-input'/>
+                                </div>
+                                <div className={styles['col']}>
+                                    <label htmlFor="profilePic">Profile Picture</label>
+                                    <button
+                                        type="button"
+                                        onClick={() => document.getElementById('profilePic').click()}
+                                        className={styles["profile-pic-button"]}>
+                                        <img id="profilePicPreview" src={userData.data().profilePic}
+                                             alt="Profile Picture"/>
+                                    </button>
+                                    <input type="file" accept="image/*" id="profilePic" onChange={handleProfilePicChange} style={{display: 'none'}}/>
+                                </div>
+                                <div className={styles['btn-row']}>
+                                    <Button onClick={handleSaveChanges} styleName='green-button'>Save Changes</Button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                )}
+                {activeTab === 'roles' && (
+                    <div className={styles['settings-content-ctr']}>
+                        <h1 className={styles['page-title']}>Roles Settings</h1>
+                    </div>
+                )}
             </div>
-            <button onClick={handleSaveChanges}>Save Changes</button>
-        </div>
+        </>
     );
 };
 

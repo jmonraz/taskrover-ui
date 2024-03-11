@@ -237,7 +237,7 @@ const Navbar = () => {
                 </div>
                 {/*<img src={userNotificationIcon} alt="notifications" className={styles['user-icon']}/>*/}
                 <div className={styles['submenu-container']}>
-                    <img src={userIcon} alt="users" className={styles['user-icon']}/>
+                    <img src={userIcon} alt="users" className={styles['icon']}/>
                     <div className={styles['submenu']}>
                         <ul>
                             {/*<li>Profile</li>*/}

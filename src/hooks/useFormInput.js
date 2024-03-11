@@ -10,5 +10,5 @@ export function useFormInput(initialValue = '') {
 
     const clearValue = () => setValue('');
 
-    return {value, onChange: handleChange, clearValue: clearValue}
+    return {value, onChange: handleChange, clearValue: clearValue, initialValue: initialValue};
 }
