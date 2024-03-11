@@ -72,13 +72,12 @@ const ShowAccounts = () => {
 
 
     return (
-        <div>
-            <h2>User List</h2>
-            <hr />
+        <div className={styles['page-ctr']}>
+            <h1>User List</h1>
             {loading ? (
                 <p>Loading...</p>
             ) : (
-                <div>
+                <div className={styles['user-list']}>
                     {users.map((user) => (
                         <UserBlock key={user.id} user={user} onDelete={() => handleUserDelete(user)} />
                     ))}

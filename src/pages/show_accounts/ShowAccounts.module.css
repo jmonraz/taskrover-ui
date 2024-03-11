@@ -1,7 +1,17 @@
+.page-ctr h1 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #333;
+}
+
 .user-list {
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: stretch;
+    padding-top: 1rem;
+    gap: 1rem;
 }
 
 .user-block:hover {
