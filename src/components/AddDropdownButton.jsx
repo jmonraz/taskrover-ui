@@ -3,6 +3,7 @@ import addIcon from "../assets/icons/add_icon.svg";
 import dropdownArrow from "../assets/icons/dropdown_arrow.svg";
 import {useContext} from "react";
 import {UserContext} from "../context/UserContext";
+import Button from "./Button";
 
 const AppDropdownButton = ({onClick}) => {
     const { authState } = useContext(UserContext);
@@ -21,11 +22,7 @@ const AppDropdownButton = ({onClick}) => {
     );
 
     const UserButton =(
-        <div className={styles['button-container']} style={{marginLeft: '10px',}} onClick={onClick}>
-        <div className={styles['btn-box']}>
-        <p style={{color:'#ffff'}}>Create A Ticket</p>
-        </div>
-</div>
+        <Button onClick={onClick}>Create Ticket</Button>
     );
     return(
         <>

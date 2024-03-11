@@ -1,24 +1,23 @@
 .default-button {
     border: none;
-    border-radius: 5px;
-    padding: 10px 15px;
+    border-radius: 4px;
+    padding: 8px 10px;
     width: 100%;
-    font-size: 16px;
-    font-weight: bold;
+    font-size: 1rem;
+    font-weight: 400;
     cursor: pointer;
-    background-color: #328a1c;
+    background-color: #38b613;
     color: #fff;
-    /*box-shadow: 0 5px 10px rgba(0,0,0,0.4);*/
     font-family: 'Roboto', sans-serif;
     transition: background-color 0.3s ease-in-out;
 }
 
 .default-button:hover {
-    background-color: #1f7f0d;
+    background-color: #2e9f0b;
 }
 
 .default-button:active {
-    background-color: #1a6e0b;
+    background-color: #1f7a08;
 }
 
 .alt-button {
