@@ -232,6 +232,26 @@ class FirebaseDBService {
         });
         return newDepartmentRef;
     }
+
+    async getRoles() {
+        const rolesRef = collection(this.db, 'roles');
+        const querySnapshot = await getDocs(rolesRef);
+        const roles = [];
+        querySnapshot.forEach((doc) => {
+            roles.push({ id: doc.id, ...doc.data() });
+        });
+        return roles;
+    }
+
+    async createRole(role) {
+        const rolesRef = collection(this.db, 'roles');
+        const newRoleRef = doc(rolesRef);
+        await setDoc(newRoleRef, {
+            id: newRoleRef.id,
+            ...role
+        });
+        return newRoleRef;
+    }
 }
 
 export default FirebaseDBService;

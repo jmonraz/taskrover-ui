@@ -37,7 +37,7 @@
     list-style: none;
     margin: 0;
     padding: 0 20px;
-    gap: 15px;
+    gap: 25px;
 }
 
 .navbar-items ul li {
@@ -51,8 +51,8 @@
 }
 
 .navbar-items ul li:hover {
-    border-bottom: 1px solid #FF6F61;
-    color: #FF6F61;
+    border-bottom: 1px solid #4CAF50;
+    color: #4CAF50;
 }
 
 .navbar > :nth-child(2) {
@@ -258,5 +258,5 @@
 .error {
     color: #FF5733;
     font-size: 0.8rem;
-    padding: 5px 0;
+    padding: 5px 0px;
 }

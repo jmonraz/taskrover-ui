@@ -159,7 +159,8 @@ const Navbar = () => {
                     <ul>
                         <li onClick={handleOnClickTickets}>TICKETS</li>
                         {/*<li>KNOWLEDGE BASE</li>*/}
-                        <li onClick={handleOnClickUsers}>ACCOUNTS/ USERS</li>
+                        <li>ACCOUNTS</li>
+                        <li onClick={handleOnClickUsers}>USERS</li>
                         <li onClick={handleOnClickAnalytics}>ANALYTICS</li>
                     </ul>
                     {createDepartmentBtn && (

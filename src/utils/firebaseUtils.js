@@ -91,3 +91,13 @@ export const createDepartment = async (department) => {
     const firebaseDBService = new FirebaseDBService();
     return await firebaseDBService.createDepartment(department);
 }
+
+export const getRoles = async () => {
+    const firebaseDBService = new FirebaseDBService();
+    return await firebaseDBService.getRoles();
+}
+
+export const createRole = async (role) => {
+    const firebaseDBService = new FirebaseDBService();
+    return await firebaseDBService.createRole(role);
+}
