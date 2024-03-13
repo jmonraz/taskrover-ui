@@ -4,16 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e453f103-7006-42f5-a97d-fd450ce14e14" name="Changes" comment="fixed the git issues">
+    <list default="true" id="e453f103-7006-42f5-a97d-fd450ce14e14" name="Changes" comment="made it to where you can upload a profile pic and change your name">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Button.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Button.module.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Navbar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Navbar.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Navbar.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Navbar.module.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/hooks/useFormInput.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/useFormInput.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/create_ticket/CreateTicket.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/create_ticket/CreateTicket.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/create_ticket/CreateTicket.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/create_ticket/CreateTicket.module.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/settings/Settings.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/settings/Settings.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/settings/Settings.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/settings/Settings.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/services/firebaseDbService.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/firebaseDbService.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,18 +25,10 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="dev" />
+        <entry key="$PROJECT_DIR$" value="main" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-    <option name="UPDATE_TYPE" value="REBASE" />
-  </component>
-  <component name="GithubProjectSettings">
-    <option name="branchProtectionPatterns">
-      <list>
-        <option value="main" />
-      </list>
-    </option>
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -62,43 +48,22 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "dart.analysis.tool.window.visible": "false",
-    "git-widget-placeholder": "dev",
-    "ignore.virus.scanning.warn.message": "true",
+    "git-widget-placeholder": "settings-test",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/Users/jorgemonraz/Desktop/dev/taskrover-ui/src/assets/img",
     "list.type.of.created.stylesheet": "CSS",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "show.migrate.to.gradle.popup": "false",
-    "ts.external.directory.path": "/Applications/IntelliJ IDEA.app/Contents/plugins/javascript-impl/jsLanguageServicesImpl/external",
+    "ts.external.directory.path": "C:\\Program Files\\JetBrains\\IntelliJ IDEA 2023.2.5\\plugins\\javascript-impl\\jsLanguageServicesImpl\\external",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/assets/img" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/assets/img" />
+      <recent name="C:\Users\drago\OneDrive\Desktop\TaskRover\src\assets\img" />
     </key>
-  </component>
-  <component name="RunManager">
-    <configuration default="true" type="JetRunConfigurationType">
-      <module name="taskrover_ui" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
-      <module name="taskrover_ui" />
-      <option name="filePath" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -110,25 +75,23 @@
       <updated>1706808477445</updated>
       <workItem from="1706808478405" duration="6236000" />
       <workItem from="1706892247599" duration="4060000" />
-      <workItem from="1707430085081" duration="741000" />
-      <workItem from="1709920349902" duration="12620000" />
-      <workItem from="1710129189149" duration="5336000" />
+      <workItem from="1706918512651" duration="9321000" />
     </task>
-    <task id="LOCAL-00001" summary="fixed an issue with the add button">
+    <task id="LOCAL-00001" summary="added the Account list and working on the settings page">
       <option name="closed" value="true" />
-      <created>1707414105309</created>
+      <created>1706921311676</created>
       <option name="number" value="00001" />
       <option name="presentableId" value="LOCAL-00001" />
       <option name="project" value="LOCAL" />
-      <updated>1707414105309</updated>
+      <updated>1706921311676</updated>
     </task>
-    <task id="LOCAL-00002" summary="fixed the git issues">
+    <task id="LOCAL-00002" summary="made it to where you can upload a profile pic and change your name">
       <option name="closed" value="true" />
-      <created>1709687979713</created>
+      <created>1706986147746</created>
       <option name="number" value="00002" />
       <option name="presentableId" value="LOCAL-00002" />
       <option name="project" value="LOCAL" />
-      <updated>1709687979713</updated>
+      <updated>1706986147746</updated>
     </task>
     <option name="localTasksCounter" value="3" />
     <servers />
@@ -136,21 +99,9 @@
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
-  <component name="Vcs.Log.Tabs.Properties">
-    <option name="TAB_STATES">
-      <map>
-        <entry key="MAIN">
-          <value>
-            <State />
-          </value>
-        </entry>
-      </map>
-    </option>
-  </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="merged settings branch with dev" />
-    <MESSAGE value="fixed an issue with the add button" />
-    <MESSAGE value="fixed the git issues" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed the git issues" />
+    <MESSAGE value="added the Account list and working on the settings page" />
+    <MESSAGE value="made it to where you can upload a profile pic and change your name" />
+    <option name="LAST_COMMIT_MESSAGE" value="made it to where you can upload a profile pic and change your name" />
   </component>
 </project>

@@ -10,7 +10,7 @@ import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import Input from "../../components/Input";
 import {useFormInput} from "../../hooks/useFormInput";
 import Button from "../../components/Button";
-import {getDepartments, getRoles} from "../../utils/firebaseUtils";
+import {getDepartments, getRoles, createRole} from "../../utils/firebaseUtils";
 
 const SettingsPage = () => {
     const editName = useFormInput('');
@@ -25,8 +25,8 @@ const SettingsPage = () => {
     const [departments, setDepartments] = useState([]);
     const [roles, setRoles] = useState([]);
 
-    const [roleName, setRoleName] = useState('');
-    const [roleDescription, setRoleDescription] = useState('');
+    const roleName = useFormInput('');
+    const roleDescription = useFormInput('');
 
     const [departmentChecks, setDepartmentChecks] = useState(
         departments.reduce((acc, department) => {
@@ -34,6 +34,21 @@ const SettingsPage = () => {
             return acc;
         }, {})
     );
+
+    const [roleChecks, setRoleChecks] = useState({
+        canUpdateTickets: false,
+        canDeleteTickets: false,
+        canUpdateComments: false,
+        canDeleteComments: false,
+        canEditRoles: false,
+        canEditDepartments: false,
+        canEditAccounts: false,
+        canEditUsers: false,
+        canEditTeams: false,
+        canEditTicketForms: false,
+        canEditRules: false,
+        canEditMenus: false,
+    });
 
     useEffect(() => {
         if (userData && userData.exists) {
@@ -93,7 +108,6 @@ const SettingsPage = () => {
         if (tab === 'roles') {
             await getRoles().then((roles) => {
                 setRoles(roles);
-                console.log('roles', roles);
             });
         }
         setActiveTab(tab);
@@ -104,7 +118,6 @@ const SettingsPage = () => {
             setDepartments(departments);
         });
 
-        console.log('departments', departments);
         setIsCreateRoleModalOpen(!isCreateRoleModalOpen);
     };
 
@@ -115,16 +128,37 @@ const SettingsPage = () => {
         }));
     };
 
+    const handleRoleCheckboxChange = (title) => {
+        setRoleChecks(prevChecks => ({
+            ...prevChecks,
+            [title]: !prevChecks[title]
+        }));
+
+    };
+
     const handleCreateRoleSubmit = async () => {
         const selectedDepartments = Object.keys(departmentChecks).filter((department) => departmentChecks[department]);
 
-        console.log('selectedDepartments', selectedDepartments);
-        // const role = {
-        //     role: roleName.value,
-        //     description: roleDescription.value,
-        //     departments: [
-        //     ],
-        // }
+        const role = {
+            role: roleName.value,
+            description: roleDescription.value,
+            departments: [
+                ...selectedDepartments
+            ],
+            canUpdateTickets: roleChecks.canUpdateTickets,
+            canDeleteTickets: roleChecks.canDeleteTickets,
+            canUpdateComments: roleChecks.canUpdateComments,
+            canDeleteComments: roleChecks.canDeleteComments,
+            canEditRoles: roleChecks.canEditRoles,
+            canEditDepartments: roleChecks.canEditDepartments,
+            canEditAccounts: roleChecks.canEditAccounts,
+            canEditUsers: roleChecks.canEditUsers,
+            canEditTeams: roleChecks.canEditTeams,
+            canEditTicketForms: roleChecks.canEditTicketForms,
+            canEditRules: roleChecks.canEditRules,
+            canEditMenus: roleChecks.canEditMenus,
+        }
+        await createRole(role);
     }
 
     return (
@@ -217,8 +251,6 @@ const SettingsPage = () => {
                                     <label htmlFor="fullName">Change Password</label>
                                     <Input inputProps={editName} placeholder={fullName} styleName='main-input'/>
                                 </div>
-
-
                             </form>
 
                         </div>
@@ -304,66 +336,113 @@ const SettingsPage = () => {
                                             <div>
                                                 <label htmlFor="canUpdateTickets">Can Update Tickets?</label>
                                                 <input type="checkbox" id="canUpdateTickets" name="canUpdateTickets"
-                                                       value="canUpdateTickets"/>
+                                                       value="canUpdateTickets"
+                                                         checked={roleChecks.canUpdateTickets}
+                                                            onChange={() => handleRoleCheckboxChange('canUpdateTickets')}
+                                                />
                                             </div>
                                             <div>
                                                 <label htmlFor="canDeleteTickets">Can Delete Tickets?</label>
                                                 <input type="checkbox" id="canDeleteTickets" name="canDeleteTickets"
-                                                       value="canDeleteTickets"/>
+                                                       value="canDeleteTickets"
+                                                            checked={roleChecks.canDeleteTickets}
+                                                                onChange={() => handleRoleCheckboxChange('canDeleteTickets')}
+
+                                                />
                                             </div>
                                             <div>
                                                 <label htmlFor="canUpdateComments">Can Update Comments?</label>
                                                 <input type="checkbox" id="canUpdateComments" name="canUpdateComments"
-                                                       value="canUpdateComments"/>
+                                                       value="canUpdateComments"
+                                                            checked={roleChecks.canUpdateComments}
+                                                                onChange={() => handleRoleCheckboxChange('canUpdateComments')}
+
+                                                />
                                             </div>
                                             <div>
                                                 <label htmlFor="canDeleteComments">Can Delete Comments?</label>
                                                 <input type="checkbox" id="canDeleteComments"
-                                                       name="canDeleteComments" value="canDeleteComments"/>
+                                                       name="canDeleteComments" value="canDeleteComments"
+                                                            checked={roleChecks.canDeleteComments}
+                                                                onChange={() => handleRoleCheckboxChange('canDeleteComments')}
+
+                                                />
                                             </div>
                                         </div>
                                         <div className={styles['checkbox-group']}>
                                             <div>
                                                 <label htmlFor="canEditRoles">Can Edit Roles?</label>
                                                 <input type="checkbox" id="canEditRoles" name="canEditRoles"
-                                                       value="canEditRoles"/>
+                                                       value="canEditRoles"
+                                                            checked={roleChecks.canEditRoles}
+                                                                onChange={() => handleRoleCheckboxChange('canEditRoles')}
+
+                                                />
                                             </div>
                                             <div>
                                                 <label htmlFor="canEditDepartments">Can Edit Departments?</label>
                                                 <input type="checkbox" id="canEditDepartments"
-                                                       name="canEditDepartments" value="canEditDepartments"/>
+                                                       name="canEditDepartments" value="canEditDepartments"
+                                                            checked={roleChecks.canEditDepartments}
+                                                                onChange={() => handleRoleCheckboxChange('canEditDepartments')}
+
+                                                />
                                             </div>
                                             <div>
                                                 <label htmlFor="canEditAccounts">Can Edit Accounts?</label>
                                                 <input type="checkbox" id="canEditAccounts" name="canEditAccounts"
-                                                       value="canEditAccounts"/>
+                                                       value="canEditAccounts"
+                                                            checked={roleChecks.canEditAccounts}
+                                                                onChange={() => handleRoleCheckboxChange('canEditAccounts')}
+
+                                                />
                                             </div>
                                             <div>
                                                 <label htmlFor="canEditUsers">Can Edit Users?</label>
                                                 <input type="checkbox" id="canEditUsers" name="canEditUsers"
-                                                       value="canEditUsers"/>
+                                                       value="canEditUsers"
+                                                            checked={roleChecks.canEditUsers}
+                                                                onChange={() => handleRoleCheckboxChange('canEditUsers')}
+
+                                                />
                                             </div>
                                         </div>
                                         <div className={styles['checkbox-group']}>
                                             <div>
                                                 <label htmlFor="canEditTeams">Can Edit Teams?</label>
                                                 <input type="checkbox" id="canEditTeams" name="canEditTeams"
-                                                       value="canEditTeams"/>
+                                                       value="canEditTeams"
+                                                            checked={roleChecks.canEditTeams}
+                                                                onChange={() => handleRoleCheckboxChange('canEditTeams')}
+
+                                                />
                                             </div>
                                             <div>
                                                 <label htmlFor="canEditTicketForms">Can Edit Ticket Forms?</label>
                                                 <input type="checkbox" id="canEditTicketForms"
-                                                       name="canEditTicketForms" value="canEditTicketForms"/>
+                                                       name="canEditTicketForms" value="canEditTicketForms"
+                                                            checked={roleChecks.canEditTicketForms}
+                                                                onChange={() => handleRoleCheckboxChange('canEditTicketForms')}
+
+                                                />
                                             </div>
                                             <div>
                                                 <label htmlFor="canEditRules">Can Edit Rules?</label>
                                                 <input type="checkbox" id="canEditRules" name="canEditRules"
-                                                       value="canEditRules"/>
+                                                       value="canEditRules"
+                                                            checked={roleChecks.canEditRules}
+                                                                onChange={() => handleRoleCheckboxChange('canEditRules')}
+
+                                                />
                                             </div>
                                             <div>
                                                 <label htmlFor="canEditMenus">Can Edit Menus?</label>
                                                 <input type="checkbox" id="canEditMenus" name="canEditMenus"
-                                                       value="canEditMenus"/>
+                                                       value="canEditMenus"
+                                                            checked={roleChecks.canEditMenus}
+                                                                onChange={() => handleRoleCheckboxChange('canEditMenus')}
+
+                                                />
                                             </div>
                                         </div>
                                     </div>

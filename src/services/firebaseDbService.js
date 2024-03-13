@@ -244,8 +244,10 @@ class FirebaseDBService {
     }
 
     async createRole(role) {
+        console.log('firebaseDbService role', role);
         const rolesRef = collection(this.db, 'roles');
         const newRoleRef = doc(rolesRef);
+        console.log('newRoleRef', newRoleRef);
         await setDoc(newRoleRef, {
             id: newRoleRef.id,
             ...role
