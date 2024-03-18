@@ -13,7 +13,7 @@ const ChatBot = () => {
     const [inputDisabled, setInputDisabled] = useState(true);
     const [finalMessage, setFinalMessage] = useState(false);
     const [response, setResponse] = useState([{}]);
-    const authState = useContext(UserContext);
+    const {authState} = useContext(UserContext);
     const [ticketId, setTicketId] = useState('');
 
     const chatBodyRef = useRef(null);
@@ -34,11 +34,12 @@ const ChatBot = () => {
                 console.log(response);
                 setResponse(response);
                 const ticket = await addNewTicket({
+                    agentAssigned: 'Unassigned',
                     classifications: '',
                     contactAccountId: 'test',
-                    contactEmail: authState.authState.refactor,
+                    contactEmail: authState.email,
                     contactPhone: '',
-                    contactUser: authState.authState.firstName + ' ' + authState.authState.lastName,
+                    contactUser: authState.firstName + ' ' + authState.lastName,
                     createdDate: new Date(),
                     isLastRespondedAgent: false,
                     language: 'English',
@@ -53,7 +54,7 @@ const ChatBot = () => {
                 }, {
                     comment: userMessageDescription[0],
                     commentDate: new Date(),
-                    commentOwner: authState.authState.firstName + ' ' + authState.authState.lastName,
+                    commentOwner: authState.firstName + ' ' + authState.lastName,
                 });
                 setTicketId(ticket);
                 setFinalMessage(true);

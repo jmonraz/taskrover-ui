@@ -205,7 +205,7 @@ const SettingsPage = () => {
                     <div className={styles['settings-content-ctr']}>
                         <div className={styles['header-row']}>
                             <h1 className={styles['page-title']}>Account Settings</h1>
-                            <Button onClick={handleSaveChanges} styleName='green-button'>Save Changes</Button>
+                            {/*<Button onClick={handleSaveChanges} styleName='green-button'>Save Changes</Button>*/}
                         </div>
                         <div className={styles["settings-container"]}>
                             <form className={styles["settings-form"]}>

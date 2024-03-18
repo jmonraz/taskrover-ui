@@ -36,6 +36,11 @@ p {
     max-width: 120px;
 }
 
+.ticket-row .ticket-title {
+    min-width: 225px;
+    max-width: 225px;
+}
+
 .ticket-col {
     display: flex;
     flex-direction: column;

@@ -13,7 +13,6 @@ const Ticket = () => {
     const [status, setStatus] = useState('');
     const [ticketOwner, setTicketOwner] = useState('');
     const [subject,setSubject]= useState('');
-    const [customField,setCustomField]= useState('');
     const [email,setEmail]= useState('');
     const [contactName,setContactName]= useState('');
     const [secondContact,setSecondContact]= useState('');
@@ -44,6 +43,7 @@ const Ticket = () => {
         }
        try {
            await addNewTicket({
+               agentAssigned: '',
                classifications: '',
                contactAccountId: account,
                contactEmail: email,
@@ -58,6 +58,7 @@ const Ticket = () => {
                tags: [],
                ticketDepartment: department,
                ticketOwner: ticketOwner,
+               ticketOwnerId: authState.userId,
                ticketStatus: status,
                ticketTitle: subject,
            }, {

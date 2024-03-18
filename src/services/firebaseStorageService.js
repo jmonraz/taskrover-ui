@@ -19,6 +19,7 @@ class StorageService {
 
     // Method to get the download URL of a user's profile picture
     async getUserProfilePictureUrl(userId) {
+        if(!userId) return null;
         const path = `profile-pics/${userId}`; // Construct the storage path with user UID
         const storageRef = ref(this.storage, path); // Create a reference to this path
         try {

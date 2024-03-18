@@ -43,7 +43,6 @@ const AgentDashboard = () => {
     const [currentPage, setCurrentPage] = useState(1);
     const ticketsPerPage = 10;
     const [searcBarValue, setSearchBarValue] = useState('');
-    const [selectAll, setSelectAll] = useState(false);
 
     const onSearchBarChange = (e) => {
         setSearchBarValue(e.target.value);

@@ -12,7 +12,6 @@ import styles from "./UserDashboard.module.css";
 
 const UserDashboard = () =>{
     const { authState } = useContext(UserContext);
-    const {userEmail, userType} = authState;
     const navigate = useNavigate();
     const [tickets, setTickets] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
@@ -24,10 +23,8 @@ const UserDashboard = () =>{
             try {
                 const fetchedTickets = await getTickets();
                 fetchedTickets.sort((a, b) => b.createdDate.toDate() - a.createdDate.toDate());
-                console.log("Fetched tickets:", fetchedTickets);
-                console.log("User email:", userEmail);
-                if(userType === 'user') {
-                    const userTickets = fetchedTickets.filter((ticket) => ticket.contactEmail === userEmail);
+                if(authState.userType === 'user') {
+                    const userTickets = fetchedTickets.filter((ticket) => ticket.contactEmail === authState.email);
                     setTickets(userTickets);
                 } else {
                     setTickets(fetchedTickets);

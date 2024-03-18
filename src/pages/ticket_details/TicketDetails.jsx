@@ -42,7 +42,6 @@ const TicketDetails = () => {
 
         const fetchAgents = async () => {
             const fetchedAgents = await getUsersByRole('agent');
-            console.log("Fetched agents: ", fetchedAgents);
             setAgents(fetchedAgents);
         }
         fetchTicket().then(r => console.log("Ticket fetched"));
@@ -65,6 +64,7 @@ const TicketDetails = () => {
     }
 
     const onTicketOwnerSelect = async (value) => {
+        console.log("Selected value: ", value);
         await updateTicketOwner(ticketId, value);
     }
 
@@ -85,8 +85,8 @@ const TicketDetails = () => {
                             className={styles['ticket-header-underline']}>TIC</span>KET PROPERTIES</p>
                         <div className={styles['ticket-header-content']}>
                             <p className={styles['ticket-subheader']}>Ticket Owner</p>
-                            {userType === 'agent' ? (<DropdownInput options={agents} defaultOption={ticket.ticketOwner} onSelect={onTicketOwnerSelect}/>
-                                ): (<p>{ticket.ticketOwner}</p>)}
+                            {userType === 'agent' ? (<DropdownInput options={agents} defaultOption={ticket.agentAssigned} onSelect={onTicketOwnerSelect}/>
+                                ): (<p>{ticket.agentAssigned}</p>)}
                             <p className={styles['ticket-subheader']}>Status</p>
                             <p>{ticket.ticketStatus}</p>
                             <p className={styles['ticket-subheader']}>Created Date</p>

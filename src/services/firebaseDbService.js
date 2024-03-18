@@ -187,7 +187,7 @@ class FirebaseDBService {
         const docRef = doc(ticketRef, ticketId);
 
         await updateDoc(docRef, {
-            ticketOwner: value
+            agentAssigned: value
         });
         console.log('Document successfully updated');
     }
