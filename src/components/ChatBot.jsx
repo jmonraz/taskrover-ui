@@ -36,9 +36,9 @@ const ChatBot = () => {
                 const ticket = await addNewTicket({
                     classifications: '',
                     contactAccountId: 'test',
-                    contactEmail: authState.authState.userEmail,
+                    contactEmail: authState.authState.refactor,
                     contactPhone: '',
-                    contactUser: authState.authState.userFirstName + ' ' + authState.authState.userLastName,
+                    contactUser: authState.authState.firstName + ' ' + authState.authState.lastName,
                     createdDate: new Date(),
                     isLastRespondedAgent: false,
                     language: 'English',
@@ -53,7 +53,7 @@ const ChatBot = () => {
                 }, {
                     comment: userMessageDescription[0],
                     commentDate: new Date(),
-                    commentOwner: authState.authState.userFirstName + ' ' + authState.authState.userLastName,
+                    commentOwner: authState.authState.firstName + ' ' + authState.authState.lastName,
                 });
                 setTicketId(ticket);
                 setFinalMessage(true);

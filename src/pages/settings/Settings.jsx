@@ -1,32 +1,32 @@
-
-import React, { useState, useEffect } from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import styles from "./Settings.module.css";
-
-import { useAuthState } from 'react-firebase-hooks/auth';
-import {collection, doc, getFirestore, updateDoc} from "firebase/firestore";
-import { auth, db, storage } from '../../services/firebaseService';
-import {useDocument} from "react-firebase-hooks/firestore";
-import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import Input from "../../components/Input";
 import {useFormInput} from "../../hooks/useFormInput";
 import Button from "../../components/Button";
-import {getDepartments, getRoles, createRole} from "../../utils/firebaseUtils";
+import {UserContext} from "../../context/UserContext";
+import {
+    createRole,
+    getDepartments,
+    getRoles,
+    getUserInformation,
+    getUserProfilePictureUrl,
+    uploadUserProfilePicture
+} from "../../utils/firebaseUtils";
+import underConstructionImg from '../../assets/img/website-maintenance.svg';
 
 const SettingsPage = () => {
+    const {authState} = useContext(UserContext);
     const editName = useFormInput('');
+    const [profilePic, setProfilePic] = useState(null);
     const [isCreateRoleModalOpen, setIsCreateRoleModalOpen] = useState(false);
-    const [user] = useAuthState(auth);
-    const docRef = doc(db, "collectionName", "documentId");
-    const usersCollection = collection(db, "users");
-    const [userData, loading] = useDocument(doc(db, "users", user?.uid));
-    const [fullName, setFullName] = useState('');
-    const [newProfilePic, setNewProfilePic] = useState(null);
     const [activeTab, setActiveTab] = useState('account');
     const [departments, setDepartments] = useState([]);
     const [roles, setRoles] = useState([]);
-
+    const [user, setUser] = useState(null);
+    const [loading, setLoading] = useState(true);
     const roleName = useFormInput('');
     const roleDescription = useFormInput('');
+    const [inputAlert, setInputAlert] = useState(false);
 
     const [departmentChecks, setDepartmentChecks] = useState(
         departments.reduce((acc, department) => {
@@ -51,58 +51,38 @@ const SettingsPage = () => {
     });
 
     useEffect(() => {
-        if (userData && userData.exists) {
-            const { fullName } = userData.data();
-            setFullName(fullName);
 
-        } else if (loading === false) { // Handle errors after loading
-            console.error('Error fetching user data:', userData.error);
+        const fetchUserProfilePicture = async () => {
+            try {
+                const profilePicUrl = await getUserProfilePictureUrl(authState.userId);
+                setProfilePic(profilePicUrl);
+            } catch (error) {
+                console.log("Error fetching profile picture: ", error);
+            }
         }
-    }, [userData, loading]);
-
-    const handleProfilePicChange = (e) => {
-        if (e.target.files[0]) {
-            setNewProfilePic(e.target.files[0]);
-
-            // Display the selected image immediately
-            const reader = new FileReader();
-            reader.onload = (event) => {
-                const imageElement = document.getElementById('profilePicPreview');
-                if (imageElement) {
-                    imageElement.src = event.target.result;
-                }
-            };
-            reader.readAsDataURL(e.target.files[0]);
+        const fetchUserInformation = async () => {
+            try {
+                setLoading(true);
+                const fetchedUser = await getUserInformation();
+                setLoading(false);
+                setUser(fetchedUser);
+            } catch (error) {
+                console.log("Error fetching user: ", error);
+            }
         }
-    };
+        fetchUserInformation().then(r => console.log("User fetched"));
+        fetchUserProfilePicture().then(r => console.log("Profile picture fetched"));
+    }, []);
 
     const handleSaveChanges = async () => {
-        try {
-            if (!user) {
-                alert('Please sign in to update your profile.');
-                return;
-            }
 
-            const newFullName = editName.value;
-            // Update full name
-            await updateDoc(doc(usersCollection, user.uid), { newFullName});
-
-            if (newProfilePic) {
-                const storageRef = ref(storage, `profile-pics/${user.uid}`);
-                await uploadBytes(storageRef, newProfilePic);
-                const imageUrl = await getDownloadURL(storageRef);
-
-                await updateDoc(doc(collection(db, 'users'), user.uid), { profilePic: imageUrl });
-            }
-
-            alert('Changes saved successfully!');
-        } catch (error) {
-            console.error('Error saving changes:', error.message);
-            alert('Error saving changes. Please try again.');
-        }
     };
 
-
+    const handleProfilePictureChange = async (e) => {
+        const file = e.target.files[0];
+        const profilePicUrl = await uploadUserProfilePicture(file, authState.userId);
+        setProfilePic(profilePicUrl);
+    };
 
     const handleTabClick = async (tab) => {
         if (tab === 'roles') {
@@ -117,7 +97,33 @@ const SettingsPage = () => {
         await getDepartments().then((departments) => {
             setDepartments(departments);
         });
+        setIsCreateRoleModalOpen(!isCreateRoleModalOpen);
+    };
 
+    const handleCloseCreateRoleModal = () => {
+        setInputAlert(false);
+        roleName.clearValue();
+        roleDescription.clearValue();
+        setDepartmentChecks(
+            departments.reduce((acc, department) => {
+                acc[department.title] = false;
+                return acc;
+            }, {})
+        );
+        setRoleChecks({
+            canUpdateTickets: false,
+            canDeleteTickets: false,
+            canUpdateComments: false,
+            canDeleteComments: false,
+            canEditRoles: false,
+            canEditDepartments: false,
+            canEditAccounts: false,
+            canEditUsers: false,
+            canEditTeams: false,
+            canEditTicketForms: false,
+            canEditRules: false,
+            canEditMenus: false,
+        });
         setIsCreateRoleModalOpen(!isCreateRoleModalOpen);
     };
 
@@ -137,6 +143,10 @@ const SettingsPage = () => {
     };
 
     const handleCreateRoleSubmit = async () => {
+        if(!roleName.value || !roleDescription.value) {
+            setInputAlert(true);
+            return;
+        }
         const selectedDepartments = Object.keys(departmentChecks).filter((department) => departmentChecks[department]);
 
         const role = {
@@ -159,6 +169,7 @@ const SettingsPage = () => {
             canEditMenus: roleChecks.canEditMenus,
         }
         await createRole(role);
+        setIsCreateRoleModalOpen(!isCreateRoleModalOpen);
     }
 
     return (
@@ -204,53 +215,53 @@ const SettingsPage = () => {
                                         type="button"
                                         onClick={() => document.getElementById('profilePic').click()}
                                         className={styles["profile-pic-button"]}>
-                                        <img id="profilePicPreview" src={userData.data().profilePic}
+                                        <img src={profilePic ? profilePic : 'https://via.placeholder.com/150'}
                                              alt="Profile Picture"/>
                                     </button>
                                     <input type="file" accept="image/*" id="profilePic"
-                                           onChange={handleProfilePicChange} style={{display: 'none'}}/>
+                                           onChange={handleProfilePictureChange} style={{display: 'none'}}/>
                                 </div>
                                 <div className={styles['col']}>
-                                    <label htmlFor="fullName">Username</label>
-                                    <Input inputProps={editName} placeholder={fullName} styleName='main-input'/>
+                                    <label>Username</label>
+                                    <Input inputProps={editName} placeholder={user.email} styleName='main-input' disabled={true}/>
                                 </div>
                                 <div className={styles['row']}>
                                     <div className={styles['col']}>
-                                        <label htmlFor="fullName">First Name</label>
-                                        <Input inputProps={editName} placeholder={fullName} styleName='main-input'/>
+                                        <label>First Name</label>
+                                        <Input inputProps={editName} placeholder={user.firstName} styleName='main-input' disabled={true}/>
                                     </div>
                                     <div className={styles['col']}>
-                                        <label htmlFor="fullName">Last Name</label>
-                                        <Input inputProps={editName} placeholder={fullName} styleName='main-input'/>
+                                        <label>Last Name</label>
+                                        <Input inputProps={editName} placeholder={user.lastName} styleName='main-input' disabled={true}/>
                                     </div>
                                 </div>
                                 <div className={styles['row']}>
                                     <div className={styles['col']}>
-                                        <label htmlFor="fullName">Phone Number</label>
-                                        <Input inputProps={editName} placeholder={fullName} styleName='main-input'/>
+                                        <label>Phone Number</label>
+                                        <Input inputProps={editName} placeholder={user.phoneNumber} styleName='main-input' disabled={true}/>
                                     </div>
                                     <div className={styles['col']}>
-                                        <label htmlFor="fullName">Extension</label>
-                                        <Input inputProps={editName} placeholder={fullName} styleName='main-input'/>
+                                        <label>Extension</label>
+                                        <Input inputProps={editName} placeholder={user.extension} styleName='main-input' disabled={true}/>
                                     </div>
                                 </div>
                                 <div className={styles['col']}>
-                                    <label htmlFor="fullName">Email</label>
-                                    <Input inputProps={editName} placeholder={fullName} styleName='main-input'/>
+                                    <label>Email</label>
+                                    <Input inputProps={editName} placeholder={user.email} styleName='main-input' disabled={true}/>
                                 </div>
 
                                 <div className={styles['col']}>
-                                    <label htmlFor="fullName">Role</label>
-                                    <Input inputProps={editName} placeholder={fullName} styleName='main-input'/>
+                                    <label>Role</label>
+                                    <Input inputProps={editName} placeholder={user.role} styleName='main-input' disabled={true}/>
                                 </div>
                                 <div className={styles['col']}>
-                                    <label htmlFor="fullName">Team</label>
-                                    <Input inputProps={editName} placeholder={fullName} styleName='main-input'/>
+                                    <label>Team</label>
+                                    <Input inputProps={editName} placeholder={user.team} styleName='main-input' disabled={true}/>
                                 </div>
-                                <div className={styles['col']}>
-                                    <label htmlFor="fullName">Change Password</label>
-                                    <Input inputProps={editName} placeholder={fullName} styleName='main-input'/>
-                                </div>
+                                {/*<div className={styles['col']}>*/}
+                                {/*    <label htmlFor="fullName">Change Password</label>*/}
+                                {/*    <Input inputProps={editName} placeholder={fullName} styleName='main-input'/>*/}
+                                {/*</div>*/}
                             </form>
 
                         </div>
@@ -298,19 +309,20 @@ const SettingsPage = () => {
                                 <form className={styles['modal']} onSubmit={(e) => {e.preventDefault();}}>
                                     <div className={styles['row']}>
                                         <h1 className={styles['page-title']}>Create Role</h1>
-                                        <p onClick={() => setIsCreateRoleModalOpen(!isCreateRoleModalOpen)}
+                                        <p onClick={handleCloseCreateRoleModal}
                                            className={styles['closing-x']}>X</p>
                                     </div>
                                     <div className={styles['col']}>
                                         <label htmlFor="roleName">Role Name</label>
                                         <Input inputProps={roleName} placeholder=''
                                                styleName='main-input'/>
+                                        {(inputAlert && !roleName.value) && <p className={styles['input-alert']}>This field is required</p>}
                                     </div>
-
                                     <div className={styles['col']}>
                                         <label htmlFor="roleDescription">Role Description</label>
                                         <Input inputProps={roleDescription} placeholder=''
                                                styleName='main-input'/>
+                                        {(inputAlert && !roleDescription.value) && <p className={styles['input-alert']}>This field is required</p>}
                                     </div>
 
                                     <div className={styles['dpt-ctr']}>
@@ -457,26 +469,40 @@ const SettingsPage = () => {
                 {activeTab === 'rules' && (
                     <div className={styles['settings-content-ctr']}>
                         <h1 className={styles['page-title']}>Rules Settings</h1>
+                        <img src={underConstructionImg} alt="Under Construction"
+                             className={styles['under-construction-img']}/>
+                        <p className={styles['warning-txt']}>This page is under construction.</p>
                     </div>
                 )}
                 {activeTab === 'menu' && (
                     <div className={styles['settings-content-ctr']}>
                         <h1 className={styles['page-title']}>Menu Settings</h1>
+                        <img src={underConstructionImg} alt="Under Construction"
+                             className={styles['under-construction-img']}/>
+                        <p className={styles['warning-txt']}>This page is under construction.</p>
                     </div>
                 )}
                 {activeTab === 'departments' && (
                     <div className={styles['settings-content-ctr']}>
                         <h1 className={styles['page-title']}>Departments Settings</h1>
+                        <img src={underConstructionImg} alt="Under Construction"
+                             className={styles['under-construction-img']}/>
+                        <p className={styles['warning-txt']}>This page is under construction.</p>
                     </div>
                 )}
                 {activeTab === 'ticket-forms' && (
                     <div className={styles['settings-content-ctr']}>
                         <h1 className={styles['page-title']}>Ticket Forms Settings</h1>
+                        <img src={underConstructionImg} alt="Under Construction"
+                             className={styles['under-construction-img']}/>
+                        <p className={styles['warning-txt']}>This page is under construction.</p>
                     </div>
                 )}
                 {activeTab === 'teams' && (
                     <div className={styles['settings-content-ctr']}>
                         <h1 className={styles['page-title']}>Teams Settings</h1>
+                        <img src={underConstructionImg} alt="Under Construction" className={styles['under-construction-img']}/>
+                        <p className={styles['warning-txt']}>This page is under construction.</p>
                     </div>
                 )}
             </div>

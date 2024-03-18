@@ -89,104 +89,30 @@ const TicketBlock = ({onClick, ticketDetails, isChecked, onCheckboxChange }) => 
         <>
             <div className={styles['ticket-block']} onClick={() => onClick(ticketDetails)} >
                 <div className={styles['ticket-row']}>
-                    {/*<input*/}
-                    {/*    type="checkbox"*/}
-                    {/*    checked={isChecked}*/}
-                    {/*    onChange={handleCheckboxChange}*/}
-                    {/*    onClick={(e) => e.stopPropagation()}*/}
-                    {/*    className={styles['custom-checkbox']}*/}
-                    {/*    />*/}
-                    <img src={personImage} alt='person' className={styles['circular-image']}/>
-                    <div className={styles['ticket-col']}>
-                        <div className={styles['ticket-row']}>
-                            <p className={styles['ticket-title']}>{ticketDetails.ticketTitle}</p>
-                        </div>
-                        <div className={styles['ticket-row']}>
-                            <p className={styles['ticket-date']}>
-                                {ticketDetails.createdDate
-                                    ? ticketDetails.createdDate
-                                        .toDate()
-                                        .toLocaleString(undefined, {
-                                            year: 'numeric',
-                                            month: 'numeric',
-                                            day: 'numeric',
-                                            hour: 'numeric',
-                                            minute: 'numeric',
-                                            hour12: false,
-                                        })
-                                    : 'Date not available'}
-                            </p>
-                            <p className={styles['respond-wrapper']}>{ticketDetails.respond}</p>
-                        </div>
+                    <p className={styles['ticket-title']}>{ticketDetails.ticketTitle}</p>
+                    <p className={styles['ticket-date']}>
+                        {ticketDetails.createdDate
+                            ? ticketDetails.createdDate
+                                .toDate()
+                                .toLocaleString(undefined, {
+                                    year: 'numeric',
+                                    month: 'numeric',
+                                    day: 'numeric',
+                                    hour: 'numeric',
+                                    minute: 'numeric',
+                                    hour12: false,
+                                })
+                            : 'Date not available'}
+                    </p>
+                    <p>Department</p>
+                    <p>Status</p>
+                    <div className={styles['img-ctr']}>
+                        <img src={personImage} alt='person' className={styles['circular-image']}/>
+                        <p>Jorge Monraz</p>
                     </div>
+
+                    <p>Updated</p>
                 </div>
-                {userType === 'agent' && (
-                    <div className={styles['ticket-row']}>
-                        <div className={`${styles['ticket-col']} ${styles['ticket-menu']}`}>
-                            <div className={styles['ticket-row']}>
-                                <p>{ticketPriority}</p>
-                                <div className={styles['dropdown-container']} ref={priorityRef}>
-                                    <img src={downArrowIcon} alt='drop-arrow' className={styles['icon']}
-                                         onClick={(e) => handleDropdownClick(e, setIsPriority)}/>
-                                    {isPriority && (
-                                        <div className={styles['dropdown-menu']}>
-                                            <p className={styles['status-label']}><span>PRI</span>ORITY</p>
-                                            <ul>
-                                                {priorities.map((priority, index) => (
-                                                        <li key={index}
-                                                            onClick={(e) => handleClickPriority(e, priority)}>{priority}</li>
-                                                    )
-                                                )}
-                                            </ul>
-                                        </div>
-                                    )}
-                                </div>
-                            </div>
-                            <div className={styles['ticket-row']}>
-                                <p>{ticketDepartment}</p>
-                                <div className={styles['dropdown-container']} ref={departmentRef}>
-                                    <img src={downArrowIcon} alt='drop-arrow' className={styles['icon']}
-                                         onClick={(e) => handleDropdownClick(e, setIsDeparment)}/>
-                                    {isDeparment && (
-                                        <div className={styles['dropdown-menu']}>
-                                            <p className={styles['status-label']}><span>DEP</span>ARTMENT</p>
-                                            <ul>
-                                                {departments.map((department, index) => (
-                                                        <li key={index}
-                                                            onClick={(e) => handleClickDepartment(e, department.title)}>{department.title}</li>
-                                                    )
-                                                )}
-                                            </ul>
-                                        </div>
-                                    )}
-                                </div>
-
-                            </div>
-                            <div className={styles['ticket-row']}>
-                                <p>{ticketStatus}</p>
-                                <div className={styles['dropdown-container']} ref={ticketStatusRef}>
-                                    <img src={downArrowIcon} alt='drop-arrow' className={styles['icon']}
-                                         onClick={(e) => handleDropdownClick(e, setIsTicketStatus)}/>
-                                    {isTicketStatus && (
-                                        <div className={styles['dropdown-menu']}>
-                                            <p className={styles['status-label']}><span>STA</span>TUS</p>
-                                            <ul>
-                                                {statuses.map((status, index) => (
-                                                        <li key={index}
-                                                            onClick={(e) => handleClickStatus(e, status)}>{status}</li>
-                                                    )
-                                                )}
-                                            </ul>
-                                        </div>
-                                    )}
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-                )}
-
-
             </div>
         </>
     );

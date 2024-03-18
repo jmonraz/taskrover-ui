@@ -47,27 +47,6 @@ class FirebaseDBService {
             }
         }
 
-    async getUserTickets(userId) {
-        const tickets = [];
-        const querySnapshot = await getDocs(collection(this.db, "tickets"));
-        for (const doc of querySnapshot.docs) {
-            const ticketData = doc.data();
-            ticketData.id = doc.id;
-
-            if (ticketData.createdBy === userId) {
-                const conversations = [];
-                const conversationsSnapshot = await getDocs(collection(doc.ref, "conversations"));
-                conversationsSnapshot.forEach(convDoc => {
-                    conversations.push(convDoc.data());
-                });
-
-                ticketData.conversations = conversations;
-                tickets.push(ticketData);
-            }
-        }
-        return tickets;
-    }
-
         async addCommentToTicket(ticketId, newCommentData) {
             // this is a reference to the 'conversations' sub-collection
             const conversationsRef = collection(this.db, 'tickets', ticketId, 'conversations');

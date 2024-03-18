@@ -8,10 +8,10 @@ export const UserProvider = ({children}) => {
     const [authState, setAuthState] = useState({
         token: null,
         userType: null,
-        userState: false,
-        userEmail: null,
-        userFirstName: null,
-        userLastName: null,
+        state: false,
+        email: null,
+        firstName: null,
+        lastName: null,
         userId: null
     });
 
@@ -39,16 +39,16 @@ export const UserProvider = ({children}) => {
         setAuthState(prevState => ({...prevState, userState}));
     }
 
-    const setUserEmail = (userEmail) => {
-        setAuthState(prevState => ({...prevState, userEmail}));
+    const setUserEmail = (email) => {
+        setAuthState(prevState => ({...prevState, email}));
     }
 
-    const setUserFirstName = (userFirstName) => {
-        setAuthState(prevState => ({...prevState, userFirstName}));
+    const setUserFirstName = (firstName) => {
+        setAuthState(prevState => ({...prevState, firstName}));
     }
 
-    const setUserLastName = (userLastName) => {
-        setAuthState(prevState => ({...prevState, userLastName}));
+    const setUserLastName = (lastName) => {
+        setAuthState(prevState => ({...prevState, lastName}));
     }
 
     // Return a provider component with the user state and function to update it

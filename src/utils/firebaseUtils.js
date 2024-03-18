@@ -1,6 +1,7 @@
 import AuthService from "../services/firebaseAuthService";
+import StorageService from "../services/firebaseStorageService";
 import FirebaseDBService from "../services/firebaseDbService";
-import { db } from '../services/firebaseService';
+
 
 const getCurrentUser = async () => {
     const authService = new AuthService();
@@ -100,4 +101,14 @@ export const getRoles = async () => {
 export const createRole = async (role) => {
     const firebaseDBService = new FirebaseDBService();
     return await firebaseDBService.createRole(role);
+}
+
+export const getUserProfilePictureUrl = async (userId) => {
+    const storageService = new StorageService();
+    return await storageService.getUserProfilePictureUrl(userId);
+}
+
+export const uploadUserProfilePicture = async (file, userId) => {
+    const storageService = new StorageService();
+    return await storageService.uploadUserProfilePicture(file, userId);
 }

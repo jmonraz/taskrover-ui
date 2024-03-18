@@ -3,6 +3,8 @@ p {
     padding: 0;
     font-family: 'Open Sans', sans-serif;
     color: #333;
+    font-size: 0.9rem;
+    font-weight: 500;
 }
 
 .ticket-block {
@@ -11,7 +13,7 @@ p {
     /*border-radius: 5px;*/
     background-color: #fff;
     /*box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);*/
-    padding: 15px 20px 15px 20px;
+    padding: 8px;
     border: 1px solid #e0e0e0;
     cursor: pointer;
     transition: box-shadow 0.3s ease-in-out, background-color 0.3s ease-in-out;
@@ -26,15 +28,12 @@ p {
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    gap: 10px;
+    gap: 20px;
 }
 
-.ticket-row:first-child {
-    flex: 1;
-}
-
-.ticket-row:nth-child(2) {
-    width: 150px;
+.ticket-row > * {
+    min-width: 120px;
+    max-width: 120px;
 }
 
 .ticket-col {
@@ -44,103 +43,15 @@ p {
     justify-content: center;
 }
 
-.ticket-row:nth-child(1) {
-    .ticket-col {
-        padding-left: 25px;
-    }
-}
-.ticket-row:nth-child(2) {
-    .ticket-col {
-        font-size: 12px;
-    }
-}
-.respond-wrapper {
-    background-color: #4CAF50;
-    color: #fafafa;
-    border-radius: 10px;
-    padding: 0 8px;
-    font-size: 12px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
-}
-
-.circular-image {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-}
-
-.ticket-title {
-    color: #333333;
-    font-weight: bold;
-}
-
-.ticket-number {
-    color: #757575;
-    font-weight: bold;
-}
-
-.ticket-date {
-    color: #333;
-    font-size: 12px;
-}
-
-.ticket-menu {
-    font-weight: bold;
-}
-
-.icon {
-    width: 10px;
-    height: 10px;
-    fill: #757575;
-    cursor: pointer;
-}
-
-.custom-checkbox {
-    cursor: pointer;
-}
-
-.dropdown-container {
-    position: relative;
+.img-ctr {
     display: flex;
-    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
 }
 
-.dropdown-menu {
-    position: absolute;
-    top: 15px;
-    right: 0;
-    background-color: #fafafa;
-    color: #fafafa;
-    border-radius: 5px;
-    padding: 5px 0;
-    font-size: 14px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
-    z-index: 999;
-}
-
-.dropdown-menu ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    color: #333;
-}
-
-.dropdown-menu ul li {
-    padding: 5px 60px 5px 15px;
-    cursor: pointer;
-    white-space: nowrap;
-}
-
-.dropdown-menu ul li:hover {
-    background-color: rgba(255, 87, 51, 0.4);
-}
-
-.status-label {
-    color: #757575;
-    font-size: 12px;
-    padding: 10px 15px;
-}
-
-.status-label span {
-    border-bottom: 2px solid #757575;
+.img-ctr img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
 }

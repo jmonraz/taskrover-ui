@@ -3,7 +3,6 @@ import downArrowIcon from "../../assets/icons/dropdown_arrow.svg";
 import {useState, useRef, useEffect} from "react";
 import {useNavigate} from "react-router-dom";
 import {getTickets, getUserInformation} from "../../utils/firebaseUtils";
-import {useFormInput} from "../../hooks/useFormInput";
 
 // components
 import TicketBlock from "../../components/TicketBlock";
@@ -67,7 +66,6 @@ const AgentDashboard = () => {
             try {
                 const fetchedTickets = await getTickets();
                 fetchedTickets.sort((a, b) => b.createdDate.toDate() - a.createdDate.toDate());
-                console.log(fetchedTickets);
                 setTickets(fetchedTickets);
                 setUnfilteredTickets(fetchedTickets);
                 ticketFilter[0].number = fetchedTickets.length;
@@ -85,7 +83,6 @@ const AgentDashboard = () => {
             try {
                 const fetchedUser = await getUserInformation();
                 setUser(fetchedUser);
-                console.log("Fetched user: ", fetchedUser);
             } catch (error) {
                 console.log("Error fetching user: ", error);
             }
@@ -134,7 +131,6 @@ const AgentDashboard = () => {
     }
 
     const onHandleTicketBlockClick = (ticketDetails) => {
-        console.log('ticket', ticketDetails);
         navigate(`/home/agent/dashboard/${ticketDetails.ticketNumber.slice(1)}/ticket-details`);
     }
 
@@ -144,12 +140,6 @@ const AgentDashboard = () => {
         );
         setTickets(updatedTickets);
     };
-
-    const handleSelectAll = () => {
-        setSelectAll(!selectAll);
-        const updatedTickets = tickets.map(ticket => ({ ...ticket, isChecked: !selectAll }));
-        setTickets(updatedTickets);
-    }
 
     const startIndex = (currentPage - 1) * ticketsPerPage;
     const endIndex = Math.min(startIndex + ticketsPerPage, tickets.length); // Adjusted this line
@@ -164,12 +154,9 @@ const AgentDashboard = () => {
         }
     };
 
-
     const handlePrevPage = () => {
         setCurrentPage((prevPage) => Math.max(prevPage - 1, 1));
     };
-
-
 
     return (
         <>
@@ -202,9 +189,7 @@ const AgentDashboard = () => {
                         <div>
                             <SearchBar inputProps={searchBarProps}/>
                         </div>
-
                     </div>
-
                     <div className={styles['ticket-blocks-col']}>
                         {displayedTickets.map((ticket) => (
                             <TicketBlock
@@ -217,7 +202,6 @@ const AgentDashboard = () => {
                         ))}
                     </div>
                     <div className={styles['btn-row']}>
-
                         <p className={styles['ticket-count']}>
                             {startIndex + 1} - {Math.min(endIndex, tickets.length)} of {tickets.length} tickets
                         </p>
