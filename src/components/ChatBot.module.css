@@ -1,5 +1,7 @@
 .chat-bubble {
-    position: relative;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
     background-color: #00796B;
     border-radius: 50%;
     width: 60px;
@@ -18,7 +20,7 @@
 }
 
 .chat-bot-ctr {
-    position: absolute;
+    position: fixed;
     bottom: 80px;
     right: 90px;
     width: 350px;

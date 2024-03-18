@@ -268,7 +268,7 @@ const SettingsPage = () => {
                     </div>
                 )}
 
-                {activeTab === 'roles' && (
+                {(activeTab === 'roles' && authState.userType !== 'user') && (
                     <>
                         <div className={styles['settings-content-ctr']}>
                             <h1 className={styles['page-title']}>Roles Settings</h1>
@@ -466,7 +466,7 @@ const SettingsPage = () => {
                         )}
                     </>
                 )}
-                {activeTab === 'rules' && (
+                {(activeTab === 'rules' && authState.userType !== 'user') && (
                     <div className={styles['settings-content-ctr']}>
                         <h1 className={styles['page-title']}>Rules Settings</h1>
                         <img src={underConstructionImg} alt="Under Construction"
@@ -474,7 +474,7 @@ const SettingsPage = () => {
                         <p className={styles['warning-txt']}>This page is under construction.</p>
                     </div>
                 )}
-                {activeTab === 'menu' && (
+                {(activeTab === 'menu' && authState.userType !== 'user') && (
                     <div className={styles['settings-content-ctr']}>
                         <h1 className={styles['page-title']}>Menu Settings</h1>
                         <img src={underConstructionImg} alt="Under Construction"
@@ -482,7 +482,7 @@ const SettingsPage = () => {
                         <p className={styles['warning-txt']}>This page is under construction.</p>
                     </div>
                 )}
-                {activeTab === 'departments' && (
+                {(activeTab === 'departments' && authState.userType !== 'user') && (
                     <div className={styles['settings-content-ctr']}>
                         <h1 className={styles['page-title']}>Departments Settings</h1>
                         <img src={underConstructionImg} alt="Under Construction"
@@ -490,7 +490,7 @@ const SettingsPage = () => {
                         <p className={styles['warning-txt']}>This page is under construction.</p>
                     </div>
                 )}
-                {activeTab === 'ticket-forms' && (
+                {(activeTab === 'ticket-forms' && authState.userType !== 'user') && (
                     <div className={styles['settings-content-ctr']}>
                         <h1 className={styles['page-title']}>Ticket Forms Settings</h1>
                         <img src={underConstructionImg} alt="Under Construction"
@@ -498,7 +498,7 @@ const SettingsPage = () => {
                         <p className={styles['warning-txt']}>This page is under construction.</p>
                     </div>
                 )}
-                {activeTab === 'teams' && (
+                {(activeTab === 'teams' && authState.userType !== 'user') && (
                     <div className={styles['settings-content-ctr']}>
                         <h1 className={styles['page-title']}>Teams Settings</h1>
                         <img src={underConstructionImg} alt="Under Construction" className={styles['under-construction-img']}/>
