@@ -1,5 +1,6 @@
 import {firestore} from './firebaseService';
 import {collection, getDocs, doc, getDoc, setDoc, deleteDoc, updateDoc, query, where} from 'firebase/firestore';
+
 class FirebaseDBService {
     constructor() {
         // initialize the firebase firestore instance
@@ -183,13 +184,26 @@ class FirebaseDBService {
     }
 
     async updateTicketOwner(ticketId, value) {
-        const ticketRef = collection(this.db, 'tickets');
-        const docRef = doc(ticketRef, ticketId);
+        const userRef = doc(this.db, "users", value);
+        const userSnapshot = await getDoc(userRef);
 
-        await updateDoc(docRef, {
-            agentAssigned: value
-        });
-        console.log('Document successfully updated');
+        if (userSnapshot.exists()) {
+            const userData = userSnapshot.data();
+            userData.id = userSnapshot.id;
+            console.log('agentInformation', userData);
+            const ticketRef = collection(this.db, 'tickets');
+            const docRef = doc(ticketRef, ticketId);
+
+            await updateDoc(docRef, {
+                agentAssigned: userData.fullName,
+                agentAssignedId: userData.id
+            });
+            console.log('Document successfully updated');
+        } else {
+            console.log("No such document!");
+            return null;
+        }
+
     }
 
     async getDepartments() {

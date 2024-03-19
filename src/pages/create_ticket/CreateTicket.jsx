@@ -44,6 +44,7 @@ const Ticket = () => {
        try {
            await addNewTicket({
                agentAssigned: '',
+               agentId: '',
                classifications: '',
                contactAccountId: account,
                contactEmail: email,

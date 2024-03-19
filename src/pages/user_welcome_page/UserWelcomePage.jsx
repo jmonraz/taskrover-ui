@@ -1,11 +1,19 @@
 import styles from "./UserWelcomePage.module.css";
 import ChatBot from "../../components/ChatBot";
 import Button from "../../components/Button";
+import {useNavigate} from "react-router-dom";
 
 // assets
 import AgentImage from "../../assets/img/virtual-assistant.svg";
 
 const UserWelcomePage = () => {
+
+    const navigate = useNavigate();
+
+    const handleDashboardButton = () => {
+        navigate('user/dashboard');
+    };
+
     return (
         <>
             <div className={styles['col']}>
@@ -25,8 +33,7 @@ const UserWelcomePage = () => {
                     <div className={styles['row-ch']}>
                         <div className={styles['col-ch']}>
                             <p>Need assistance? Let's fix it! Start by submitting your ticket here.</p>
-                            <Button onClick={() => {
-                            }} styleName='green-button'>GET STARTED</Button>
+                            <Button onClick={() => {}} styleName='green-button'>GET STARTED</Button>
                         </div>
                     </div>
                 </div>

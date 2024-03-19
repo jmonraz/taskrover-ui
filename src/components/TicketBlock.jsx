@@ -22,7 +22,6 @@ const TicketBlock = ({onClick, ticketDetails}) => {
     return (
         <>
             <div className={styles['ticket-block']} onClick={() => onClick(ticketDetails)} >
-                <div className={styles['ticket-row']}>
                     <p>{ticketDetails.ticketNumber}</p>
                     <p className={styles['ticket-title']}>{ticketDetails.ticketTitle}</p>
                     <p className={styles['ticket-date']}>
@@ -46,8 +45,6 @@ const TicketBlock = ({onClick, ticketDetails}) => {
                         <img src={userProfilePictureUrl ? userProfilePictureUrl : genericPicture} alt='person' className={styles['circular-image']}/>
                         <p>{ticketDetails.agentAssigned}</p>
                     </div>
-
-                </div>
             </div>
         </>
     );

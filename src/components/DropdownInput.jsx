@@ -19,7 +19,7 @@ const DropdownInput = ({ options, onSelect, defaultOption }) => {
                 <option value={defaultOption}>{defaultOption}</option>
                 {options.map((option) => {
                     if(option.fullName !== defaultOption){
-                        return <option key={option.id} value={option.fullName}>{option.fullName}</option>
+                        return <option key={option.id} value={option.agentId}>{option.fullName}</option>
                     }
                 }
                 )}

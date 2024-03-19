@@ -1,12 +1,13 @@
 import styles from "./AgentDashboard.module.css";
 import downArrowIcon from "../../assets/icons/dropdown_arrow.svg";
-import {useState, useRef, useEffect} from "react";
+import {useEffect, useRef, useState} from "react";
 import {useNavigate} from "react-router-dom";
-import {getTickets, getUserInformation} from "../../utils/firebaseUtils";
+import {getTickets, getUserInformation, getUserProfilePictureUrl} from "../../utils/firebaseUtils";
+import genericPicture from '../../assets/img/Generic-Profile.webp';
 
 // components
-import TicketBlock from "../../components/TicketBlock";
 import SearchBar from "../../components/SearchBar";
+
 const AgentDashboard = () => {
     const ticketFilter = [
         {
@@ -43,38 +44,38 @@ const AgentDashboard = () => {
     const [currentPage, setCurrentPage] = useState(1);
     const ticketsPerPage = 10;
     const [searcBarValue, setSearchBarValue] = useState('');
-
-    const onSearchBarChange = (e) => {
-        setSearchBarValue(e.target.value);
-        // filter tickets based on search bar value
-        const filteredTickets = tickets.filter(ticket => ticket.ticketTitle.toLowerCase().includes(e.target.value.toLowerCase()) || ticket.ticketNumber.toLowerCase().includes(e.target.value.toLowerCase()));
-        setTickets(filteredTickets);
-        if(e.target.value === '') {
-            setTickets(unfilteredTickets);
-        }
-    }
-
-
-    const searchBarProps = {
-        value: searcBarValue,
-        onChange: onSearchBarChange
-    };
+    const [ticketFilterState, setTicketFilterState] = useState(ticketFilter[0]);
+    const [isTicketFilterSubmenu, setIsTicketFilterSubmenu] = useState(false);
+    const ticketFilterRef = useRef();
 
     useEffect(() => {
-        const fetchTickets = async () => {
+        const fetchTicketsAndProfilePictures = async () => {
             try {
                 const fetchedTickets = await getTickets();
                 fetchedTickets.sort((a, b) => b.createdDate.toDate() - a.createdDate.toDate());
-                setTickets(fetchedTickets);
-                setUnfilteredTickets(fetchedTickets);
-                ticketFilter[0].number = fetchedTickets.length;
+
+                // Fetch profile pictures for each ticket's assigned agent
+                const ticketsWithPictures = await Promise.all(fetchedTickets.map(async (ticket) => {
+                    try {
+                        const profilePictureUrl = await getUserProfilePictureUrl(ticket.agentAssignedId);
+                        return { ...ticket, agentAssignedImage: profilePictureUrl };
+                    } catch (error) {
+                        console.log("Error fetching profile picture for ticket ID:", ticket.id, error);
+                        return { ...ticket, agentAssignedImage: null }; // Handle the case where picture can't be fetched
+                    }
+                }));
+
+                setTickets(ticketsWithPictures);
+                setUnfilteredTickets(ticketsWithPictures);
+                ticketFilter[0].number = ticketsWithPictures.length;
                 setIsLoading(false);
+                console.log("Tickets fetched: ", ticketsWithPictures);
             } catch (error) {
                 console.log("Error fetching tickets: ", error);
             }
-        }
+        };
 
-        fetchTickets().then(r => console.log("Tickets fetched"));
+        fetchTicketsAndProfilePictures().then(() => console.log("Tickets and profile pictures fetched"));
     }, []);
 
     useEffect(() => {
@@ -91,22 +92,20 @@ const AgentDashboard = () => {
     }, []);
 
 
-    const [ticketFilterState, setTicketFilterState] = useState(ticketFilter[0]);
-    const [isTicketFilterSubmenu, setIsTicketFilterSubmenu] = useState(false);
-    const ticketFilterRef = useRef();
-
-    const handleClickOutside = (event) => {
-        if (ticketFilterRef.current && !ticketFilterRef.current.contains(event.target)) {
-            setIsTicketFilterSubmenu(false);
+    const onSearchBarChange = (e) => {
+        setSearchBarValue(e.target.value);
+        // filter tickets based on search bar value
+        const filteredTickets = tickets.filter(ticket => ticket.ticketTitle.toLowerCase().includes(e.target.value.toLowerCase()) || ticket.ticketNumber.toLowerCase().includes(e.target.value.toLowerCase()));
+        setTickets(filteredTickets);
+        if(e.target.value === '') {
+            setTickets(unfilteredTickets);
         }
     }
 
-    useEffect(() => {
-        document.addEventListener("mousedown", handleClickOutside);
-        return () => {
-            document.removeEventListener("mousedown", handleClickOutside);
-        };
-    }, []);
+    const searchBarProps = {
+        value: searcBarValue,
+        onChange: onSearchBarChange
+    };
 
     const handleTicketFilterChange = (selectedFilter) => {
         setTicketFilterState(selectedFilter);
@@ -132,13 +131,6 @@ const AgentDashboard = () => {
     const onHandleTicketBlockClick = (ticketDetails) => {
         navigate(`/home/agent/dashboard/${ticketDetails.ticketNumber.slice(1)}/ticket-details`);
     }
-
-    const handleCheckboxChange = (ticketId) => {
-        const updatedTickets = tickets.map(ticket =>
-            ticket.id === ticketId ? { ...ticket, isChecked: !ticket.isChecked } : ticket
-        );
-        setTickets(updatedTickets);
-    };
 
     const startIndex = (currentPage - 1) * ticketsPerPage;
     const endIndex = Math.min(startIndex + ticketsPerPage, tickets.length); // Adjusted this line
@@ -190,15 +182,32 @@ const AgentDashboard = () => {
                         </div>
                     </div>
                     <div className={styles['ticket-blocks-col']}>
-                        {displayedTickets.map((ticket) => (
-                            <TicketBlock
-                                key={ticket.id}
-                                ticketDetails={ticket}
-                                onClick={onHandleTicketBlockClick}
-                                isChecked={ticket.isChecked}
-                                onCheckboxChange={handleCheckboxChange}
-                            />
-                        ))}
+                        <table>
+                            <tr className={styles['table-header']}>
+                                <th>Ticket Number</th>
+                                <th>Subject</th>
+                                <th>Created Date</th>
+                                <th>Status</th>
+                                <th>Priority</th>
+                                <th>Assigned To</th>
+                            </tr>
+
+                                {displayedTickets.map((ticket, index) => (
+                                    <tr onClick={() => onHandleTicketBlockClick(ticket)}>
+                                        <td key={index}>{ticket.ticketNumber}</td>
+                                        <td key={index}>{ticket.ticketTitle}</td>
+                                        <td key={index}>{ticket.createdDate.toDate().toDateString()}</td>
+                                        <td key={index}>{ticket.ticketStatus}</td>
+                                        <td key={index}>{ticket.priority}</td>
+                                        <td key={index}>
+                                            <div className={styles['img-ctr']}>
+                                                <img src={ticket.agentAssignedImage ? ticket.agentAssignedImage : genericPicture} alt="agent-image"/>
+                                                <p>{ticket.agentAssigned}</p>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                ))}
+                        </table>
                     </div>
                     <div className={styles['btn-row']}>
                         <p className={styles['ticket-count']}>

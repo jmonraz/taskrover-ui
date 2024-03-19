@@ -17,6 +17,8 @@ p {
     border: 1px solid #e0e0e0;
     cursor: pointer;
     transition: box-shadow 0.3s ease-in-out, background-color 0.3s ease-in-out;
+    flex: 1;
+    gap: 50px;
 }
 
 .ticket-block:hover {
@@ -32,8 +34,8 @@ p {
 }
 
 .ticket-row > * {
-    min-width: 120px;
-    max-width: 120px;
+    min-width: 140px;
+    max-width: 140px;
 }
 
 .ticket-row .ticket-title {
@@ -51,7 +53,9 @@ p {
 .img-ctr {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
+    min-width: 250px;
+    max-width: 250px;
     gap: 10px;
 }
 

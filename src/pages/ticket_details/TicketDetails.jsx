@@ -43,6 +43,7 @@ const TicketDetails = () => {
         const fetchAgents = async () => {
             const fetchedAgents = await getUsersByRole('agent');
             setAgents(fetchedAgents);
+            console.log("Agents fetched: ", fetchedAgents);
         }
         fetchTicket().then(r => console.log("Ticket fetched"));
         fetchUserInformation().then(r => console.log("User fetched"));
