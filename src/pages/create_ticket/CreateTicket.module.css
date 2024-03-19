@@ -51,6 +51,7 @@ label.required {
     padding: 8px;
     border: 1px solid #ccc;
     border-radius: 5px;
+    background-color: #fff;
 }
 
 .form-column input[type="file"] {
@@ -114,4 +115,67 @@ label.required {
     font-family: 'Roboto', sans-serif;
     border: 1px solid #ccc;
     border-radius: 5px;
+}
+
+.contact-ctr {
+    position: relative;
+}
+
+.contact-suggestions {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    font-size: 0.9rem;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.4);
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    max-height: 180px;
+    z-index: 100;
+    overflow-y: auto;
+}
+
+.contact-suggestions > div {
+    cursor: pointer;
+    padding: 8px 12px;
+}
+
+.contact-suggestions > div:hover {
+    background-color: #ececec;
+}
+
+.input-group {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.input-group input {
+    width: 100%;
+    /* Adjust padding to not overlap the text with the button */
+    padding-right: 30px; /* Make sure there's space for the 'X' */
+}
+
+.clear-button {
+    position: absolute;
+    right: 5px; /* Adjust based on your design */
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    background: transparent;
+    padding: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+.clear-button:hover {
+    background-color: #ececec;
+    color: #fff;
+}
+
+.email-div input {
+    background-color: rgba(0, 0, 0, 0.1);
 }

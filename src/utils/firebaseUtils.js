@@ -8,6 +8,10 @@ const getCurrentUser = async () => {
     return await authService.getCurrentUser();
 
 }
+export const getAllUsers = async () => {
+    const firebaseDBService = new FirebaseDBService();
+    return await firebaseDBService.getAllUsers();
+}
 export const signUp = (email, password) => {
     const authService = new AuthService();
     return authService.signUpWithEmailAndPassword(email, password);

@@ -9,6 +9,17 @@ class FirebaseDBService {
         // enable offline persistence
         // to be implemented in the future
     }
+
+    async getAllUsers() {
+        const usersRef = collection(this.db, 'users');
+        const querySnapshot = await getDocs(usersRef);
+        const users = [];
+        querySnapshot.forEach((doc) => {
+            users.push({ id: doc.id, ...doc.data() });
+        });
+        return users;
+    }
+
         async getAllTickets() {
             const tickets = [];
             const querySnapshot = await getDocs(collection(this.db, "tickets"));
@@ -81,10 +92,12 @@ class FirebaseDBService {
         }
 
         //  write method to add a new ticket to the database
-        async addNewTicket(newTicketData, conversation) {
-        console.log('newTicketData', newTicketData);
+    async addNewTicket(newTicketData, conversation) {
+        try {
+            // this is a reference to the 'tickets' collection
             const ticketsRef = collection(this.db, 'tickets');
             const snapshot = await getDocs(ticketsRef);
+            console.log('snapshot', snapshot.size + 1);
             if (!snapshot.empty) {
                 // add a new ticket with the generated ID
                 const newTicketId = `${(snapshot.size + 1).toString()}`;
@@ -94,14 +107,21 @@ class FirebaseDBService {
                     ticketNumber: `#${snapshot.size + 1}`,
                 }, {merge: true});
 
+                console.log('ticket added', newTicketId);
                 const conversationRef = doc(newTicketRef, 'conversations', 'comment_1');
                 await setDoc(conversationRef, {
                     ...conversation,
                     id: 1,
                 }, {merge: true});
+                console.log('conversation added', newTicketId);
                 return newTicketId;
             }
+        } catch (error) {
+            console.error('Error adding document:', error);
         }
+    }
+
+
 
 
     async updateTicketStatus(ticketId, status) {

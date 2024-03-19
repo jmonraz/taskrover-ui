@@ -52,6 +52,7 @@ const AgentDashboard = () => {
         const fetchTicketsAndProfilePictures = async () => {
             try {
                 const fetchedTickets = await getTickets();
+                // sort by ticket number slice 1st character
                 fetchedTickets.sort((a, b) => b.createdDate.toDate() - a.createdDate.toDate());
 
                 // Fetch profile pictures for each ticket's assigned agent
@@ -182,21 +183,27 @@ const AgentDashboard = () => {
                         </div>
                     </div>
                     <div className={styles['ticket-blocks-col']}>
-                        <table>
-                            <tr className={styles['table-header']}>
-                                <th>Ticket Number</th>
-                                <th>Subject</th>
-                                <th>Created Date</th>
-                                <th>Status</th>
-                                <th>Priority</th>
-                                <th>Assigned To</th>
-                            </tr>
-
+                        <table className={styles['tbl']}>
+                            <thead>
+                                <tr className={styles['table-header']}>
+                                    <th>Ticket Number</th>
+                                    <th>Subject</th>
+                                    <th>Created Date</th>
+                                    <th>Department</th>
+                                    <th>Status</th>
+                                    <th>Priority</th>
+                                    <th>Assigned To</th>
+                                    <th>Created By</th>
+                                    <th>Modified Date</th>
+                                </tr>
+                            </thead>
+                            <tbody>
                                 {displayedTickets.map((ticket, index) => (
                                     <tr onClick={() => onHandleTicketBlockClick(ticket)}>
                                         <td key={index}>{ticket.ticketNumber}</td>
                                         <td key={index}>{ticket.ticketTitle}</td>
                                         <td key={index}>{ticket.createdDate.toDate().toDateString()}</td>
+                                        <td key={index}>{ticket.ticketDepartment}</td>
                                         <td key={index}>{ticket.ticketStatus}</td>
                                         <td key={index}>{ticket.priority}</td>
                                         <td key={index}>
@@ -205,8 +212,11 @@ const AgentDashboard = () => {
                                                 <p>{ticket.agentAssigned}</p>
                                             </div>
                                         </td>
+                                        <td key={index}>{ticket.createdBy}</td>
+                                        <td key={index}></td>
                                     </tr>
                                 ))}
+                            </tbody>
                         </table>
                     </div>
                     <div className={styles['btn-row']}>
