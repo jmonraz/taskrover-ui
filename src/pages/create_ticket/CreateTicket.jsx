@@ -48,10 +48,11 @@ const Ticket = () => {
 
 
     const handleCreateTicket = async () => {
-
+        console.log('ticket owner', ticketOwner);
+        console.log(authState.firstName + ' ' + authState.lastName);
         const ticketData = {
-            // agentAssigned: ticketOwner.fullName,
-            // agentAssignedId: ticketOwner.agentId,
+            agentAssigned: ticketOwner.fullName,
+            agentAssignedId: ticketOwner.agentId,
             classifications: '',
             contactAccountId: account,
             contactEmail: email,
@@ -66,8 +67,8 @@ const Ticket = () => {
             secondaryContacts: secondContact,
             tags: [],
             ticketDepartment: department,
-            // createdBy: authState.firstName + ' ' + authState.lastName,
-            // createdById: authState.userId,
+            createdBy: authState.firstName + ' ' + authState.lastName,
+            createdById: authState.userId,
             ticketStatus: 'Open',
             ticketTitle: subject,
         };

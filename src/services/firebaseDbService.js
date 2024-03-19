@@ -60,6 +60,16 @@ class FirebaseDBService {
         }
 
         async addCommentToTicket(ticketId, newCommentData) {
+            // change modifiedDate property of ticket to new date
+            const ticketRef = doc(this.db, "tickets", ticketId);
+            const ticketSnapshot = await getDoc(ticketRef);
+            if (ticketSnapshot.exists()) {
+                const ticketData = ticketSnapshot.data();
+                ticketData.id = ticketSnapshot.id;
+                await updateDoc(ticketRef, {
+                    modifiedDate: new Date(),
+                });
+            }
             // this is a reference to the 'conversations' sub-collection
             const conversationsRef = collection(this.db, 'tickets', ticketId, 'conversations');
             const snapshot = await getDocs(conversationsRef);

@@ -9,6 +9,12 @@ import genericPicture from '../../assets/img/Generic-Profile.webp';
 import SearchBar from "../../components/SearchBar";
 
 const AgentDashboard = () => {
+
+    Date.prototype.toString = function () {
+        const options = {year: 'numeric', month: 'short', day: 'numeric', hour: 'numeric', minute: 'numeric'};
+        return this.toLocaleDateString('en-US', options);
+    }
+
     const ticketFilter = [
         {
             title: "All Tickets",
@@ -202,7 +208,7 @@ const AgentDashboard = () => {
                                     <tr onClick={() => onHandleTicketBlockClick(ticket)}>
                                         <td key={index}>{ticket.ticketNumber}</td>
                                         <td key={index}>{ticket.ticketTitle}</td>
-                                        <td key={index}>{ticket.createdDate.toDate().toDateString()}</td>
+                                        <td key={index}>{ticket.createdDate.toDate().toString()}</td>
                                         <td key={index}>{ticket.ticketDepartment}</td>
                                         <td key={index}>{ticket.ticketStatus}</td>
                                         <td key={index}>{ticket.priority}</td>
@@ -213,7 +219,7 @@ const AgentDashboard = () => {
                                             </div>
                                         </td>
                                         <td key={index}>{ticket.createdBy}</td>
-                                        <td key={index}></td>
+                                        <td key={index}>{ticket.modifiedDate.toDate().toString()}</td>
                                     </tr>
                                 ))}
                             </tbody>
