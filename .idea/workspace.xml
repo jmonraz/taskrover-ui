@@ -5,14 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e453f103-7006-42f5-a97d-fd450ce14e14" name="Changes" comment="made it to where you can upload a profile pic and change your name">
-      <change afterPath="$PROJECT_DIR$/src/pages/create_user/CreateUser.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/create_user/CreateUser.module.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Navbar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Navbar.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/create_ticket/CreateTicket.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/create_ticket/CreateTicket.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/create_ticket/CreateTicket.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/create_ticket/CreateTicket.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/create_user/CreateUser.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/create_user/CreateUser.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/create_user/CreateUser.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/create_user/CreateUser.module.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/homepage/HomePage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/homepage/HomePage.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/show_accounts/ShowAcconts.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/users/UsersPage.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/show_accounts/ShowAccounts.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/users/UsersPage.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/services/firebaseAuthService.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/firebaseAuthService.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/services/firebaseDbService.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/firebaseDbService.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/firebaseUtils.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/firebaseUtils.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,7 +57,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "dart.analysis.tool.window.visible": "false",
-    "git-widget-placeholder": "dev",
+    "git-widget-placeholder": "create-user-form",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "/Users/jorgemonraz/Desktop/dev/taskrover-ui/src/assets/img",
     "list.type.of.created.stylesheet": "CSS",

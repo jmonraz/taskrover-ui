@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { getDocs, collection, deleteDoc, doc  } from 'firebase/firestore';
 import { db } from '../../services/firebaseService';
 import UserBlock from '../../components/UserBlock';
-import styles from './ShowAccounts.module.css';
+import styles from './UsersPage.module.css';
 
-const ShowAccounts = () => {
+const UsersPage = () => {
     const [users, setUsers] = useState([]);
     const [loading, setLoading] = useState(true);
     const [isDeleteConfirmationVisible, setDeleteConfirmationVisible] = useState(false);
@@ -94,4 +94,4 @@ const ShowAccounts = () => {
         </div>
     );
 };
-export default ShowAccounts;
+export default UsersPage;

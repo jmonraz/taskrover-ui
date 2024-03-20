@@ -14,7 +14,7 @@ import UserDashboard from "../user_dashboard/UserDashboard";
 import UserWelcomePage from "../user_welcome_page/UserWelcomePage";
 import CreateAccount from "../create_account/CreateAccount";
 import AnalyticsPage from "../analytics/AnalyticsPage";
-import ShowAccounts from "../show_accounts/ShowAcconts";
+import UsersPage from "../users/UsersPage";
 import Settings from "../settings/Settings";
 import CreateUser from "../create_user/CreateUser";
 
@@ -38,7 +38,7 @@ const HomeScreen = ({userType}) => {
                         <Route path="agent/dashboard/create-a-ticket" element={<CreateTicket />}/>
                         <Route path="agent/dashboard/create-account" element={<CreateAccount />}/>
                         <Route path="agent/dashboard/create-user" element={<CreateUser />}/>
-                        <Route path="agent/dashboard/accounts" element={<ShowAccounts />}/>
+                        <Route path="agent/dashboard/users" element={<UsersPage />}/>
                         <Route path="agent/dashboard/settings" element={<Settings />}/>
                         <Route path="user/welcome" element={<UserWelcomePage />} />
                         <Route path="user/dashboard" element={<UserDashboard/>} />

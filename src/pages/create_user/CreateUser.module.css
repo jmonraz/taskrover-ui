@@ -70,6 +70,10 @@
     font-weight: 400;
 }
 
-.username-inp {
+.disabled-inp {
     background-color: rgba(0, 0, 0, 0.1);
+}
+
+.req-inp {
+    border: 2px solid rgba(255, 0, 0, 0.6) !important;
 }

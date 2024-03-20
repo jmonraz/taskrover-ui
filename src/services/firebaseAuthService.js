@@ -1,5 +1,5 @@
 import {auth} from './firebaseService';
-import { signInWithEmailAndPassword, signOut} from 'firebase/auth';
+import {createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut} from 'firebase/auth';
 
 class AuthService {
     // constructor
@@ -28,17 +28,11 @@ class AuthService {
     // other auth methods
     // signUpWithEmailAndPassword(email, password)
     signUpWithEmailAndPassword(email, password) {
-            return auth.createUserWithEmailAndPassword(email, password).then((userCredential) => {
-                const user = userCredential.user;
-                console.log(user);
-                return user;
-            }).catch((error) => {
-                const errorCode = error.code;
-                const errorMessage = error.message;
-                console.log(errorCode);
-                console.log(errorMessage);
-                throw error;
-            })
+        return createUserWithEmailAndPassword(auth, email, password).then((userCredential) => {
+            return userCredential.user;
+        }).catch((error) => {
+            throw error;
+        });
     }
     // sendPasswordResetEmail(email)
 

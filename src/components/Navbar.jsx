@@ -143,7 +143,7 @@ const Navbar = () => {
 
     }
     const handleOnClickUsers = () =>{
-        navigate("agent/dashboard/accounts");
+        navigate("agent/dashboard/users");
     }
     const handleOnClickSettings =() =>{
         if (authState.userType === 'agent') {

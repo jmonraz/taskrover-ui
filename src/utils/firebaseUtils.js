@@ -12,7 +12,7 @@ export const getAllUsers = async () => {
     const firebaseDBService = new FirebaseDBService();
     return await firebaseDBService.getAllUsers();
 }
-export const signUp = (email, password) => {
+export const signUp = async (email, password) => {
     const authService = new AuthService();
     return authService.signUpWithEmailAndPassword(email, password);
 }
@@ -115,4 +115,9 @@ export const getUserProfilePictureUrl = async (userId) => {
 export const uploadUserProfilePicture = async (file, userId) => {
     const storageService = new StorageService();
     return await storageService.uploadUserProfilePicture(file, userId);
+}
+
+export const createUser = async (userData) => {
+    const firebaseDBService = new FirebaseDBService();
+    return await firebaseDBService.createUser(userData);
 }
