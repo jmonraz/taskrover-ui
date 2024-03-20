@@ -322,6 +322,16 @@ class FirebaseDBService {
         }
     }
 
+    async getStatuses() {
+        const statusesRef = collection(this.db, 'status');
+        const querySnapshot = await getDocs(statusesRef);
+        const statuses = [];
+        querySnapshot.forEach((doc) => {
+            statuses.push({id: doc.id, ...doc.data()});
+        });
+        return statuses;
+    }
+
 }
 
 export default FirebaseDBService;

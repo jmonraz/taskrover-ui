@@ -1,7 +1,7 @@
 // styles
 import styles from "./TicketDetails.module.css";
 // hooks
-import {useEffect, useState, useContext} from "react";
+import React, {useEffect, useState, useContext} from "react";
 import {useParams} from "react-router-dom";
 // components
 import TicketConversationBlock from "../../components/TicketConversationBlock";
@@ -9,8 +9,9 @@ import Button from "../../components/Button";
 import CommentPublisher from "../../components/CommentPublisher";
 import DropdownInput from "../../components/DropdownInput";
 // utils
-import {updateTicketStatus, getTicketById, getUserInformation, getUsersByRole, updateTicketOwner, getDepartments, updateTicketDepartment} from "../../utils/firebaseUtils";
+import {updateTicketStatus, getTicketById, getUserInformation, getUsersByRole, updateTicketOwner, getDepartments, updateTicketDepartment, getStatuses} from "../../utils/firebaseUtils";
 import {UserContext} from "../../context/UserContext";
+import underConstructionImg from "../../assets/img/website-maintenance.svg";
 
 const TicketDetails = () => {
     const {authState} = useContext(UserContext);
@@ -22,6 +23,10 @@ const TicketDetails = () => {
     const [user, setUser] = useState({});
     const [agents, setAgents] = useState([]);
     const [departments, setDepartments] = useState([]);
+    const [statuses, setStatuses] = useState([]);
+    const [ticketActivity, setTicketActivity] = useState(true);
+    const [ticketHistory, setTicketHistory] = useState(false);
+    const [ticketNotes, setTicketNotes] = useState(false);
 
     useEffect(() => {
         const fetchTicket = async () => {
@@ -45,6 +50,12 @@ const TicketDetails = () => {
             }
         }
 
+        const fetchStatuses = async () => {
+            const fetchedStatuses = await getStatuses();
+            console.log("Statuses fetched: ", fetchedStatuses);
+            setStatuses(fetchedStatuses);
+        }
+
         const fetchAgents = async () => {
             const fetchedAgents = await getUsersByRole('agent');
             setAgents(fetchedAgents);
@@ -53,6 +64,7 @@ const TicketDetails = () => {
         fetchTicket().then(r => console.log("Ticket fetched"));
         fetchDepartments().then(r => console.log("Departments fetched"));
         fetchUserInformation().then(r => console.log("User fetched"));
+        fetchStatuses().then(r => console.log("Statuses fetched"));
         fetchAgents().then(r => console.log("Agents fetched"));
     }, [reload, ticketId]);
 
@@ -81,6 +93,29 @@ const TicketDetails = () => {
         setTicket({...ticket, ticketDepartment: value});
     }
 
+    const onUpdateStatus = async (e) => {
+        const value = e.target.value;
+        await updateTicketStatus(ticketId, value);
+        setTicket({...ticket, ticketStatus: value});
+    }
+
+    const handleTicketTabChange = (e) => {
+        const value = e.target.innerText;
+        if(value === 'Activity') {
+            setTicketActivity(true);
+            setTicketHistory(false);
+            setTicketNotes(false);
+        } else if(value === 'History') {
+            setTicketActivity(false);
+            setTicketHistory(true);
+            setTicketNotes(false);
+        } else if(value === 'Notes') {
+            setTicketActivity(false);
+            setTicketHistory(false);
+            setTicketNotes(true);
+        }
+    }
+
     return (
         <>
             {ticket &&
@@ -101,7 +136,12 @@ const TicketDetails = () => {
                             {userType === 'agent' ? (<DropdownInput options={agents} defaultOption={ticket.agentAssigned} onSelect={onTicketOwnerSelect}/>
                                 ): (<p>{ticket.agentAssigned}</p>)}
                             <p className={styles['ticket-subheader']}>Status</p>
-                            <p>{ticket.ticketStatus}</p>
+                            <select value={ticket.ticketStatus} onChange={onUpdateStatus}>
+                                <option value={ticket.ticketStatus}>{ticket.ticketStatus}</option>
+                                {statuses.map((status, _) => {
+                                    return <option value={status.title}>{status.title}</option>
+                                })}
+                            </select>
                             <p className={styles['ticket-subheader']}>Created Date</p>
                             <p>{ticket.createdDate.toDate().toString()}</p>
                             <p className={styles['ticket-subheader']}>Tags</p>
@@ -131,13 +171,14 @@ const TicketDetails = () => {
                         </div>
 
                     </div>
+
+                    {/*right container*/}
                     <div className={styles['right-container']}>
                         <div className={styles['ticket-title']}>
                             <div className={styles['ticket-details-row']}>
                                 <div>
                                     <p className={styles['ticket-title-text']}>{ticket.ticketTitle}</p>
                                 </div>
-
                             </div>
                             <div className={styles['ticket-details-row']}>
                                 <div className={styles['tkt-num-row']}>
@@ -155,33 +196,55 @@ const TicketDetails = () => {
                                     }}>Comment</Button>
                                 </div>
                             </div>
-
-
+                            <div className={styles['ticket-params-row']}>
+                                <p className={ticketActivity ? `${styles['active-tab']}` : ''} onClick={handleTicketTabChange}>Activity</p>
+                                <p className={ticketHistory ? `${styles['active-tab']}` : ''} onClick={handleTicketTabChange}>History</p>
+                                <p className={ticketNotes ? `${styles['active-tab']}` : ''} onClick={handleTicketTabChange}>Notes</p>
+                            </div>
                         </div>
 
                         <div className={styles['ticket-conversation-container']}>
-                            {commentClicked &&
-                                <div>
-                                    <CommentPublisher ticketId={ticket.id} handleReload={handleReload} user={user} onClose={() => setCommentClicked(false)} />
-                                </div>
-                            }
-                            <div className={styles['ticket-conversation-col']}>
-                                <div>
-                                    {ticket && ticket.conversations && ticket.conversations.sort((a, b) => b.id - a.id)
-                                        .map((conversation, _) => {
-                                            for (var agent in agents) {
-                                                if (conversation.commentOwnerId === agent.id) {
-                                                    const role = agent.role;
-                                                    // return TicketConversationBlock with conditions based on role
-                                                    return <TicketConversationBlock style={role === 'user' ? 'user-block' : 'agent-block'} ticketId={ticketId} key={conversation.id} conversation={conversation} onDelete={handleReload} />;
+                        {ticketActivity && (
+                                <>
+                                {commentClicked &&
+                                    <div>
+                                        <CommentPublisher ticketId={ticket.id} handleReload={handleReload} user={user} onClose={() => setCommentClicked(false)} />
+                                    </div>
+                                }
+                                <div className={styles['ticket-conversation-col']}>
+                                    <div>
+                                        {ticket && ticket.conversations && ticket.conversations.sort((a, b) => b.id - a.id)
+                                            .map((conversation, _) => {
+                                                for (var agent in agents) {
+                                                    if (conversation.commentOwnerId === agent.id) {
+                                                        const role = agent.role;
+                                                        // return TicketConversationBlock with conditions based on role
+                                                        return <TicketConversationBlock style={role === 'user' ? 'user-block' : 'agent-block'} ticketId={ticketId} key={conversation.id} conversation={conversation} onDelete={handleReload} />;
+                                                    }
                                                 }
-                                            }
-                                            // If no matching agent is found, return default TicketConversationBlock
-                                            return <TicketConversationBlock ticketId={ticketId} key={conversation.id} conversation={conversation} onDelete={handleReload} />;
-                                        })
-                                    }
+                                                // If no matching agent is found, return default TicketConversationBlock
+                                                return <TicketConversationBlock ticketId={ticketId} key={conversation.id} conversation={conversation} onDelete={handleReload} />;
+                                            })
+                                        }
+                                    </div>
                                 </div>
-                            </div>
+
+                                </>
+                            )}
+                            {ticketHistory && (
+                                <>
+                                    <img src={underConstructionImg} alt="Under Construction"
+                                         className={styles['under-construction-img']}/>
+                                    <p className={styles['warning-txt']}>This page is under construction.</p>
+                                </>
+                            )}
+                            {ticketNotes && (
+                                <>
+                                    <img src={underConstructionImg} alt="Under Construction"
+                                         className={styles['under-construction-img']}/>
+                                    <p className={styles['warning-txt']}>This page is under construction.</p>
+                                </>
+                            )}
                         </div>
 
                         <div className={styles['ticket-container-footer']}>
