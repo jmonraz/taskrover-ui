@@ -101,6 +101,14 @@
 .tkt-num-row {
     display: flex;
     flex: 1;
+    gap: 1rem;
+}
+
+.tkt-num-row select {
+    border: none;
+    background-color: #f1efef;
+    padding: 0;
+    font-size: 1rem;
 }
 
 .ticket-details-row > div:nth-child(2) {

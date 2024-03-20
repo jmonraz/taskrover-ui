@@ -9,7 +9,7 @@ import Button from "../../components/Button";
 import CommentPublisher from "../../components/CommentPublisher";
 import DropdownInput from "../../components/DropdownInput";
 // utils
-import {updateTicketStatus, getTicketById, getUserInformation, getUsersByRole, updateTicketOwner} from "../../utils/firebaseUtils";
+import {updateTicketStatus, getTicketById, getUserInformation, getUsersByRole, updateTicketOwner, getDepartments, updateTicketDepartment} from "../../utils/firebaseUtils";
 import {UserContext} from "../../context/UserContext";
 
 const TicketDetails = () => {
@@ -21,6 +21,7 @@ const TicketDetails = () => {
     const [reload, setReload] = useState(false);
     const [user, setUser] = useState({});
     const [agents, setAgents] = useState([]);
+    const [departments, setDepartments] = useState([]);
 
     useEffect(() => {
         const fetchTicket = async () => {
@@ -30,6 +31,10 @@ const TicketDetails = () => {
             } catch (error) {
                 console.log("Error fetching ticket: ", error);
             }
+        }
+        const fetchDepartments = async () => {
+            const fetchedDepartments = await getDepartments();
+            setDepartments(fetchedDepartments);
         }
         const fetchUserInformation = async () => {
             try {
@@ -46,6 +51,7 @@ const TicketDetails = () => {
             console.log("Agents fetched: ", fetchedAgents);
         }
         fetchTicket().then(r => console.log("Ticket fetched"));
+        fetchDepartments().then(r => console.log("Departments fetched"));
         fetchUserInformation().then(r => console.log("User fetched"));
         fetchAgents().then(r => console.log("Agents fetched"));
     }, [reload, ticketId]);
@@ -67,6 +73,12 @@ const TicketDetails = () => {
     const onTicketOwnerSelect = async (value) => {
         console.log("Selected value: ", value);
         await updateTicketOwner(ticketId, value);
+    }
+
+    const onUpdateDepartment = async (e) => {
+        const value = e.target.value;
+        await updateTicketDepartment(ticketId, value);
+        setTicket({...ticket, ticketDepartment: value});
     }
 
     return (
@@ -130,7 +142,12 @@ const TicketDetails = () => {
                             <div className={styles['ticket-details-row']}>
                                 <div className={styles['tkt-num-row']}>
                                     <p className={styles['ticket-number-bubble']}>{ticket.ticketNumber}</p>
-                                    <p>{ticket.ticketDepartment}</p>
+                                    <select value={ticket.ticketDepartment} onChange={onUpdateDepartment}>
+                                        <option value={ticket.ticketDepartment} >{ticket.ticketDepartment}</option>
+                                        {departments.map((department, _) => {
+                                            return <option value={department.title}>{department.title}</option>
+                                        })}
+                                    </select>
                                 </div>
                                 <div >
                                 <Button onClick={() => {
