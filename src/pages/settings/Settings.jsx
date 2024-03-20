@@ -51,7 +51,7 @@ const SettingsPage = () => {
     });
 
     useEffect(() => {
-
+        console.log('authState: ', authState);
         const fetchUserProfilePicture = async () => {
             try {
                 const profilePicUrl = await getUserProfilePictureUrl(authState.userId);

@@ -282,6 +282,7 @@ class FirebaseDBService {
         const newUserRef = doc(usersRef);
         await setDoc(newUserRef, {
             id: newUserRef.id,
+            activationCode: newUserRef.id,
             ...user
         });
         return newUserRef;

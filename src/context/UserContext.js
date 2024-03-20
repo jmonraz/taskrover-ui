@@ -8,7 +8,7 @@ export const UserProvider = ({children}) => {
     const [authState, setAuthState] = useState({
         token: null,
         userType: null,
-        state: false,
+        userState: false,
         email: null,
         firstName: null,
         lastName: null,

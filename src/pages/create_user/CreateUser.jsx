@@ -3,7 +3,6 @@ import {useNavigate} from "react-router-dom";
 import {getRoles, createUser} from "../../utils/firebaseUtils";
 import {UserContext} from "../../context/UserContext";
 import Button from "../../components/Button";
-import {signUp} from "../../utils/firebaseUtils";
 
 import styles from './CreateUser.module.css';
 
@@ -19,7 +18,6 @@ const CreateUser = () => {
         role: '',
         team: '',
     });
-    const [password, setPassword] = useState('');
     const [roles, setRoles] = useState([]);
     const [teams, setTeams] = useState([]);
 
@@ -50,10 +48,8 @@ const CreateUser = () => {
             return;
         }
 
-        await signUp(user.email, password);
         await createUser({...user, createdBy: authState.userId, username: user.email});
         navigator('/home/agent/dashboard/users');
-
     }
 
     return (
@@ -95,14 +91,8 @@ const CreateUser = () => {
                     </div>
                     <div className={styles['form-row']}>
                         <div className={styles['form-col']}>
-                            <label htmlFor="password">Password*</label>
-                            <input type="password" id="password" name="password" className={(isRequired && password === '') ? `${styles['req-inp']}` : ''} onChange={e => {setPassword(e.target.value)}} />
-                        </div>
-                    </div>
-                    <div className={styles['form-row']}>
-                        <div className={styles['form-col']}>
                             <label htmlFor="role">Role*</label>
-                            <select id="role" name="role" value={roles.id} onChange={e => onHandleRole(e)} className={(isRequired && password === '') ? `${styles['req-inp']}` : ''}>
+                            <select id="role" name="role" value={roles.id} onChange={e => onHandleRole(e)} className={(isRequired && user.role === '') ? `${styles['req-inp']}` : ''}>
                                 <option value="">Select Role</option>
                                 {roles.map((role, index) => {
                                     return <option key={index} value={role.id}>{role.role}</option>
