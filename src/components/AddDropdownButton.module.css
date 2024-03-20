@@ -41,3 +41,10 @@
     background-color: #3b863e;
 }
 
+select {
+    background-color: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    padding: 10px 15px;
+    border-radius: 5px;
+}
+
