@@ -6,13 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="e453f103-7006-42f5-a97d-fd450ce14e14" name="Changes" comment="made it to where you can upload a profile pic and change your name">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Navbar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Navbar.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/agent_dashboard/AgentDashboard.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/agent_dashboard/AgentDashboard.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/create_ticket/CreateTicket.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/create_ticket/CreateTicket.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/create_user/CreateUser.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/create_user/CreateUser.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/loginpage/LoginPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/loginpage/LoginPage.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/services/firebaseDbService.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/firebaseDbService.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/firebaseUtils.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/firebaseUtils.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/UserBlock.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/UserBlock.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/users/UsersPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/users/UsersPage.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,26 +43,26 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Node.js.CreateTicket.jsx.executor&quot;: &quot;Debug&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;create-user-form&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/jorgemonraz/Desktop/dev/taskrover-ui/src/assets/img&quot;,
-    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;/Applications/IntelliJ IDEA.app/Contents/plugins/javascript-impl/jsLanguageServicesImpl/external&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Node.js.CreateTicket.jsx.executor": "Debug",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "dart.analysis.tool.window.visible": "false",
+    "git-widget-placeholder": "dev",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/Users/jorgemonraz/Desktop/dev/taskrover-ui/src/assets/img",
+    "list.type.of.created.stylesheet": "CSS",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "ts.external.directory.path": "/Applications/IntelliJ IDEA.app/Contents/plugins/javascript-impl/jsLanguageServicesImpl/external",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/assets/img" />

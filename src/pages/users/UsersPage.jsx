@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { getDocs, collection, deleteDoc, doc  } from 'firebase/firestore';
-import { db } from '../../services/firebaseService';
+import {getAllUsers} from "../../utils/firebaseUtils";
 import UserBlock from '../../components/UserBlock';
 import styles from './UsersPage.module.css';
 
@@ -13,31 +12,10 @@ const UsersPage = () => {
 
     useEffect(() => {
         const fetchUsers = async () => {
-            try {
-                const usersCollection = collection(db, 'users');
-                const usersSnapshot = await getDocs(usersCollection);
-
-                const userList = [];
-                usersSnapshot.forEach((doc) => {
-                    const userData = doc.data();
-                    userList.push({
-                        id: doc.id,
-                        firstName: userData.firstName,
-                        lastName: userData.lastName,
-                        email: userData.email,
-                        role: userData.role,
-                        profilePic: userData.profilePic,
-                    });
-                });
-
-                setUsers(userList);
-                setLoading(false);
-            } catch (error) {
-                console.error('Error fetching users:', error);
-                setLoading(false);
-            }
+            const users = await getAllUsers();
+            setUsers(users);
+            setLoading(false);
         };
-
         fetchUsers();
     }, []);
 
@@ -47,22 +25,7 @@ const UsersPage = () => {
     };
 
     const confirmUserDelete = async () => {
-        if (userToDelete) {
-            try {
-                const userDocRef = doc(db, 'users', userToDelete.id);
-                await deleteDoc(userDocRef);
 
-                // Update state to reflect the deletion
-                const updatedUsers = users.filter((user) => user.id !== userToDelete.id);
-                setUsers(updatedUsers);
-            } catch (error) {
-                console.error('Error deleting user:', error);
-            } finally {
-                // Reset state after deletion
-                setUserToDelete(null);
-                setDeleteConfirmationVisible(false);
-            }
-        }
     };
 
     const cancelUserDelete = () => {
