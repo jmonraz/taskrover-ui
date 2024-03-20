@@ -23,7 +23,7 @@ const HomeScreen = ({userType}) => {
     const [initialLoad, setInitialLoad] = useState(false);
     useEffect(() => {
         if (!initialLoad) {
-            const dashboardPath = userType === 'agent' ? '/home/agent/dashboard' : '/home/user/welcome';
+            const dashboardPath = userType === 'user' ? '/home/user/welcome' : '/home/agent/dashboard';
             setInitialLoad(true);
             navigate(dashboardPath);
         }
