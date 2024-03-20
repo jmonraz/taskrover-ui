@@ -12,12 +12,13 @@ const Ticket = () => {
 
     const [description, setDescription] = useState('');
     const [department, setDepartment] = useState('');
-    const [ticketOwner, setTicketOwner] = useState([]);
+    const [ticketOwner, setTicketOwner] = useState({});
     const [subject,setSubject]= useState('');
     const [email,setEmail]= useState('');
     const [contactName,setContactName]= useState('');
     const [secondContact,setSecondContact]= useState('');
     const [account, setAccount]= useState('');
+    const [ticketOwnerId, setTicketOwnerId]= useState(''); // [TODO] This is not used anywhere. Remove it if not needed
 
     const [departments, setDepartments] = useState([]);
     const [agents, setAgents] = useState([]);
@@ -96,7 +97,6 @@ const Ticket = () => {
         }
     };
 
-
     const onSetContact = (user) => {
         setContactName(user.fullName);
         setEmail(user.email);
@@ -141,8 +141,11 @@ const Ticket = () => {
     };
 
     const onHandleTicketOwner = (e) => {
-        const selectedAgent = agents.find(agent => agent.id === e.target.value) || {};
-        setTicketOwner(selectedAgent);
+        const agentId = e.target.value;
+        setTicketOwnerId(agentId); // Store the selected agent's ID
+        const selectedAgent = agents.find(agent => agent.id === agentId) || {};
+        console.log('selected agent', selectedAgent);
+        setTicketOwner(selectedAgent); // Keep this if you need the agent's object
     };
 
     return (
@@ -150,7 +153,10 @@ const Ticket = () => {
             <div className={styles["ticket-container"]}>
                 <div className={styles["ticket-form"]} >
                     <h2>Ticket Information</h2>
+
+                    {/* start department & contact row */}
                     <div className={styles["form-row"]}>
+                        {/* start department col*/}
                         <div className={styles["form-column"]}>
                             <label htmlFor="department">Department</label>
                             <select id="department" value={department}
@@ -161,6 +167,8 @@ const Ticket = () => {
                                 ))}
                             </select>
                         </div>
+                        {/* end department col */}
+                        {/* start contact col */}
                         <div className={`${styles["form-column"]} ${styles['contact-ctr']}`}>
                             <label htmlFor="contact" className={styles.required}>Contact Name</label>
                             <div className={styles["input-group"]}>
@@ -190,7 +198,11 @@ const Ticket = () => {
                                 </div>
                             )}
                         </div>
+                        {/* end contact col */}
                     </div>
+                    {/* end department & contact row */}
+
+                    {/* start account & CC row*/}
                     <div className={styles["form-row"]}>
                         <div className={styles["form-column"]}>
                             <label htmlFor="account">Account</label>
@@ -203,7 +215,9 @@ const Ticket = () => {
                                    onChange={(e) => setSecondContact(e.target.value)}/>
                         </div>
                     </div>
+                    {/* end account & CC row */}
 
+                    {/* start email & upload file row */}
                     <div className={styles["form-row"]}>
                         <div className={`${styles["form-column"]} ${styles['email-div']}`}>
                             <label htmlFor="email">Email</label>
@@ -217,43 +231,56 @@ const Ticket = () => {
                             </div>
                         </div>
                     </div>
+                    {/* end email & upload file row */}
+
+                    {/* assigned to and blank row */}
                     <div className={styles["form-row"]}>
+
+                        {/* start assigned to col */}
                         <div className={styles["form-column"]}>
                             <label htmlFor="ticketOwner">Assigned To</label>
-                            <select id="ticketOwner" value={ticketOwner}
+                            <select id="ticketOwner" value={ticketOwnerId}
                                     onChange={e => onHandleTicketOwner(e)}>
                                 {agents.map((agent, index) => (
                                     <option key={index} value={agent.id}>{agent.fullName}</option>
                                 ))}
                             </select>
                         </div>
-                        <div className={styles["form-column"]}>
+                        {/* end assigned to col */}
 
+                        {/* blank col */}
+                        <div className={styles["form-column"]}>
                         </div>
                     </div>
+
+                    {/* start subject row */}
                     <div className={styles["form-row"]}>
                         <div className={styles["form-column"]}>
                             <label htmlFor="subject" className={styles.required}>Subject</label>
                             <input required type="text" id="subject" value={subject}
                                    onChange={(e) => setSubject(e.target.value)}/>
                         </div>
-
                     </div>
+                    {/* end subject row */}
 
+                    {/* description row */}
                     <div className={styles["form-row"]}>
                         <div className={styles["form-column"]}>
                             <label htmlFor="description">Description</label>
                             <textarea id="description" rows="4" value={description}
                                       onChange={(e) => setDescription(e.target.value)}></textarea>
                         </div>
-
                     </div>
+                    {/* end description row */}
+
+                    {/* start button row */}
                     <div className={styles['form-row']}>
                         <div className={styles["button-container"]}>
                             <Button onClick={handleCreateTicket}>Create Ticket</Button>
                             <Button onClick={handleCancel} styleName='cancel-button'>Cancel</Button>
                         </div>
                     </div>
+                    {/* end button row */}
                 </div>
             </div>
         </>

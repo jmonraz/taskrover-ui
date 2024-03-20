@@ -5,10 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e453f103-7006-42f5-a97d-fd450ce14e14" name="Changes" comment="made it to where you can upload a profile pic and change your name">
+      <change afterPath="$PROJECT_DIR$/src/pages/create_user/CreateUser.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/create_user/CreateUser.module.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Navbar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Navbar.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/settings/Settings.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/settings/Settings.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/settings/Settings.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/settings/Settings.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/create_ticket/CreateTicket.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/create_ticket/CreateTicket.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/create_ticket/CreateTicket.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/create_ticket/CreateTicket.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/homepage/HomePage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/homepage/HomePage.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -18,9 +22,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="JavaScript File" />
         <option value="JSX File" />
         <option value="CSS File" />
-        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -51,7 +55,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "dart.analysis.tool.window.visible": "false",
-    "git-widget-placeholder": "settings-test",
+    "git-widget-placeholder": "dev",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "/Users/jorgemonraz/Desktop/dev/taskrover-ui/src/assets/img",
     "list.type.of.created.stylesheet": "CSS",

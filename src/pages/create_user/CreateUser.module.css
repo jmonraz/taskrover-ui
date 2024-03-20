@@ -1,0 +1,75 @@
+.create-user-ctr {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.create-user-form {
+    padding: 25px 50px;
+    border-radius: 5px;
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.4);
+}
+
+.form-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 50px;
+}
+
+.form-col {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 5px;
+    flex: 1;
+}
+
+.form-col label {
+    font-size: 1rem;
+    font-weight: 500;
+    color: #757575;
+}
+
+.form-col select {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+}
+
+.form-row input {
+    padding: 8px;
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.create-user-form h2 {
+    margin: 0;
+    font-size: 1.4rem;
+    font-weight: 400;
+    color: #757575;
+}
+
+.button-ctr {
+    display: flex;
+    flex: 1;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.button-ctr button {
+    width: 100px;
+    padding: 10px 5px;
+    font-size: .9rem;
+    font-weight: 400;
+}
+
+.username-inp {
+    background-color: rgba(0, 0, 0, 0.1);
+}

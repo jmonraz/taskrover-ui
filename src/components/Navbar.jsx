@@ -100,6 +100,10 @@ const Navbar = () => {
         navigate("agent/dashboard/create-account");
     }
 
+    const handleOnClickUser = () => {
+        navigate("agent/dashboard/create-user");
+    }
+
     const handleOnClickDepartment = () => {
         setShowAddOptions(!showAddOptions);
         setCreateDepartmentBtn(!createDepartmentBtn);
@@ -192,7 +196,7 @@ const Navbar = () => {
                             <p className={styles['status-label']}><span>ADD</span> NEW</p>
                             <ul>
                                 <li onClick={handleNewTicketClicked}>Ticket</li>
-                                <li onClick={() => {}}>User</li>
+                                <li onClick={handleOnClickUser}>User</li>
                                 <li onClick={handleOnClickAccount}>Account</li>
                                 {/*<li>Article</li>*/}
                                 <li onClick={handleOnClickDepartment}>Department</li>

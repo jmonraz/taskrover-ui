@@ -17,7 +17,7 @@
 .form-row {
     display: flex;
     justify-content: space-between;
-    gap: 100px;
+    gap: 50px;
 }
 
 .form-column {
@@ -95,7 +95,6 @@ label.required {
 
 .form-row input {
     padding: 8px;
-    min-width: 250px;
     width: 100%;
     border: 1px solid #ccc;
     border-radius: 5px;
