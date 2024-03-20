@@ -2,7 +2,7 @@
 import {useFormInput} from "../../hooks/useFormInput";
 
 // firebase calls
-import {signIn, getUserInformation} from "../../utils/firebaseUtils";
+import {signIn, getUserInformation, getUserById, signUp, updateUser} from "../../utils/firebaseUtils";
 
 // context
 import {UserContext} from "../../context/UserContext";
@@ -38,6 +38,8 @@ const LoginPage = () => {
     const username = useFormInput('');
     const password = useFormInput('');
     const forgotPasswordEmail = useFormInput('');
+    const activationCode = useFormInput('');
+    const registeredPassword = useFormInput('');
 
     useEffect( () => {
         if (authState.userState) {
@@ -56,6 +58,7 @@ const LoginPage = () => {
 
         try {
             const response = await signIn(username.value, password.value);
+            console.log('response:', response);
             const token = await response.getIdToken();
             const userInfo = await getUserInformation(response.uid);
             setUserInformation(userInfo);
@@ -98,6 +101,31 @@ const LoginPage = () => {
         setShowLogin(false);
         setShowRegister(true);
     }
+
+    const onHandleRegisterSubmit = async e => {
+        e.preventDefault();
+        setErrorMessage('');
+        setIsLoading(true);
+        try {
+            const registeredUser = await getUserById(activationCode.value);
+            if (registeredUser.id === activationCode.value) {
+                const userInfo = await signUp(registeredUser.email, registeredPassword.value);
+                await updateUser(registeredUser.id, userInfo.uid,{firstLogin: true});
+                setErrorMessage('');
+                setShowForgotPassword(false);
+                setShowLogin(true);
+                setShowRegister(false);
+                setIsLoading(false);
+                console.log('your username is:', registeredUser.email);
+            } else {
+                setErrorMessage('Invalid activation code. Please try again.');
+            }
+        } catch (error) {
+            console.error('Register error:', error); // Log any register errors
+            setIsLoading(false);
+        }
+
+    };
 
     return (
         <>
@@ -155,15 +183,16 @@ const LoginPage = () => {
 
                     {showRegister && (
                         // Register form
-                        <form className={styles['login-form']} onSubmit={onHandleSubmit}>
+                        <form className={styles['login-form']} onSubmit={onHandleRegisterSubmit}>
                             <div>
                                 <div className={styles['text-row']}>
                                     <p className='main-text'>Register Account</p>
                                     <p className='text-link' >Please enter the activation code you received in your email</p>
                                 </div>
                                 <div className={styles['input-row']}>
-                                    <Input inputProps={forgotPasswordEmail} styleName='main-input' placeholder='Activation Code'
+                                    <Input inputProps={activationCode} styleName='main-input' placeholder='Activation Code'
                                            type='text' required={true}/>
+                                    <Input inputProps={registeredPassword} styleName='main-input' placeholder='Password' type='password' required={true}/>
                                 </div>
                                 <div className={styles['button-row']}>
                                     <Button styleName='green-button' type="submit">Activate</Button>

@@ -53,7 +53,7 @@ const Ticket = () => {
         console.log(authState.firstName + ' ' + authState.lastName);
         const ticketData = {
             agentAssigned: ticketOwner.fullName,
-            agentAssignedId: ticketOwner.agentId,
+            agentAssignedId: ticketOwner.id,
             classifications: '',
             contactAccountId: account,
             contactEmail: email,
@@ -126,6 +126,7 @@ const Ticket = () => {
     };
 
     const onFilterContact = (e) => {
+        console.log('filtering contact', e.target.value);
         const value = e.target.value;
         setContactName(value);
         setIsContactDisabled(false); // Ensure input is enabled when typing
@@ -142,6 +143,7 @@ const Ticket = () => {
 
     const onHandleTicketOwner = (e) => {
         const agentId = e.target.value;
+        console.log('selected agent id', agentId);
         setTicketOwnerId(agentId); // Store the selected agent's ID
         const selectedAgent = agents.find(agent => agent.id === agentId) || {};
         console.log('selected agent', selectedAgent);
@@ -241,6 +243,7 @@ const Ticket = () => {
                             <label htmlFor="ticketOwner">Assigned To</label>
                             <select id="ticketOwner" value={ticketOwnerId}
                                     onChange={e => onHandleTicketOwner(e)}>
+                                <option value="" disabled>Select agent</option>
                                 {agents.map((agent, index) => (
                                     <option key={index} value={agent.id}>{agent.fullName}</option>
                                 ))}

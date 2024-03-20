@@ -41,14 +41,12 @@ const CreateUser = () => {
     }
 
     const onCreateUser = async () => {
-        console.log('creating user');
         if(user.firstName === '' || user.lastName === '' || user.email === '' || user.role === '') {
-            console.log('something missing');
             setIsRequired(true);
             return;
         }
 
-        await createUser({...user, createdBy: authState.userId, username: user.email});
+        await createUser({...user, createdBy: authState.userId, username: user.email, registered: false});
         navigator('/home/agent/dashboard/users');
     }
 

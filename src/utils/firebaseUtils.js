@@ -121,3 +121,13 @@ export const createUser = async (userData) => {
     const firebaseDBService = new FirebaseDBService();
     return await firebaseDBService.createUser(userData);
 }
+
+export const getUserById = async (userId) => {
+    const firebaseDBService = new FirebaseDBService();
+    return await firebaseDBService.getUserById(userId);
+}
+
+export const updateUser = async (oldDocId, newDocId, userData) => {
+    const firebaseDBService = new FirebaseDBService();
+    return await firebaseDBService.updateUser(oldDocId, newDocId, userData);
+}

@@ -73,35 +73,38 @@ const Navbar = () => {
         setShowAddOptions(!showAddOptions);
     }
     const handleNewTicketClicked = () =>{
-        if (authState.userType === 'agent') {
+        if (authState.userType === 'user') {
+            navigate("user/dashboard/create-a-ticket");
+        } else{
             navigate("agent/dashboard/create-a-ticket");
             handleAddDropdownButtonClicked();
-        } else if (authState.userType === 'user'){
-            navigate("user/dashboard/create-a-ticket");
         }
     }
     const handleOnClickTickets = () => {
-        if (authState.userType === 'agent') {
-            navigate("agent/dashboard");
-        }else if (authState.userType === 'user'){
+        if (authState.userType === 'user') {
             navigate("user/dashboard");
+        } else {
+            navigate("agent/dashboard");
         }
     }
 
     const handleOnClickHome = () => {
-        if (authState.userType === 'agent') {
-            navigate("agent/dashboard");
-        }else if (authState.userType === 'user'){
+        if (authState.userType === 'user') {
             navigate("user/welcome");
+
+        }else {
+            navigate("agent/dashboard");
         }
     }
 
     const handleOnClickAccount = () => {
         navigate("agent/dashboard/create-account");
+        handleAddDropdownButtonClicked();
     }
 
     const handleOnClickUser = () => {
         navigate("agent/dashboard/create-user");
+        handleAddDropdownButtonClicked();
     }
 
     const handleOnClickDepartment = () => {
@@ -146,10 +149,11 @@ const Navbar = () => {
         navigate("agent/dashboard/users");
     }
     const handleOnClickSettings =() =>{
-        if (authState.userType === 'agent') {
-            navigate("agent/dashboard/settings");
-        }else if (authState.userType === 'user'){
+        if (authState.userType === 'user') {
             navigate("user/dashboard/settings");
+
+        }else {
+            navigate("agent/dashboard/settings");
         }
     }
 

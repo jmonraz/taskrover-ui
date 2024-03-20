@@ -1,5 +1,5 @@
 import {firestore} from './firebaseService';
-import {collection, getDocs, doc, getDoc, setDoc, deleteDoc, updateDoc, query, where} from 'firebase/firestore';
+import {collection, deleteDoc, doc, getDoc, getDocs, query, setDoc, updateDoc, where} from 'firebase/firestore';
 
 class FirebaseDBService {
     constructor() {
@@ -283,10 +283,45 @@ class FirebaseDBService {
         await setDoc(newUserRef, {
             id: newUserRef.id,
             activationCode: newUserRef.id,
+            fullName: user.firstName + ' ' + user.lastName,
             ...user
         });
         return newUserRef;
     }
+
+    async getUserById(userId) {
+        const userRef = doc(this.db, "users", userId);
+        const userSnapshot = await getDoc(userRef);
+        if (userSnapshot.exists()) {
+            return userSnapshot.data();
+        } else {
+            console.log("No such document!");
+            return null;
+        }
+    }
+
+    async updateUser(oldDocId, newDocId, newData) {
+        const userRef = doc(this.db, "users", oldDocId);
+        const userSnapshot = await getDoc(userRef);
+        if (userSnapshot.exists()) {
+            const userData = userSnapshot.data();
+            const newUserRef = doc(this.db, "users", newDocId);
+            await setDoc(newUserRef, {
+                ...userData,
+                ...newData,
+                // Assuming you want to override or set the 'id' field in the document with newDocId
+                // and set 'registered' to true. Remove or adjust these lines as needed.
+                id: newDocId,
+                registered: true
+            });
+            await deleteDoc(userRef); // Delete the old document
+            return newUserRef; // Return the reference to the new document
+        } else {
+            console.log("No such document!");
+            return null; // Indicate failure or absence of the old document
+        }
+    }
+
 }
 
 export default FirebaseDBService;
