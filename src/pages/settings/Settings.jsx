@@ -74,10 +74,6 @@ const SettingsPage = () => {
         fetchUserProfilePicture().then(r => console.log("Profile picture fetched"));
     }, []);
 
-    const handleSaveChanges = async () => {
-
-    };
-
     const handleProfilePictureChange = async (e) => {
         const file = e.target.files[0];
         const profilePicUrl = await uploadUserProfilePicture(file, authState.userId);
@@ -326,7 +322,7 @@ const SettingsPage = () => {
                                     </div>
 
                                     <div className={styles['dpt-ctr']}>
-                                        <label htmlFor="departments" className={styles['label-txt']}>Departments</label>
+                                        <label className={styles['label-txt']}>Departments</label>
                                         <div className={styles['dpt-sub-ctr']}>
                                             {departments.length > 0 && departments.map((department) => (
                                                 <div key={department.title}
