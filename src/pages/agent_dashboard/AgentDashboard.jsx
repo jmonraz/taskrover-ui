@@ -165,32 +165,40 @@ const AgentDashboard = () => {
                 </div>) :
             (
                 <>
-                    <div className={styles['header-row']}>
-                        <div className={styles['ticket-filter-ctr']}>
-                            <p className={styles['ticket-filter-label']}>{ticketFilterState.title} ({ticketFilterState.number})</p>
-                            <div className={styles['icon-container']}>
-                                <img src={downArrowIcon} alt="down-arrow" className={styles['icon']}
-                                     onClick={handleTicketFilterSubmenu}/>
-                                {isTicketFilterSubmenu && (
-                                    <div className={styles['dropdown-menu']} ref={ticketFilterRef}>
-                                        <ul>
-                                            {ticketFilter.map((filter, index) => (
-                                                <li key={index} onClick={() => handleTicketFilterChange(filter)}>
-                                                    {filter.title}
-                                                </li>
-                                            ))}
-                                        </ul>
-                                    </div>
-                                )}
+                    {/*<div className={styles['header-row']}>*/}
+                    {/*    <div className={styles['ticket-filter-ctr']}>*/}
+                    {/*        <p className={styles['ticket-filter-label']}>{ticketFilterState.title} ({ticketFilterState.number})</p>*/}
+                    {/*        <div className={styles['icon-container']}>*/}
+                    {/*            <img src={downArrowIcon} alt="down-arrow" className={styles['icon']}*/}
+                    {/*                 onClick={handleTicketFilterSubmenu}/>*/}
+                    {/*            {isTicketFilterSubmenu && (*/}
+                    {/*                <div className={styles['dropdown-menu']} ref={ticketFilterRef}>*/}
+                    {/*                    <ul>*/}
+                    {/*                        {ticketFilter.map((filter, index) => (*/}
+                    {/*                            <li key={index} onClick={() => handleTicketFilterChange(filter)}>*/}
+                    {/*                                {filter.title}*/}
+                    {/*                            </li>*/}
+                    {/*                        ))}*/}
+                    {/*                    </ul>*/}
+                    {/*                </div>*/}
+                    {/*            )}*/}
+                    {/*        </div>*/}
+                    {/*    </div>*/}
+                    {/*</div>*/}
+                    <div className={styles['ticket-blocks-col']}>
+                        <div className={styles['tbl-banner']}>
+                            <div>
+                                <p className={styles['tbl-banner-title']}>TICKETS</p>
+                                <SearchBar inputProps={searchBarProps}/>
+                            </div>
+                            <div>
+                                <p className={styles['tbl-banner-bubble']}>Visible Columns</p>
+                                <p className={styles['tbl-banner-bubble']}>Pinned Columns</p>
+                                <p className={styles['tbl-banner-bubble']}>Export(csv, xslx)</p>
                             </div>
                         </div>
-                        <div>
-                            <SearchBar inputProps={searchBarProps}/>
-                        </div>
-                    </div>
-                    <div className={styles['ticket-blocks-col']}>
                         <table className={styles['tbl']}>
-                            <thead>
+                        <thead>
                                 <tr className={styles['table-header']}>
                                     <th>Ticket Number</th>
                                     <th>Subject</th>
