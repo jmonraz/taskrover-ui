@@ -5,8 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fad4ea0f-a4ea-4957-a666-83f0e0123387" name="Changes" comment="made it to where you can upload a profile pic and change your name">
+      <change afterPath="$PROJECT_DIR$/src/assets/icons/down-arrow.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/icons/export.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/icons/eye.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/icons/filter.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/icons/pin.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_3_13_24,_1_34 PM_[Changes]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_3_13_24,_1_35 PM_[Changes]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_3_13_24__1_34PM__Changes_.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_3_13_24__1_35PM__Changes_.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/SearchBar.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SearchBar.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/icons/dropdown_arrow.svg" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/icons/dropdown_arrow.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/SearchBar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SearchBar.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/agent_dashboard/AgentDashboard.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/agent_dashboard/AgentDashboard.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/agent_dashboard/AgentDashboard.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/agent_dashboard/AgentDashboard.module.css" afterDir="false" />
     </list>
@@ -22,11 +32,17 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "dart.analysis.tool.window.visible": "false",
-    "git-widget-placeholder": "dev",
+    "git-widget-placeholder": "table-test",
+    "last_opened_file_path": "/Users/jorgemonraz/Desktop/dev/taskrover-ui/src/assets/icons",
     "node.js.selected.package.tslint": "(autodetect)",
     "ts.external.directory.path": "/Applications/IntelliJ IDEA.app/Contents/plugins/javascript-impl/jsLanguageServicesImpl/external"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/assets/icons" />
+    </key>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -36,5 +52,9 @@
   </component>
   <component name="TaskManager">
     <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="made it to where you can upload a profile pic and change your name" />
+    <option name="LAST_COMMIT_MESSAGE" value="made it to where you can upload a profile pic and change your name" />
   </component>
 </project>

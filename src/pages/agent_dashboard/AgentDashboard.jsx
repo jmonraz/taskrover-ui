@@ -1,9 +1,12 @@
 import styles from "./AgentDashboard.module.css";
-import downArrowIcon from "../../assets/icons/dropdown_arrow.svg";
 import {useEffect, useRef, useState} from "react";
 import {useNavigate} from "react-router-dom";
 import {getTickets, getUserInformation, getUserProfilePictureUrl} from "../../utils/firebaseUtils";
 import genericPicture from '../../assets/img/Generic-Profile.webp';
+import eyeImg from '../../assets/icons/eye.svg';
+import pinImg from '../../assets/icons/pin.svg';
+import exportImg from '../../assets/icons/export.svg';
+import filterImg from '../../assets/icons/filter.svg';
 
 // components
 import SearchBar from "../../components/SearchBar";
@@ -15,33 +18,6 @@ const AgentDashboard = () => {
         return this.toLocaleDateString('en-US', options);
     }
 
-    const ticketFilter = [
-        {
-            title: "All Tickets",
-            number: ""
-        },
-        {
-            title: "Open Tickets",
-            number: ""
-        },
-        {
-            title: "On Hold Tickets",
-            number: ""
-        },
-        {
-            title: "In Progress Tickets",
-            number: ""
-        },
-        {
-            title: "Resolved Tickets",
-            number: ""
-        },
-        {
-            title: "Closed Tickets",
-            number: ""
-        },
-    ];
-
     const navigate = useNavigate();
     const [tickets, setTickets] = useState([]);
     const [unfilteredTickets, setUnfilteredTickets] = useState([]);
@@ -49,10 +25,10 @@ const AgentDashboard = () => {
     const [isLoading, setIsLoading] = useState(true);
     const [currentPage, setCurrentPage] = useState(1);
     const ticketsPerPage = 10;
-    const [searcBarValue, setSearchBarValue] = useState('');
-    const [ticketFilterState, setTicketFilterState] = useState(ticketFilter[0]);
-    const [isTicketFilterSubmenu, setIsTicketFilterSubmenu] = useState(false);
-    const ticketFilterRef = useRef();
+    const [searchBarValue, setSearchBarValue] = useState('');
+    const [eyeClicked, setEyeClicked] = useState(false);
+    const [searchColumn, setSearchColumn] = useState('');
+    const [exportClicked, setExportClicked] = useState(false);
 
     useEffect(() => {
         const fetchTicketsAndProfilePictures = async () => {
@@ -74,7 +50,6 @@ const AgentDashboard = () => {
 
                 setTickets(ticketsWithPictures);
                 setUnfilteredTickets(ticketsWithPictures);
-                ticketFilter[0].number = ticketsWithPictures.length;
                 setIsLoading(false);
                 console.log("Tickets fetched: ", ticketsWithPictures);
             } catch (error) {
@@ -110,29 +85,24 @@ const AgentDashboard = () => {
     }
 
     const searchBarProps = {
-        value: searcBarValue,
+        value: searchBarValue,
         onChange: onSearchBarChange
     };
 
-    const handleTicketFilterChange = (selectedFilter) => {
-        setTicketFilterState(selectedFilter);
-        setIsTicketFilterSubmenu(false);
-
-        // Apply filter based on the selected ticket filter
-        const filteredTickets = unfilteredTickets.filter(ticket => {
-            if (selectedFilter.title === 'All Tickets') {
-                return true; // Show all tickets
-            } else {
-                return selectedFilter.title.toLowerCase().includes(ticket.ticketStatus.toLowerCase());
-            }
-        });
-
-        setTickets(filteredTickets);
-
+    const onChangeClickExport = () => {
+        setExportClicked(!exportClicked);
+        setEyeClicked(false);
     };
 
-    const handleTicketFilterSubmenu = () => {
-        setIsTicketFilterSubmenu(!isTicketFilterSubmenu);
+    const onChangeEyeClick = () => {
+        setEyeClicked(!eyeClicked);
+        setExportClicked(false);
+    };
+
+
+    const onChangeSearchColumn = (e) => {
+        e.stopPropagation();
+        setSearchColumn(e.target.value);
     }
 
     const onHandleTicketBlockClick = (ticketDetails) => {
@@ -156,6 +126,15 @@ const AgentDashboard = () => {
         setCurrentPage((prevPage) => Math.max(prevPage - 1, 1));
     };
 
+    const getTicketHeaders = () => {
+        if (tickets.length > 0) {
+            return Object.keys(tickets[0]);
+        }
+        return [];
+    };
+
+    const ticketHeaders = getTicketHeaders();
+
     return (
         <>
         {isLoading ?
@@ -165,50 +144,63 @@ const AgentDashboard = () => {
                 </div>) :
             (
                 <>
-                    {/*<div className={styles['header-row']}>*/}
-                    {/*    <div className={styles['ticket-filter-ctr']}>*/}
-                    {/*        <p className={styles['ticket-filter-label']}>{ticketFilterState.title} ({ticketFilterState.number})</p>*/}
-                    {/*        <div className={styles['icon-container']}>*/}
-                    {/*            <img src={downArrowIcon} alt="down-arrow" className={styles['icon']}*/}
-                    {/*                 onClick={handleTicketFilterSubmenu}/>*/}
-                    {/*            {isTicketFilterSubmenu && (*/}
-                    {/*                <div className={styles['dropdown-menu']} ref={ticketFilterRef}>*/}
-                    {/*                    <ul>*/}
-                    {/*                        {ticketFilter.map((filter, index) => (*/}
-                    {/*                            <li key={index} onClick={() => handleTicketFilterChange(filter)}>*/}
-                    {/*                                {filter.title}*/}
-                    {/*                            </li>*/}
-                    {/*                        ))}*/}
-                    {/*                    </ul>*/}
-                    {/*                </div>*/}
-                    {/*            )}*/}
-                    {/*        </div>*/}
-                    {/*    </div>*/}
-                    {/*</div>*/}
                     <div className={styles['ticket-blocks-col']}>
+                        {/*table banner*/}
                         <div className={styles['tbl-banner']}>
                             <div>
                                 <p className={styles['tbl-banner-title']}>TICKETS</p>
                                 <SearchBar inputProps={searchBarProps}/>
                             </div>
-                            <div>
-                                <p className={styles['tbl-banner-bubble']}>Visible Columns</p>
-                                <p className={styles['tbl-banner-bubble']}>Pinned Columns</p>
-                                <p className={styles['tbl-banner-bubble']}>Export(csv, xslx)</p>
+                            <div className={styles['tbl-banner-ribbon']}>
+                                    <div>
+                                        <div className={styles['tbl-banner-bubble']} onClick={onChangeEyeClick}>
+                                            <img src={eyeImg} alt='eye-icon' />
+                                        </div>
+                                        {eyeClicked && <div className={styles['tbl-banner-ribbon-bubble-clickable']}>
+                                            <p className={styles['tbl-banner-ribbon-bubble-clickable-title']}>Visible columns</p>
+                                            <input type='text' placeholder='Filter columns list ...' aria-required={false} value={searchColumn} onChange={onChangeSearchColumn}   />
+                                            <div className={styles['tbl-banner-ribbon-bubble-clickable-chk-group']}>
+                                                {ticketHeaders.map((header, index) => (
+                                                    <div key={index}>
+                                                        <input type='checkbox' id={header}
+                                                               name={header} value={header}/>
+                                                        <label htmlFor={header}>{header}</label>
+                                                    </div>
+                                                ))}
+                                            </div>
+                                        </div>}
+                                    </div>
+                                <div>
+                                    <div className={styles['tbl-banner-bubble']}>
+                                        <img src={pinImg} alt='pin-icon'/>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div className={styles['tbl-banner-bubble']} onClick={onChangeClickExport}>
+                                        <img src={exportImg} alt='export-icon'/>
+                                        <p className={styles['bubble-txt']}>EXPORT</p>
+                                    </div>
+                                    {exportClicked && (
+                                        <div className={`${styles['export-ctr']}`}>
+                                            <p className={styles['export-txt']}>Export to CSV</p>
+                                        </div>
+                                    )}
+                                </div>
                             </div>
                         </div>
+                        {/*table banner*/}
                         <table className={styles['tbl']}>
-                        <thead>
-                                <tr className={styles['table-header']}>
-                                    <th>Ticket Number</th>
-                                    <th>Subject</th>
-                                    <th>Created Date</th>
-                                    <th>Department</th>
-                                    <th>Status</th>
-                                    <th>Priority</th>
-                                    <th>Assigned To</th>
-                                    <th>Created By</th>
-                                    <th>Modified Date</th>
+                            <thead>
+                            <tr className={styles['table-header']}>
+                                <th>Ticket Number</th>
+                                <th>Subject</th>
+                                <th>Created Date</th>
+                                <th>Department</th>
+                                <th>Status</th>
+                                <th>Priority</th>
+                                <th>Assigned To</th>
+                                <th>Created By</th>
+                                <th>Modified Date</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -246,10 +238,7 @@ const AgentDashboard = () => {
                             </button>
                         </div>
                     </div>
-
                 </>)
-
-
         }
         </>);
 };

@@ -4,7 +4,7 @@ const SearchBar = ({inputProps}) => {
     return(
         <>
             <div className={styles['search-bar']}>
-                <input type="text" placeholder="Search..." onChange={inputProps.onChange} value={inputProps.value} />
+                <input type="text" placeholder="Search..." onChange={inputProps.onChange} value={inputProps.value} aria-required={false} />
                 <img src={searchIcon} alt="maginifier-glass" />
             </div>
         </>

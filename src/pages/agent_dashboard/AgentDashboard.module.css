@@ -51,13 +51,13 @@
     padding: 4px 15px;
     border-radius: 5px;
     background-color: #1ea7fd;
+    color: #fff;
     cursor: pointer;
     transition: background-color 0.3s ease-in-out;
 }
 
 .sml-action-btn:hover {
-    background-color: #ebebeb;
-    color: #333;
+    background-color: #0184da;
 }
 
 .ticket-filter-label {
@@ -160,28 +160,51 @@
     padding: 8px 20px;
     gap: 4rem;
 }
-.tbl-banner > div {
-    display: flex;
-}
 
 .tbl-banner > div:first-child {
+    display: flex;
     flex: 1;
     align-items: center;
-    gap: 2rem;
+    gap: 1rem;
 }
 
-.tbl-banner > div:last-child {
-    gap: 2rem;
+.tbl-banner .tbl-banner-ribbon{
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.tbl-banner .tbl-banner-ribbon  > div {
+    display: flex;
+    align-items: center;
+    flex: 1;
 }
 
 .tbl-banner-title {
     font-size: 1rem;
     font-weight: 600;
+    color: #000;
+}
+
+/*.tbl-banner-ribbon > div:last-child p {*/
+/*    font-size: .8rem;*/
+/*    font-weight: 600;*/
+/*    color: #fff;*/
+/*}*/
+
+.bubble-txt {
+    font-size: .8rem;
+    font-weight: 600;
     color: #fff;
+
 }
 
 .tbl-banner-bubble {
-    background-color: rgba(0,0,0,0.3);
+    display: flex;
+    flex: 1;
+    gap: 12px;
+    align-items: center;
+    background-color: rgba(0,0,0,0.2);
     padding: 8px 14px;
     border-radius: 5px;
     color: #fff;
@@ -190,8 +213,13 @@
 }
 
 .tbl-banner-bubble:hover {
-    background-color: rgba(0,0,0,0.5);
+    background-color: rgba(0,0,0,0.4);
 
+}
+
+.tbl-banner-ribbon img {
+    width: 1.1rem;
+    height: 1.1rem;
 }
 
 .tbl {
@@ -205,15 +233,19 @@
     text-align: left;
     position: sticky;
     top: 0;
-    border-bottom: 5px solid rgba(0, 0, 0, 0.1);
+    border-bottom: 2px solid rgba(0, 0, 0, 0.1);
     white-space: nowrap;
 }
 
 .tbl th {
     background-color: #f3f4f6;
+    color: #333;
+    font-weight: 500;
+    font-size: 14px;
+    padding: 12px 15px;
 }
 
-.tbl th, .tbl td {
+.tbl td {
     padding: 8px 15px;
 }
 
@@ -233,5 +265,83 @@
     background-color: rgba(30, 167, 253, 0.2);
 }
 
+.tbl-banner-ribbon > div {
+    position: relative;
+}
+.tbl-banner-ribbon-bubble-clickable {
+    background-color: #212121;
+    color: #fff;
+    padding: 12px 14px;
+    position: absolute;
+    z-index: 999;
+    cursor: default;
+    top: 35px;
+    right: 0;
+}
+
+.tbl-banner-ribbon-bubble-clickable-title {
+    color: #0077ff;
+}
+
+.tbl-banner-ribbon-bubble-clickable input {
+    border: none;
+    background-color: transparent;
+    border-bottom: 1px solid #c2c2c2;
+    color: #fff;
+    padding: 6px 10px;
+    font-size: 0.9rem;
+    transition: border-bottom 0.3s ease-in-out;
+}
+
+.tbl-banner-ribbon-bubble-clickable input:focus {
+    outline: none;
+    border-bottom: 2px solid #0077ff;
+}
+
+.tbl-banner-ribbon-bubble-clickable-chk-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 10px 0;
+    max-height: 250px;
+    overflow: auto;
+}
 
 
+.tbl-banner-ribbon-bubble-clickable-chk-group > div {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.tbl-banner-ribbon-bubble-clickable-chk-group > div input {
+    width: 22px;
+    height: 22px;
+}
+
+.tbl-banner-ribbon-bubble-clickable-chk-group > div label {
+    color: #fff;
+    font-size: 1rem;
+}
+
+.export-ctr {
+    background-color: #212121;
+    position: absolute;
+    z-index: 999;
+    top: 35px;
+    right: 0;
+    white-space: nowrap;
+    cursor: pointer;
+}
+
+.export-ctr .export-txt {
+    font-size: .9rem;
+    font-weight: 500;
+    color: #fff;
+    padding: 8px 15px;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.export-ctr .export-txt:hover {
+    background-color: #4b4b4b;
+}
