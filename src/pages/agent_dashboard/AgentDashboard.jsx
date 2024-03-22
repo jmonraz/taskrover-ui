@@ -29,6 +29,9 @@ const AgentDashboard = () => {
     const [eyeClicked, setEyeClicked] = useState(false);
     const [searchColumn, setSearchColumn] = useState('');
     const [exportClicked, setExportClicked] = useState(false);
+    const [defaultHeaders, setDefaultHeaders] = useState([]);
+    const [ticketHeaders, setTicketHeaders] = useState([]);
+    const [checkedColumns, setCheckedColumns] = useState([]);
 
     useEffect(() => {
         const fetchTicketsAndProfilePictures = async () => {
@@ -51,16 +54,10 @@ const AgentDashboard = () => {
                 setTickets(ticketsWithPictures);
                 setUnfilteredTickets(ticketsWithPictures);
                 setIsLoading(false);
-                console.log("Tickets fetched: ", ticketsWithPictures);
             } catch (error) {
                 console.log("Error fetching tickets: ", error);
             }
         };
-
-        fetchTicketsAndProfilePictures().then(() => console.log("Tickets and profile pictures fetched"));
-    }, []);
-
-    useEffect(() => {
         const fetchUserInformation = async () => {
             try {
                 const fetchedUser = await getUserInformation();
@@ -70,9 +67,40 @@ const AgentDashboard = () => {
             }
         }
 
-        fetchUserInformation().then(r => console.log("User fetched"));
-    }, []);
+        const getTicketHeaders = () => {
+            // set default headers
+            console.log(tickets.length);
+            if (tickets.length > 0) {
+                // default headers: ticketNumber, ticketTitle, createdDate, ticketDepartment, ticketStatus, priority, agentAssigned, createdBy, modifiedDate
+                const defaultHeaders = ['ticketNumber', 'ticketTitle',  'createdDate', 'ticketDepartment', 'ticketStatus', 'priority', 'agentAssigned', 'createdBy', 'modifiedDate'];
+                setDefaultHeaders(defaultHeaders);
+                for(const key in tickets[0]) {
+                    if(key !== 'conversations' && key !== 'tags') {
 
+                        ticketHeaders.push(key);
+                    }
+                }
+                // form an object with the headers and their visibility
+                const checkedColumns = {};
+                ticketHeaders.forEach(header => {
+                    checkedColumns[header] = false;
+                });
+
+                defaultHeaders.forEach(header => {
+                    checkedColumns[header] = true;
+                });
+                setCheckedColumns(checkedColumns);
+            }
+        };
+
+
+        fetchUserInformation().then(r => console.log("User fetched"));
+
+        fetchTicketsAndProfilePictures().then(() => console.log("Tickets and profile pictures fetched"));
+
+        getTicketHeaders();
+
+    }, [tickets.length]);
 
     const onSearchBarChange = (e) => {
         setSearchBarValue(e.target.value);
@@ -126,14 +154,22 @@ const AgentDashboard = () => {
         setCurrentPage((prevPage) => Math.max(prevPage - 1, 1));
     };
 
-    const getTicketHeaders = () => {
-        if (tickets.length > 0) {
-            return Object.keys(tickets[0]);
+    const onHeaderChkClick = (e) => {
+        e.stopPropagation();
+        const header = e.target.value;
+        const newCheckedColumns = {...checkedColumns};
+        newCheckedColumns[header] = !newCheckedColumns[header];
+        setCheckedColumns(newCheckedColumns);
+        // set default headers
+        const defaultHeaders = [];
+        for(const key in newCheckedColumns) {
+            if(newCheckedColumns[key]) {
+                defaultHeaders.push(key);
+            }
         }
-        return [];
-    };
+        setDefaultHeaders(defaultHeaders);
+    }
 
-    const ticketHeaders = getTicketHeaders();
 
     return (
         <>
@@ -148,28 +184,29 @@ const AgentDashboard = () => {
                         {/*table banner*/}
                         <div className={styles['tbl-banner']}>
                             <div>
-                                <p className={styles['tbl-banner-title']}>TICKETS</p>
                                 <SearchBar inputProps={searchBarProps}/>
                             </div>
                             <div className={styles['tbl-banner-ribbon']}>
-                                    <div>
-                                        <div className={styles['tbl-banner-bubble']} onClick={onChangeEyeClick}>
-                                            <img src={eyeImg} alt='eye-icon' />
-                                        </div>
-                                        {eyeClicked && <div className={styles['tbl-banner-ribbon-bubble-clickable']}>
-                                            <p className={styles['tbl-banner-ribbon-bubble-clickable-title']}>Visible columns</p>
-                                            <input type='text' placeholder='Filter columns list ...' aria-required={false} value={searchColumn} onChange={onChangeSearchColumn}   />
-                                            <div className={styles['tbl-banner-ribbon-bubble-clickable-chk-group']}>
-                                                {ticketHeaders.map((header, index) => (
-                                                    <div key={index}>
-                                                        <input type='checkbox' id={header}
-                                                               name={header} value={header}/>
-                                                        <label htmlFor={header}>{header}</label>
-                                                    </div>
-                                                ))}
-                                            </div>
-                                        </div>}
+                                <div>
+                                    <div className={styles['tbl-banner-bubble']} onClick={onChangeEyeClick}>
+                                        <img src={eyeImg} alt='eye-icon'/>
                                     </div>
+                                    {eyeClicked && <div className={styles['tbl-banner-ribbon-bubble-clickable']}>
+                                        <p className={styles['tbl-banner-ribbon-bubble-clickable-title']}>Visible
+                                            columns</p>
+                                        <input type='text' placeholder='Filter columns list ...' aria-required={false}
+                                               value={searchColumn} onChange={onChangeSearchColumn}/>
+                                        <div className={styles['tbl-banner-ribbon-bubble-clickable-chk-group']}>
+                                            {ticketHeaders.map((header, index) => (
+                                                <div key={index}>
+                                                    <input type='checkbox' id={header}
+                                                           name={header} value={header} checked={checkedColumns[header]} onClick={onHeaderChkClick}/>
+                                                    <label htmlFor={header}>{header}</label>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    </div>}
+                                </div>
                                 <div>
                                     <div className={styles['tbl-banner-bubble']}>
                                         <img src={pinImg} alt='pin-icon'/>
@@ -189,41 +226,47 @@ const AgentDashboard = () => {
                             </div>
                         </div>
                         {/*table banner*/}
-                        <table className={styles['tbl']}>
-                            <thead>
-                            <tr className={styles['table-header']}>
-                                <th>Ticket Number</th>
-                                <th>Subject</th>
-                                <th>Created Date</th>
-                                <th>Department</th>
-                                <th>Status</th>
-                                <th>Priority</th>
-                                <th>Assigned To</th>
-                                <th>Created By</th>
-                                <th>Modified Date</th>
+                        <div className={styles['tbl-ctr']}>
+                            <table className={styles['tbl']}>
+                                <thead>
+                                <tr className={styles['table-header']}>
+                                    {defaultHeaders.map((header, index) => (
+                                        <th key={index}>{header}</th>
+                                    ))}
                                 </tr>
-                            </thead>
-                            <tbody>
+                                </thead>
+                                <tbody>
                                 {displayedTickets.map((ticket, index) => (
-                                    <tr onClick={() => onHandleTicketBlockClick(ticket)}>
-                                        <td key={ticket.ticketNumber}>{ticket.ticketNumber}</td>
-                                        <td key={ticket.ticketTitle}>{ticket.ticketTitle}</td>
-                                        <td key={ticket.createdDate.toDate().toString()}>{ticket.createdDate.toDate().toString()}</td>
-                                        <td key={ticket.ticketDepartment}>{ticket.ticketDepartment}</td>
-                                        <td key={ticket.ticketStatus}>{ticket.ticketStatus}</td>
-                                        <td key={ticket.priority}>{ticket.priority}</td>
-                                        <td key={ticket.agentAssigned}>
-                                            <div className={styles['img-ctr']}>
-                                                <img src={ticket.agentAssignedImage ? ticket.agentAssignedImage : genericPicture} alt="agent-image"/>
-                                                <p>{ticket.agentAssigned}</p>
-                                            </div>
-                                        </td>
-                                        <td key={index}>{ticket.createdBy}</td>
-                                        <td key={ticket.modifiedDate.toDate().toString()}>{ticket.modifiedDate.toDate().toString()}</td>
+                                    <tr onClick={() => onHandleTicketBlockClick(ticket)} key={index}>
+                                        {defaultHeaders.map((header, headerIndex) => {
+                                            // Special handling for dates to convert them from Timestamp to string
+                                            if (header === 'createdDate' || header === 'modifiedDate') {
+                                                return <td key={headerIndex}>{ticket[header].toDate().toString()}</td>;
+                                            }
+                                            // Handling for the agentAssignedImage property
+                                            else if (header === 'agentAssigned') {
+                                                return (
+                                                    <td key={headerIndex}>
+                                                        <div className={styles['img-ctr']}>
+                                                            <img
+                                                                src={ticket.agentAssignedImage ? ticket.agentAssignedImage : genericPicture}
+                                                                alt="agent-image"/>
+                                                            <p>{ticket.agentAssigned}</p>
+                                                        </div>
+                                                    </td>
+                                                );
+                                            }
+                                            // Default rendering for other properties
+                                            else {
+                                                return <td key={headerIndex}>{ticket[header]}</td>;
+                                            }
+                                        })}
                                     </tr>
                                 ))}
-                            </tbody>
-                        </table>
+                                </tbody>
+                            </table>
+                        </div>
+
                     </div>
                     <div className={styles['btn-row']}>
                         <p className={styles['ticket-count']}>
