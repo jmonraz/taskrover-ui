@@ -58,6 +58,7 @@ const AgentDashboard = () => {
                 console.log("Error fetching tickets: ", error);
             }
         };
+
         const fetchUserInformation = async () => {
             try {
                 const fetchedUser = await getUserInformation();
@@ -66,16 +67,19 @@ const AgentDashboard = () => {
                 console.log("Error fetching user: ", error);
             }
         }
+        fetchUserInformation().then(r => console.log("User fetched"));
+        fetchTicketsAndProfilePictures().then(() => console.log("Tickets and profile pictures fetched"));
+    }, []);
 
+    useEffect(() => {
         const getTicketHeaders = () => {
             // set default headers
-            console.log(tickets.length);
             if (tickets.length > 0) {
                 // default headers: ticketNumber, ticketTitle, createdDate, ticketDepartment, ticketStatus, priority, agentAssigned, createdBy, modifiedDate
                 const defaultHeaders = ['ticketNumber', 'ticketTitle',  'createdDate', 'ticketDepartment', 'ticketStatus', 'priority', 'agentAssigned', 'createdBy', 'modifiedDate'];
                 setDefaultHeaders(defaultHeaders);
                 for(const key in tickets[0]) {
-                    if(key !== 'conversations' && key !== 'tags') {
+                    if(key !== 'conversations' && key !== 'tags' && key !== 'agentAssignedImage') {
 
                         ticketHeaders.push(key);
                     }
@@ -92,14 +96,7 @@ const AgentDashboard = () => {
                 setCheckedColumns(checkedColumns);
             }
         };
-
-
-        fetchUserInformation().then(r => console.log("User fetched"));
-
-        fetchTicketsAndProfilePictures().then(() => console.log("Tickets and profile pictures fetched"));
-
         getTicketHeaders();
-
     }, [tickets.length]);
 
     const onSearchBarChange = (e) => {
@@ -240,7 +237,7 @@ const AgentDashboard = () => {
                                     <tr onClick={() => onHandleTicketBlockClick(ticket)} key={index}>
                                         {defaultHeaders.map((header, headerIndex) => {
                                             // Special handling for dates to convert them from Timestamp to string
-                                            if (header === 'createdDate' || header === 'modifiedDate') {
+                                            if (header === 'createdDate' || header === 'modifiedDate' || header === 'lastTimeResponded') {
                                                 return <td key={headerIndex}>{ticket[header].toDate().toString()}</td>;
                                             }
                                             // Handling for the agentAssignedImage property

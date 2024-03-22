@@ -7,7 +7,6 @@
     <list default="true" id="fad4ea0f-a4ea-4957-a666-83f0e0123387" name="Changes" comment="made it to where you can upload a profile pic and change your name">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/agent_dashboard/AgentDashboard.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/agent_dashboard/AgentDashboard.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/agent_dashboard/AgentDashboard.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/agent_dashboard/AgentDashboard.module.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
